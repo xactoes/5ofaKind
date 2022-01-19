@@ -1,0 +1,28 @@
+XL3
+H 9 areas 3 global symbols
+M betterDelay
+O -mgbz80
+S .__.ABS. Def000000
+S _wait_vbl_done Ref000000
+A _CODE size 15 flags 0 addr 0
+S _betterDelay Def000000
+A _DATA size 0 flags 0 addr 0
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 00
+T 00 00 00 01 00 00
+R 00 00 00 00
+T 03 00 00
+R 00 00 00 00
+T 03 00 00 F8 02 7E 91 20 04 23 7E 90 C8
+R 00 00 00 00
+T 0D 00 00
+R 00 00 00 00
+T 0D 00 00 C5 CD 00 00 C1 03 18 EE
+R 00 00 00 00 02 05 01 00

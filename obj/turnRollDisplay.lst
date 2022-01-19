@@ -1,0 +1,360 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.1.6 #12539 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module turnRollDisplay
+                                      6 	.optsdcc -mgbz80
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _turnRollDisplay
+                                     12 	.globl _turnDisplay
+                                     13 	.globl _rollDisplay
+                                     14 	.globl _bcd2text
+                                     15 	.globl _bcd_sub
+                                     16 	.globl _uint2bcd
+                                     17 	.globl _set_bkg_tile_xy
+                                     18 	.globl _set_bkg_tiles
+                                     19 ;--------------------------------------------------------
+                                     20 ; special function registers
+                                     21 ;--------------------------------------------------------
+                                     22 ;--------------------------------------------------------
+                                     23 ; ram data
+                                     24 ;--------------------------------------------------------
+                                     25 	.area _DATA
+                                     26 ;--------------------------------------------------------
+                                     27 ; ram data
+                                     28 ;--------------------------------------------------------
+                                     29 	.area _INITIALIZED
+                                     30 ;--------------------------------------------------------
+                                     31 ; absolute external ram data
+                                     32 ;--------------------------------------------------------
+                                     33 	.area _DABS (ABS)
+                                     34 ;--------------------------------------------------------
+                                     35 ; global & static initialisations
+                                     36 ;--------------------------------------------------------
+                                     37 	.area _HOME
+                                     38 	.area _GSINIT
+                                     39 	.area _GSFINAL
+                                     40 	.area _GSINIT
+                                     41 ;--------------------------------------------------------
+                                     42 ; Home
+                                     43 ;--------------------------------------------------------
+                                     44 	.area _HOME
+                                     45 	.area _HOME
+                                     46 ;--------------------------------------------------------
+                                     47 ; code
+                                     48 ;--------------------------------------------------------
+                                     49 	.area _CODE
+                                     50 ;func/turnRollDisplay.c:12: void rollDisplay(){
+                                     51 ;	---------------------------------
+                                     52 ; Function rollDisplay
+                                     53 ; ---------------------------------
+      000000                         54 _rollDisplay::
+                                     55 ;func/turnRollDisplay.c:13: len = 0;
+      000000 AF                      56 	xor	a, a
+      000001 21r00r00                57 	ld	hl, #_len
+      000004 22                      58 	ld	(hl+), a
+      000005 77                      59 	ld	(hl), a
+                                     60 ;func/turnRollDisplay.c:14: bcd_sub(&rollBCD, &rollBCD);
+      000006 11r00r00                61 	ld	de, #_rollBCD
+      000009 D5                      62 	push	de
+      00000A D5                      63 	push	de
+      00000B CDr00r00                64 	call	_bcd_sub
+      00000E E8 04                   65 	add	sp, #4
+                                     66 ;func/turnRollDisplay.c:15: for(i = 0; i != 10; i++){
+      000010 AF                      67 	xor	a, a
+      000011 21r00r00                68 	ld	hl, #_i
+      000014 22                      69 	ld	(hl+), a
+      000015 77                      70 	ld	(hl), a
+      000016                         71 00102$:
+                                     72 ;func/turnRollDisplay.c:16: buf[i] = 0;
+      000016 3Er00                   73 	ld	a, #<(_buf)
+      000018 21r00r00                74 	ld	hl, #_i
+      00001B 86                      75 	add	a, (hl)
+      00001C 23                      76 	inc	hl
+      00001D 4F                      77 	ld	c, a
+      00001E 3Es00                   78 	ld	a, #>(_buf)
+      000020 8E                      79 	adc	a, (hl)
+                                     80 ;func/turnRollDisplay.c:15: for(i = 0; i != 10; i++){
+      000021 2B                      81 	dec	hl
+      000022 47                      82 	ld	b, a
+      000023 AF                      83 	xor	a, a
+      000024 02                      84 	ld	(bc), a
+      000025 34                      85 	inc	(hl)
+      000026 20 02                   86 	jr	NZ, 00116$
+      000028 23                      87 	inc	hl
+      000029 34                      88 	inc	(hl)
+      00002A                         89 00116$:
+      00002A 21r00r00                90 	ld	hl, #_i
+      00002D 2A                      91 	ld	a, (hl+)
+      00002E D6 0A                   92 	sub	a, #0x0a
+      000030 B6                      93 	or	a, (hl)
+      000031 20 E3                   94 	jr	NZ, 00102$
+                                     95 ;func/turnRollDisplay.c:18: uint2bcd(rollsLeft, &rollBCD);
+      000033 21r00r00                96 	ld	hl, #_rollsLeft
+      000036 2A                      97 	ld	a, (hl+)
+      000037 4F                      98 	ld	c, a
+      000038 46                      99 	ld	b, (hl)
+      000039 11r00r00               100 	ld	de, #_rollBCD
+      00003C D5                     101 	push	de
+      00003D C5                     102 	push	bc
+      00003E CDr00r00               103 	call	_uint2bcd
+      000041 E8 04                  104 	add	sp, #4
+                                    105 ;func/turnRollDisplay.c:19: len = bcd2text(&rollBCD, 0x10, buf);
+      000043 11r00r00               106 	ld	de, #_buf
+      000046 D5                     107 	push	de
+      000047 3E 10                  108 	ld	a, #0x10
+      000049 F5                     109 	push	af
+      00004A 33                     110 	inc	sp
+      00004B 11r00r00               111 	ld	de, #_rollBCD
+      00004E D5                     112 	push	de
+      00004F CDr00r00               113 	call	_bcd2text
+      000052 E8 05                  114 	add	sp, #5
+      000054 21r00r00               115 	ld	hl, #_len
+      000057 7B                     116 	ld	a, e
+      000058 22                     117 	ld	(hl+), a
+                                    118 ;func/turnRollDisplay.c:20: set_bkg_tiles(11, 5, len, 1, buf);
+      000059 3E 00                  119 	ld	a, #0x00
+      00005B 32                     120 	ld	(hl-), a
+      00005C 7E                     121 	ld	a, (hl)
+      00005D 11r00r00               122 	ld	de, #_buf
+      000060 D5                     123 	push	de
+      000061 26 01                  124 	ld	h, #0x01
+                                    125 ;	spillPairReg hl
+                                    126 ;	spillPairReg hl
+      000063 E5                     127 	push	hl
+      000064 33                     128 	inc	sp
+      000065 67                     129 	ld	h, a
+      000066 2E 05                  130 	ld	l, #0x05
+      000068 E5                     131 	push	hl
+      000069 3E 0B                  132 	ld	a, #0x0b
+      00006B F5                     133 	push	af
+      00006C 33                     134 	inc	sp
+      00006D CDr00r00               135 	call	_set_bkg_tiles
+      000070 E8 06                  136 	add	sp, #6
+                                    137 ;func/turnRollDisplay.c:23: set_bkg_tile_xy(11, 5, 0x2C); // L
+      000072 21 05 2C               138 	ld	hl, #0x2c05
+      000075 E5                     139 	push	hl
+      000076 3E 0B                  140 	ld	a, #0x0b
+      000078 F5                     141 	push	af
+      000079 33                     142 	inc	sp
+      00007A CDr00r00               143 	call	_set_bkg_tile_xy
+      00007D E8 03                  144 	add	sp, #3
+                                    145 ;func/turnRollDisplay.c:24: set_bkg_tile_xy(12, 5, 0x45); // e
+      00007F 21 05 45               146 	ld	hl, #0x4505
+      000082 E5                     147 	push	hl
+      000083 3E 0C                  148 	ld	a, #0x0c
+      000085 F5                     149 	push	af
+      000086 33                     150 	inc	sp
+      000087 CDr00r00               151 	call	_set_bkg_tile_xy
+      00008A E8 03                  152 	add	sp, #3
+                                    153 ;func/turnRollDisplay.c:25: set_bkg_tile_xy(13, 5, 0x46); // f
+      00008C 21 05 46               154 	ld	hl, #0x4605
+      00008F E5                     155 	push	hl
+      000090 3E 0D                  156 	ld	a, #0x0d
+      000092 F5                     157 	push	af
+      000093 33                     158 	inc	sp
+      000094 CDr00r00               159 	call	_set_bkg_tile_xy
+      000097 E8 03                  160 	add	sp, #3
+                                    161 ;func/turnRollDisplay.c:26: set_bkg_tile_xy(14, 5, 0x54); // t
+      000099 21 05 54               162 	ld	hl, #0x5405
+      00009C E5                     163 	push	hl
+      00009D 3E 0E                  164 	ld	a, #0x0e
+      00009F F5                     165 	push	af
+      0000A0 33                     166 	inc	sp
+      0000A1 CDr00r00               167 	call	_set_bkg_tile_xy
+      0000A4 E8 03                  168 	add	sp, #3
+                                    169 ;func/turnRollDisplay.c:27: set_bkg_tile_xy(15, 5, 0x1A); // :
+      0000A6 21 05 1A               170 	ld	hl, #0x1a05
+      0000A9 E5                     171 	push	hl
+      0000AA 3E 0F                  172 	ld	a, #0x0f
+      0000AC F5                     173 	push	af
+      0000AD 33                     174 	inc	sp
+      0000AE CDr00r00               175 	call	_set_bkg_tile_xy
+      0000B1 E8 03                  176 	add	sp, #3
+                                    177 ;func/turnRollDisplay.c:28: set_bkg_tile_xy(16, 5, 0x00); // blank
+      0000B3 AF                     178 	xor	a, a
+      0000B4 67                     179 	ld	h, a
+      0000B5 2E 05                  180 	ld	l, #0x05
+      0000B7 E5                     181 	push	hl
+      0000B8 3E 10                  182 	ld	a, #0x10
+      0000BA F5                     183 	push	af
+      0000BB 33                     184 	inc	sp
+      0000BC CDr00r00               185 	call	_set_bkg_tile_xy
+      0000BF E8 03                  186 	add	sp, #3
+                                    187 ;func/turnRollDisplay.c:29: set_bkg_tile_xy(17, 5, 0x00); // blank
+      0000C1 AF                     188 	xor	a, a
+      0000C2 67                     189 	ld	h, a
+      0000C3 2E 05                  190 	ld	l, #0x05
+      0000C5 E5                     191 	push	hl
+      0000C6 3E 11                  192 	ld	a, #0x11
+      0000C8 F5                     193 	push	af
+      0000C9 33                     194 	inc	sp
+      0000CA CDr00r00               195 	call	_set_bkg_tile_xy
+      0000CD E8 03                  196 	add	sp, #3
+                                    197 ;func/turnRollDisplay.c:30: }
+      0000CF C9                     198 	ret
+                                    199 ;func/turnRollDisplay.c:33: void turnDisplay(){
+                                    200 ;	---------------------------------
+                                    201 ; Function turnDisplay
+                                    202 ; ---------------------------------
+      0000D0                        203 _turnDisplay::
+                                    204 ;func/turnRollDisplay.c:34: len = 0;
+      0000D0 AF                     205 	xor	a, a
+      0000D1 21r00r00               206 	ld	hl, #_len
+      0000D4 22                     207 	ld	(hl+), a
+      0000D5 77                     208 	ld	(hl), a
+                                    209 ;func/turnRollDisplay.c:35: bcd_sub(&turnBCD, &turnBCD);
+      0000D6 11r00r00               210 	ld	de, #_turnBCD
+      0000D9 D5                     211 	push	de
+      0000DA D5                     212 	push	de
+      0000DB CDr00r00               213 	call	_bcd_sub
+      0000DE E8 04                  214 	add	sp, #4
+                                    215 ;func/turnRollDisplay.c:36: for(i = 0; i != 10; i++){
+      0000E0 AF                     216 	xor	a, a
+      0000E1 21r00r00               217 	ld	hl, #_i
+      0000E4 22                     218 	ld	(hl+), a
+      0000E5 77                     219 	ld	(hl), a
+      0000E6                        220 00102$:
+                                    221 ;func/turnRollDisplay.c:37: buf[i] = 0;
+      0000E6 3Er00                  222 	ld	a, #<(_buf)
+      0000E8 21r00r00               223 	ld	hl, #_i
+      0000EB 86                     224 	add	a, (hl)
+      0000EC 23                     225 	inc	hl
+      0000ED 4F                     226 	ld	c, a
+      0000EE 3Es00                  227 	ld	a, #>(_buf)
+      0000F0 8E                     228 	adc	a, (hl)
+                                    229 ;func/turnRollDisplay.c:36: for(i = 0; i != 10; i++){
+      0000F1 2B                     230 	dec	hl
+      0000F2 47                     231 	ld	b, a
+      0000F3 AF                     232 	xor	a, a
+      0000F4 02                     233 	ld	(bc), a
+      0000F5 34                     234 	inc	(hl)
+      0000F6 20 02                  235 	jr	NZ, 00116$
+      0000F8 23                     236 	inc	hl
+      0000F9 34                     237 	inc	(hl)
+      0000FA                        238 00116$:
+      0000FA 21r00r00               239 	ld	hl, #_i
+      0000FD 2A                     240 	ld	a, (hl+)
+      0000FE D6 0A                  241 	sub	a, #0x0a
+      000100 B6                     242 	or	a, (hl)
+      000101 20 E3                  243 	jr	NZ, 00102$
+                                    244 ;func/turnRollDisplay.c:39: uint2bcd(turn, &turnBCD);
+      000103 21r00r00               245 	ld	hl, #_turn
+      000106 2A                     246 	ld	a, (hl+)
+      000107 4F                     247 	ld	c, a
+      000108 46                     248 	ld	b, (hl)
+      000109 11r00r00               249 	ld	de, #_turnBCD
+      00010C D5                     250 	push	de
+      00010D C5                     251 	push	bc
+      00010E CDr00r00               252 	call	_uint2bcd
+      000111 E8 04                  253 	add	sp, #4
+                                    254 ;func/turnRollDisplay.c:40: len = bcd2text(&turnBCD, 0x10, buf);
+      000113 11r00r00               255 	ld	de, #_buf
+      000116 D5                     256 	push	de
+      000117 3E 10                  257 	ld	a, #0x10
+      000119 F5                     258 	push	af
+      00011A 33                     259 	inc	sp
+      00011B 11r00r00               260 	ld	de, #_turnBCD
+      00011E D5                     261 	push	de
+      00011F CDr00r00               262 	call	_bcd2text
+      000122 E8 05                  263 	add	sp, #5
+      000124 21r00r00               264 	ld	hl, #_len
+      000127 7B                     265 	ld	a, e
+      000128 22                     266 	ld	(hl+), a
+                                    267 ;func/turnRollDisplay.c:41: set_bkg_tiles(2, 5, len, 1, buf);
+      000129 3E 00                  268 	ld	a, #0x00
+      00012B 32                     269 	ld	(hl-), a
+      00012C 7E                     270 	ld	a, (hl)
+      00012D 11r00r00               271 	ld	de, #_buf
+      000130 D5                     272 	push	de
+      000131 26 01                  273 	ld	h, #0x01
+                                    274 ;	spillPairReg hl
+                                    275 ;	spillPairReg hl
+      000133 E5                     276 	push	hl
+      000134 33                     277 	inc	sp
+      000135 67                     278 	ld	h, a
+      000136 2E 05                  279 	ld	l, #0x05
+      000138 E5                     280 	push	hl
+      000139 3E 02                  281 	ld	a, #0x02
+      00013B F5                     282 	push	af
+      00013C 33                     283 	inc	sp
+      00013D CDr00r00               284 	call	_set_bkg_tiles
+      000140 E8 06                  285 	add	sp, #6
+                                    286 ;func/turnRollDisplay.c:44: set_bkg_tile_xy(2, 5, 0x2C); // T
+      000142 21 05 2C               287 	ld	hl, #0x2c05
+      000145 E5                     288 	push	hl
+      000146 3E 02                  289 	ld	a, #0x02
+      000148 F5                     290 	push	af
+      000149 33                     291 	inc	sp
+      00014A CDr00r00               292 	call	_set_bkg_tile_xy
+      00014D E8 03                  293 	add	sp, #3
+                                    294 ;func/turnRollDisplay.c:45: set_bkg_tile_xy(3, 5, 0x45); // u
+      00014F 21 05 45               295 	ld	hl, #0x4505
+      000152 E5                     296 	push	hl
+      000153 3E 03                  297 	ld	a, #0x03
+      000155 F5                     298 	push	af
+      000156 33                     299 	inc	sp
+      000157 CDr00r00               300 	call	_set_bkg_tile_xy
+      00015A E8 03                  301 	add	sp, #3
+                                    302 ;func/turnRollDisplay.c:46: set_bkg_tile_xy(4, 5, 0x46); // r
+      00015C 21 05 46               303 	ld	hl, #0x4605
+      00015F E5                     304 	push	hl
+      000160 3E 04                  305 	ld	a, #0x04
+      000162 F5                     306 	push	af
+      000163 33                     307 	inc	sp
+      000164 CDr00r00               308 	call	_set_bkg_tile_xy
+      000167 E8 03                  309 	add	sp, #3
+                                    310 ;func/turnRollDisplay.c:47: set_bkg_tile_xy(5, 5, 0x54); // n
+      000169 21 05 54               311 	ld	hl, #0x5405
+      00016C E5                     312 	push	hl
+      00016D 3E 05                  313 	ld	a, #0x05
+      00016F F5                     314 	push	af
+      000170 33                     315 	inc	sp
+      000171 CDr00r00               316 	call	_set_bkg_tile_xy
+      000174 E8 03                  317 	add	sp, #3
+                                    318 ;func/turnRollDisplay.c:48: set_bkg_tile_xy(6, 5, 0x1A); // :
+      000176 21 05 1A               319 	ld	hl, #0x1a05
+      000179 E5                     320 	push	hl
+      00017A 3E 06                  321 	ld	a, #0x06
+      00017C F5                     322 	push	af
+      00017D 33                     323 	inc	sp
+      00017E CDr00r00               324 	call	_set_bkg_tile_xy
+      000181 E8 03                  325 	add	sp, #3
+                                    326 ;func/turnRollDisplay.c:49: set_bkg_tile_xy(7, 5, 0x00); // blank
+      000183 AF                     327 	xor	a, a
+      000184 67                     328 	ld	h, a
+      000185 2E 05                  329 	ld	l, #0x05
+      000187 E5                     330 	push	hl
+      000188 3E 07                  331 	ld	a, #0x07
+      00018A F5                     332 	push	af
+      00018B 33                     333 	inc	sp
+      00018C CDr00r00               334 	call	_set_bkg_tile_xy
+      00018F E8 03                  335 	add	sp, #3
+                                    336 ;func/turnRollDisplay.c:50: set_bkg_tile_xy(8, 5, 0x00); // blank
+      000191 AF                     337 	xor	a, a
+      000192 67                     338 	ld	h, a
+      000193 2E 05                  339 	ld	l, #0x05
+      000195 E5                     340 	push	hl
+      000196 3E 08                  341 	ld	a, #0x08
+      000198 F5                     342 	push	af
+      000199 33                     343 	inc	sp
+      00019A CDr00r00               344 	call	_set_bkg_tile_xy
+      00019D E8 03                  345 	add	sp, #3
+                                    346 ;func/turnRollDisplay.c:51: }
+      00019F C9                     347 	ret
+                                    348 ;func/turnRollDisplay.c:54: void turnRollDisplay(){
+                                    349 ;	---------------------------------
+                                    350 ; Function turnRollDisplay
+                                    351 ; ---------------------------------
+      0001A0                        352 _turnRollDisplay::
+                                    353 ;func/turnRollDisplay.c:55: rollDisplay();
+      0001A0 CDr00r00               354 	call	_rollDisplay
+                                    355 ;func/turnRollDisplay.c:56: turnDisplay();
+                                    356 ;func/turnRollDisplay.c:57: }
+      0001A3 C3rD0r00               357 	jp	_turnDisplay
+                                    358 	.area _CODE
+                                    359 	.area _INITIALIZER
+                                    360 	.area _CABS (ABS)
