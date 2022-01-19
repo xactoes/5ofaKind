@@ -44,7 +44,7 @@ void setScoreUpper(){
 						set_bkg_tile_xy(2, 22, 0x11); // 1
 						set_bkg_tile_xy(3, 22, 0x07); // '
 						set_bkg_tile_xy(4, 22, 0x53); // s
-						set_bkg_tile_xy(5, 22, 0x1A); // blank
+						set_bkg_tile_xy(5, 22, 0x1A); // :
 						set_bkg_tile_xy(6, 22, 0x00); // blank
 						set_bkg_tile_xy(7, 22, 0x00); // blank
 						break;
@@ -54,7 +54,7 @@ void setScoreUpper(){
 						set_bkg_tile_xy(2, 23, 0x12); // 2
 						set_bkg_tile_xy(3, 23, 0x07); // '
 						set_bkg_tile_xy(4, 23, 0x53); // s
-						set_bkg_tile_xy(5, 23, 0x1A); // blank
+						set_bkg_tile_xy(5, 23, 0x1A); // :
 						set_bkg_tile_xy(6, 23, 0x00); // blank
 						set_bkg_tile_xy(7, 23, 0x00); // blank
 						break;
@@ -64,7 +64,7 @@ void setScoreUpper(){
 						set_bkg_tile_xy(2, 24, 0x13); // 3
 						set_bkg_tile_xy(3, 24, 0x07); // '
 						set_bkg_tile_xy(4, 24, 0x53); // s
-						set_bkg_tile_xy(5, 24, 0x1A); // blank
+						set_bkg_tile_xy(5, 24, 0x1A); // :
 						set_bkg_tile_xy(6, 24, 0x00); // blank
 						set_bkg_tile_xy(7, 24, 0x00); // blank
 						break;
@@ -74,7 +74,7 @@ void setScoreUpper(){
 						set_bkg_tile_xy(11, 22, 0x14); // 4
 						set_bkg_tile_xy(12, 22, 0x07); // '
 						set_bkg_tile_xy(13, 22, 0x53); // s
-						set_bkg_tile_xy(14, 22, 0x1A); // blank
+						set_bkg_tile_xy(14, 22, 0x1A); // :
 						set_bkg_tile_xy(15, 22, 0x00); // blank
 						set_bkg_tile_xy(16, 22, 0x00); // blank
 						break;
@@ -84,7 +84,7 @@ void setScoreUpper(){
 						set_bkg_tile_xy(11, 23, 0x15); // 5
 						set_bkg_tile_xy(12, 23, 0x07); // '
 						set_bkg_tile_xy(13, 23, 0x53); // s
-						set_bkg_tile_xy(14, 23, 0x1A); // blank
+						set_bkg_tile_xy(14, 23, 0x1A); // :
 						set_bkg_tile_xy(15, 23, 0x00); // blank
 						set_bkg_tile_xy(16, 23, 0x00); // blank
 						break;
@@ -94,7 +94,7 @@ void setScoreUpper(){
 						set_bkg_tile_xy(11, 24, 0x16); // 6
 						set_bkg_tile_xy(12, 24, 0x07); // '
 						set_bkg_tile_xy(13, 24, 0x53); // s
-						set_bkg_tile_xy(14, 24, 0x1A); // blank
+						set_bkg_tile_xy(14, 24, 0x1A); // :
 						set_bkg_tile_xy(15, 24, 0x00); // blank
 						set_bkg_tile_xy(16, 24, 0x00); // blank
 						break;
@@ -158,6 +158,52 @@ void setScoreLower(){
 				if(bonus5 == 1){
 					scorecardSummed[7] == scorecard[7];
 				}
+				//for display score on the card individually for each option
+				bcd_sub(&numOptBCD, &numOptBCD);
+				uint2bcd(scorecard[cursorIndex - 8], &numOptBCD);
+				len = bcd2text(&numOptBCD, 0x10, buf);
+				switch(cursorIndex){
+                    //3 of a Kind
+                    case 11:
+                        set_bkg_tiles(2, 28, len, 1, buf);
+						set_bkg_tile_xy(2, 28, 0x13); // 3
+						set_bkg_tile_xy(3, 28, 0x2B); // K
+						set_bkg_tile_xy(4, 28, 0x49); // i
+						set_bkg_tile_xy(5, 28, 0x4E); // n
+						set_bkg_tile_xy(6, 28, 0x44); // d
+						set_bkg_tile_xy(7, 28, 0x00); // blank
+                        break;
+                    //4 of a Kind
+                    case 12:
+                        set_bkg_tiles(2, 28, len, 1, buf);
+						set_bkg_tile_xy(2, 28, 0x14); // 4
+						set_bkg_tile_xy(3, 28, 0x2B); // K
+						set_bkg_tile_xy(4, 28, 0x49); // i
+						set_bkg_tile_xy(5, 28, 0x4E); // n
+						set_bkg_tile_xy(6, 28, 0x44); // d
+						set_bkg_tile_xy(7, 28, 0x00); // blank
+                        break;
+                    //5 of a Kind Bonus
+                    case 15:
+                        set_bkg_tiles(11, 32, len, 1, buf);
+                        set_bkg_tile_xy(11, 32, 0x14); // B
+						set_bkg_tile_xy(12, 32, 0x2B); // o
+						set_bkg_tile_xy(13, 32, 0x49); // n
+						set_bkg_tile_xy(14, 32, 0x4E); // u
+						set_bkg_tile_xy(15, 32, 0x44); // s
+						set_bkg_tile_xy(16, 32, 0x00); // :
+                        break;
+                    //Chance
+                    case 21:
+						set_bkg_tiles(11, 30, len, 1, buf);
+						set_bkg_tile_xy(11, 30, 0x23); // C
+						set_bkg_tile_xy(12, 30, 0x48); // h
+						set_bkg_tile_xy(13, 30, 0x41); // a
+						set_bkg_tile_xy(14, 30, 0x4E); // n
+						set_bkg_tile_xy(15, 30, 0x43); // c
+						set_bkg_tile_xy(16, 30, 0x45); // e
+                        break;
+                }
 			}
 		}
 	}

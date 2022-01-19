@@ -381,7 +381,7 @@ _setScoreUpper::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:47: set_bkg_tile_xy(5, 22, 0x1A); // blank
+;func/scoreDisplay.c:47: set_bkg_tile_xy(5, 22, 0x1A); // :
 	ld	hl, #0x1a16
 	push	hl
 	ld	a, #0x05
@@ -449,7 +449,7 @@ _setScoreUpper::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:57: set_bkg_tile_xy(5, 23, 0x1A); // blank
+;func/scoreDisplay.c:57: set_bkg_tile_xy(5, 23, 0x1A); // :
 	ld	hl, #0x1a17
 	push	hl
 	ld	a, #0x05
@@ -517,7 +517,7 @@ _setScoreUpper::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:67: set_bkg_tile_xy(5, 24, 0x1A); // blank
+;func/scoreDisplay.c:67: set_bkg_tile_xy(5, 24, 0x1A); // :
 	ld	hl, #0x1a18
 	push	hl
 	ld	a, #0x05
@@ -585,7 +585,7 @@ _setScoreUpper::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:77: set_bkg_tile_xy(14, 22, 0x1A); // blank
+;func/scoreDisplay.c:77: set_bkg_tile_xy(14, 22, 0x1A); // :
 	ld	hl, #0x1a16
 	push	hl
 	ld	a, #0x0e
@@ -653,7 +653,7 @@ _setScoreUpper::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:87: set_bkg_tile_xy(14, 23, 0x1A); // blank
+;func/scoreDisplay.c:87: set_bkg_tile_xy(14, 23, 0x1A); // :
 	ld	hl, #0x1a17
 	push	hl
 	ld	a, #0x0e
@@ -721,7 +721,7 @@ _setScoreUpper::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:97: set_bkg_tile_xy(14, 24, 0x1A); // blank
+;func/scoreDisplay.c:97: set_bkg_tile_xy(14, 24, 0x1A); // :
 	ld	hl, #0x1a18
 	push	hl
 	ld	a, #0x0e
@@ -829,7 +829,7 @@ _setScoreLower::
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
-00127$:
+00132$:
 ;func/scoreDisplay.c:125: buf[i] = 0;
 	ld	a, #<(_buf)
 	ld	hl, #_i
@@ -844,15 +844,15 @@ _setScoreLower::
 	xor	a, a
 	ld	(bc), a
 	inc	(hl)
-	jr	NZ, 00202$
+	jr	NZ, 00227$
 	inc	hl
 	inc	(hl)
-00202$:
+00227$:
 	ld	hl, #_i
 	ld	a, (hl+)
 	sub	a, #0x0a
 	or	a, (hl)
-	jr	NZ, 00127$
+	jr	NZ, 00132$
 ;func/scoreDisplay.c:127: if(cursorIndex <= 21){
 	ld	hl, #_cursorIndex
 	ld	a, #0x15
@@ -865,7 +865,7 @@ _setScoreLower::
 	ldhl	sp,	#0
 	ld	(hl), a
 	bit	0, (hl)
-	jp	NZ, 00126$
+	jp	NZ, 00131$
 ;func/scoreDisplay.c:128: if(scorecardSummed[cursorIndex - 8] != scorecard[cursorIndex - 8]){
 	ld	a, (#_cursorIndex)
 	add	a, #0xf8
@@ -907,20 +907,20 @@ _setScoreLower::
 	ldhl	sp,	#3
 	ld	a, (hl)
 	sub	a, c
-	jr	NZ, 00205$
+	jr	NZ, 00230$
 	inc	hl
 	ld	a, (hl)
 	sub	a, b
-	jp	Z,00126$
-00205$:
+	jp	Z,00131$
+00230$:
 ;func/scoreDisplay.c:129: if(scorecard[cursorIndex - 8] != 255 && scorecard[cursorIndex - 8] != 0){
 	ld	a, c
 	inc	a
 	or	a, b
-	jp	Z,00126$
+	jp	Z,00131$
 	ld	a, b
 	or	a, c
-	jp	Z, 00126$
+	jp	Z, 00131$
 ;func/scoreDisplay.c:131: if(cursorIndex >= 11 && cursorIndex <= 14){
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
@@ -963,7 +963,7 @@ _setScoreLower::
 	push	bc
 	call	_uint2bcd
 	add	sp, #4
-	jp	00126$
+	jp	00119$
 00115$:
 ;func/scoreDisplay.c:137: else if(cursorIndex >= 19 && cursorIndex <= 21){
 	ld	hl, #_cursorIndex
@@ -1003,16 +1003,16 @@ _setScoreLower::
 	push	bc
 	call	_uint2bcd
 	add	sp, #4
-	jr	00126$
+	jr	00119$
 00111$:
 ;func/scoreDisplay.c:145: else if(cursorIndex == 15){
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	sub	a, #0x0f
 	or	a, (hl)
-	jr	NZ, 00126$
+	jr	NZ, 00119$
 ;func/scoreDisplay.c:146: if(scorecard[7] < 1000){
-	ld	hl, #_scorecard + 14
+	ld	hl, #(_scorecard + 14)
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -1049,18 +1049,18 @@ _setScoreLower::
 	push	bc
 	call	_uint2bcd
 	add	sp, #4
-	jr	00126$
+	jr	00119$
 00106$:
 ;func/scoreDisplay.c:150: else if(scorecard[7] == 1000 && bonus5 == 0){
 	ld	a, c
 	sub	a, #0xe8
-	jr	NZ, 00126$
+	jr	NZ, 00119$
 	ld	a, b
 	sub	a, #0x03
-	jr	NZ, 00126$
+	jr	NZ, 00119$
 	ld	a, (#_bonus5)
 	or	a, a
-	jr	NZ, 00126$
+	jr	NZ, 00119$
 ;func/scoreDisplay.c:151: scorecardSummed[cursorIndex - 8] = 100;
 	ldhl	sp,	#1
 	ld	a,	(hl+)
@@ -1093,42 +1093,369 @@ _setScoreLower::
 	ld	hl, #_bonus5
 	ld	(hl), #0x01
 ;func/scoreDisplay.c:159: scorecardSummed[7] == scorecard[7];
-00126$:
-;func/scoreDisplay.c:165: bcd_add(&lowerScoreBCD, &lowerScoreBuf);
+00119$:
+;func/scoreDisplay.c:162: bcd_sub(&numOptBCD, &numOptBCD);
+	ld	de, #_numOptBCD
+	push	de
+	push	de
+	call	_bcd_sub
+	add	sp, #4
+;func/scoreDisplay.c:163: uint2bcd(scorecard[cursorIndex - 8], &numOptBCD);
+	ld	a, (#_cursorIndex)
+	add	a, #0xf8
+	ld	l, a
+;	spillPairReg hl
+;	spillPairReg hl
+	rlca
+	sbc	a, a
+	ld	h, a
+	add	hl, hl
+	ld	de, #_scorecard
+	add	hl, de
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	ld	de, #_numOptBCD
+	push	de
+	push	bc
+	call	_uint2bcd
+	add	sp, #4
+;func/scoreDisplay.c:164: len = bcd2text(&numOptBCD, 0x10, buf);
+	ld	de, #_buf
+	push	de
+	ld	a, #0x10
+	push	af
+	inc	sp
+	ld	de, #_numOptBCD
+	push	de
+	call	_bcd2text
+	add	sp, #5
+	ld	hl, #_len
+	ld	a, e
+	ld	(hl+), a
+;func/scoreDisplay.c:168: set_bkg_tiles(2, 28, len, 1, buf);
+	xor	a, a
+	ld	(hl-), a
+	ld	b, (hl)
+;func/scoreDisplay.c:165: switch(cursorIndex){
+	ld	hl, #_cursorIndex
+	ld	a, (hl+)
+	sub	a, #0x0b
+	or	a, (hl)
+	jr	Z, 00120$
+	ld	hl, #_cursorIndex
+	ld	a, (hl+)
+	sub	a, #0x0c
+	or	a, (hl)
+	jr	Z, 00121$
+	ld	hl, #_cursorIndex
+	ld	a, (hl+)
+	sub	a, #0x0f
+	or	a, (hl)
+	jp	Z,00122$
+	ld	hl, #_cursorIndex
+	ld	a, (hl+)
+	sub	a, #0x15
+	or	a, (hl)
+	jp	Z,00123$
+	jp	00131$
+;func/scoreDisplay.c:167: case 11:
+00120$:
+;func/scoreDisplay.c:168: set_bkg_tiles(2, 28, len, 1, buf);
+	ld	de, #_buf
+	push	de
+	ld	a, #0x01
+	push	af
+	inc	sp
+	push	bc
+	inc	sp
+	ld	hl, #0x1c02
+	push	hl
+	call	_set_bkg_tiles
+	add	sp, #6
+;func/scoreDisplay.c:169: set_bkg_tile_xy(2, 28, 0x13); // 3
+	ld	hl, #0x131c
+	push	hl
+	ld	a, #0x02
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:170: set_bkg_tile_xy(3, 28, 0x2B); // K
+	ld	hl, #0x2b1c
+	push	hl
+	ld	a, #0x03
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:171: set_bkg_tile_xy(4, 28, 0x49); // i
+	ld	hl, #0x491c
+	push	hl
+	ld	a, #0x04
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:172: set_bkg_tile_xy(5, 28, 0x4E); // n
+	ld	hl, #0x4e1c
+	push	hl
+	ld	a, #0x05
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:173: set_bkg_tile_xy(6, 28, 0x44); // d
+	ld	hl, #0x441c
+	push	hl
+	ld	a, #0x06
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:174: set_bkg_tile_xy(7, 28, 0x00); // blank
+	xor	a, a
+	ld	h, a
+	ld	l, #0x1c
+	push	hl
+	ld	a, #0x07
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:175: break;
+	jp	00131$
+;func/scoreDisplay.c:177: case 12:
+00121$:
+;func/scoreDisplay.c:178: set_bkg_tiles(2, 28, len, 1, buf);
+	ld	de, #_buf
+	push	de
+	ld	a, #0x01
+	push	af
+	inc	sp
+	push	bc
+	inc	sp
+	ld	hl, #0x1c02
+	push	hl
+	call	_set_bkg_tiles
+	add	sp, #6
+;func/scoreDisplay.c:179: set_bkg_tile_xy(2, 28, 0x14); // 4
+	ld	hl, #0x141c
+	push	hl
+	ld	a, #0x02
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:180: set_bkg_tile_xy(3, 28, 0x2B); // K
+	ld	hl, #0x2b1c
+	push	hl
+	ld	a, #0x03
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:181: set_bkg_tile_xy(4, 28, 0x49); // i
+	ld	hl, #0x491c
+	push	hl
+	ld	a, #0x04
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:182: set_bkg_tile_xy(5, 28, 0x4E); // n
+	ld	hl, #0x4e1c
+	push	hl
+	ld	a, #0x05
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:183: set_bkg_tile_xy(6, 28, 0x44); // d
+	ld	hl, #0x441c
+	push	hl
+	ld	a, #0x06
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:184: set_bkg_tile_xy(7, 28, 0x00); // blank
+	xor	a, a
+	ld	h, a
+	ld	l, #0x1c
+	push	hl
+	ld	a, #0x07
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:185: break;
+	jp	00131$
+;func/scoreDisplay.c:187: case 15:
+00122$:
+;func/scoreDisplay.c:188: set_bkg_tiles(11, 32, len, 1, buf);
+	ld	de, #_buf
+	push	de
+	ld	a, #0x01
+	push	af
+	inc	sp
+	push	bc
+	inc	sp
+	ld	hl, #0x200b
+	push	hl
+	call	_set_bkg_tiles
+	add	sp, #6
+;func/scoreDisplay.c:189: set_bkg_tile_xy(11, 32, 0x14); // B
+	ld	hl, #0x1420
+	push	hl
+	ld	a, #0x0b
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:190: set_bkg_tile_xy(12, 32, 0x2B); // o
+	ld	hl, #0x2b20
+	push	hl
+	ld	a, #0x0c
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:191: set_bkg_tile_xy(13, 32, 0x49); // n
+	ld	hl, #0x4920
+	push	hl
+	ld	a, #0x0d
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:192: set_bkg_tile_xy(14, 32, 0x4E); // u
+	ld	hl, #0x4e20
+	push	hl
+	ld	a, #0x0e
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:193: set_bkg_tile_xy(15, 32, 0x44); // s
+	ld	hl, #0x4420
+	push	hl
+	ld	a, #0x0f
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:194: set_bkg_tile_xy(16, 32, 0x00); // :
+	xor	a, a
+	ld	h, a
+	ld	l, #0x20
+	push	hl
+	ld	a, #0x10
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:195: break;
+	jr	00131$
+;func/scoreDisplay.c:197: case 21:
+00123$:
+;func/scoreDisplay.c:198: set_bkg_tiles(11, 30, len, 1, buf);
+	ld	de, #_buf
+	push	de
+	ld	a, #0x01
+	push	af
+	inc	sp
+	push	bc
+	inc	sp
+	ld	hl, #0x1e0b
+	push	hl
+	call	_set_bkg_tiles
+	add	sp, #6
+;func/scoreDisplay.c:199: set_bkg_tile_xy(11, 30, 0x23); // C
+	ld	hl, #0x231e
+	push	hl
+	ld	a, #0x0b
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:200: set_bkg_tile_xy(12, 30, 0x48); // h
+	ld	hl, #0x481e
+	push	hl
+	ld	a, #0x0c
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:201: set_bkg_tile_xy(13, 30, 0x41); // a
+	ld	hl, #0x411e
+	push	hl
+	ld	a, #0x0d
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:202: set_bkg_tile_xy(14, 30, 0x4E); // n
+	ld	hl, #0x4e1e
+	push	hl
+	ld	a, #0x0e
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:203: set_bkg_tile_xy(15, 30, 0x43); // c
+	ld	hl, #0x431e
+	push	hl
+	ld	a, #0x0f
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:204: set_bkg_tile_xy(16, 30, 0x45); // e
+	ld	hl, #0x451e
+	push	hl
+	ld	a, #0x10
+	push	af
+	inc	sp
+	call	_set_bkg_tile_xy
+	add	sp, #3
+;func/scoreDisplay.c:206: }
+00131$:
+;func/scoreDisplay.c:211: bcd_add(&lowerScoreBCD, &lowerScoreBuf);
 	ld	de, #_lowerScoreBuf
 	push	de
 	ld	de, #_lowerScoreBCD
 	push	de
 	call	_bcd_add
-;func/scoreDisplay.c:166: }
+;func/scoreDisplay.c:212: }
 	add	sp, #9
 	ret
-;func/scoreDisplay.c:169: void setScoreTotal(){
+;func/scoreDisplay.c:215: void setScoreTotal(){
 ;	---------------------------------
 ; Function setScoreTotal
 ; ---------------------------------
 _setScoreTotal::
-;func/scoreDisplay.c:171: bcd_sub(&totalScoreAdd, &totalScoreAdd);
+;func/scoreDisplay.c:217: bcd_sub(&totalScoreAdd, &totalScoreAdd);
 	ld	de, #_totalScoreAdd
 	push	de
 	push	de
 	call	_bcd_sub
 	add	sp, #4
-;func/scoreDisplay.c:173: bcd_add(&totalScoreAdd, &upperScoreBCD);
+;func/scoreDisplay.c:219: bcd_add(&totalScoreAdd, &upperScoreBCD);
 	ld	de, #_upperScoreBCD
 	push	de
 	ld	de, #_totalScoreAdd
 	push	de
 	call	_bcd_add
 	add	sp, #4
-;func/scoreDisplay.c:175: bcd_add(&totalScoreAdd, &lowerScoreBCD);
+;func/scoreDisplay.c:221: bcd_add(&totalScoreAdd, &lowerScoreBCD);
 	ld	de, #_lowerScoreBCD
 	push	de
 	ld	de, #_totalScoreAdd
 	push	de
 	call	_bcd_add
 	add	sp, #4
-;func/scoreDisplay.c:176: if(&totalScoreBCD == &totalScoreAdd) return;
+;func/scoreDisplay.c:222: if(&totalScoreBCD == &totalScoreAdd) return;
 	ld	a, #<(_totalScoreAdd)
 	sub	a, #<(_totalScoreBCD)
 	jr	NZ, 00105$
@@ -1137,33 +1464,33 @@ _setScoreTotal::
 	ret	Z
 	jr	00105$
 00105$:
-;func/scoreDisplay.c:177: else if(&totalScoreBCD > &totalScoreAdd){
+;func/scoreDisplay.c:223: else if(&totalScoreBCD > &totalScoreAdd){
 	ld	a, #<(_totalScoreAdd)
 	sub	a, #<(_totalScoreBCD)
 	ld	a, #>(_totalScoreAdd)
 	sbc	a, #>(_totalScoreBCD)
 	jr	NC, 00102$
-;func/scoreDisplay.c:178: printf("Scoring Error");
+;func/scoreDisplay.c:224: printf("Scoring Error");
 	ld	de, #___str_0
 	push	de
 	call	_printf
 	pop	hl
 	ret
 00102$:
-;func/scoreDisplay.c:181: bcd_sub(&totalScoreBCD, &totalScoreBCD);
+;func/scoreDisplay.c:227: bcd_sub(&totalScoreBCD, &totalScoreBCD);
 	ld	de, #_totalScoreBCD
 	push	de
 	push	de
 	call	_bcd_sub
 	add	sp, #4
-;func/scoreDisplay.c:182: bcd_add(&totalScoreBCD, &totalScoreAdd);
+;func/scoreDisplay.c:228: bcd_add(&totalScoreBCD, &totalScoreAdd);
 	ld	de, #_totalScoreAdd
 	push	de
 	ld	de, #_totalScoreBCD
 	push	de
 	call	_bcd_add
 	add	sp, #4
-;func/scoreDisplay.c:183: len = bcd2text(&totalScoreBCD, 0x10, buf);
+;func/scoreDisplay.c:229: len = bcd2text(&totalScoreBCD, 0x10, buf);
 	ld	de, #_buf
 	push	de
 	ld	a, #0x10
@@ -1177,21 +1504,21 @@ _setScoreTotal::
 	ld	a, e
 	ld	(hl+), a
 	ld	(hl), #0x00
-;func/scoreDisplay.c:185: }
+;func/scoreDisplay.c:231: }
 	ret
 ___str_0:
 	.ascii "Scoring Error"
 	.db 0x00
-;func/scoreDisplay.c:188: void scoreDisplay(){
+;func/scoreDisplay.c:234: void scoreDisplay(){
 ;	---------------------------------
 ; Function scoreDisplay
 ; ---------------------------------
 _scoreDisplay::
-;func/scoreDisplay.c:190: if(viewMode == 1){
+;func/scoreDisplay.c:236: if(viewMode == 1){
 	ld	a, (#_viewMode)
 	dec	a
 	jp	NZ,00102$
-;func/scoreDisplay.c:194: len = bcd2text(&upperScoreBCD, 0x10, buf);
+;func/scoreDisplay.c:240: len = bcd2text(&upperScoreBCD, 0x10, buf);
 	ld	de, #_buf
 	push	de
 	ld	a, #0x10
@@ -1204,7 +1531,7 @@ _scoreDisplay::
 	ld	hl, #_len
 	ld	a, e
 	ld	(hl+), a
-;func/scoreDisplay.c:195: set_bkg_tiles(11, 26, len, 1, buf);
+;func/scoreDisplay.c:241: set_bkg_tiles(11, 26, len, 1, buf);
 	ld	a, #0x00
 	ld	(hl-), a
 	ld	a, (hl)
@@ -1223,7 +1550,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-;func/scoreDisplay.c:196: set_bkg_tile_xy(11, 26, 0x52); // r
+;func/scoreDisplay.c:242: set_bkg_tile_xy(11, 26, 0x52); // r
 	ld	hl, #0x521a
 	push	hl
 	ld	a, #0x0b
@@ -1231,7 +1558,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:197: set_bkg_tile_xy(12, 26, 0x1A); // :
+;func/scoreDisplay.c:243: set_bkg_tile_xy(12, 26, 0x1A); // :
 	ld	hl, #0x1a1a
 	push	hl
 	ld	a, #0x0c
@@ -1239,7 +1566,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:198: set_bkg_tile_xy(13, 26, 0x00); // blank
+;func/scoreDisplay.c:244: set_bkg_tile_xy(13, 26, 0x00); // blank
 	xor	a, a
 	ld	h, a
 	ld	l, #0x1a
@@ -1249,7 +1576,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:199: set_bkg_tile_xy(14, 26, 0x00); // blank
+;func/scoreDisplay.c:245: set_bkg_tile_xy(14, 26, 0x00); // blank
 	xor	a, a
 	ld	h, a
 	ld	l, #0x1a
@@ -1259,7 +1586,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:200: set_bkg_tile_xy(15, 26, 0x00); // blank
+;func/scoreDisplay.c:246: set_bkg_tile_xy(15, 26, 0x00); // blank
 	xor	a, a
 	ld	h, a
 	ld	l, #0x1a
@@ -1269,7 +1596,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:204: len = bcd2text(&lowerScoreBCD, 0x10, buf);
+;func/scoreDisplay.c:250: len = bcd2text(&lowerScoreBCD, 0x10, buf);
 	ld	de, #_buf
 	push	de
 	ld	a, #0x10
@@ -1282,7 +1609,7 @@ _scoreDisplay::
 	ld	hl, #_len
 	ld	a, e
 	ld	(hl+), a
-;func/scoreDisplay.c:205: set_bkg_tiles(11, 33, len, 1, buf);
+;func/scoreDisplay.c:251: set_bkg_tiles(11, 33, len, 1, buf);
 	ld	a, #0x00
 	ld	(hl-), a
 	ld	a, (hl)
@@ -1301,7 +1628,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-;func/scoreDisplay.c:206: set_bkg_tile_xy(11, 33, 0x52); // r
+;func/scoreDisplay.c:252: set_bkg_tile_xy(11, 33, 0x52); // r
 	ld	hl, #0x5221
 	push	hl
 	ld	a, #0x0b
@@ -1309,7 +1636,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:207: set_bkg_tile_xy(12, 33, 0x1A); // :
+;func/scoreDisplay.c:253: set_bkg_tile_xy(12, 33, 0x1A); // :
 	ld	hl, #0x1a21
 	push	hl
 	ld	a, #0x0c
@@ -1317,7 +1644,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:208: set_bkg_tile_xy(13, 33, 0x00); // blank
+;func/scoreDisplay.c:254: set_bkg_tile_xy(13, 33, 0x00); // blank
 	xor	a, a
 	ld	h, a
 	ld	l, #0x21
@@ -1327,9 +1654,9 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:211: setScoreTotal();
+;func/scoreDisplay.c:257: setScoreTotal();
 	call	_setScoreTotal
-;func/scoreDisplay.c:212: set_bkg_tiles(11, 34, len, 1, buf);
+;func/scoreDisplay.c:258: set_bkg_tiles(11, 34, len, 1, buf);
 	ld	hl, #_len
 	ld	a, (hl)
 	ld	de, #_buf
@@ -1347,7 +1674,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-;func/scoreDisplay.c:213: set_bkg_tile_xy(11, 34, 0x4C); // l
+;func/scoreDisplay.c:259: set_bkg_tile_xy(11, 34, 0x4C); // l
 	ld	hl, #0x4c22
 	push	hl
 	ld	a, #0x0b
@@ -1355,7 +1682,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:214: set_bkg_tile_xy(12, 34, 0x1A); // :
+;func/scoreDisplay.c:260: set_bkg_tile_xy(12, 34, 0x1A); // :
 	ld	hl, #0x1a22
 	push	hl
 	ld	a, #0x0c
@@ -1363,7 +1690,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:215: set_bkg_tile_xy(13, 34, 0x00); // blank
+;func/scoreDisplay.c:261: set_bkg_tile_xy(13, 34, 0x00); // blank
 	xor	a, a
 	ld	h, a
 	ld	l, #0x22
@@ -1375,9 +1702,9 @@ _scoreDisplay::
 	add	sp, #3
 	ret
 00102$:
-;func/scoreDisplay.c:219: setScoreTotal();
+;func/scoreDisplay.c:265: setScoreTotal();
 	call	_setScoreTotal
-;func/scoreDisplay.c:220: set_bkg_tiles(11, 2, len, 1, buf);
+;func/scoreDisplay.c:266: set_bkg_tiles(11, 2, len, 1, buf);
 	ld	bc, #_buf+0
 	ld	hl, #_len
 	ld	a, (hl)
@@ -1395,7 +1722,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-;func/scoreDisplay.c:221: set_bkg_tile_xy(11, 2, 0x00); // blank
+;func/scoreDisplay.c:267: set_bkg_tile_xy(11, 2, 0x00); // blank
 	xor	a, a
 	ld	h, a
 	ld	l, #0x02
@@ -1405,7 +1732,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:222: set_bkg_tile_xy(12, 2, 0x00); // blank
+;func/scoreDisplay.c:268: set_bkg_tile_xy(12, 2, 0x00); // blank
 	xor	a, a
 	ld	h, a
 	ld	l, #0x02
@@ -1415,7 +1742,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:223: set_bkg_tile_xy(13, 2, 0x00); // blank
+;func/scoreDisplay.c:269: set_bkg_tile_xy(13, 2, 0x00); // blank
 	xor	a, a
 	ld	h, a
 	ld	l, #0x02
@@ -1425,7 +1752,7 @@ _scoreDisplay::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/scoreDisplay.c:226: }
+;func/scoreDisplay.c:272: }
 	ret
 	.area _CODE
 	.area _INITIALIZER

@@ -7,7 +7,7 @@ Symbol Table
     .__.ABS.                                                    =  000000 G
     .__.CPU.                                                    =  000000 L
     .__.H$L.                                                    =  000000 L
-  0 ___str_0                                                       00064A R
+  0 ___str_0                                                       000840 R
     _bcd2text                                                      ****** GX
     _bcd_add                                                       ****** GX
     _bcd_sub                                                       ****** GX
@@ -21,11 +21,11 @@ Symbol Table
     _lowerScoreBuf                                                 ****** GX
     _numOptBCD                                                     ****** GX
     _printf                                                        ****** GX
-  0 _scoreDisplay                                                  000658 GR
+  0 _scoreDisplay                                                  00084E GR
     _scorecard                                                     ****** GX
     _scorecardSummed                                               ****** GX
   0 _setScoreLower                                                 000455 GR
-  0 _setScoreTotal                                                 0005D6 GR
+  0 _setScoreTotal                                                 0007CC GR
   0 _setScoreUpper                                                 000000 GR
     _set_bkg_tile_xy                                               ****** GX
     _set_bkg_tiles                                                 ****** GX
@@ -42,7 +42,7 @@ Hexadecimal [24-Bits]
 
 Area Table
 
-   0 _CODE                                      size    7B5   flags    0
+   0 _CODE                                      size    9AB   flags    0
    1 _DATA                                      size      0   flags    0
    2 _INITIALIZED                               size      0   flags    0
    3 _DABS                                      size      0   flags    8
