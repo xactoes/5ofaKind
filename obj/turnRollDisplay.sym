@@ -19,9 +19,10 @@ Symbol Table
     _set_bkg_tiles                                                 ****** GX
     _turn                                                          ****** GX
     _turnBCD                                                       ****** GX
-  0 _turnDisplay                                                   0000D0 GR
-  0 _turnRollDisplay                                               0001A0 GR
+  0 _turnDisplay                                                   0000E0 GR
+  0 _turnRollDisplay                                               0001B0 GR
     _uint2bcd                                                      ****** GX
+    _wait_vbl_done                                                 ****** GX
 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
@@ -29,7 +30,7 @@ Hexadecimal [24-Bits]
 
 Area Table
 
-   0 _CODE                                      size    1A6   flags    0
+   0 _CODE                                      size    1B9   flags    0
    1 _DATA                                      size      0   flags    0
    2 _INITIALIZED                               size      0   flags    0
    3 _DABS                                      size      0   flags    8

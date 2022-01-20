@@ -9,7 +9,7 @@
 #include "../func/betterDelay.h"
 #include "../func/cardCursor.h"
 #include "../func/cardView.h"
-#include "../func/playView.h"
+//#include "../func/playView.h"
 #include "../func/rollDi.h"
 #include "../func/scoreDisplay.h"
 #include "../func/spriteFlip.h"
@@ -158,6 +158,7 @@ void initGame(){
 void newTurn(){
     turn++;
     rollsLeft = 3;
+	turnRollDisplay();
     rollsEnabled = 1;
     scorecardChangeA = 0;
     scorecardChangeB = 0;
@@ -192,9 +193,11 @@ void rollTracker(){
 				turnsPassed++;
 			}
 		}
+		//compared with turns here
 		if(turnsPassed < turn){
 			rollsEnabled = 0;
 		}
+		//and here
 		else if(turnsPassed == turn){
 			newTurn();
 		}
@@ -291,6 +294,7 @@ void rollCheck(){
 	if(rollsEnabled == 0){
 		if(scorecardChangeA != scorecardChangeB){
 			newTurn();
+			printf("here");
 		}
 		else{
 			//replace with buzzing noise later

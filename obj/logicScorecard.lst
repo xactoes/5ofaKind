@@ -49,21 +49,21 @@
                                      49 ; code
                                      50 ;--------------------------------------------------------
                                      51 	.area _CODE
-                                     52 ;func/logicScorecard.c:16: void logicUpper(){
+                                     52 ;func/logicScorecard.c:17: void logicUpper(){
                                      53 ;	---------------------------------
                                      54 ; Function logicUpper
                                      55 ; ---------------------------------
       000000                         56 _logicUpper::
       000000 3B                      57 	dec	sp
       000001 3B                      58 	dec	sp
-                                     59 ;func/logicScorecard.c:17: unsigned int valueToCheck = 0;
+                                     59 ;func/logicScorecard.c:18: unsigned int valueToCheck = 0;
       000002 01 00 00                60 	ld	bc, #0x0000
-                                     61 ;func/logicScorecard.c:18: scoreBuf = 0;
+                                     61 ;func/logicScorecard.c:19: scoreBuf = 0;
       000005 AF                      62 	xor	a, a
       000006 21r00r00                63 	ld	hl, #_scoreBuf
       000009 22                      64 	ld	(hl+), a
       00000A 77                      65 	ld	(hl), a
-                                     66 ;func/logicScorecard.c:19: switch(cursorIndex){
+                                     66 ;func/logicScorecard.c:20: switch(cursorIndex){
       00000B 21r00r00                67 	ld	hl, #_cursorIndex
       00000E 2A                      68 	ld	a, (hl+)
       00000F D6 08                   69 	sub	a, #0x08
@@ -95,49 +95,49 @@
       00003E B6                      95 	or	a, (hl)
       00003F 28 1B                   96 	jr	Z, 00106$
       000041 18 1C                   97 	jr	00107$
-                                     98 ;func/logicScorecard.c:20: case 8:
+                                     98 ;func/logicScorecard.c:21: case 8:
       000043                         99 00101$:
-                                    100 ;func/logicScorecard.c:21: valueToCheck = 1;
+                                    100 ;func/logicScorecard.c:22: valueToCheck = 1;
       000043 01 01 00               101 	ld	bc, #0x0001
-                                    102 ;func/logicScorecard.c:22: break;
+                                    102 ;func/logicScorecard.c:23: break;
       000046 18 17                  103 	jr	00107$
-                                    104 ;func/logicScorecard.c:23: case 9:
+                                    104 ;func/logicScorecard.c:24: case 9:
       000048                        105 00102$:
-                                    106 ;func/logicScorecard.c:24: valueToCheck = 2;
+                                    106 ;func/logicScorecard.c:25: valueToCheck = 2;
       000048 01 02 00               107 	ld	bc, #0x0002
-                                    108 ;func/logicScorecard.c:25: break;
+                                    108 ;func/logicScorecard.c:26: break;
       00004B 18 12                  109 	jr	00107$
-                                    110 ;func/logicScorecard.c:26: case 10:
+                                    110 ;func/logicScorecard.c:27: case 10:
       00004D                        111 00103$:
-                                    112 ;func/logicScorecard.c:27: valueToCheck = 3;
+                                    112 ;func/logicScorecard.c:28: valueToCheck = 3;
       00004D 01 03 00               113 	ld	bc, #0x0003
-                                    114 ;func/logicScorecard.c:28: break;
+                                    114 ;func/logicScorecard.c:29: break;
       000050 18 0D                  115 	jr	00107$
-                                    116 ;func/logicScorecard.c:29: case 16:
+                                    116 ;func/logicScorecard.c:30: case 16:
       000052                        117 00104$:
-                                    118 ;func/logicScorecard.c:30: valueToCheck = 4;
+                                    118 ;func/logicScorecard.c:31: valueToCheck = 4;
       000052 01 04 00               119 	ld	bc, #0x0004
-                                    120 ;func/logicScorecard.c:31: break;
+                                    120 ;func/logicScorecard.c:32: break;
       000055 18 08                  121 	jr	00107$
-                                    122 ;func/logicScorecard.c:32: case 17:
+                                    122 ;func/logicScorecard.c:33: case 17:
       000057                        123 00105$:
-                                    124 ;func/logicScorecard.c:33: valueToCheck = 5;
+                                    124 ;func/logicScorecard.c:34: valueToCheck = 5;
       000057 01 05 00               125 	ld	bc, #0x0005
-                                    126 ;func/logicScorecard.c:34: break;
+                                    126 ;func/logicScorecard.c:35: break;
       00005A 18 03                  127 	jr	00107$
-                                    128 ;func/logicScorecard.c:35: case 18:
+                                    128 ;func/logicScorecard.c:36: case 18:
       00005C                        129 00106$:
-                                    130 ;func/logicScorecard.c:36: valueToCheck = 6;
+                                    130 ;func/logicScorecard.c:37: valueToCheck = 6;
       00005C 01 06 00               131 	ld	bc, #0x0006
-                                    132 ;func/logicScorecard.c:38: }
+                                    132 ;func/logicScorecard.c:39: }
       00005F                        133 00107$:
-                                    134 ;func/logicScorecard.c:39: for(i = 0; i != 5; i++){
+                                    134 ;func/logicScorecard.c:40: for(i = 0; i != 5; i++){
       00005F AF                     135 	xor	a, a
       000060 21r00r00               136 	ld	hl, #_i
       000063 22                     137 	ld	(hl+), a
       000064 77                     138 	ld	(hl), a
       000065                        139 00111$:
-                                    140 ;func/logicScorecard.c:40: if(diceValues[i] == valueToCheck){
+                                    140 ;func/logicScorecard.c:41: if(diceValues[i] == valueToCheck){
       000065 21r00r00               141 	ld	hl, #_i
       000068 2A                     142 	ld	a, (hl+)
       000069 5F                     143 	ld	e, a
@@ -162,7 +162,7 @@
       000083 7E                     162 	ld	a, (hl)
       000084 90                     163 	sub	a, b
       000085 20 12                  164 	jr	NZ, 00112$
-                                    165 ;func/logicScorecard.c:41: scoreBuf += diceValues[i];
+                                    165 ;func/logicScorecard.c:42: scoreBuf += diceValues[i];
       000087 21r01r00               166 	ld	hl, #_scoreBuf + 1
       00008A 2B                     167 	dec	hl
       00008B 2A                     168 	ld	a, (hl+)
@@ -178,7 +178,7 @@
       000097 22                     178 	ld	(hl+), a
       000098 72                     179 	ld	(hl), d
       000099                        180 00112$:
-                                    181 ;func/logicScorecard.c:39: for(i = 0; i != 5; i++){
+                                    181 ;func/logicScorecard.c:40: for(i = 0; i != 5; i++){
       000099 21r00r00               182 	ld	hl, #_i
       00009C 34                     183 	inc	(hl)
       00009D 20 02                  184 	jr	NZ, 00169$
@@ -190,7 +190,7 @@
       0000A5 D6 05                  190 	sub	a, #0x05
       0000A7 B6                     191 	or	a, (hl)
       0000A8 20 BB                  192 	jr	NZ, 00111$
-                                    193 ;func/logicScorecard.c:44: scorecard[cursorIndex - 8] = scoreBuf;
+                                    193 ;func/logicScorecard.c:45: scorecard[cursorIndex - 8] = scoreBuf;
       0000AA 01r00r00               194 	ld	bc, #_scorecard+0
       0000AD FAr00r00               195 	ld	a, (#_cursorIndex)
       0000B0 C6 F8                  196 	add	a, #0xf8
@@ -210,24 +210,24 @@
       0000BF 03                     210 	inc	bc
       0000C0 7E                     211 	ld	a, (hl)
       0000C1 02                     212 	ld	(bc), a
-                                    213 ;func/logicScorecard.c:45: }
+                                    213 ;func/logicScorecard.c:46: }
       0000C2 33                     214 	inc	sp
       0000C3 33                     215 	inc	sp
       0000C4 C9                     216 	ret
-                                    217 ;func/logicScorecard.c:48: void logicLower(){
+                                    217 ;func/logicScorecard.c:49: void logicLower(){
                                     218 ;	---------------------------------
                                     219 ; Function logicLower
                                     220 ; ---------------------------------
       0000C5                        221 _logicLower::
       0000C5 E8 F7                  222 	add	sp, #-9
-                                    223 ;func/logicScorecard.c:49: scoreBuf = 0;
+                                    223 ;func/logicScorecard.c:50: scoreBuf = 0;
       0000C7 AF                     224 	xor	a, a
       0000C8 21r00r00               225 	ld	hl, #_scoreBuf
       0000CB 22                     226 	ld	(hl+), a
       0000CC 77                     227 	ld	(hl), a
-                                    228 ;func/logicScorecard.c:50: sortDice();
+                                    228 ;func/logicScorecard.c:51: sortDice();
       0000CD CDr00r00               229 	call	_sortDice
-                                    230 ;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
+                                    230 ;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
       0000D0 FAr00r00               231 	ld	a, (#_cursorIndex)
       0000D3 C6 F8                  232 	add	a, #0xf8
       0000D5 4F                     233 	ld	c, a
@@ -239,7 +239,7 @@
       0000DD 71                     239 	ld	(hl), c
       0000DE 23                     240 	inc	hl
       0000DF 77                     241 	ld	(hl), a
-                                    242 ;func/logicScorecard.c:51: switch(cursorIndex){
+                                    242 ;func/logicScorecard.c:52: switch(cursorIndex){
       0000E0 21r00r00               243 	ld	hl, #_cursorIndex
       0000E3 2A                     244 	ld	a, (hl+)
       0000E4 D6 0B                  245 	sub	a, #0x0b
@@ -281,9 +281,9 @@
       00012B B6                     281 	or	a, (hl)
       00012C CAr5Cr06               282 	jp	Z,00162$
       00012F C3rF8r07               283 	jp	00203$
-                                    284 ;func/logicScorecard.c:53: case 11:
+                                    284 ;func/logicScorecard.c:54: case 11:
       000132                        285 00101$:
-                                    286 ;func/logicScorecard.c:54: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
+                                    286 ;func/logicScorecard.c:55: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
       000132 11r00r00               287 	ld	de, #_diceValues
       000135 1A                     288 	ld	a, (de)
       000136 F8 04                  289 	ldhl	sp,	#4
@@ -327,13 +327,13 @@
       000168 7E                     327 	ld	a, (hl)
       000169 B7                     328 	or	a, a
       00016A 28 47                  329 	jr	Z, 00114$
-                                    330 ;func/logicScorecard.c:55: for(i = 0; i != 5; i++){
+                                    330 ;func/logicScorecard.c:56: for(i = 0; i != 5; i++){
       00016C AF                     331 	xor	a, a
       00016D 21r00r00               332 	ld	hl, #_i
       000170 22                     333 	ld	(hl+), a
       000171 77                     334 	ld	(hl), a
       000172                        335 00187$:
-                                    336 ;func/logicScorecard.c:56: scoreBuf += diceValues[i];
+                                    336 ;func/logicScorecard.c:57: scoreBuf += diceValues[i];
       000172 21r00r00               337 	ld	hl, #_i
       000175 2A                     338 	ld	a, (hl+)
       000176 4F                     339 	ld	c, a
@@ -352,7 +352,7 @@
       000189 7E                     352 	ld	a, (hl)
       00018A 88                     353 	adc	a, b
       00018B 77                     354 	ld	(hl), a
-                                    355 ;func/logicScorecard.c:55: for(i = 0; i != 5; i++){
+                                    355 ;func/logicScorecard.c:56: for(i = 0; i != 5; i++){
       00018C 21r00r00               356 	ld	hl, #_i
       00018F 34                     357 	inc	(hl)
       000190 20 02                  358 	jr	NZ, 00529$
@@ -364,7 +364,7 @@
       000198 D6 05                  364 	sub	a, #0x05
       00019A B6                     365 	or	a, (hl)
       00019B 20 D5                  366 	jr	NZ, 00187$
-                                    367 ;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
+                                    367 ;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
       00019D 01r00r00               368 	ld	bc, #_scorecard+0
       0001A0 F8 02                  369 	ldhl	sp,	#2
       0001A2 2A                     370 	ld	a,	(hl+)
@@ -381,7 +381,7 @@
       0001AF 02                     381 	ld	(bc), a
       0001B0 C3rF8r07               382 	jp	00203$
       0001B3                        383 00114$:
-                                    384 ;func/logicScorecard.c:60: else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3]){
+                                    384 ;func/logicScorecard.c:61: else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3]){
       0001B3 21r06r00               385 	ld	hl, #_diceValues + 6
       0001B6 2A                     386 	ld	a, (hl+)
       0001B7 4F                     387 	ld	c, a
@@ -406,13 +406,13 @@
       0001CE 7B                     406 	ld	a, e
       0001CF B7                     407 	or	a, a
       0001D0 28 47                  408 	jr	Z, 00110$
-                                    409 ;func/logicScorecard.c:61: for(i = 0; i != 5; i++){
+                                    409 ;func/logicScorecard.c:62: for(i = 0; i != 5; i++){
       0001D2 AF                     410 	xor	a, a
       0001D3 21r00r00               411 	ld	hl, #_i
       0001D6 22                     412 	ld	(hl+), a
       0001D7 77                     413 	ld	(hl), a
       0001D8                        414 00189$:
-                                    415 ;func/logicScorecard.c:62: scoreBuf += diceValues[i];
+                                    415 ;func/logicScorecard.c:63: scoreBuf += diceValues[i];
       0001D8 21r00r00               416 	ld	hl, #_i
       0001DB 2A                     417 	ld	a, (hl+)
       0001DC 4F                     418 	ld	c, a
@@ -431,7 +431,7 @@
       0001EF 7E                     431 	ld	a, (hl)
       0001F0 88                     432 	adc	a, b
       0001F1 77                     433 	ld	(hl), a
-                                    434 ;func/logicScorecard.c:61: for(i = 0; i != 5; i++){
+                                    434 ;func/logicScorecard.c:62: for(i = 0; i != 5; i++){
       0001F2 21r00r00               435 	ld	hl, #_i
       0001F5 34                     436 	inc	(hl)
       0001F6 20 02                  437 	jr	NZ, 00535$
@@ -443,7 +443,7 @@
       0001FE D6 05                  443 	sub	a, #0x05
       000200 B6                     444 	or	a, (hl)
       000201 20 D5                  445 	jr	NZ, 00189$
-                                    446 ;func/logicScorecard.c:64: scorecard[cursorIndex - 8] = scoreBuf;
+                                    446 ;func/logicScorecard.c:65: scorecard[cursorIndex - 8] = scoreBuf;
       000203 01r00r00               447 	ld	bc, #_scorecard+0
       000206 F8 02                  448 	ldhl	sp,	#2
       000208 2A                     449 	ld	a,	(hl+)
@@ -460,7 +460,7 @@
       000215 02                     460 	ld	(bc), a
       000216 C3rF8r07               461 	jp	00203$
       000219                        462 00110$:
-                                    463 ;func/logicScorecard.c:66: else if(diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
+                                    463 ;func/logicScorecard.c:67: else if(diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
       000219 7B                     464 	ld	a, e
       00021A B7                     465 	or	a, a
       00021B 28 53                  466 	jr	Z, 00106$
@@ -475,13 +475,13 @@
       000225 7C                     475 	ld	a, h
       000226 90                     476 	sub	a, b
       000227 20 47                  477 	jr	NZ, 00106$
-                                    478 ;func/logicScorecard.c:67: for(i = 0; i != 5; i++){
+                                    478 ;func/logicScorecard.c:68: for(i = 0; i != 5; i++){
       000229 AF                     479 	xor	a, a
       00022A 21r00r00               480 	ld	hl, #_i
       00022D 22                     481 	ld	(hl+), a
       00022E 77                     482 	ld	(hl), a
       00022F                        483 00191$:
-                                    484 ;func/logicScorecard.c:68: scoreBuf += diceValues[i];
+                                    484 ;func/logicScorecard.c:69: scoreBuf += diceValues[i];
       00022F 21r00r00               485 	ld	hl, #_i
       000232 2A                     486 	ld	a, (hl+)
       000233 4F                     487 	ld	c, a
@@ -500,7 +500,7 @@
       000246 7E                     500 	ld	a, (hl)
       000247 88                     501 	adc	a, b
       000248 77                     502 	ld	(hl), a
-                                    503 ;func/logicScorecard.c:67: for(i = 0; i != 5; i++){
+                                    503 ;func/logicScorecard.c:68: for(i = 0; i != 5; i++){
       000249 21r00r00               504 	ld	hl, #_i
       00024C 34                     505 	inc	(hl)
       00024D 20 02                  506 	jr	NZ, 00541$
@@ -512,7 +512,7 @@
       000255 D6 05                  512 	sub	a, #0x05
       000257 B6                     513 	or	a, (hl)
       000258 20 D5                  514 	jr	NZ, 00191$
-                                    515 ;func/logicScorecard.c:70: scorecard[cursorIndex - 8] = scoreBuf;
+                                    515 ;func/logicScorecard.c:71: scorecard[cursorIndex - 8] = scoreBuf;
       00025A 01r00r00               516 	ld	bc, #_scorecard+0
       00025D F8 02                  517 	ldhl	sp,	#2
       00025F 2A                     518 	ld	a,	(hl+)
@@ -529,12 +529,12 @@
       00026C 02                     529 	ld	(bc), a
       00026D C3rF8r07               530 	jp	00203$
       000270                        531 00106$:
-                                    532 ;func/logicScorecard.c:73: scoreBuf = 0;
+                                    532 ;func/logicScorecard.c:74: scoreBuf = 0;
       000270 AF                     533 	xor	a, a
       000271 21r00r00               534 	ld	hl, #_scoreBuf
       000274 22                     535 	ld	(hl+), a
       000275 77                     536 	ld	(hl), a
-                                    537 ;func/logicScorecard.c:74: scorecard[cursorIndex - 8] = scoreBuf;
+                                    537 ;func/logicScorecard.c:75: scorecard[cursorIndex - 8] = scoreBuf;
       000276 01r00r00               538 	ld	bc, #_scorecard+0
       000279 F8 02                  539 	ldhl	sp,	#2
       00027B 2A                     540 	ld	a,	(hl+)
@@ -547,11 +547,11 @@
       000282 02                     547 	ld	(bc), a
       000283 03                     548 	inc	bc
       000284 02                     549 	ld	(bc), a
-                                    550 ;func/logicScorecard.c:76: break;
+                                    550 ;func/logicScorecard.c:77: break;
       000285 C3rF8r07               551 	jp	00203$
-                                    552 ;func/logicScorecard.c:78: case 12:
+                                    552 ;func/logicScorecard.c:79: case 12:
       000288                        553 00117$:
-                                    554 ;func/logicScorecard.c:79: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3]){
+                                    554 ;func/logicScorecard.c:80: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3]){
       000288 11r00r00               555 	ld	de, #_diceValues
       00028B 1A                     556 	ld	a, (de)
       00028C F8 04                  557 	ldhl	sp,	#4
@@ -607,13 +607,13 @@
       0002CF 7E                     607 	ld	a, (hl)
       0002D0 90                     608 	sub	a, b
       0002D1 20 47                  609 	jr	NZ, 00126$
-                                    610 ;func/logicScorecard.c:80: for(i = 0; i != 5; i++){
+                                    610 ;func/logicScorecard.c:81: for(i = 0; i != 5; i++){
       0002D3 AF                     611 	xor	a, a
       0002D4 21r00r00               612 	ld	hl, #_i
       0002D7 22                     613 	ld	(hl+), a
       0002D8 77                     614 	ld	(hl), a
       0002D9                        615 00193$:
-                                    616 ;func/logicScorecard.c:81: scoreBuf += diceValues[i];
+                                    616 ;func/logicScorecard.c:82: scoreBuf += diceValues[i];
       0002D9 21r00r00               617 	ld	hl, #_i
       0002DC 2A                     618 	ld	a, (hl+)
       0002DD 4F                     619 	ld	c, a
@@ -632,7 +632,7 @@
       0002F0 7E                     632 	ld	a, (hl)
       0002F1 88                     633 	adc	a, b
       0002F2 77                     634 	ld	(hl), a
-                                    635 ;func/logicScorecard.c:80: for(i = 0; i != 5; i++){
+                                    635 ;func/logicScorecard.c:81: for(i = 0; i != 5; i++){
       0002F3 21r00r00               636 	ld	hl, #_i
       0002F6 34                     637 	inc	(hl)
       0002F7 20 02                  638 	jr	NZ, 00551$
@@ -644,7 +644,7 @@
       0002FF D6 05                  644 	sub	a, #0x05
       000301 B6                     645 	or	a, (hl)
       000302 20 D5                  646 	jr	NZ, 00193$
-                                    647 ;func/logicScorecard.c:83: scorecard[cursorIndex - 8] = scoreBuf;
+                                    647 ;func/logicScorecard.c:84: scorecard[cursorIndex - 8] = scoreBuf;
       000304 01r00r00               648 	ld	bc, #_scorecard+0
       000307 F8 02                  649 	ldhl	sp,	#2
       000309 2A                     650 	ld	a,	(hl+)
@@ -661,7 +661,7 @@
       000316 02                     661 	ld	(bc), a
       000317 C3rF8r07               662 	jp	00203$
       00031A                        663 00126$:
-                                    664 ;func/logicScorecard.c:85: else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
+                                    664 ;func/logicScorecard.c:86: else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
       00031A F8 08                  665 	ldhl	sp,	#8
       00031C 7E                     666 	ld	a, (hl)
       00031D B7                     667 	or	a, a
@@ -689,13 +689,13 @@
       000339 7C                     689 	ld	a, h
       00033A 90                     690 	sub	a, b
       00033B 20 47                  691 	jr	NZ, 00121$
-                                    692 ;func/logicScorecard.c:86: for(i = 0; i != 5; i++){
+                                    692 ;func/logicScorecard.c:87: for(i = 0; i != 5; i++){
       00033D AF                     693 	xor	a, a
       00033E 21r00r00               694 	ld	hl, #_i
       000341 22                     695 	ld	(hl+), a
       000342 77                     696 	ld	(hl), a
       000343                        697 00195$:
-                                    698 ;func/logicScorecard.c:87: scoreBuf += diceValues[i];
+                                    698 ;func/logicScorecard.c:88: scoreBuf += diceValues[i];
       000343 21r00r00               699 	ld	hl, #_i
       000346 2A                     700 	ld	a, (hl+)
       000347 4F                     701 	ld	c, a
@@ -714,7 +714,7 @@
       00035A 7E                     714 	ld	a, (hl)
       00035B 88                     715 	adc	a, b
       00035C 77                     716 	ld	(hl), a
-                                    717 ;func/logicScorecard.c:86: for(i = 0; i != 5; i++){
+                                    717 ;func/logicScorecard.c:87: for(i = 0; i != 5; i++){
       00035D 21r00r00               718 	ld	hl, #_i
       000360 34                     719 	inc	(hl)
       000361 20 02                  720 	jr	NZ, 00559$
@@ -726,7 +726,7 @@
       000369 D6 05                  726 	sub	a, #0x05
       00036B B6                     727 	or	a, (hl)
       00036C 20 D5                  728 	jr	NZ, 00195$
-                                    729 ;func/logicScorecard.c:89: scorecard[cursorIndex - 8] = scoreBuf;
+                                    729 ;func/logicScorecard.c:90: scorecard[cursorIndex - 8] = scoreBuf;
       00036E 01r00r00               730 	ld	bc, #_scorecard+0
       000371 F8 02                  731 	ldhl	sp,	#2
       000373 2A                     732 	ld	a,	(hl+)
@@ -743,12 +743,12 @@
       000380 02                     743 	ld	(bc), a
       000381 C3rF8r07               744 	jp	00203$
       000384                        745 00121$:
-                                    746 ;func/logicScorecard.c:92: scoreBuf = 0;
+                                    746 ;func/logicScorecard.c:93: scoreBuf = 0;
       000384 AF                     747 	xor	a, a
       000385 21r00r00               748 	ld	hl, #_scoreBuf
       000388 22                     749 	ld	(hl+), a
       000389 77                     750 	ld	(hl), a
-                                    751 ;func/logicScorecard.c:93: scorecard[cursorIndex - 8] = scoreBuf;
+                                    751 ;func/logicScorecard.c:94: scorecard[cursorIndex - 8] = scoreBuf;
       00038A 01r00r00               752 	ld	bc, #_scorecard+0
       00038D F8 02                  753 	ldhl	sp,	#2
       00038F 2A                     754 	ld	a,	(hl+)
@@ -761,11 +761,11 @@
       000396 02                     761 	ld	(bc), a
       000397 03                     762 	inc	bc
       000398 02                     763 	ld	(bc), a
-                                    764 ;func/logicScorecard.c:95: break;
+                                    764 ;func/logicScorecard.c:96: break;
       000399 C3rF8r07               765 	jp	00203$
-                                    766 ;func/logicScorecard.c:97: case 13:
+                                    766 ;func/logicScorecard.c:98: case 13:
       00039C                        767 00130$:
-                                    768 ;func/logicScorecard.c:98: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
+                                    768 ;func/logicScorecard.c:99: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
       00039C 11r00r00               769 	ld	de, #_diceValues
       00039F 1A                     770 	ld	a, (de)
       0003A0 F8 07                  771 	ldhl	sp,	#7
@@ -790,8 +790,8 @@
       0003B9 AF                     790 	xor	a, a
       0003BA                        791 00563$:
       0003BA F8 06                  792 	ldhl	sp,	#6
-                                    793 ;func/logicScorecard.c:99: if(diceValues[2] != diceValues[3] && diceValues[3] == diceValues[4]){
-                                    794 ;func/logicScorecard.c:98: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
+                                    793 ;func/logicScorecard.c:100: if(diceValues[2] != diceValues[3] && diceValues[3] == diceValues[4]){
+                                    794 ;func/logicScorecard.c:99: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
       0003BC 77                     795 	ld	(hl), a
       0003BD B7                     796 	or	a, a
       0003BE 28 68                  797 	jr	Z, 00142$
@@ -809,7 +809,7 @@
       0003CE 7E                     809 	ld	a, (hl)
       0003CF 90                     810 	sub	a, b
       0003D0 20 56                  811 	jr	NZ, 00142$
-                                    812 ;func/logicScorecard.c:99: if(diceValues[2] != diceValues[3] && diceValues[3] == diceValues[4]){
+                                    812 ;func/logicScorecard.c:100: if(diceValues[2] != diceValues[3] && diceValues[3] == diceValues[4]){
       0003D2 21r06r00               813 	ld	hl, #(_diceValues + 6)
       0003D5 2A                     814 	ld	a, (hl+)
       0003D6 4F                     815 	ld	c, a
@@ -834,13 +834,13 @@
       0003ED 7C                     834 	ld	a, h
       0003EE 90                     835 	sub	a, b
       0003EF C2rF8r07               836 	jp	NZ,00203$
-                                    837 ;func/logicScorecard.c:100: scoreBuf = 25;
+                                    837 ;func/logicScorecard.c:101: scoreBuf = 25;
       0003F2 21r00r00               838 	ld	hl, #_scoreBuf
       0003F5 3E 19                  839 	ld	a, #0x19
       0003F7 22                     840 	ld	(hl+), a
       0003F8 AF                     841 	xor	a, a
       0003F9 77                     842 	ld	(hl), a
-                                    843 ;func/logicScorecard.c:102: scorecard[cursorIndex - 8] = scoreBuf;
+                                    843 ;func/logicScorecard.c:103: scorecard[cursorIndex - 8] = scoreBuf;
       0003FA 01r00r00               844 	ld	bc, #_scorecard+0
       0003FD F8 02                  845 	ldhl	sp,	#2
       0003FF 2A                     846 	ld	a,	(hl+)
@@ -853,7 +853,7 @@
       000407 03                     853 	inc	bc
       000408 3E 00                  854 	ld	a, #0x00
       00040A 02                     855 	ld	(bc), a
-                                    856 ;func/logicScorecard.c:104: set_bkg_tile_xy(8, 30, 0x12); // 2
+                                    856 ;func/logicScorecard.c:105: set_bkg_tile_xy(8, 30, 0x12); // 2
       00040B 21 1E 12               857 	ld	hl, #0x121e
       00040E E5                     858 	push	hl
       00040F 3E 08                  859 	ld	a, #0x08
@@ -861,7 +861,7 @@
       000412 33                     861 	inc	sp
       000413 CDr00r00               862 	call	_set_bkg_tile_xy
       000416 E8 03                  863 	add	sp, #3
-                                    864 ;func/logicScorecard.c:105: set_bkg_tile_xy(9, 30, 0x15); // 5
+                                    864 ;func/logicScorecard.c:106: set_bkg_tile_xy(9, 30, 0x15); // 5
       000418 21 1E 15               865 	ld	hl, #0x151e
       00041B E5                     866 	push	hl
       00041C 3E 09                  867 	ld	a, #0x09
@@ -871,12 +871,12 @@
       000423 E8 03                  871 	add	sp, #3
       000425 C3rF8r07               872 	jp	00203$
       000428                        873 00142$:
-                                    874 ;func/logicScorecard.c:108: else if(diceValues[0] == diceValues[1]){
+                                    874 ;func/logicScorecard.c:109: else if(diceValues[0] == diceValues[1]){
       000428 F8 06                  875 	ldhl	sp,	#6
       00042A 7E                     876 	ld	a, (hl)
       00042B B7                     877 	or	a, a
       00042C 28 6A                  878 	jr	Z, 00139$
-                                    879 ;func/logicScorecard.c:109: if(diceValues[1] != diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
+                                    879 ;func/logicScorecard.c:110: if(diceValues[1] != diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
       00042E 23                     880 	inc	hl
       00042F 11r04r00               881 	ld	de, #(_diceValues + 4)
       000432 1A                     882 	ld	a, (de)
@@ -915,13 +915,13 @@
       00045D 7C                     915 	ld	a, h
       00045E 90                     916 	sub	a, b
       00045F C2rF8r07               917 	jp	NZ,00203$
-                                    918 ;func/logicScorecard.c:110: scoreBuf = 25;
+                                    918 ;func/logicScorecard.c:111: scoreBuf = 25;
       000462 21r00r00               919 	ld	hl, #_scoreBuf
       000465 3E 19                  920 	ld	a, #0x19
       000467 22                     921 	ld	(hl+), a
       000468 AF                     922 	xor	a, a
       000469 77                     923 	ld	(hl), a
-                                    924 ;func/logicScorecard.c:112: scorecard[cursorIndex - 8] = scoreBuf;
+                                    924 ;func/logicScorecard.c:113: scorecard[cursorIndex - 8] = scoreBuf;
       00046A 01r00r00               925 	ld	bc, #_scorecard+0
       00046D F8 02                  926 	ldhl	sp,	#2
       00046F 2A                     927 	ld	a,	(hl+)
@@ -934,7 +934,7 @@
       000477 03                     934 	inc	bc
       000478 3E 00                  935 	ld	a, #0x00
       00047A 02                     936 	ld	(bc), a
-                                    937 ;func/logicScorecard.c:114: set_bkg_tile_xy(8, 30, 0x12); // 2
+                                    937 ;func/logicScorecard.c:115: set_bkg_tile_xy(8, 30, 0x12); // 2
       00047B 21 1E 12               938 	ld	hl, #0x121e
       00047E E5                     939 	push	hl
       00047F 3E 08                  940 	ld	a, #0x08
@@ -942,7 +942,7 @@
       000482 33                     942 	inc	sp
       000483 CDr00r00               943 	call	_set_bkg_tile_xy
       000486 E8 03                  944 	add	sp, #3
-                                    945 ;func/logicScorecard.c:115: set_bkg_tile_xy(9, 30, 0x15); // 5
+                                    945 ;func/logicScorecard.c:116: set_bkg_tile_xy(9, 30, 0x15); // 5
       000488 21 1E 15               946 	ld	hl, #0x151e
       00048B E5                     947 	push	hl
       00048C 3E 09                  948 	ld	a, #0x09
@@ -952,12 +952,12 @@
       000493 E8 03                  952 	add	sp, #3
       000495 C3rF8r07               953 	jp	00203$
       000498                        954 00139$:
-                                    955 ;func/logicScorecard.c:119: scoreBuf = 0;
+                                    955 ;func/logicScorecard.c:120: scoreBuf = 0;
       000498 AF                     956 	xor	a, a
       000499 21r00r00               957 	ld	hl, #_scoreBuf
       00049C 22                     958 	ld	(hl+), a
       00049D 77                     959 	ld	(hl), a
-                                    960 ;func/logicScorecard.c:120: scorecard[cursorIndex - 8] = scoreBuf;
+                                    960 ;func/logicScorecard.c:121: scorecard[cursorIndex - 8] = scoreBuf;
       00049E 01r00r00               961 	ld	bc, #_scorecard+0
       0004A1 F8 02                  962 	ldhl	sp,	#2
       0004A3 2A                     963 	ld	a,	(hl+)
@@ -970,13 +970,13 @@
       0004AA 02                     970 	ld	(bc), a
       0004AB 03                     971 	inc	bc
       0004AC 02                     972 	ld	(bc), a
-                                    973 ;func/logicScorecard.c:122: break;
+                                    973 ;func/logicScorecard.c:123: break;
       0004AD C3rF8r07               974 	jp	00203$
-                                    975 ;func/logicScorecard.c:124: case 19:
+                                    975 ;func/logicScorecard.c:125: case 19:
       0004B0                        976 00145$:
-                                    977 ;func/logicScorecard.c:125: sortDice();
+                                    977 ;func/logicScorecard.c:126: sortDice();
       0004B0 CDr00r00               978 	call	_sortDice
-                                    979 ;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+                                    979 ;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
       0004B3 11r00r00               980 	ld	de, #_diceValues
       0004B6 1A                     981 	ld	a, (de)
       0004B7 F8 00                  982 	ldhl	sp,	#0
@@ -1002,20 +1002,20 @@
       0004D0 F8 05                 1002 	ldhl	sp,	#5
       0004D2 32                    1003 	ld	(hl-), a
       0004D3 73                    1004 	ld	(hl), e
-                                   1005 ;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1005 ;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
       0004D4 21r00r00              1006 	ld	hl, #_cursorIndex
       0004D7 4E                    1007 	ld	c, (hl)
-                                   1008 ;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
-                                   1009 ;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
-                                   1010 ;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+                                   1008 ;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+                                   1009 ;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1010 ;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
       0004D8 11r04r00              1011 	ld	de, #(_diceValues + 4)
       0004DB 1A                    1012 	ld	a, (de)
       0004DC F8 06                 1013 	ldhl	sp,	#6
       0004DE 22                    1014 	ld	(hl+), a
       0004DF 13                    1015 	inc	de
       0004E0 1A                    1016 	ld	a, (de)
-                                   1017 ;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
-                                   1018 ;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+                                   1017 ;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1018 ;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
       0004E1 32                    1019 	ld	(hl-), a
       0004E2 79                    1020 	ld	a, c
       0004E3 C6 F8                 1021 	add	a, #0xf8
@@ -1023,12 +1023,12 @@
       0004E6 23                    1023 	inc	hl
       0004E7 46                    1024 	ld	b, (hl)
       0004E8 0B                    1025 	dec	bc
-                                   1026 ;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1026 ;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
       0004E9 5F                    1027 	ld	e, a
       0004EA 07                    1028 	rlca
       0004EB 9F                    1029 	sbc	a, a
       0004EC 57                    1030 	ld	d, a
-                                   1031 ;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+                                   1031 ;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
       0004ED F8 02                 1032 	ldhl	sp,	#2
       0004EF 7E                    1033 	ld	a, (hl)
       0004F0 91                    1034 	sub	a, c
@@ -1043,12 +1043,12 @@
       0004FB                       1043 00575$:
       0004FB F8 08                 1044 	ldhl	sp,	#8
       0004FD 77                    1045 	ld	(hl), a
-                                   1046 ;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1046 ;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
       0004FE 4B                    1047 	ld	c, e
       0004FF 42                    1048 	ld	b, d
       000500 CB 21                 1049 	sla	c
       000502 CB 10                 1050 	rl	b
-                                   1051 ;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+                                   1051 ;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
       000504 F8 00                 1052 	ldhl	sp,	#0
       000506 7E                    1053 	ld	a, (hl)
       000507 F8 04                 1054 	ldhl	sp,	#4
@@ -1077,19 +1077,19 @@
       000528 7E                    1077 	ld	a, (hl)
       000529 92                    1078 	sub	a, d
       00052A 20 2E                 1079 	jr	NZ, 00151$
-                                   1080 ;func/logicScorecard.c:127: scoreBuf = 30;
+                                   1080 ;func/logicScorecard.c:128: scoreBuf = 30;
       00052C 21r00r00              1081 	ld	hl, #_scoreBuf
       00052F 3E 1E                 1082 	ld	a, #0x1e
       000531 22                    1083 	ld	(hl+), a
       000532 AF                    1084 	xor	a, a
       000533 77                    1085 	ld	(hl), a
-                                   1086 ;func/logicScorecard.c:129: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1086 ;func/logicScorecard.c:130: scorecard[cursorIndex - 8] = scoreBuf;
       000534 21r00r00              1087 	ld	hl, #_scorecard
       000537 09                    1088 	add	hl, bc
       000538 3E 1E                 1089 	ld	a, #0x1e
       00053A 22                    1090 	ld	(hl+), a
       00053B 36 00                 1091 	ld	(hl), #0x00
-                                   1092 ;func/logicScorecard.c:131: set_bkg_tile_xy(17, 28, 0x13); // 3
+                                   1092 ;func/logicScorecard.c:132: set_bkg_tile_xy(17, 28, 0x13); // 3
       00053D 21 1C 13              1093 	ld	hl, #0x131c
       000540 E5                    1094 	push	hl
       000541 3E 11                 1095 	ld	a, #0x11
@@ -1097,7 +1097,7 @@
       000544 33                    1097 	inc	sp
       000545 CDr00r00              1098 	call	_set_bkg_tile_xy
       000548 E8 03                 1099 	add	sp, #3
-                                   1100 ;func/logicScorecard.c:132: set_bkg_tile_xy(18, 28, 0x10); // 0
+                                   1100 ;func/logicScorecard.c:133: set_bkg_tile_xy(18, 28, 0x10); // 0
       00054A 21 1C 10              1101 	ld	hl, #0x101c
       00054D E5                    1102 	push	hl
       00054E 3E 12                 1103 	ld	a, #0x12
@@ -1107,7 +1107,7 @@
       000555 E8 03                 1107 	add	sp, #3
       000557 C3rF8r07              1108 	jp	00203$
       00055A                       1109 00151$:
-                                   1110 ;func/logicScorecard.c:134: else if(diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+                                   1110 ;func/logicScorecard.c:135: else if(diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
       00055A F8 08                 1111 	ldhl	sp,	#8
       00055C 7E                    1112 	ld	a, (hl)
       00055D B7                    1113 	or	a, a
@@ -1126,19 +1126,19 @@
       00056E 7E                    1126 	ld	a, (hl)
       00056F 92                    1127 	sub	a, d
       000570 20 2E                 1128 	jr	NZ, 00147$
-                                   1129 ;func/logicScorecard.c:135: scoreBuf = 30;
+                                   1129 ;func/logicScorecard.c:136: scoreBuf = 30;
       000572 21r00r00              1130 	ld	hl, #_scoreBuf
       000575 3E 1E                 1131 	ld	a, #0x1e
       000577 22                    1132 	ld	(hl+), a
       000578 AF                    1133 	xor	a, a
       000579 77                    1134 	ld	(hl), a
-                                   1135 ;func/logicScorecard.c:137: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1135 ;func/logicScorecard.c:138: scorecard[cursorIndex - 8] = scoreBuf;
       00057A 21r00r00              1136 	ld	hl, #_scorecard
       00057D 09                    1137 	add	hl, bc
       00057E 3E 1E                 1138 	ld	a, #0x1e
       000580 22                    1139 	ld	(hl+), a
       000581 36 00                 1140 	ld	(hl), #0x00
-                                   1141 ;func/logicScorecard.c:139: set_bkg_tile_xy(17, 28, 0x13); // 3
+                                   1141 ;func/logicScorecard.c:140: set_bkg_tile_xy(17, 28, 0x13); // 3
       000583 21 1C 13              1142 	ld	hl, #0x131c
       000586 E5                    1143 	push	hl
       000587 3E 11                 1144 	ld	a, #0x11
@@ -1146,7 +1146,7 @@
       00058A 33                    1146 	inc	sp
       00058B CDr00r00              1147 	call	_set_bkg_tile_xy
       00058E E8 03                 1148 	add	sp, #3
-                                   1149 ;func/logicScorecard.c:140: set_bkg_tile_xy(18, 28, 0x10); // 0
+                                   1149 ;func/logicScorecard.c:141: set_bkg_tile_xy(18, 28, 0x10); // 0
       000590 21 1C 10              1150 	ld	hl, #0x101c
       000593 E5                    1151 	push	hl
       000594 3E 12                 1152 	ld	a, #0x12
@@ -1156,22 +1156,22 @@
       00059B E8 03                 1156 	add	sp, #3
       00059D C3rF8r07              1157 	jp	00203$
       0005A0                       1158 00147$:
-                                   1159 ;func/logicScorecard.c:143: scoreBuf = 0;
+                                   1159 ;func/logicScorecard.c:144: scoreBuf = 0;
       0005A0 AF                    1160 	xor	a, a
       0005A1 21r00r00              1161 	ld	hl, #_scoreBuf
       0005A4 22                    1162 	ld	(hl+), a
       0005A5 77                    1163 	ld	(hl), a
-                                   1164 ;func/logicScorecard.c:144: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1164 ;func/logicScorecard.c:145: scorecard[cursorIndex - 8] = scoreBuf;
       0005A6 21r00r00              1165 	ld	hl, #_scorecard
       0005A9 09                    1166 	add	hl, bc
       0005AA AF                    1167 	xor	a, a
       0005AB 22                    1168 	ld	(hl+), a
       0005AC 77                    1169 	ld	(hl), a
-                                   1170 ;func/logicScorecard.c:146: break;
+                                   1170 ;func/logicScorecard.c:147: break;
       0005AD C3rF8r07              1171 	jp	00203$
-                                   1172 ;func/logicScorecard.c:148: case 20:
+                                   1172 ;func/logicScorecard.c:149: case 20:
       0005B0                       1173 00155$:
-                                   1174 ;func/logicScorecard.c:149: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
+                                   1174 ;func/logicScorecard.c:150: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
       0005B0 11r00r00              1175 	ld	de, #_diceValues
       0005B3 1A                    1176 	ld	a, (de)
       0005B4 F8 07                 1177 	ldhl	sp,	#7
@@ -1244,13 +1244,13 @@
       00060A 7C                    1244 	ld	a, h
       00060B 90                    1245 	sub	a, b
       00060C 20 36                 1246 	jr	NZ, 00157$
-                                   1247 ;func/logicScorecard.c:150: scoreBuf = 40;
+                                   1247 ;func/logicScorecard.c:151: scoreBuf = 40;
       00060E 21r00r00              1248 	ld	hl, #_scoreBuf
       000611 3E 28                 1249 	ld	a, #0x28
       000613 22                    1250 	ld	(hl+), a
       000614 AF                    1251 	xor	a, a
       000615 77                    1252 	ld	(hl), a
-                                   1253 ;func/logicScorecard.c:152: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1253 ;func/logicScorecard.c:153: scorecard[cursorIndex - 8] = scoreBuf;
       000616 01r00r00              1254 	ld	bc, #_scorecard+0
       000619 F8 02                 1255 	ldhl	sp,	#2
       00061B 2A                    1256 	ld	a,	(hl+)
@@ -1263,7 +1263,7 @@
       000623 03                    1263 	inc	bc
       000624 3E 00                 1264 	ld	a, #0x00
       000626 02                    1265 	ld	(bc), a
-                                   1266 ;func/logicScorecard.c:154: set_bkg_tile_xy(17, 29, 0x14); // 4
+                                   1266 ;func/logicScorecard.c:155: set_bkg_tile_xy(17, 29, 0x14); // 4
       000627 21 1D 14              1267 	ld	hl, #0x141d
       00062A E5                    1268 	push	hl
       00062B 3E 11                 1269 	ld	a, #0x11
@@ -1271,7 +1271,7 @@
       00062E 33                    1271 	inc	sp
       00062F CDr00r00              1272 	call	_set_bkg_tile_xy
       000632 E8 03                 1273 	add	sp, #3
-                                   1274 ;func/logicScorecard.c:155: set_bkg_tile_xy(18, 29, 0x10); // 0
+                                   1274 ;func/logicScorecard.c:156: set_bkg_tile_xy(18, 29, 0x10); // 0
       000634 21 1D 10              1275 	ld	hl, #0x101d
       000637 E5                    1276 	push	hl
       000638 3E 12                 1277 	ld	a, #0x12
@@ -1281,12 +1281,12 @@
       00063F E8 03                 1281 	add	sp, #3
       000641 C3rF8r07              1282 	jp	00203$
       000644                       1283 00157$:
-                                   1284 ;func/logicScorecard.c:158: scoreBuf = 0;
+                                   1284 ;func/logicScorecard.c:159: scoreBuf = 0;
       000644 AF                    1285 	xor	a, a
       000645 21r00r00              1286 	ld	hl, #_scoreBuf
       000648 22                    1287 	ld	(hl+), a
       000649 77                    1288 	ld	(hl), a
-                                   1289 ;func/logicScorecard.c:159: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1289 ;func/logicScorecard.c:160: scorecard[cursorIndex - 8] = scoreBuf;
       00064A 01r00r00              1290 	ld	bc, #_scorecard+0
       00064D F8 02                 1291 	ldhl	sp,	#2
       00064F 2A                    1292 	ld	a,	(hl+)
@@ -1299,17 +1299,17 @@
       000656 02                    1299 	ld	(bc), a
       000657 03                    1300 	inc	bc
       000658 02                    1301 	ld	(bc), a
-                                   1302 ;func/logicScorecard.c:161: break;
+                                   1302 ;func/logicScorecard.c:162: break;
       000659 C3rF8r07              1303 	jp	00203$
-                                   1304 ;func/logicScorecard.c:163: case 21:
+                                   1304 ;func/logicScorecard.c:164: case 21:
       00065C                       1305 00162$:
-                                   1306 ;func/logicScorecard.c:164: for(i = 0; i < 5; i++){
+                                   1306 ;func/logicScorecard.c:165: for(i = 0; i < 5; i++){
       00065C AF                    1307 	xor	a, a
       00065D 21r00r00              1308 	ld	hl, #_i
       000660 22                    1309 	ld	(hl+), a
       000661 77                    1310 	ld	(hl), a
       000662                       1311 00197$:
-                                   1312 ;func/logicScorecard.c:165: scoreBuf += diceValues[i];
+                                   1312 ;func/logicScorecard.c:166: scoreBuf += diceValues[i];
       000662 21r00r00              1313 	ld	hl, #_i
       000665 2A                    1314 	ld	a, (hl+)
       000666 4F                    1315 	ld	c, a
@@ -1328,7 +1328,7 @@
       000679 7E                    1328 	ld	a, (hl)
       00067A 88                    1329 	adc	a, b
       00067B 77                    1330 	ld	(hl), a
-                                   1331 ;func/logicScorecard.c:166: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1331 ;func/logicScorecard.c:167: scorecard[cursorIndex - 8] = scoreBuf;
       00067C FAr00r00              1332 	ld	a, (#_cursorIndex)
       00067F C6 F8                 1333 	add	a, #0xf8
       000681 6F                    1334 	ld	l, a
@@ -1352,7 +1352,7 @@
       000693 03                    1352 	inc	bc
       000694 7E                    1353 	ld	a, (hl)
       000695 02                    1354 	ld	(bc), a
-                                   1355 ;func/logicScorecard.c:164: for(i = 0; i < 5; i++){
+                                   1355 ;func/logicScorecard.c:165: for(i = 0; i < 5; i++){
       000696 21r00r00              1356 	ld	hl, #_i
       000699 34                    1357 	inc	(hl)
       00069A 20 02                 1358 	jr	NZ, 00592$
@@ -1365,22 +1365,22 @@
       0006A4 7E                    1365 	ld	a, (hl)
       0006A5 DE 00                 1366 	sbc	a, #0x00
       0006A7 38 B9                 1367 	jr	C, 00197$
-                                   1368 ;func/logicScorecard.c:168: break;
+                                   1368 ;func/logicScorecard.c:169: break;
       0006A9 C3rF8r07              1369 	jp	00203$
-                                   1370 ;func/logicScorecard.c:170: case 14:
+                                   1370 ;func/logicScorecard.c:171: case 14:
       0006AC                       1371 00164$:
-                                   1372 ;func/logicScorecard.c:171: match5 = 0;
+                                   1372 ;func/logicScorecard.c:172: match5 = 0;
       0006AC AF                    1373 	xor	a, a
       0006AD 21r00r00              1374 	ld	hl, #_match5
       0006B0 22                    1375 	ld	(hl+), a
       0006B1 77                    1376 	ld	(hl), a
-                                   1377 ;func/logicScorecard.c:172: for(i = 0; i < 4; i++){
+                                   1377 ;func/logicScorecard.c:173: for(i = 0; i < 4; i++){
       0006B2 AF                    1378 	xor	a, a
       0006B3 21r00r00              1379 	ld	hl, #_i
       0006B6 22                    1380 	ld	(hl+), a
       0006B7 77                    1381 	ld	(hl), a
       0006B8                       1382 00199$:
-                                   1383 ;func/logicScorecard.c:173: if(diceValues[i] == diceValues[i + 1]){
+                                   1383 ;func/logicScorecard.c:174: if(diceValues[i] == diceValues[i + 1]){
       0006B8 21r00r00              1384 	ld	hl, #_i
       0006BB 2A                    1385 	ld	a, (hl+)
       0006BC 4F                    1386 	ld	c, a
@@ -1413,7 +1413,7 @@
       0006DB 7C                    1413 	ld	a, h
       0006DC 90                    1414 	sub	a, b
       0006DD 20 08                 1415 	jr	NZ, 00200$
-                                   1416 ;func/logicScorecard.c:174: match5++;
+                                   1416 ;func/logicScorecard.c:175: match5++;
       0006DF 21r00r00              1417 	ld	hl, #_match5
       0006E2 34                    1418 	inc	(hl)
       0006E3 20 02                 1419 	jr	NZ, 00596$
@@ -1421,7 +1421,7 @@
       0006E6 34                    1421 	inc	(hl)
       0006E7                       1422 00596$:
       0006E7                       1423 00200$:
-                                   1424 ;func/logicScorecard.c:172: for(i = 0; i < 4; i++){
+                                   1424 ;func/logicScorecard.c:173: for(i = 0; i < 4; i++){
       0006E7 21r00r00              1425 	ld	hl, #_i
       0006EA 34                    1426 	inc	(hl)
       0006EB 20 02                 1427 	jr	NZ, 00597$
@@ -1434,19 +1434,19 @@
       0006F5 7E                    1434 	ld	a, (hl)
       0006F6 DE 00                 1435 	sbc	a, #0x00
       0006F8 38 BE                 1436 	jr	C, 00199$
-                                   1437 ;func/logicScorecard.c:178: if(match5 == 4){
+                                   1437 ;func/logicScorecard.c:179: if(match5 == 4){
       0006FA 21r00r00              1438 	ld	hl, #_match5
       0006FD 2A                    1439 	ld	a, (hl+)
       0006FE D6 04                 1440 	sub	a, #0x04
       000700 B6                    1441 	or	a, (hl)
       000701 20 36                 1442 	jr	NZ, 00171$
-                                   1443 ;func/logicScorecard.c:180: scoreBuf = 50;
+                                   1443 ;func/logicScorecard.c:181: scoreBuf = 50;
       000703 21r00r00              1444 	ld	hl, #_scoreBuf
       000706 3E 32                 1445 	ld	a, #0x32
       000708 22                    1446 	ld	(hl+), a
       000709 AF                    1447 	xor	a, a
       00070A 77                    1448 	ld	(hl), a
-                                   1449 ;func/logicScorecard.c:181: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1449 ;func/logicScorecard.c:182: scorecard[cursorIndex - 8] = scoreBuf;
       00070B 01r00r00              1450 	ld	bc, #_scorecard+0
       00070E F8 02                 1451 	ldhl	sp,	#2
       000710 2A                    1452 	ld	a,	(hl+)
@@ -1459,7 +1459,7 @@
       000718 03                    1459 	inc	bc
       000719 3E 00                 1460 	ld	a, #0x00
       00071B 02                    1461 	ld	(bc), a
-                                   1462 ;func/logicScorecard.c:183: set_bkg_tile_xy(17, 31, 0x15); // 5
+                                   1462 ;func/logicScorecard.c:184: set_bkg_tile_xy(17, 31, 0x15); // 5
       00071C 21 1F 15              1463 	ld	hl, #0x151f
       00071F E5                    1464 	push	hl
       000720 3E 11                 1465 	ld	a, #0x11
@@ -1467,7 +1467,7 @@
       000723 33                    1467 	inc	sp
       000724 CDr00r00              1468 	call	_set_bkg_tile_xy
       000727 E8 03                 1469 	add	sp, #3
-                                   1470 ;func/logicScorecard.c:184: set_bkg_tile_xy(18, 31, 0x10); // 0
+                                   1470 ;func/logicScorecard.c:185: set_bkg_tile_xy(18, 31, 0x10); // 0
       000729 21 1F 10              1471 	ld	hl, #0x101f
       00072C E5                    1472 	push	hl
       00072D 3E 12                 1473 	ld	a, #0x12
@@ -1477,17 +1477,17 @@
       000734 E8 03                 1477 	add	sp, #3
       000736 C3rF8r07              1478 	jp	00203$
       000739                       1479 00171$:
-                                   1480 ;func/logicScorecard.c:186: else if(turn == 13){
+                                   1480 ;func/logicScorecard.c:187: else if(turn == 13){
       000739 21r00r00              1481 	ld	hl, #_turn
       00073C 2A                    1482 	ld	a, (hl+)
       00073D D6 0D                 1483 	sub	a, #0x0d
-                                   1484 ;func/logicScorecard.c:187: scoreBuf = 0;
+                                   1484 ;func/logicScorecard.c:188: scoreBuf = 0;
       00073F B6                    1485 	or	a,(hl)
       000740 C2rF8r07              1486 	jp	NZ,00203$
       000743 21r00r00              1487 	ld	hl, #_scoreBuf
       000746 22                    1488 	ld	(hl+), a
       000747 77                    1489 	ld	(hl), a
-                                   1490 ;func/logicScorecard.c:188: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1490 ;func/logicScorecard.c:189: scorecard[cursorIndex - 8] = scoreBuf;
       000748 01r00r00              1491 	ld	bc, #_scorecard+0
       00074B F8 02                 1492 	ldhl	sp,	#2
       00074D 2A                    1493 	ld	a,	(hl+)
@@ -1500,22 +1500,22 @@
       000754 02                    1500 	ld	(bc), a
       000755 03                    1501 	inc	bc
       000756 02                    1502 	ld	(bc), a
-                                   1503 ;func/logicScorecard.c:190: break;
+                                   1503 ;func/logicScorecard.c:191: break;
       000757 C3rF8r07              1504 	jp	00203$
-                                   1505 ;func/logicScorecard.c:191: case 15:
+                                   1505 ;func/logicScorecard.c:192: case 15:
       00075A                       1506 00173$:
-                                   1507 ;func/logicScorecard.c:192: match5 = 0;
+                                   1507 ;func/logicScorecard.c:193: match5 = 0;
       00075A AF                    1508 	xor	a, a
       00075B 21r00r00              1509 	ld	hl, #_match5
       00075E 22                    1510 	ld	(hl+), a
       00075F 77                    1511 	ld	(hl), a
-                                   1512 ;func/logicScorecard.c:193: for(i = 0; i < 4; i++){
+                                   1512 ;func/logicScorecard.c:194: for(i = 0; i < 4; i++){
       000760 AF                    1513 	xor	a, a
       000761 21r00r00              1514 	ld	hl, #_i
       000764 22                    1515 	ld	(hl+), a
       000765 77                    1516 	ld	(hl), a
       000766                       1517 00201$:
-                                   1518 ;func/logicScorecard.c:194: if(diceValues[i] == diceValues[i + 1]){
+                                   1518 ;func/logicScorecard.c:195: if(diceValues[i] == diceValues[i + 1]){
       000766 21r00r00              1519 	ld	hl, #_i
       000769 2A                    1520 	ld	a, (hl+)
       00076A 4F                    1521 	ld	c, a
@@ -1548,7 +1548,7 @@
       000789 7C                    1548 	ld	a, h
       00078A 90                    1549 	sub	a, b
       00078B 20 08                 1550 	jr	NZ, 00202$
-                                   1551 ;func/logicScorecard.c:195: match5++;
+                                   1551 ;func/logicScorecard.c:196: match5++;
       00078D 21r00r00              1552 	ld	hl, #_match5
       000790 34                    1553 	inc	(hl)
       000791 20 02                 1554 	jr	NZ, 00605$
@@ -1556,7 +1556,7 @@
       000794 34                    1556 	inc	(hl)
       000795                       1557 00605$:
       000795                       1558 00202$:
-                                   1559 ;func/logicScorecard.c:193: for(i = 0; i < 4; i++){
+                                   1559 ;func/logicScorecard.c:194: for(i = 0; i < 4; i++){
       000795 21r00r00              1560 	ld	hl, #_i
       000798 34                    1561 	inc	(hl)
       000799 20 02                 1562 	jr	NZ, 00606$
@@ -1569,7 +1569,7 @@
       0007A3 7E                    1569 	ld	a, (hl)
       0007A4 DE 00                 1570 	sbc	a, #0x00
       0007A6 38 BE                 1571 	jr	C, 00201$
-                                   1572 ;func/logicScorecard.c:199: if(match5 == 4 && scorecard[6] != 255 && scorecard[6] != 0){
+                                   1572 ;func/logicScorecard.c:200: if(match5 == 4 && scorecard[6] != 255 && scorecard[6] != 0){
       0007A8 21r00r00              1573 	ld	hl, #_match5
       0007AB 2A                    1574 	ld	a, (hl+)
       0007AC D6 04                 1575 	sub	a, #0x04
@@ -1586,7 +1586,7 @@
       0007BC 78                    1586 	ld	a, b
       0007BD B1                    1587 	or	a, c
       0007BE 28 38                 1588 	jr	Z, 00203$
-                                   1589 ;func/logicScorecard.c:200: if(scorecard[cursorIndex - 8] < 1000){
+                                   1589 ;func/logicScorecard.c:201: if(scorecard[cursorIndex - 8] < 1000){
       0007C0 11r00r00              1590 	ld	de, #_scorecard
       0007C3 F8 02                 1591 	ldhl	sp,	#2
       0007C5 2A                    1592 	ld	a,	(hl+)
@@ -1604,13 +1604,13 @@
       0007CF 7C                    1604 	ld	a, h
       0007D0 DE 03                 1605 	sbc	a, #0x03
       0007D2 30 24                 1606 	jr	NC, 00203$
-                                   1607 ;func/logicScorecard.c:202: scoreBuf = 100;
+                                   1607 ;func/logicScorecard.c:203: scoreBuf = 100;
       0007D4 21r00r00              1608 	ld	hl, #_scoreBuf
       0007D7 3E 64                 1609 	ld	a, #0x64
       0007D9 22                    1610 	ld	(hl+), a
       0007DA AF                    1611 	xor	a, a
       0007DB 77                    1612 	ld	(hl), a
-                                   1613 ;func/logicScorecard.c:203: if(scorecard[cursorIndex - 8] == 255){
+                                   1613 ;func/logicScorecard.c:204: if(scorecard[cursorIndex - 8] == 255){
       0007DC 69                    1614 	ld	l, c
       0007DD 60                    1615 	ld	h, b
       0007DE 2A                    1616 	ld	a,	(hl+)
@@ -1622,7 +1622,7 @@
       0007E1 3C                    1622 	inc	a
       0007E2 B4                    1623 	or	a, h
       0007E3 20 08                 1624 	jr	NZ, 00178$
-                                   1625 ;func/logicScorecard.c:204: scorecard[cursorIndex - 8] = scoreBuf;
+                                   1625 ;func/logicScorecard.c:205: scorecard[cursorIndex - 8] = scoreBuf;
       0007E5 3E 64                 1626 	ld	a, #0x64
       0007E7 02                    1627 	ld	(bc), a
       0007E8 03                    1628 	inc	bc
@@ -1630,7 +1630,7 @@
       0007EA 02                    1630 	ld	(bc), a
       0007EB 18 0B                 1631 	jr	00203$
       0007ED                       1632 00178$:
-                                   1633 ;func/logicScorecard.c:207: scorecard[cursorIndex - 8] += scoreBuf;
+                                   1633 ;func/logicScorecard.c:208: scorecard[cursorIndex - 8] += scoreBuf;
       0007ED 11 64 00              1634 	ld	de, #0x64
       0007F0 19                    1635 	add	hl, de
       0007F1 5D                    1636 	ld	e, l
@@ -1640,25 +1640,25 @@
       0007F5 03                    1640 	inc	bc
       0007F6 7A                    1641 	ld	a, d
       0007F7 02                    1642 	ld	(bc), a
-                                   1643 ;func/logicScorecard.c:213: }
+                                   1643 ;func/logicScorecard.c:214: }
       0007F8                       1644 00203$:
-                                   1645 ;func/logicScorecard.c:214: }
+                                   1645 ;func/logicScorecard.c:215: }
       0007F8 E8 09                 1646 	add	sp, #9
       0007FA C9                    1647 	ret
-                                   1648 ;func/logicScorecard.c:217: void bonusCheck(){
+                                   1648 ;func/logicScorecard.c:218: void bonusCheck(){
                                    1649 ;	---------------------------------
                                    1650 ; Function bonusCheck
                                    1651 ; ---------------------------------
       0007FB                       1652 _bonusCheck::
-                                   1653 ;func/logicScorecard.c:219: unsigned int bonusCompare = 0;
+                                   1653 ;func/logicScorecard.c:220: unsigned int bonusCompare = 0;
       0007FB 01 00 00              1654 	ld	bc, #0x0000
-                                   1655 ;func/logicScorecard.c:220: for(i = 0; i != 15; i++){
+                                   1655 ;func/logicScorecard.c:221: for(i = 0; i != 15; i++){
       0007FE AF                    1656 	xor	a, a
       0007FF 21r00r00              1657 	ld	hl, #_i
       000802 22                    1658 	ld	(hl+), a
       000803 77                    1659 	ld	(hl), a
       000804                       1660 00110$:
-                                   1661 ;func/logicScorecard.c:221: if(i <= 2 || i >= 7 && i <= 10){
+                                   1661 ;func/logicScorecard.c:222: if(i <= 2 || i >= 7 && i <= 10){
       000804 21r00r00              1662 	ld	hl, #_i
       000807 3E 02                 1663 	ld	a, #0x02
       000809 96                    1664 	sub	a, (hl)
@@ -1680,7 +1680,7 @@
       000822 9E                    1680 	sbc	a, (hl)
       000823 38 42                 1681 	jr	C, 00111$
       000825                       1682 00105$:
-                                   1683 ;func/logicScorecard.c:222: if(scorecard[i] != 255){
+                                   1683 ;func/logicScorecard.c:223: if(scorecard[i] != 255){
       000825 21r00r00              1684 	ld	hl, #_i
       000828 2A                    1685 	ld	a, (hl+)
       000829 5F                    1686 	ld	e, a
@@ -1698,23 +1698,23 @@
       000836 3C                    1698 	inc	a
       000837 B4                    1699 	or	a, h
       000838 28 03                 1700 	jr	Z, 00102$
-                                   1701 ;func/logicScorecard.c:223: bonusCompare += scorecard[i];
+                                   1701 ;func/logicScorecard.c:224: bonusCompare += scorecard[i];
       00083A 09                    1702 	add	hl, bc
       00083B 4D                    1703 	ld	c, l
       00083C 44                    1704 	ld	b, h
       00083D                       1705 00102$:
-                                   1706 ;func/logicScorecard.c:225: if(bonusCompare >= 63){
+                                   1706 ;func/logicScorecard.c:226: if(bonusCompare >= 63){
       00083D 79                    1707 	ld	a, c
       00083E D6 3F                 1708 	sub	a, #0x3f
       000840 78                    1709 	ld	a, b
       000841 DE 00                 1710 	sbc	a, #0x00
       000843 38 22                 1711 	jr	C, 00111$
-                                   1712 ;func/logicScorecard.c:226: scorecard[14] = 35;
+                                   1712 ;func/logicScorecard.c:227: scorecard[14] = 35;
       000845 21r1Cr00              1713 	ld	hl, #(_scorecard + 28)
       000848 3E 23                 1714 	ld	a, #0x23
       00084A 22                    1715 	ld	(hl+), a
       00084B 36 00                 1716 	ld	(hl), #0x00
-                                   1717 ;func/logicScorecard.c:227: set_bkg_tile_xy(17, 25, 0x13); // 3
+                                   1717 ;func/logicScorecard.c:228: set_bkg_tile_xy(17, 25, 0x13); // 3
       00084D 21 19 13              1718 	ld	hl, #0x1319
       000850 E5                    1719 	push	hl
       000851 3E 11                 1720 	ld	a, #0x11
@@ -1722,7 +1722,7 @@
       000854 33                    1722 	inc	sp
       000855 CDr00r00              1723 	call	_set_bkg_tile_xy
       000858 E8 03                 1724 	add	sp, #3
-                                   1725 ;func/logicScorecard.c:228: set_bkg_tile_xy(18, 25, 0x15); // 5
+                                   1725 ;func/logicScorecard.c:229: set_bkg_tile_xy(18, 25, 0x15); // 5
       00085A 21 19 15              1726 	ld	hl, #0x1519
       00085D E5                    1727 	push	hl
       00085E 3E 12                 1728 	ld	a, #0x12
@@ -1731,7 +1731,7 @@
       000862 CDr00r00              1731 	call	_set_bkg_tile_xy
       000865 E8 03                 1732 	add	sp, #3
       000867                       1733 00111$:
-                                   1734 ;func/logicScorecard.c:220: for(i = 0; i != 15; i++){
+                                   1734 ;func/logicScorecard.c:221: for(i = 0; i != 15; i++){
       000867 21r00r00              1735 	ld	hl, #_i
       00086A 34                    1736 	inc	(hl)
       00086B 20 02                 1737 	jr	NZ, 00141$
@@ -1743,25 +1743,25 @@
       000873 D6 0F                 1743 	sub	a, #0x0f
       000875 B6                    1744 	or	a, (hl)
       000876 20 8C                 1745 	jr	NZ, 00110$
-                                   1746 ;func/logicScorecard.c:232: }
+                                   1746 ;func/logicScorecard.c:233: }
       000878 C9                    1747 	ret
-                                   1748 ;func/logicScorecard.c:235: void logicScorecard(){
+                                   1748 ;func/logicScorecard.c:236: void logicScorecard(){
                                    1749 ;	---------------------------------
                                    1750 ; Function logicScorecard
                                    1751 ; ---------------------------------
       000879                       1752 _logicScorecard::
-                                   1753 ;func/logicScorecard.c:237: if(scorecardChangeA == scorecardChangeB){
+                                   1753 ;func/logicScorecard.c:238: if(scorecardChangeA == scorecardChangeB){
       000879 FAr00r00              1754 	ld	a, (#_scorecardChangeA)
       00087C 21r00r00              1755 	ld	hl, #_scorecardChangeB
       00087F 96                    1756 	sub	a, (hl)
       000880 C0                    1757 	ret	NZ
-                                   1758 ;func/logicScorecard.c:238: scorecardChangeA = 0;
+                                   1758 ;func/logicScorecard.c:239: scorecardChangeA = 0;
       000881 21r00r00              1759 	ld	hl, #_scorecardChangeA
       000884 36 00                 1760 	ld	(hl), #0x00
-                                   1761 ;func/logicScorecard.c:239: scorecardChangeB = 0;
+                                   1761 ;func/logicScorecard.c:240: scorecardChangeB = 0;
       000886 21r00r00              1762 	ld	hl, #_scorecardChangeB
       000889 36 00                 1763 	ld	(hl), #0x00
-                                   1764 ;func/logicScorecard.c:240: if(scorecard[cursorIndex - 8] == 255){
+                                   1764 ;func/logicScorecard.c:241: if(scorecard[cursorIndex - 8] == 255){
       00088B FAr00r00              1765 	ld	a, (#_cursorIndex)
       00088E C6 F8                 1766 	add	a, #0xf8
       000890 6F                    1767 	ld	l, a
@@ -1778,14 +1778,14 @@
       00089B 46                    1778 	ld	b, (hl)
       00089C 79                    1779 	ld	a, c
       00089D 3C                    1780 	inc	a
-                                   1781 ;func/logicScorecard.c:241: for(i = 0; i != 14; i++){
+                                   1781 ;func/logicScorecard.c:242: for(i = 0; i != 14; i++){
       00089E B0                    1782 	or	a,b
       00089F 20 7B                 1783 	jr	NZ, 00111$
       0008A1 21r00r00              1784 	ld	hl, #_i
       0008A4 22                    1785 	ld	(hl+), a
       0008A5 77                    1786 	ld	(hl), a
       0008A6                       1787 00116$:
-                                   1788 ;func/logicScorecard.c:242: if(scorecard[i] != 255){
+                                   1788 ;func/logicScorecard.c:243: if(scorecard[i] != 255){
       0008A6 21r00r00              1789 	ld	hl, #_i
       0008A9 2A                    1790 	ld	a, (hl+)
       0008AA 4F                    1791 	ld	c, a
@@ -1801,11 +1801,11 @@
       0008B8 3C                    1801 	inc	a
       0008B9 B0                    1802 	or	a, b
       0008BA 28 04                 1803 	jr	Z, 00117$
-                                   1804 ;func/logicScorecard.c:243: scorecardChangeA++;
+                                   1804 ;func/logicScorecard.c:244: scorecardChangeA++;
       0008BC 21r00r00              1805 	ld	hl, #_scorecardChangeA
       0008BF 34                    1806 	inc	(hl)
       0008C0                       1807 00117$:
-                                   1808 ;func/logicScorecard.c:241: for(i = 0; i != 14; i++){
+                                   1808 ;func/logicScorecard.c:242: for(i = 0; i != 14; i++){
       0008C0 21r00r00              1809 	ld	hl, #_i
       0008C3 34                    1810 	inc	(hl)
       0008C4 20 02                 1811 	jr	NZ, 00178$
@@ -1817,24 +1817,24 @@
       0008CC D6 0E                 1817 	sub	a, #0x0e
       0008CE B6                    1818 	or	a, (hl)
       0008CF 20 D5                 1819 	jr	NZ, 00116$
-                                   1820 ;func/logicScorecard.c:246: if(upperRegion == 1){
+                                   1820 ;func/logicScorecard.c:247: if(upperRegion == 1){
       0008D1 FAr00r00              1821 	ld	a, (#_upperRegion)
       0008D4 3D                    1822 	dec	a
       0008D5 20 05                 1823 	jr	NZ, 00105$
-                                   1824 ;func/logicScorecard.c:247: logicUpper();
+                                   1824 ;func/logicScorecard.c:248: logicUpper();
       0008D7 CDr00r00              1825 	call	_logicUpper
       0008DA 18 03                 1826 	jr	00106$
       0008DC                       1827 00105$:
-                                   1828 ;func/logicScorecard.c:250: logicLower();
+                                   1828 ;func/logicScorecard.c:251: logicLower();
       0008DC CDrC5r00              1829 	call	_logicLower
       0008DF                       1830 00106$:
-                                   1831 ;func/logicScorecard.c:252: for(i = 0; i != 14; i++){
+                                   1831 ;func/logicScorecard.c:253: for(i = 0; i != 14; i++){
       0008DF AF                    1832 	xor	a, a
       0008E0 21r00r00              1833 	ld	hl, #_i
       0008E3 22                    1834 	ld	(hl+), a
       0008E4 77                    1835 	ld	(hl), a
       0008E5                       1836 00118$:
-                                   1837 ;func/logicScorecard.c:253: if(scorecard[i] != 255){
+                                   1837 ;func/logicScorecard.c:254: if(scorecard[i] != 255){
       0008E5 21r00r00              1838 	ld	hl, #_i
       0008E8 2A                    1839 	ld	a, (hl+)
       0008E9 4F                    1840 	ld	c, a
@@ -1850,11 +1850,11 @@
       0008F7 3C                    1850 	inc	a
       0008F8 B0                    1851 	or	a, b
       0008F9 28 04                 1852 	jr	Z, 00119$
-                                   1853 ;func/logicScorecard.c:254: scorecardChangeB++;
+                                   1853 ;func/logicScorecard.c:255: scorecardChangeB++;
       0008FB 21r00r00              1854 	ld	hl, #_scorecardChangeB
       0008FE 34                    1855 	inc	(hl)
       0008FF                       1856 00119$:
-                                   1857 ;func/logicScorecard.c:252: for(i = 0; i != 14; i++){
+                                   1857 ;func/logicScorecard.c:253: for(i = 0; i != 14; i++){
       0008FF 21r00r00              1858 	ld	hl, #_i
       000902 34                    1859 	inc	(hl)
       000903 20 02                 1860 	jr	NZ, 00185$
@@ -1866,34 +1866,34 @@
       00090B D6 0E                 1866 	sub	a, #0x0e
       00090D B6                    1867 	or	a, (hl)
       00090E 20 D5                 1868 	jr	NZ, 00118$
-                                   1869 ;func/logicScorecard.c:257: bonusCheck();
+                                   1869 ;func/logicScorecard.c:258: bonusCheck();
       000910 CDrFBr07              1870 	call	_bonusCheck
-                                   1871 ;func/logicScorecard.c:258: setScoreUpper();
+                                   1871 ;func/logicScorecard.c:259: setScoreUpper();
       000913 CDr00r00              1872 	call	_setScoreUpper
-                                   1873 ;func/logicScorecard.c:259: setScoreLower();
+                                   1873 ;func/logicScorecard.c:260: setScoreLower();
       000916 CDr00r00              1874 	call	_setScoreLower
-                                   1875 ;func/logicScorecard.c:260: scoreDisplay();
+                                   1875 ;func/logicScorecard.c:261: scoreDisplay();
       000919 CDr00r00              1876 	call	_scoreDisplay
       00091C                       1877 00111$:
-                                   1878 ;func/logicScorecard.c:262: if(scorecardChangeA != scorecardChangeB){
+                                   1878 ;func/logicScorecard.c:263: if(scorecardChangeA != scorecardChangeB){
       00091C FAr00r00              1879 	ld	a, (#_scorecardChangeA)
       00091F 21r00r00              1880 	ld	hl, #_scorecardChangeB
       000922 96                    1881 	sub	a, (hl)
       000923 C8                    1882 	ret	Z
-                                   1883 ;func/logicScorecard.c:263: rollsLeft = 0;
+                                   1883 ;func/logicScorecard.c:264: rollsLeft = 0;
       000924 AF                    1884 	xor	a, a
       000925 21r00r00              1885 	ld	hl, #_rollsLeft
       000928 22                    1886 	ld	(hl+), a
       000929 77                    1887 	ld	(hl), a
-                                   1888 ;func/logicScorecard.c:264: rollsEnabled = 0;
+                                   1888 ;func/logicScorecard.c:265: rollsEnabled = 0;
       00092A 21r00r00              1889 	ld	hl, #_rollsEnabled
       00092D 36 00                 1890 	ld	(hl), #0x00
-                                   1891 ;func/logicScorecard.c:265: playView(backgroundMap);
+                                   1891 ;func/logicScorecard.c:266: playView(backgroundMap);
       00092F 11r00r00              1892 	ld	de, #_backgroundMap
       000932 D5                    1893 	push	de
       000933 CDr00r00              1894 	call	_playView
       000936 E1                    1895 	pop	hl
-                                   1896 ;func/logicScorecard.c:268: }
+                                   1896 ;func/logicScorecard.c:270: }
       000937 C9                    1897 	ret
                                    1898 	.area _CODE
                                    1899 	.area _INITIALIZER

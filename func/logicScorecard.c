@@ -8,6 +8,7 @@
 #include "../func/playView.h"
 #include "../func/scoreDisplay.h"
 #include "../func/sortDice.h"
+#include "../func/turnRollDisplay.h"
 
 //backgrounds
 #include "../res/backgroundMap.h"
@@ -263,6 +264,7 @@ void logicScorecard(){
 			rollsLeft = 0;
 			rollsEnabled = 0;
             playView(backgroundMap);
+			//turnRollDisplay();
 		}
 	}
 }

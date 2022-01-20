@@ -14,6 +14,7 @@ Symbol Table
     _Di5                                                           ****** GX
     _LCDC_REG                                                      ****** GX
     _Sprites                                                       ****** GX
+  0 ___str_0                                                       00076B R
     __mulint                                                       ****** GX
     _backgroundData                                                ****** GX
     _backgroundMap                                                 ****** GX
@@ -35,20 +36,21 @@ Symbol Table
   0 _initGame                                                      0002CA GR
     _j                                                             ****** GX
     _joypad                                                        ****** GX
-  0 _main                                                          0008D8 GR
+  0 _main                                                          0008EB GR
   0 _moveDiceStruct                                                00013E GR
   0 _newTurn                                                       0003A3 GR
-  0 _playCursor                                                    00089C GR
-  0 _playCursorA                                                   00075D GR
-  0 _playCursorB                                                   00081E GR
-  0 _playCursorLeft                                                0004E2 GR
-  0 _playCursorRight                                               000564 GR
-  0 _playCursorSelect                                              000864 GR
+  0 _playCursor                                                    0008AF GR
+  0 _playCursorA                                                   000770 GR
+  0 _playCursorB                                                   000831 GR
+  0 _playCursorLeft                                                0004E5 GR
+  0 _playCursorRight                                               000567 GR
+  0 _playCursorSelect                                              000877 GR
+    _printf                                                        ****** GX
     _quickSwitch                                                   ****** GX
-  0 _rollCheck                                                     00073A GR
+  0 _rollCheck                                                     00073D GR
     _rollDi                                                        ****** GX
     _rollPosY                                                      ****** GX
-  0 _rollTracker                                                   000462 GR
+  0 _rollTracker                                                   000465 GR
     _rollsEnabled                                                  ****** GX
     _rollsLeft                                                     ****** GX
     _scoreDisplay                                                  ****** GX
@@ -56,18 +58,18 @@ Symbol Table
     _scorecardChangeA                                              ****** GX
     _scorecardChangeB                                              ****** GX
   0 _setDiFace                                                     00003D GR
-  0 _setDiceValues                                                 000000 GR
-    _set_bkg_data                                                  ****** GX
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+  0 _setDiceValues                                                 000000 GR
+    _set_bkg_data                                                  ****** GX
     _set_bkg_tiles                                                 ****** GX
     _set_sprite_data                                               ****** GX
     _shadow_OAM                                                    ****** GX
     _spriteFlip                                                    ****** GX
-  0 _toggleDi                                                      0005D3 GR
+  0 _toggleDi                                                      0005D6 GR
     _turn                                                          ****** GX
     _turnRollDisplay                                               ****** GX
     _turnsPassed                                                   ****** GX
@@ -80,7 +82,7 @@ Hexadecimal [24-Bits]
 
 Area Table
 
-   0 _CODE                                      size    8F7   flags    0
+   0 _CODE                                      size    90A   flags    0
    1 _DATA                                      size      0   flags    0
    2 _INITIALIZED                               size      0   flags    0
    3 _DABS                                      size      0   flags    8

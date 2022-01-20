@@ -49,21 +49,21 @@
 ; code
 ;--------------------------------------------------------
 	.area _CODE
-;func/logicScorecard.c:16: void logicUpper(){
+;func/logicScorecard.c:17: void logicUpper(){
 ;	---------------------------------
 ; Function logicUpper
 ; ---------------------------------
 _logicUpper::
 	dec	sp
 	dec	sp
-;func/logicScorecard.c:17: unsigned int valueToCheck = 0;
+;func/logicScorecard.c:18: unsigned int valueToCheck = 0;
 	ld	bc, #0x0000
-;func/logicScorecard.c:18: scoreBuf = 0;
+;func/logicScorecard.c:19: scoreBuf = 0;
 	xor	a, a
 	ld	hl, #_scoreBuf
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:19: switch(cursorIndex){
+;func/logicScorecard.c:20: switch(cursorIndex){
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	sub	a, #0x08
@@ -95,49 +95,49 @@ _logicUpper::
 	or	a, (hl)
 	jr	Z, 00106$
 	jr	00107$
-;func/logicScorecard.c:20: case 8:
+;func/logicScorecard.c:21: case 8:
 00101$:
-;func/logicScorecard.c:21: valueToCheck = 1;
+;func/logicScorecard.c:22: valueToCheck = 1;
 	ld	bc, #0x0001
-;func/logicScorecard.c:22: break;
+;func/logicScorecard.c:23: break;
 	jr	00107$
-;func/logicScorecard.c:23: case 9:
+;func/logicScorecard.c:24: case 9:
 00102$:
-;func/logicScorecard.c:24: valueToCheck = 2;
+;func/logicScorecard.c:25: valueToCheck = 2;
 	ld	bc, #0x0002
-;func/logicScorecard.c:25: break;
+;func/logicScorecard.c:26: break;
 	jr	00107$
-;func/logicScorecard.c:26: case 10:
+;func/logicScorecard.c:27: case 10:
 00103$:
-;func/logicScorecard.c:27: valueToCheck = 3;
+;func/logicScorecard.c:28: valueToCheck = 3;
 	ld	bc, #0x0003
-;func/logicScorecard.c:28: break;
+;func/logicScorecard.c:29: break;
 	jr	00107$
-;func/logicScorecard.c:29: case 16:
+;func/logicScorecard.c:30: case 16:
 00104$:
-;func/logicScorecard.c:30: valueToCheck = 4;
+;func/logicScorecard.c:31: valueToCheck = 4;
 	ld	bc, #0x0004
-;func/logicScorecard.c:31: break;
+;func/logicScorecard.c:32: break;
 	jr	00107$
-;func/logicScorecard.c:32: case 17:
+;func/logicScorecard.c:33: case 17:
 00105$:
-;func/logicScorecard.c:33: valueToCheck = 5;
+;func/logicScorecard.c:34: valueToCheck = 5;
 	ld	bc, #0x0005
-;func/logicScorecard.c:34: break;
+;func/logicScorecard.c:35: break;
 	jr	00107$
-;func/logicScorecard.c:35: case 18:
+;func/logicScorecard.c:36: case 18:
 00106$:
-;func/logicScorecard.c:36: valueToCheck = 6;
+;func/logicScorecard.c:37: valueToCheck = 6;
 	ld	bc, #0x0006
-;func/logicScorecard.c:38: }
+;func/logicScorecard.c:39: }
 00107$:
-;func/logicScorecard.c:39: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:40: for(i = 0; i != 5; i++){
 	xor	a, a
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00111$:
-;func/logicScorecard.c:40: if(diceValues[i] == valueToCheck){
+;func/logicScorecard.c:41: if(diceValues[i] == valueToCheck){
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	e, a
@@ -162,7 +162,7 @@ _logicUpper::
 	ld	a, (hl)
 	sub	a, b
 	jr	NZ, 00112$
-;func/logicScorecard.c:41: scoreBuf += diceValues[i];
+;func/logicScorecard.c:42: scoreBuf += diceValues[i];
 	ld	hl, #_scoreBuf + 1
 	dec	hl
 	ld	a, (hl+)
@@ -178,7 +178,7 @@ _logicUpper::
 	ld	(hl+), a
 	ld	(hl), d
 00112$:
-;func/logicScorecard.c:39: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:40: for(i = 0; i != 5; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00169$
@@ -190,7 +190,7 @@ _logicUpper::
 	sub	a, #0x05
 	or	a, (hl)
 	jr	NZ, 00111$
-;func/logicScorecard.c:44: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:45: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ld	a, (#_cursorIndex)
 	add	a, #0xf8
@@ -210,24 +210,24 @@ _logicUpper::
 	inc	bc
 	ld	a, (hl)
 	ld	(bc), a
-;func/logicScorecard.c:45: }
+;func/logicScorecard.c:46: }
 	inc	sp
 	inc	sp
 	ret
-;func/logicScorecard.c:48: void logicLower(){
+;func/logicScorecard.c:49: void logicLower(){
 ;	---------------------------------
 ; Function logicLower
 ; ---------------------------------
 _logicLower::
 	add	sp, #-9
-;func/logicScorecard.c:49: scoreBuf = 0;
+;func/logicScorecard.c:50: scoreBuf = 0;
 	xor	a, a
 	ld	hl, #_scoreBuf
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:50: sortDice();
+;func/logicScorecard.c:51: sortDice();
 	call	_sortDice
-;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	a, (#_cursorIndex)
 	add	a, #0xf8
 	ld	c, a
@@ -239,7 +239,7 @@ _logicLower::
 	ld	(hl), c
 	inc	hl
 	ld	(hl), a
-;func/logicScorecard.c:51: switch(cursorIndex){
+;func/logicScorecard.c:52: switch(cursorIndex){
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	sub	a, #0x0b
@@ -281,9 +281,9 @@ _logicLower::
 	or	a, (hl)
 	jp	Z,00162$
 	jp	00203$
-;func/logicScorecard.c:53: case 11:
+;func/logicScorecard.c:54: case 11:
 00101$:
-;func/logicScorecard.c:54: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
+;func/logicScorecard.c:55: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
 	ld	de, #_diceValues
 	ld	a, (de)
 	ldhl	sp,	#4
@@ -327,13 +327,13 @@ _logicLower::
 	ld	a, (hl)
 	or	a, a
 	jr	Z, 00114$
-;func/logicScorecard.c:55: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:56: for(i = 0; i != 5; i++){
 	xor	a, a
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00187$:
-;func/logicScorecard.c:56: scoreBuf += diceValues[i];
+;func/logicScorecard.c:57: scoreBuf += diceValues[i];
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	c, a
@@ -352,7 +352,7 @@ _logicLower::
 	ld	a, (hl)
 	adc	a, b
 	ld	(hl), a
-;func/logicScorecard.c:55: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:56: for(i = 0; i != 5; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00529$
@@ -364,7 +364,7 @@ _logicLower::
 	sub	a, #0x05
 	or	a, (hl)
 	jr	NZ, 00187$
-;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -381,7 +381,7 @@ _logicLower::
 	ld	(bc), a
 	jp	00203$
 00114$:
-;func/logicScorecard.c:60: else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3]){
+;func/logicScorecard.c:61: else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3]){
 	ld	hl, #_diceValues + 6
 	ld	a, (hl+)
 	ld	c, a
@@ -406,13 +406,13 @@ _logicLower::
 	ld	a, e
 	or	a, a
 	jr	Z, 00110$
-;func/logicScorecard.c:61: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:62: for(i = 0; i != 5; i++){
 	xor	a, a
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00189$:
-;func/logicScorecard.c:62: scoreBuf += diceValues[i];
+;func/logicScorecard.c:63: scoreBuf += diceValues[i];
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	c, a
@@ -431,7 +431,7 @@ _logicLower::
 	ld	a, (hl)
 	adc	a, b
 	ld	(hl), a
-;func/logicScorecard.c:61: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:62: for(i = 0; i != 5; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00535$
@@ -443,7 +443,7 @@ _logicLower::
 	sub	a, #0x05
 	or	a, (hl)
 	jr	NZ, 00189$
-;func/logicScorecard.c:64: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:65: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -460,7 +460,7 @@ _logicLower::
 	ld	(bc), a
 	jp	00203$
 00110$:
-;func/logicScorecard.c:66: else if(diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
+;func/logicScorecard.c:67: else if(diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
 	ld	a, e
 	or	a, a
 	jr	Z, 00106$
@@ -475,13 +475,13 @@ _logicLower::
 	ld	a, h
 	sub	a, b
 	jr	NZ, 00106$
-;func/logicScorecard.c:67: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:68: for(i = 0; i != 5; i++){
 	xor	a, a
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00191$:
-;func/logicScorecard.c:68: scoreBuf += diceValues[i];
+;func/logicScorecard.c:69: scoreBuf += diceValues[i];
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	c, a
@@ -500,7 +500,7 @@ _logicLower::
 	ld	a, (hl)
 	adc	a, b
 	ld	(hl), a
-;func/logicScorecard.c:67: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:68: for(i = 0; i != 5; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00541$
@@ -512,7 +512,7 @@ _logicLower::
 	sub	a, #0x05
 	or	a, (hl)
 	jr	NZ, 00191$
-;func/logicScorecard.c:70: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:71: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -529,12 +529,12 @@ _logicLower::
 	ld	(bc), a
 	jp	00203$
 00106$:
-;func/logicScorecard.c:73: scoreBuf = 0;
+;func/logicScorecard.c:74: scoreBuf = 0;
 	xor	a, a
 	ld	hl, #_scoreBuf
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:74: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:75: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -547,11 +547,11 @@ _logicLower::
 	ld	(bc), a
 	inc	bc
 	ld	(bc), a
-;func/logicScorecard.c:76: break;
+;func/logicScorecard.c:77: break;
 	jp	00203$
-;func/logicScorecard.c:78: case 12:
+;func/logicScorecard.c:79: case 12:
 00117$:
-;func/logicScorecard.c:79: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3]){
+;func/logicScorecard.c:80: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3]){
 	ld	de, #_diceValues
 	ld	a, (de)
 	ldhl	sp,	#4
@@ -607,13 +607,13 @@ _logicLower::
 	ld	a, (hl)
 	sub	a, b
 	jr	NZ, 00126$
-;func/logicScorecard.c:80: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:81: for(i = 0; i != 5; i++){
 	xor	a, a
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00193$:
-;func/logicScorecard.c:81: scoreBuf += diceValues[i];
+;func/logicScorecard.c:82: scoreBuf += diceValues[i];
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	c, a
@@ -632,7 +632,7 @@ _logicLower::
 	ld	a, (hl)
 	adc	a, b
 	ld	(hl), a
-;func/logicScorecard.c:80: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:81: for(i = 0; i != 5; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00551$
@@ -644,7 +644,7 @@ _logicLower::
 	sub	a, #0x05
 	or	a, (hl)
 	jr	NZ, 00193$
-;func/logicScorecard.c:83: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:84: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -661,7 +661,7 @@ _logicLower::
 	ld	(bc), a
 	jp	00203$
 00126$:
-;func/logicScorecard.c:85: else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
+;func/logicScorecard.c:86: else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
 	ldhl	sp,	#8
 	ld	a, (hl)
 	or	a, a
@@ -689,13 +689,13 @@ _logicLower::
 	ld	a, h
 	sub	a, b
 	jr	NZ, 00121$
-;func/logicScorecard.c:86: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:87: for(i = 0; i != 5; i++){
 	xor	a, a
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00195$:
-;func/logicScorecard.c:87: scoreBuf += diceValues[i];
+;func/logicScorecard.c:88: scoreBuf += diceValues[i];
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	c, a
@@ -714,7 +714,7 @@ _logicLower::
 	ld	a, (hl)
 	adc	a, b
 	ld	(hl), a
-;func/logicScorecard.c:86: for(i = 0; i != 5; i++){
+;func/logicScorecard.c:87: for(i = 0; i != 5; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00559$
@@ -726,7 +726,7 @@ _logicLower::
 	sub	a, #0x05
 	or	a, (hl)
 	jr	NZ, 00195$
-;func/logicScorecard.c:89: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:90: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -743,12 +743,12 @@ _logicLower::
 	ld	(bc), a
 	jp	00203$
 00121$:
-;func/logicScorecard.c:92: scoreBuf = 0;
+;func/logicScorecard.c:93: scoreBuf = 0;
 	xor	a, a
 	ld	hl, #_scoreBuf
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:93: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:94: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -761,11 +761,11 @@ _logicLower::
 	ld	(bc), a
 	inc	bc
 	ld	(bc), a
-;func/logicScorecard.c:95: break;
+;func/logicScorecard.c:96: break;
 	jp	00203$
-;func/logicScorecard.c:97: case 13:
+;func/logicScorecard.c:98: case 13:
 00130$:
-;func/logicScorecard.c:98: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
+;func/logicScorecard.c:99: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
 	ld	de, #_diceValues
 	ld	a, (de)
 	ldhl	sp,	#7
@@ -790,8 +790,8 @@ _logicLower::
 	xor	a, a
 00563$:
 	ldhl	sp,	#6
-;func/logicScorecard.c:99: if(diceValues[2] != diceValues[3] && diceValues[3] == diceValues[4]){
-;func/logicScorecard.c:98: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
+;func/logicScorecard.c:100: if(diceValues[2] != diceValues[3] && diceValues[3] == diceValues[4]){
+;func/logicScorecard.c:99: if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
 	ld	(hl), a
 	or	a, a
 	jr	Z, 00142$
@@ -809,7 +809,7 @@ _logicLower::
 	ld	a, (hl)
 	sub	a, b
 	jr	NZ, 00142$
-;func/logicScorecard.c:99: if(diceValues[2] != diceValues[3] && diceValues[3] == diceValues[4]){
+;func/logicScorecard.c:100: if(diceValues[2] != diceValues[3] && diceValues[3] == diceValues[4]){
 	ld	hl, #(_diceValues + 6)
 	ld	a, (hl+)
 	ld	c, a
@@ -834,13 +834,13 @@ _logicLower::
 	ld	a, h
 	sub	a, b
 	jp	NZ,00203$
-;func/logicScorecard.c:100: scoreBuf = 25;
+;func/logicScorecard.c:101: scoreBuf = 25;
 	ld	hl, #_scoreBuf
 	ld	a, #0x19
 	ld	(hl+), a
 	xor	a, a
 	ld	(hl), a
-;func/logicScorecard.c:102: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:103: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -853,7 +853,7 @@ _logicLower::
 	inc	bc
 	ld	a, #0x00
 	ld	(bc), a
-;func/logicScorecard.c:104: set_bkg_tile_xy(8, 30, 0x12); // 2
+;func/logicScorecard.c:105: set_bkg_tile_xy(8, 30, 0x12); // 2
 	ld	hl, #0x121e
 	push	hl
 	ld	a, #0x08
@@ -861,7 +861,7 @@ _logicLower::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/logicScorecard.c:105: set_bkg_tile_xy(9, 30, 0x15); // 5
+;func/logicScorecard.c:106: set_bkg_tile_xy(9, 30, 0x15); // 5
 	ld	hl, #0x151e
 	push	hl
 	ld	a, #0x09
@@ -871,12 +871,12 @@ _logicLower::
 	add	sp, #3
 	jp	00203$
 00142$:
-;func/logicScorecard.c:108: else if(diceValues[0] == diceValues[1]){
+;func/logicScorecard.c:109: else if(diceValues[0] == diceValues[1]){
 	ldhl	sp,	#6
 	ld	a, (hl)
 	or	a, a
 	jr	Z, 00139$
-;func/logicScorecard.c:109: if(diceValues[1] != diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
+;func/logicScorecard.c:110: if(diceValues[1] != diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
 	inc	hl
 	ld	de, #(_diceValues + 4)
 	ld	a, (de)
@@ -915,13 +915,13 @@ _logicLower::
 	ld	a, h
 	sub	a, b
 	jp	NZ,00203$
-;func/logicScorecard.c:110: scoreBuf = 25;
+;func/logicScorecard.c:111: scoreBuf = 25;
 	ld	hl, #_scoreBuf
 	ld	a, #0x19
 	ld	(hl+), a
 	xor	a, a
 	ld	(hl), a
-;func/logicScorecard.c:112: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:113: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -934,7 +934,7 @@ _logicLower::
 	inc	bc
 	ld	a, #0x00
 	ld	(bc), a
-;func/logicScorecard.c:114: set_bkg_tile_xy(8, 30, 0x12); // 2
+;func/logicScorecard.c:115: set_bkg_tile_xy(8, 30, 0x12); // 2
 	ld	hl, #0x121e
 	push	hl
 	ld	a, #0x08
@@ -942,7 +942,7 @@ _logicLower::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/logicScorecard.c:115: set_bkg_tile_xy(9, 30, 0x15); // 5
+;func/logicScorecard.c:116: set_bkg_tile_xy(9, 30, 0x15); // 5
 	ld	hl, #0x151e
 	push	hl
 	ld	a, #0x09
@@ -952,12 +952,12 @@ _logicLower::
 	add	sp, #3
 	jp	00203$
 00139$:
-;func/logicScorecard.c:119: scoreBuf = 0;
+;func/logicScorecard.c:120: scoreBuf = 0;
 	xor	a, a
 	ld	hl, #_scoreBuf
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:120: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:121: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -970,13 +970,13 @@ _logicLower::
 	ld	(bc), a
 	inc	bc
 	ld	(bc), a
-;func/logicScorecard.c:122: break;
+;func/logicScorecard.c:123: break;
 	jp	00203$
-;func/logicScorecard.c:124: case 19:
+;func/logicScorecard.c:125: case 19:
 00145$:
-;func/logicScorecard.c:125: sortDice();
+;func/logicScorecard.c:126: sortDice();
 	call	_sortDice
-;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
 	ld	de, #_diceValues
 	ld	a, (de)
 	ldhl	sp,	#0
@@ -1002,20 +1002,20 @@ _logicLower::
 	ldhl	sp,	#5
 	ld	(hl-), a
 	ld	(hl), e
-;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	hl, #_cursorIndex
 	ld	c, (hl)
-;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
-;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
-;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
 	ld	de, #(_diceValues + 4)
 	ld	a, (de)
 	ldhl	sp,	#6
 	ld	(hl+), a
 	inc	de
 	ld	a, (de)
-;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
-;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
 	ld	(hl-), a
 	ld	a, c
 	add	a, #0xf8
@@ -1023,12 +1023,12 @@ _logicLower::
 	inc	hl
 	ld	b, (hl)
 	dec	bc
-;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	e, a
 	rlca
 	sbc	a, a
 	ld	d, a
-;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
 	ldhl	sp,	#2
 	ld	a, (hl)
 	sub	a, c
@@ -1043,12 +1043,12 @@ _logicLower::
 00575$:
 	ldhl	sp,	#8
 	ld	(hl), a
-;func/logicScorecard.c:58: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:59: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	c, e
 	ld	b, d
 	sla	c
 	rl	b
-;func/logicScorecard.c:126: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+;func/logicScorecard.c:127: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
 	ldhl	sp,	#0
 	ld	a, (hl)
 	ldhl	sp,	#4
@@ -1077,19 +1077,19 @@ _logicLower::
 	ld	a, (hl)
 	sub	a, d
 	jr	NZ, 00151$
-;func/logicScorecard.c:127: scoreBuf = 30;
+;func/logicScorecard.c:128: scoreBuf = 30;
 	ld	hl, #_scoreBuf
 	ld	a, #0x1e
 	ld	(hl+), a
 	xor	a, a
 	ld	(hl), a
-;func/logicScorecard.c:129: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:130: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	hl, #_scorecard
 	add	hl, bc
 	ld	a, #0x1e
 	ld	(hl+), a
 	ld	(hl), #0x00
-;func/logicScorecard.c:131: set_bkg_tile_xy(17, 28, 0x13); // 3
+;func/logicScorecard.c:132: set_bkg_tile_xy(17, 28, 0x13); // 3
 	ld	hl, #0x131c
 	push	hl
 	ld	a, #0x11
@@ -1097,7 +1097,7 @@ _logicLower::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/logicScorecard.c:132: set_bkg_tile_xy(18, 28, 0x10); // 0
+;func/logicScorecard.c:133: set_bkg_tile_xy(18, 28, 0x10); // 0
 	ld	hl, #0x101c
 	push	hl
 	ld	a, #0x12
@@ -1107,7 +1107,7 @@ _logicLower::
 	add	sp, #3
 	jp	00203$
 00151$:
-;func/logicScorecard.c:134: else if(diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+;func/logicScorecard.c:135: else if(diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
 	ldhl	sp,	#8
 	ld	a, (hl)
 	or	a, a
@@ -1126,19 +1126,19 @@ _logicLower::
 	ld	a, (hl)
 	sub	a, d
 	jr	NZ, 00147$
-;func/logicScorecard.c:135: scoreBuf = 30;
+;func/logicScorecard.c:136: scoreBuf = 30;
 	ld	hl, #_scoreBuf
 	ld	a, #0x1e
 	ld	(hl+), a
 	xor	a, a
 	ld	(hl), a
-;func/logicScorecard.c:137: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:138: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	hl, #_scorecard
 	add	hl, bc
 	ld	a, #0x1e
 	ld	(hl+), a
 	ld	(hl), #0x00
-;func/logicScorecard.c:139: set_bkg_tile_xy(17, 28, 0x13); // 3
+;func/logicScorecard.c:140: set_bkg_tile_xy(17, 28, 0x13); // 3
 	ld	hl, #0x131c
 	push	hl
 	ld	a, #0x11
@@ -1146,7 +1146,7 @@ _logicLower::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/logicScorecard.c:140: set_bkg_tile_xy(18, 28, 0x10); // 0
+;func/logicScorecard.c:141: set_bkg_tile_xy(18, 28, 0x10); // 0
 	ld	hl, #0x101c
 	push	hl
 	ld	a, #0x12
@@ -1156,22 +1156,22 @@ _logicLower::
 	add	sp, #3
 	jp	00203$
 00147$:
-;func/logicScorecard.c:143: scoreBuf = 0;
+;func/logicScorecard.c:144: scoreBuf = 0;
 	xor	a, a
 	ld	hl, #_scoreBuf
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:144: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:145: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	hl, #_scorecard
 	add	hl, bc
 	xor	a, a
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:146: break;
+;func/logicScorecard.c:147: break;
 	jp	00203$
-;func/logicScorecard.c:148: case 20:
+;func/logicScorecard.c:149: case 20:
 00155$:
-;func/logicScorecard.c:149: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
+;func/logicScorecard.c:150: if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
 	ld	de, #_diceValues
 	ld	a, (de)
 	ldhl	sp,	#7
@@ -1244,13 +1244,13 @@ _logicLower::
 	ld	a, h
 	sub	a, b
 	jr	NZ, 00157$
-;func/logicScorecard.c:150: scoreBuf = 40;
+;func/logicScorecard.c:151: scoreBuf = 40;
 	ld	hl, #_scoreBuf
 	ld	a, #0x28
 	ld	(hl+), a
 	xor	a, a
 	ld	(hl), a
-;func/logicScorecard.c:152: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:153: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -1263,7 +1263,7 @@ _logicLower::
 	inc	bc
 	ld	a, #0x00
 	ld	(bc), a
-;func/logicScorecard.c:154: set_bkg_tile_xy(17, 29, 0x14); // 4
+;func/logicScorecard.c:155: set_bkg_tile_xy(17, 29, 0x14); // 4
 	ld	hl, #0x141d
 	push	hl
 	ld	a, #0x11
@@ -1271,7 +1271,7 @@ _logicLower::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/logicScorecard.c:155: set_bkg_tile_xy(18, 29, 0x10); // 0
+;func/logicScorecard.c:156: set_bkg_tile_xy(18, 29, 0x10); // 0
 	ld	hl, #0x101d
 	push	hl
 	ld	a, #0x12
@@ -1281,12 +1281,12 @@ _logicLower::
 	add	sp, #3
 	jp	00203$
 00157$:
-;func/logicScorecard.c:158: scoreBuf = 0;
+;func/logicScorecard.c:159: scoreBuf = 0;
 	xor	a, a
 	ld	hl, #_scoreBuf
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:159: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:160: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -1299,17 +1299,17 @@ _logicLower::
 	ld	(bc), a
 	inc	bc
 	ld	(bc), a
-;func/logicScorecard.c:161: break;
+;func/logicScorecard.c:162: break;
 	jp	00203$
-;func/logicScorecard.c:163: case 21:
+;func/logicScorecard.c:164: case 21:
 00162$:
-;func/logicScorecard.c:164: for(i = 0; i < 5; i++){
+;func/logicScorecard.c:165: for(i = 0; i < 5; i++){
 	xor	a, a
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00197$:
-;func/logicScorecard.c:165: scoreBuf += diceValues[i];
+;func/logicScorecard.c:166: scoreBuf += diceValues[i];
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	c, a
@@ -1328,7 +1328,7 @@ _logicLower::
 	ld	a, (hl)
 	adc	a, b
 	ld	(hl), a
-;func/logicScorecard.c:166: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:167: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	a, (#_cursorIndex)
 	add	a, #0xf8
 	ld	l, a
@@ -1352,7 +1352,7 @@ _logicLower::
 	inc	bc
 	ld	a, (hl)
 	ld	(bc), a
-;func/logicScorecard.c:164: for(i = 0; i < 5; i++){
+;func/logicScorecard.c:165: for(i = 0; i < 5; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00592$
@@ -1365,22 +1365,22 @@ _logicLower::
 	ld	a, (hl)
 	sbc	a, #0x00
 	jr	C, 00197$
-;func/logicScorecard.c:168: break;
+;func/logicScorecard.c:169: break;
 	jp	00203$
-;func/logicScorecard.c:170: case 14:
+;func/logicScorecard.c:171: case 14:
 00164$:
-;func/logicScorecard.c:171: match5 = 0;
+;func/logicScorecard.c:172: match5 = 0;
 	xor	a, a
 	ld	hl, #_match5
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:172: for(i = 0; i < 4; i++){
+;func/logicScorecard.c:173: for(i = 0; i < 4; i++){
 	xor	a, a
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00199$:
-;func/logicScorecard.c:173: if(diceValues[i] == diceValues[i + 1]){
+;func/logicScorecard.c:174: if(diceValues[i] == diceValues[i + 1]){
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	c, a
@@ -1413,7 +1413,7 @@ _logicLower::
 	ld	a, h
 	sub	a, b
 	jr	NZ, 00200$
-;func/logicScorecard.c:174: match5++;
+;func/logicScorecard.c:175: match5++;
 	ld	hl, #_match5
 	inc	(hl)
 	jr	NZ, 00596$
@@ -1421,7 +1421,7 @@ _logicLower::
 	inc	(hl)
 00596$:
 00200$:
-;func/logicScorecard.c:172: for(i = 0; i < 4; i++){
+;func/logicScorecard.c:173: for(i = 0; i < 4; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00597$
@@ -1434,19 +1434,19 @@ _logicLower::
 	ld	a, (hl)
 	sbc	a, #0x00
 	jr	C, 00199$
-;func/logicScorecard.c:178: if(match5 == 4){
+;func/logicScorecard.c:179: if(match5 == 4){
 	ld	hl, #_match5
 	ld	a, (hl+)
 	sub	a, #0x04
 	or	a, (hl)
 	jr	NZ, 00171$
-;func/logicScorecard.c:180: scoreBuf = 50;
+;func/logicScorecard.c:181: scoreBuf = 50;
 	ld	hl, #_scoreBuf
 	ld	a, #0x32
 	ld	(hl+), a
 	xor	a, a
 	ld	(hl), a
-;func/logicScorecard.c:181: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:182: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -1459,7 +1459,7 @@ _logicLower::
 	inc	bc
 	ld	a, #0x00
 	ld	(bc), a
-;func/logicScorecard.c:183: set_bkg_tile_xy(17, 31, 0x15); // 5
+;func/logicScorecard.c:184: set_bkg_tile_xy(17, 31, 0x15); // 5
 	ld	hl, #0x151f
 	push	hl
 	ld	a, #0x11
@@ -1467,7 +1467,7 @@ _logicLower::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/logicScorecard.c:184: set_bkg_tile_xy(18, 31, 0x10); // 0
+;func/logicScorecard.c:185: set_bkg_tile_xy(18, 31, 0x10); // 0
 	ld	hl, #0x101f
 	push	hl
 	ld	a, #0x12
@@ -1477,17 +1477,17 @@ _logicLower::
 	add	sp, #3
 	jp	00203$
 00171$:
-;func/logicScorecard.c:186: else if(turn == 13){
+;func/logicScorecard.c:187: else if(turn == 13){
 	ld	hl, #_turn
 	ld	a, (hl+)
 	sub	a, #0x0d
-;func/logicScorecard.c:187: scoreBuf = 0;
+;func/logicScorecard.c:188: scoreBuf = 0;
 	or	a,(hl)
 	jp	NZ,00203$
 	ld	hl, #_scoreBuf
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:188: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:189: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	bc, #_scorecard+0
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -1500,22 +1500,22 @@ _logicLower::
 	ld	(bc), a
 	inc	bc
 	ld	(bc), a
-;func/logicScorecard.c:190: break;
+;func/logicScorecard.c:191: break;
 	jp	00203$
-;func/logicScorecard.c:191: case 15:
+;func/logicScorecard.c:192: case 15:
 00173$:
-;func/logicScorecard.c:192: match5 = 0;
+;func/logicScorecard.c:193: match5 = 0;
 	xor	a, a
 	ld	hl, #_match5
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:193: for(i = 0; i < 4; i++){
+;func/logicScorecard.c:194: for(i = 0; i < 4; i++){
 	xor	a, a
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00201$:
-;func/logicScorecard.c:194: if(diceValues[i] == diceValues[i + 1]){
+;func/logicScorecard.c:195: if(diceValues[i] == diceValues[i + 1]){
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	c, a
@@ -1548,7 +1548,7 @@ _logicLower::
 	ld	a, h
 	sub	a, b
 	jr	NZ, 00202$
-;func/logicScorecard.c:195: match5++;
+;func/logicScorecard.c:196: match5++;
 	ld	hl, #_match5
 	inc	(hl)
 	jr	NZ, 00605$
@@ -1556,7 +1556,7 @@ _logicLower::
 	inc	(hl)
 00605$:
 00202$:
-;func/logicScorecard.c:193: for(i = 0; i < 4; i++){
+;func/logicScorecard.c:194: for(i = 0; i < 4; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00606$
@@ -1569,7 +1569,7 @@ _logicLower::
 	ld	a, (hl)
 	sbc	a, #0x00
 	jr	C, 00201$
-;func/logicScorecard.c:199: if(match5 == 4 && scorecard[6] != 255 && scorecard[6] != 0){
+;func/logicScorecard.c:200: if(match5 == 4 && scorecard[6] != 255 && scorecard[6] != 0){
 	ld	hl, #_match5
 	ld	a, (hl+)
 	sub	a, #0x04
@@ -1586,7 +1586,7 @@ _logicLower::
 	ld	a, b
 	or	a, c
 	jr	Z, 00203$
-;func/logicScorecard.c:200: if(scorecard[cursorIndex - 8] < 1000){
+;func/logicScorecard.c:201: if(scorecard[cursorIndex - 8] < 1000){
 	ld	de, #_scorecard
 	ldhl	sp,	#2
 	ld	a,	(hl+)
@@ -1604,13 +1604,13 @@ _logicLower::
 	ld	a, h
 	sbc	a, #0x03
 	jr	NC, 00203$
-;func/logicScorecard.c:202: scoreBuf = 100;
+;func/logicScorecard.c:203: scoreBuf = 100;
 	ld	hl, #_scoreBuf
 	ld	a, #0x64
 	ld	(hl+), a
 	xor	a, a
 	ld	(hl), a
-;func/logicScorecard.c:203: if(scorecard[cursorIndex - 8] == 255){
+;func/logicScorecard.c:204: if(scorecard[cursorIndex - 8] == 255){
 	ld	l, c
 	ld	h, b
 	ld	a,	(hl+)
@@ -1622,7 +1622,7 @@ _logicLower::
 	inc	a
 	or	a, h
 	jr	NZ, 00178$
-;func/logicScorecard.c:204: scorecard[cursorIndex - 8] = scoreBuf;
+;func/logicScorecard.c:205: scorecard[cursorIndex - 8] = scoreBuf;
 	ld	a, #0x64
 	ld	(bc), a
 	inc	bc
@@ -1630,7 +1630,7 @@ _logicLower::
 	ld	(bc), a
 	jr	00203$
 00178$:
-;func/logicScorecard.c:207: scorecard[cursorIndex - 8] += scoreBuf;
+;func/logicScorecard.c:208: scorecard[cursorIndex - 8] += scoreBuf;
 	ld	de, #0x64
 	add	hl, de
 	ld	e, l
@@ -1640,25 +1640,25 @@ _logicLower::
 	inc	bc
 	ld	a, d
 	ld	(bc), a
-;func/logicScorecard.c:213: }
-00203$:
 ;func/logicScorecard.c:214: }
+00203$:
+;func/logicScorecard.c:215: }
 	add	sp, #9
 	ret
-;func/logicScorecard.c:217: void bonusCheck(){
+;func/logicScorecard.c:218: void bonusCheck(){
 ;	---------------------------------
 ; Function bonusCheck
 ; ---------------------------------
 _bonusCheck::
-;func/logicScorecard.c:219: unsigned int bonusCompare = 0;
+;func/logicScorecard.c:220: unsigned int bonusCompare = 0;
 	ld	bc, #0x0000
-;func/logicScorecard.c:220: for(i = 0; i != 15; i++){
+;func/logicScorecard.c:221: for(i = 0; i != 15; i++){
 	xor	a, a
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00110$:
-;func/logicScorecard.c:221: if(i <= 2 || i >= 7 && i <= 10){
+;func/logicScorecard.c:222: if(i <= 2 || i >= 7 && i <= 10){
 	ld	hl, #_i
 	ld	a, #0x02
 	sub	a, (hl)
@@ -1680,7 +1680,7 @@ _bonusCheck::
 	sbc	a, (hl)
 	jr	C, 00111$
 00105$:
-;func/logicScorecard.c:222: if(scorecard[i] != 255){
+;func/logicScorecard.c:223: if(scorecard[i] != 255){
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	e, a
@@ -1698,23 +1698,23 @@ _bonusCheck::
 	inc	a
 	or	a, h
 	jr	Z, 00102$
-;func/logicScorecard.c:223: bonusCompare += scorecard[i];
+;func/logicScorecard.c:224: bonusCompare += scorecard[i];
 	add	hl, bc
 	ld	c, l
 	ld	b, h
 00102$:
-;func/logicScorecard.c:225: if(bonusCompare >= 63){
+;func/logicScorecard.c:226: if(bonusCompare >= 63){
 	ld	a, c
 	sub	a, #0x3f
 	ld	a, b
 	sbc	a, #0x00
 	jr	C, 00111$
-;func/logicScorecard.c:226: scorecard[14] = 35;
+;func/logicScorecard.c:227: scorecard[14] = 35;
 	ld	hl, #(_scorecard + 28)
 	ld	a, #0x23
 	ld	(hl+), a
 	ld	(hl), #0x00
-;func/logicScorecard.c:227: set_bkg_tile_xy(17, 25, 0x13); // 3
+;func/logicScorecard.c:228: set_bkg_tile_xy(17, 25, 0x13); // 3
 	ld	hl, #0x1319
 	push	hl
 	ld	a, #0x11
@@ -1722,7 +1722,7 @@ _bonusCheck::
 	inc	sp
 	call	_set_bkg_tile_xy
 	add	sp, #3
-;func/logicScorecard.c:228: set_bkg_tile_xy(18, 25, 0x15); // 5
+;func/logicScorecard.c:229: set_bkg_tile_xy(18, 25, 0x15); // 5
 	ld	hl, #0x1519
 	push	hl
 	ld	a, #0x12
@@ -1731,7 +1731,7 @@ _bonusCheck::
 	call	_set_bkg_tile_xy
 	add	sp, #3
 00111$:
-;func/logicScorecard.c:220: for(i = 0; i != 15; i++){
+;func/logicScorecard.c:221: for(i = 0; i != 15; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00141$
@@ -1743,25 +1743,25 @@ _bonusCheck::
 	sub	a, #0x0f
 	or	a, (hl)
 	jr	NZ, 00110$
-;func/logicScorecard.c:232: }
+;func/logicScorecard.c:233: }
 	ret
-;func/logicScorecard.c:235: void logicScorecard(){
+;func/logicScorecard.c:236: void logicScorecard(){
 ;	---------------------------------
 ; Function logicScorecard
 ; ---------------------------------
 _logicScorecard::
-;func/logicScorecard.c:237: if(scorecardChangeA == scorecardChangeB){
+;func/logicScorecard.c:238: if(scorecardChangeA == scorecardChangeB){
 	ld	a, (#_scorecardChangeA)
 	ld	hl, #_scorecardChangeB
 	sub	a, (hl)
 	ret	NZ
-;func/logicScorecard.c:238: scorecardChangeA = 0;
+;func/logicScorecard.c:239: scorecardChangeA = 0;
 	ld	hl, #_scorecardChangeA
 	ld	(hl), #0x00
-;func/logicScorecard.c:239: scorecardChangeB = 0;
+;func/logicScorecard.c:240: scorecardChangeB = 0;
 	ld	hl, #_scorecardChangeB
 	ld	(hl), #0x00
-;func/logicScorecard.c:240: if(scorecard[cursorIndex - 8] == 255){
+;func/logicScorecard.c:241: if(scorecard[cursorIndex - 8] == 255){
 	ld	a, (#_cursorIndex)
 	add	a, #0xf8
 	ld	l, a
@@ -1778,14 +1778,14 @@ _logicScorecard::
 	ld	b, (hl)
 	ld	a, c
 	inc	a
-;func/logicScorecard.c:241: for(i = 0; i != 14; i++){
+;func/logicScorecard.c:242: for(i = 0; i != 14; i++){
 	or	a,b
 	jr	NZ, 00111$
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00116$:
-;func/logicScorecard.c:242: if(scorecard[i] != 255){
+;func/logicScorecard.c:243: if(scorecard[i] != 255){
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	c, a
@@ -1801,11 +1801,11 @@ _logicScorecard::
 	inc	a
 	or	a, b
 	jr	Z, 00117$
-;func/logicScorecard.c:243: scorecardChangeA++;
+;func/logicScorecard.c:244: scorecardChangeA++;
 	ld	hl, #_scorecardChangeA
 	inc	(hl)
 00117$:
-;func/logicScorecard.c:241: for(i = 0; i != 14; i++){
+;func/logicScorecard.c:242: for(i = 0; i != 14; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00178$
@@ -1817,24 +1817,24 @@ _logicScorecard::
 	sub	a, #0x0e
 	or	a, (hl)
 	jr	NZ, 00116$
-;func/logicScorecard.c:246: if(upperRegion == 1){
+;func/logicScorecard.c:247: if(upperRegion == 1){
 	ld	a, (#_upperRegion)
 	dec	a
 	jr	NZ, 00105$
-;func/logicScorecard.c:247: logicUpper();
+;func/logicScorecard.c:248: logicUpper();
 	call	_logicUpper
 	jr	00106$
 00105$:
-;func/logicScorecard.c:250: logicLower();
+;func/logicScorecard.c:251: logicLower();
 	call	_logicLower
 00106$:
-;func/logicScorecard.c:252: for(i = 0; i != 14; i++){
+;func/logicScorecard.c:253: for(i = 0; i != 14; i++){
 	xor	a, a
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00118$:
-;func/logicScorecard.c:253: if(scorecard[i] != 255){
+;func/logicScorecard.c:254: if(scorecard[i] != 255){
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	c, a
@@ -1850,11 +1850,11 @@ _logicScorecard::
 	inc	a
 	or	a, b
 	jr	Z, 00119$
-;func/logicScorecard.c:254: scorecardChangeB++;
+;func/logicScorecard.c:255: scorecardChangeB++;
 	ld	hl, #_scorecardChangeB
 	inc	(hl)
 00119$:
-;func/logicScorecard.c:252: for(i = 0; i != 14; i++){
+;func/logicScorecard.c:253: for(i = 0; i != 14; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00185$
@@ -1866,34 +1866,34 @@ _logicScorecard::
 	sub	a, #0x0e
 	or	a, (hl)
 	jr	NZ, 00118$
-;func/logicScorecard.c:257: bonusCheck();
+;func/logicScorecard.c:258: bonusCheck();
 	call	_bonusCheck
-;func/logicScorecard.c:258: setScoreUpper();
+;func/logicScorecard.c:259: setScoreUpper();
 	call	_setScoreUpper
-;func/logicScorecard.c:259: setScoreLower();
+;func/logicScorecard.c:260: setScoreLower();
 	call	_setScoreLower
-;func/logicScorecard.c:260: scoreDisplay();
+;func/logicScorecard.c:261: scoreDisplay();
 	call	_scoreDisplay
 00111$:
-;func/logicScorecard.c:262: if(scorecardChangeA != scorecardChangeB){
+;func/logicScorecard.c:263: if(scorecardChangeA != scorecardChangeB){
 	ld	a, (#_scorecardChangeA)
 	ld	hl, #_scorecardChangeB
 	sub	a, (hl)
 	ret	Z
-;func/logicScorecard.c:263: rollsLeft = 0;
+;func/logicScorecard.c:264: rollsLeft = 0;
 	xor	a, a
 	ld	hl, #_rollsLeft
 	ld	(hl+), a
 	ld	(hl), a
-;func/logicScorecard.c:264: rollsEnabled = 0;
+;func/logicScorecard.c:265: rollsEnabled = 0;
 	ld	hl, #_rollsEnabled
 	ld	(hl), #0x00
-;func/logicScorecard.c:265: playView(backgroundMap);
+;func/logicScorecard.c:266: playView(backgroundMap);
 	ld	de, #_backgroundMap
 	push	de
 	call	_playView
 	pop	hl
-;func/logicScorecard.c:268: }
+;func/logicScorecard.c:270: }
 	ret
 	.area _CODE
 	.area _INITIALIZER

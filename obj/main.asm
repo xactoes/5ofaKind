@@ -32,6 +32,7 @@
 	.globl _cardView
 	.globl _cardCursor
 	.globl _betterDelay
+	.globl _printf
 	.globl _set_sprite_data
 	.globl _set_bkg_tiles
 	.globl _set_bkg_data
@@ -862,23 +863,25 @@ _newTurn::
 	ld	(hl+), a
 	xor	a, a
 	ld	(hl), a
-;src/main.c:161: rollsEnabled = 1;
+;src/main.c:161: turnRollDisplay();
+	call	_turnRollDisplay
+;src/main.c:162: rollsEnabled = 1;
 	ld	hl, #_rollsEnabled
 	ld	(hl), #0x01
-;src/main.c:162: scorecardChangeA = 0;
+;src/main.c:163: scorecardChangeA = 0;
 	ld	hl, #_scorecardChangeA
 	ld	(hl), #0x00
-;src/main.c:163: scorecardChangeB = 0;
+;src/main.c:164: scorecardChangeB = 0;
 	ld	hl, #_scorecardChangeB
 	ld	(hl), #0x00
-;src/main.c:164: if(Di1.inPlay == 0){
+;src/main.c:165: if(Di1.inPlay == 0){
 	ld	hl, #_Di1 + 16
 	ld	a, (hl)
 	or	a, a
 	jr	NZ, 00102$
-;src/main.c:165: Di1.inPlay = 1;
+;src/main.c:166: Di1.inPlay = 1;
 	ld	(hl), #0x01
-;src/main.c:166: moveDiceStruct(&Di1, Di1.x, rollPosY);
+;src/main.c:167: moveDiceStruct(&Di1, Di1.x, rollPosY);
 	ld	hl, #_rollPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -897,14 +900,14 @@ _newTurn::
 	call	_moveDiceStruct
 	add	sp, #6
 00102$:
-;src/main.c:168: if(Di2.inPlay == 0){
+;src/main.c:169: if(Di2.inPlay == 0){
 	ld	hl, #_Di2 + 16
 	ld	a, (hl)
 	or	a, a
 	jr	NZ, 00104$
-;src/main.c:169: Di2.inPlay = 1;
+;src/main.c:170: Di2.inPlay = 1;
 	ld	(hl), #0x01
-;src/main.c:170: moveDiceStruct(&Di2, Di2.x, rollPosY);
+;src/main.c:171: moveDiceStruct(&Di2, Di2.x, rollPosY);
 	ld	hl, #_rollPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -923,14 +926,14 @@ _newTurn::
 	call	_moveDiceStruct
 	add	sp, #6
 00104$:
-;src/main.c:172: if(Di3.inPlay == 0){
+;src/main.c:173: if(Di3.inPlay == 0){
 	ld	hl, #_Di3 + 16
 	ld	a, (hl)
 	or	a, a
 	jr	NZ, 00106$
-;src/main.c:173: Di3.inPlay = 1;
+;src/main.c:174: Di3.inPlay = 1;
 	ld	(hl), #0x01
-;src/main.c:174: moveDiceStruct(&Di3, Di3.x, rollPosY);
+;src/main.c:175: moveDiceStruct(&Di3, Di3.x, rollPosY);
 	ld	hl, #_rollPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -949,14 +952,14 @@ _newTurn::
 	call	_moveDiceStruct
 	add	sp, #6
 00106$:
-;src/main.c:176: if(Di4.inPlay == 0){
+;src/main.c:177: if(Di4.inPlay == 0){
 	ld	hl, #_Di4 + 16
 	ld	a, (hl)
 	or	a, a
 	jr	NZ, 00108$
-;src/main.c:177: Di4.inPlay = 1;
+;src/main.c:178: Di4.inPlay = 1;
 	ld	(hl), #0x01
-;src/main.c:178: moveDiceStruct(&Di4, Di4.x, rollPosY);
+;src/main.c:179: moveDiceStruct(&Di4, Di4.x, rollPosY);
 	ld	hl, #_rollPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -975,14 +978,14 @@ _newTurn::
 	call	_moveDiceStruct
 	add	sp, #6
 00108$:
-;src/main.c:180: if(Di5.inPlay == 0){
+;src/main.c:181: if(Di5.inPlay == 0){
 	ld	hl, #_Di5 + 16
 	ld	a, (hl)
 	or	a, a
 	ret	NZ
-;src/main.c:181: Di5.inPlay = 1;
+;src/main.c:182: Di5.inPlay = 1;
 	ld	(hl), #0x01
-;src/main.c:182: moveDiceStruct(&Di5, Di5.x, rollPosY);
+;src/main.c:183: moveDiceStruct(&Di5, Di5.x, rollPosY);
 	ld	hl, #_rollPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -1000,29 +1003,29 @@ _newTurn::
 	push	de
 	call	_moveDiceStruct
 	add	sp, #6
-;src/main.c:184: }
+;src/main.c:185: }
 	ret
-;src/main.c:186: void rollTracker(){
+;src/main.c:187: void rollTracker(){
 ;	---------------------------------
 ; Function rollTracker
 ; ---------------------------------
 _rollTracker::
-;src/main.c:187: turnsPassed = 0;
+;src/main.c:188: turnsPassed = 0;
 	xor	a, a
 	ld	hl, #_turnsPassed
 	ld	(hl+), a
 	ld	(hl), a
-;src/main.c:188: if(rollsLeft == 0){
+;src/main.c:189: if(rollsLeft == 0){
 	ld	hl, #_rollsLeft + 1
 	ld	a, (hl-)
-;src/main.c:190: for(i = 0; i != 14; i++){
+;src/main.c:191: for(i = 0; i != 14; i++){
 	or	a,(hl)
 	jr	NZ, 00112$
 	ld	hl, #_i
 	ld	(hl+), a
 	ld	(hl), a
 00114$:
-;src/main.c:191: if(scorecard[i] != 255){
+;src/main.c:192: if(scorecard[i] != 255){
 	ld	hl, #_i
 	ld	a, (hl+)
 	ld	c, a
@@ -1038,7 +1041,7 @@ _rollTracker::
 	inc	a
 	or	a, b
 	jr	Z, 00115$
-;src/main.c:192: turnsPassed++;
+;src/main.c:193: turnsPassed++;
 	ld	hl, #_turnsPassed
 	inc	(hl)
 	jr	NZ, 00155$
@@ -1046,7 +1049,7 @@ _rollTracker::
 	inc	(hl)
 00155$:
 00115$:
-;src/main.c:190: for(i = 0; i != 14; i++){
+;src/main.c:191: for(i = 0; i != 14; i++){
 	ld	hl, #_i
 	inc	(hl)
 	jr	NZ, 00156$
@@ -1058,7 +1061,7 @@ _rollTracker::
 	sub	a, #0x0e
 	or	a, (hl)
 	jr	NZ, 00114$
-;src/main.c:195: if(turnsPassed < turn){
+;src/main.c:197: if(turnsPassed < turn){
 	ld	de, #_turnsPassed
 	ld	hl, #_turn
 	ld	a, (de)
@@ -1068,12 +1071,12 @@ _rollTracker::
 	ld	a, (de)
 	sbc	a, (hl)
 	jr	NC, 00107$
-;src/main.c:196: rollsEnabled = 0;
+;src/main.c:198: rollsEnabled = 0;
 	ld	hl, #_rollsEnabled
 	ld	(hl), #0x00
 	jr	00113$
 00107$:
-;src/main.c:198: else if(turnsPassed == turn){
+;src/main.c:201: else if(turnsPassed == turn){
 	ld	a, (#_turnsPassed)
 	ld	hl, #_turn
 	sub	a, (hl)
@@ -1082,32 +1085,32 @@ _rollTracker::
 	ld	hl, #_turn + 1
 	sub	a, (hl)
 	jr	NZ, 00113$
-;src/main.c:199: newTurn();
+;src/main.c:202: newTurn();
 	call	_newTurn
 	jr	00113$
 00112$:
-;src/main.c:202: else if(rollsLeft > 0){
+;src/main.c:205: else if(rollsLeft > 0){
 	ld	hl, #_rollsLeft + 1
 	ld	a, (hl-)
 	or	a, (hl)
 	jr	Z, 00113$
-;src/main.c:203: rollsEnabled = 1;
+;src/main.c:206: rollsEnabled = 1;
 	ld	hl, #_rollsEnabled
 	ld	(hl), #0x01
 00113$:
-;src/main.c:205: turnsPassed = 0;
+;src/main.c:208: turnsPassed = 0;
 	xor	a, a
 	ld	hl, #_turnsPassed
 	ld	(hl+), a
 	ld	(hl), a
-;src/main.c:206: }
+;src/main.c:209: }
 	ret
-;src/main.c:208: void playCursorLeft(){
+;src/main.c:211: void playCursorLeft(){
 ;	---------------------------------
 ; Function playCursorLeft
 ; ---------------------------------
 _playCursorLeft::
-;src/main.c:209: if(cursorIndex == 1 || cursorIndex == 2){
+;src/main.c:212: if(cursorIndex == 1 || cursorIndex == 2){
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	dec	a
@@ -1119,7 +1122,7 @@ _playCursorLeft::
 	or	a, (hl)
 	jr	NZ, 00102$
 00101$:
-;src/main.c:210: cursorPosition[0] -= 48;
+;src/main.c:213: cursorPosition[0] -= 48;
 	ld	hl, #_cursorPosition
 	ld	a, (hl+)
 	ld	c, a
@@ -1134,7 +1137,7 @@ _playCursorLeft::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-;src/main.c:211: cursorIndex -= 1;
+;src/main.c:214: cursorIndex -= 1;
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	ld	e, a
@@ -1145,7 +1148,7 @@ _playCursorLeft::
 	ld	(hl+), a
 	ld	(hl), d
 00102$:
-;src/main.c:213: if(cursorIndex > 3 && cursorIndex <= 7){
+;src/main.c:216: if(cursorIndex > 3 && cursorIndex <= 7){
 	ld	hl, #_cursorIndex
 	ld	a, #0x03
 	sub	a, (hl)
@@ -1160,7 +1163,7 @@ _playCursorLeft::
 	ld	a, #0x00
 	sbc	a, (hl)
 	jr	C, 00105$
-;src/main.c:214: cursorPosition[0] -= 24;
+;src/main.c:217: cursorPosition[0] -= 24;
 	ld	hl, #_cursorPosition
 	ld	a, (hl+)
 	ld	c, a
@@ -1175,7 +1178,7 @@ _playCursorLeft::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-;src/main.c:215: cursorIndex -= 1;
+;src/main.c:218: cursorIndex -= 1;
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	ld	e, a
@@ -1186,7 +1189,7 @@ _playCursorLeft::
 	ld	(hl+), a
 	ld	(hl), d
 00105$:
-;src/main.c:217: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+;src/main.c:220: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
 	ld	hl, #_cursorPosition + 2
 	ld	b, (hl)
 	ld	hl, #_cursorPosition
@@ -1210,15 +1213,15 @@ _playCursorLeft::
 	ld	a, b
 	ld	(hl+), a
 	ld	(hl), c
-;src/main.c:217: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
-;src/main.c:218: }
+;src/main.c:220: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+;src/main.c:221: }
 	ret
-;src/main.c:221: void playCursorRight(){
+;src/main.c:224: void playCursorRight(){
 ;	---------------------------------
 ; Function playCursorRight
 ; ---------------------------------
 _playCursorRight::
-;src/main.c:222: if(cursorIndex == 0 || cursorIndex == 1){
+;src/main.c:225: if(cursorIndex == 0 || cursorIndex == 1){
 	ld	hl, #_cursorIndex + 1
 	ld	a, (hl-)
 	or	a, (hl)
@@ -1228,7 +1231,7 @@ _playCursorRight::
 	or	a, (hl)
 	jr	NZ, 00102$
 00101$:
-;src/main.c:223: cursorPosition[0] += 48;
+;src/main.c:226: cursorPosition[0] += 48;
 	ld	hl, #_cursorPosition
 	ld	a, (hl+)
 	ld	c, a
@@ -1241,7 +1244,7 @@ _playCursorRight::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-;src/main.c:224: cursorIndex += 1;
+;src/main.c:227: cursorIndex += 1;
 	ld	hl, #_cursorIndex
 	inc	(hl)
 	jr	NZ, 00127$
@@ -1249,7 +1252,7 @@ _playCursorRight::
 	inc	(hl)
 00127$:
 00102$:
-;src/main.c:226: if(cursorIndex >= 3 && cursorIndex < 7){
+;src/main.c:229: if(cursorIndex >= 3 && cursorIndex < 7){
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	sub	a, #0x03
@@ -1262,7 +1265,7 @@ _playCursorRight::
 	ld	a, (hl)
 	sbc	a, #0x00
 	jr	NC, 00105$
-;src/main.c:227: cursorPosition[0] += 24;
+;src/main.c:230: cursorPosition[0] += 24;
 	ld	hl, #_cursorPosition
 	ld	a, (hl+)
 	ld	c, a
@@ -1275,7 +1278,7 @@ _playCursorRight::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-;src/main.c:228: cursorIndex += 1;
+;src/main.c:231: cursorIndex += 1;
 	ld	hl, #_cursorIndex
 	inc	(hl)
 	jr	NZ, 00128$
@@ -1283,7 +1286,7 @@ _playCursorRight::
 	inc	(hl)
 00128$:
 00105$:
-;src/main.c:230: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+;src/main.c:233: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
 	ld	hl, #_cursorPosition + 2
 	ld	b, (hl)
 	ld	hl, #_cursorPosition
@@ -1307,15 +1310,15 @@ _playCursorRight::
 	ld	a, b
 	ld	(hl+), a
 	ld	(hl), c
-;src/main.c:230: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
-;src/main.c:231: }
+;src/main.c:233: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+;src/main.c:234: }
 	ret
-;src/main.c:234: void toggleDi(){
+;src/main.c:237: void toggleDi(){
 ;	---------------------------------
 ; Function toggleDi
 ; ---------------------------------
 _toggleDi::
-;src/main.c:235: switch(cursorIndex){
+;src/main.c:238: switch(cursorIndex){
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	sub	a, #0x03
@@ -1342,19 +1345,19 @@ _toggleDi::
 	or	a, (hl)
 	jp	Z,00125$
 	ret
-;src/main.c:236: case 3:
+;src/main.c:239: case 3:
 00101$:
-;src/main.c:237: if(Di1.inPlay == 1){
+;src/main.c:240: if(Di1.inPlay == 1){
 	ld	hl, #_Di1 + 16
 	ld	c, (hl)
-;src/main.c:239: moveDiceStruct(&Di1, Di1.x, heldPosY);
-;src/main.c:237: if(Di1.inPlay == 1){
+;src/main.c:242: moveDiceStruct(&Di1, Di1.x, heldPosY);
+;src/main.c:240: if(Di1.inPlay == 1){
 	ld	a, c
-;src/main.c:238: Di1.inPlay = 0;
+;src/main.c:241: Di1.inPlay = 0;
 	dec	a
 	jr	NZ, 00105$
 	ld	(hl),a
-;src/main.c:239: moveDiceStruct(&Di1, Di1.x, heldPosY);
+;src/main.c:242: moveDiceStruct(&Di1, Di1.x, heldPosY);
 	ld	hl, #_heldPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -1374,13 +1377,13 @@ _toggleDi::
 	add	sp, #6
 	ret
 00105$:
-;src/main.c:241: else if(Di1.inPlay == 0){
+;src/main.c:244: else if(Di1.inPlay == 0){
 	ld	a, c
 	or	a, a
 	ret	NZ
-;src/main.c:242: Di1.inPlay = 1;
+;src/main.c:245: Di1.inPlay = 1;
 	ld	(hl), #0x01
-;src/main.c:243: moveDiceStruct(&Di1, Di1.x, rollPosY);
+;src/main.c:246: moveDiceStruct(&Di1, Di1.x, rollPosY);
 	ld	hl, #_rollPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -1398,21 +1401,21 @@ _toggleDi::
 	push	de
 	call	_moveDiceStruct
 	add	sp, #6
-;src/main.c:245: break;
+;src/main.c:248: break;
 	ret
-;src/main.c:246: case 4:
+;src/main.c:249: case 4:
 00107$:
-;src/main.c:247: if(Di2.inPlay == 1){
+;src/main.c:250: if(Di2.inPlay == 1){
 	ld	hl, #_Di2 + 16
 	ld	c, (hl)
-;src/main.c:249: moveDiceStruct(&Di2, Di2.x, heldPosY);
-;src/main.c:247: if(Di2.inPlay == 1){
+;src/main.c:252: moveDiceStruct(&Di2, Di2.x, heldPosY);
+;src/main.c:250: if(Di2.inPlay == 1){
 	ld	a, c
-;src/main.c:248: Di2.inPlay = 0;
+;src/main.c:251: Di2.inPlay = 0;
 	dec	a
 	jr	NZ, 00111$
 	ld	(hl),a
-;src/main.c:249: moveDiceStruct(&Di2, Di2.x, heldPosY);
+;src/main.c:252: moveDiceStruct(&Di2, Di2.x, heldPosY);
 	ld	hl, #_heldPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -1432,13 +1435,13 @@ _toggleDi::
 	add	sp, #6
 	ret
 00111$:
-;src/main.c:251: else if(Di2.inPlay == 0){
+;src/main.c:254: else if(Di2.inPlay == 0){
 	ld	a, c
 	or	a, a
 	ret	NZ
-;src/main.c:252: Di2.inPlay = 1;
+;src/main.c:255: Di2.inPlay = 1;
 	ld	(hl), #0x01
-;src/main.c:253: moveDiceStruct(&Di2, Di2.x, rollPosY);
+;src/main.c:256: moveDiceStruct(&Di2, Di2.x, rollPosY);
 	ld	hl, #_rollPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -1456,21 +1459,21 @@ _toggleDi::
 	push	de
 	call	_moveDiceStruct
 	add	sp, #6
-;src/main.c:255: break;
+;src/main.c:258: break;
 	ret
-;src/main.c:256: case 5:
+;src/main.c:259: case 5:
 00113$:
-;src/main.c:257: if(Di3.inPlay == 1){
+;src/main.c:260: if(Di3.inPlay == 1){
 	ld	hl, #_Di3 + 16
 	ld	c, (hl)
-;src/main.c:259: moveDiceStruct(&Di3, Di3.x, heldPosY);
-;src/main.c:257: if(Di3.inPlay == 1){
+;src/main.c:262: moveDiceStruct(&Di3, Di3.x, heldPosY);
+;src/main.c:260: if(Di3.inPlay == 1){
 	ld	a, c
-;src/main.c:258: Di3.inPlay = 0;
+;src/main.c:261: Di3.inPlay = 0;
 	dec	a
 	jr	NZ, 00117$
 	ld	(hl),a
-;src/main.c:259: moveDiceStruct(&Di3, Di3.x, heldPosY);
+;src/main.c:262: moveDiceStruct(&Di3, Di3.x, heldPosY);
 	ld	hl, #_heldPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -1490,13 +1493,13 @@ _toggleDi::
 	add	sp, #6
 	ret
 00117$:
-;src/main.c:261: else if(Di3.inPlay == 0){
+;src/main.c:264: else if(Di3.inPlay == 0){
 	ld	a, c
 	or	a, a
 	ret	NZ
-;src/main.c:262: Di3.inPlay = 1;
+;src/main.c:265: Di3.inPlay = 1;
 	ld	(hl), #0x01
-;src/main.c:263: moveDiceStruct(&Di3, Di3.x, rollPosY);
+;src/main.c:266: moveDiceStruct(&Di3, Di3.x, rollPosY);
 	ld	hl, #_rollPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -1514,21 +1517,21 @@ _toggleDi::
 	push	de
 	call	_moveDiceStruct
 	add	sp, #6
-;src/main.c:265: break;
+;src/main.c:268: break;
 	ret
-;src/main.c:266: case 6:
+;src/main.c:269: case 6:
 00119$:
-;src/main.c:267: if(Di4.inPlay == 1){
+;src/main.c:270: if(Di4.inPlay == 1){
 	ld	hl, #_Di4 + 16
 	ld	c, (hl)
-;src/main.c:269: moveDiceStruct(&Di4, Di4.x, heldPosY);
-;src/main.c:267: if(Di4.inPlay == 1){
+;src/main.c:272: moveDiceStruct(&Di4, Di4.x, heldPosY);
+;src/main.c:270: if(Di4.inPlay == 1){
 	ld	a, c
-;src/main.c:268: Di4.inPlay = 0;
+;src/main.c:271: Di4.inPlay = 0;
 	dec	a
 	jr	NZ, 00123$
 	ld	(hl),a
-;src/main.c:269: moveDiceStruct(&Di4, Di4.x, heldPosY);
+;src/main.c:272: moveDiceStruct(&Di4, Di4.x, heldPosY);
 	ld	hl, #_heldPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -1548,13 +1551,13 @@ _toggleDi::
 	add	sp, #6
 	ret
 00123$:
-;src/main.c:271: else if(Di4.inPlay == 0){
+;src/main.c:274: else if(Di4.inPlay == 0){
 	ld	a, c
 	or	a, a
 	ret	NZ
-;src/main.c:272: Di4.inPlay = 1;
+;src/main.c:275: Di4.inPlay = 1;
 	ld	(hl), #0x01
-;src/main.c:273: moveDiceStruct(&Di4, Di4.x, rollPosY);
+;src/main.c:276: moveDiceStruct(&Di4, Di4.x, rollPosY);
 	ld	hl, #_rollPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -1572,21 +1575,21 @@ _toggleDi::
 	push	de
 	call	_moveDiceStruct
 	add	sp, #6
-;src/main.c:275: break;
+;src/main.c:278: break;
 	ret
-;src/main.c:276: case 7:
+;src/main.c:279: case 7:
 00125$:
-;src/main.c:277: if(Di5.inPlay == 1){
+;src/main.c:280: if(Di5.inPlay == 1){
 	ld	hl, #_Di5 + 16
 	ld	c, (hl)
-;src/main.c:279: moveDiceStruct(&Di5, Di5.x, heldPosY);
-;src/main.c:277: if(Di5.inPlay == 1){
+;src/main.c:282: moveDiceStruct(&Di5, Di5.x, heldPosY);
+;src/main.c:280: if(Di5.inPlay == 1){
 	ld	a, c
-;src/main.c:278: Di5.inPlay = 0;
+;src/main.c:281: Di5.inPlay = 0;
 	dec	a
 	jr	NZ, 00129$
 	ld	(hl),a
-;src/main.c:279: moveDiceStruct(&Di5, Di5.x, heldPosY);
+;src/main.c:282: moveDiceStruct(&Di5, Di5.x, heldPosY);
 	ld	hl, #_heldPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -1606,13 +1609,13 @@ _toggleDi::
 	add	sp, #6
 	ret
 00129$:
-;src/main.c:281: else if(Di5.inPlay == 0){
+;src/main.c:284: else if(Di5.inPlay == 0){
 	ld	a, c
 	or	a, a
 	ret	NZ
-;src/main.c:282: Di5.inPlay = 1;
+;src/main.c:285: Di5.inPlay = 1;
 	ld	(hl), #0x01
-;src/main.c:283: moveDiceStruct(&Di5, Di5.x, rollPosY);
+;src/main.c:286: moveDiceStruct(&Di5, Di5.x, rollPosY);
 	ld	hl, #_rollPosY
 	ld	a, (hl+)
 	ld	c, a
@@ -1630,59 +1633,70 @@ _toggleDi::
 	push	de
 	call	_moveDiceStruct
 	add	sp, #6
-;src/main.c:286: }
-;src/main.c:287: }
+;src/main.c:289: }
+;src/main.c:290: }
 	ret
-;src/main.c:290: void rollCheck(){
+;src/main.c:293: void rollCheck(){
 ;	---------------------------------
 ; Function rollCheck
 ; ---------------------------------
 _rollCheck::
-;src/main.c:291: if(rollsEnabled == 0){
+;src/main.c:294: if(rollsEnabled == 0){
 	ld	a, (#_rollsEnabled)
 	or	a, a
 	jr	NZ, 00107$
-;src/main.c:292: if(scorecardChangeA != scorecardChangeB){
+;src/main.c:295: if(scorecardChangeA != scorecardChangeB){
 	ld	a, (#_scorecardChangeA)
 	ld	hl, #_scorecardChangeB
 	sub	a, (hl)
-;src/main.c:293: newTurn();
-	jp	NZ,_newTurn
-;src/main.c:297: cardView(backgroundMap);
+	jr	Z, 00102$
+;src/main.c:296: newTurn();
+	call	_newTurn
+;src/main.c:297: printf("here");
+	ld	de, #___str_0
+	push	de
+	call	_printf
+	pop	hl
+	ret
+00102$:
+;src/main.c:301: cardView(backgroundMap);
 	ld	de, #_backgroundMap
 	push	de
 	call	_cardView
 	pop	hl
 	ret
 00107$:
-;src/main.c:300: else if(rollsEnabled == 1){
+;src/main.c:304: else if(rollsEnabled == 1){
 	ld	hl, #_rollsEnabled
 	ld	a, (hl)
 	dec	a
 	jp	Z,_diceToRoll
-;src/main.c:301: diceToRoll();
+;src/main.c:305: diceToRoll();
 	ret
-;src/main.c:303: }
+;src/main.c:307: }
 	ret
-;src/main.c:306: void playCursorA(){
+___str_0:
+	.ascii "here"
+	.db 0x00
+;src/main.c:310: void playCursorA(){
 ;	---------------------------------
 ; Function playCursorA
 ; ---------------------------------
 _playCursorA::
-;src/main.c:308: if(cursorIndex == 0){
+;src/main.c:312: if(cursorIndex == 0){
 	ld	hl, #_cursorIndex + 1
 	ld	a, (hl-)
 	or	a, (hl)
 	jr	NZ, 00125$
-;src/main.c:309: rollTracker();
+;src/main.c:313: rollTracker();
 	call	_rollTracker
-;src/main.c:310: rollCheck();
+;src/main.c:314: rollCheck();
 	call	_rollCheck
-;src/main.c:311: turnRollDisplay();
+;src/main.c:315: turnRollDisplay();
 	call	_turnRollDisplay
 	jp	00126$
 00125$:
-;src/main.c:314: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
+;src/main.c:318: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
 	ld	hl, #_rollsLeft
 	ld	a, (hl+)
 	sub	a, #0x03
@@ -1700,7 +1714,7 @@ _playCursorA::
 	xor	a, a
 00188$:
 	ld	c, a
-;src/main.c:315: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+;src/main.c:319: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
 	ld	hl, #_rollsLeft
 	ld	a, (hl+)
 	sub	a, #0x03
@@ -1709,35 +1723,35 @@ _playCursorA::
 	ld	a, #0x00
 	rla
 	ld	b, a
-;src/main.c:313: else if(cursorIndex == 1){
+;src/main.c:317: else if(cursorIndex == 1){
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	dec	a
-;src/main.c:314: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
+;src/main.c:318: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
 	or	a,(hl)
 	jr	NZ, 00122$
 	or	a,e
 	ret	NZ
 	bit	0, c
 	ret	Z
-;src/main.c:315: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+;src/main.c:319: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
 	ld	a, b
 	or	a, a
 	jr	Z, 00126$
 	ld	a, c
 	or	a, a
 	jr	Z, 00126$
-;src/main.c:316: cursorPosition[0] = 40;
+;src/main.c:320: cursorPosition[0] = 40;
 	ld	hl, #_cursorPosition
 	ld	a, #0x28
 	ld	(hl+), a
 	ld	(hl), #0x00
-;src/main.c:317: cursorPosition[1] = 128;
+;src/main.c:321: cursorPosition[1] = 128;
 	ld	hl, #(_cursorPosition + 2)
 	ld	a, #0x80
 	ld	(hl+), a
 	ld	(hl), #0x00
-;src/main.c:318: cursorIndex = 3;
+;src/main.c:322: cursorIndex = 3;
 	ld	hl, #_cursorIndex
 	ld	a, #0x03
 	ld	(hl+), a
@@ -1745,35 +1759,35 @@ _playCursorA::
 	ld	(hl), a
 	jr	00126$
 00122$:
-;src/main.c:321: else if(cursorIndex == 2){
+;src/main.c:325: else if(cursorIndex == 2){
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	sub	a, #0x02
-;src/main.c:322: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
+;src/main.c:326: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
 	or	a,(hl)
 	jr	NZ, 00119$
 	or	a,e
 	ret	NZ
 	bit	0, c
 	ret	Z
-;src/main.c:323: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+;src/main.c:327: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
 	ld	a, b
 	or	a, a
 	jr	Z, 00126$
 	ld	a, c
 	or	a, a
 	jr	Z, 00126$
-;src/main.c:324: viewMode = 1;
+;src/main.c:328: viewMode = 1;
 	ld	hl, #_viewMode
 	ld	(hl), #0x01
-;src/main.c:325: cardView(backgroundMap);
+;src/main.c:329: cardView(backgroundMap);
 	ld	de, #_backgroundMap
 	push	de
 	call	_cardView
 	pop	hl
 	jr	00126$
 00119$:
-;src/main.c:328: else if(cursorIndex >= 3 && cursorIndex <= 7){
+;src/main.c:332: else if(cursorIndex >= 3 && cursorIndex <= 7){
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	sub	a, #0x03
@@ -1787,10 +1801,10 @@ _playCursorA::
 	ld	a, #0x00
 	sbc	a, (hl)
 	jr	C, 00126$
-;src/main.c:329: toggleDi();
+;src/main.c:333: toggleDi();
 	call	_toggleDi
 00126$:
-;src/main.c:331: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+;src/main.c:335: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
 	ld	hl, #_cursorPosition + 2
 	ld	b, (hl)
 	ld	hl, #_cursorPosition
@@ -1814,15 +1828,15 @@ _playCursorA::
 	ld	a, b
 	ld	(hl+), a
 	ld	(hl), c
-;src/main.c:331: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
-;src/main.c:332: }
+;src/main.c:335: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+;src/main.c:336: }
 	ret
-;src/main.c:334: void playCursorB(){
+;src/main.c:338: void playCursorB(){
 ;	---------------------------------
 ; Function playCursorB
 ; ---------------------------------
 _playCursorB::
-;src/main.c:335: if(cursorIndex >= 3 && cursorIndex <= 7){
+;src/main.c:339: if(cursorIndex >= 3 && cursorIndex <= 7){
 	ld	hl, #_cursorIndex
 	ld	a, (hl+)
 	sub	a, #0x03
@@ -1836,23 +1850,23 @@ _playCursorB::
 	ld	a, #0x00
 	sbc	a, (hl)
 	jr	C, 00102$
-;src/main.c:336: cursorPosition[0] = 16;
+;src/main.c:340: cursorPosition[0] = 16;
 	ld	hl, #_cursorPosition
 	ld	a, #0x10
 	ld	(hl+), a
 	ld	(hl), #0x00
-;src/main.c:337: cursorPosition[1] = 144;
+;src/main.c:341: cursorPosition[1] = 144;
 	ld	hl, #(_cursorPosition + 2)
 	ld	a, #0x90
 	ld	(hl+), a
 	ld	(hl), #0x00
-;src/main.c:338: cursorIndex = 0;
+;src/main.c:342: cursorIndex = 0;
 	xor	a, a
 	ld	hl, #_cursorIndex
 	ld	(hl+), a
 	ld	(hl), a
 00102$:
-;src/main.c:340: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+;src/main.c:344: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
 	ld	hl, #_cursorPosition + 2
 	ld	b, (hl)
 	ld	hl, #_cursorPosition
@@ -1876,18 +1890,18 @@ _playCursorB::
 	ld	a, b
 	ld	(hl+), a
 	ld	(hl), c
-;src/main.c:340: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
-;src/main.c:341: }
+;src/main.c:344: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+;src/main.c:345: }
 	ret
-;src/main.c:343: void playCursorSelect(){
+;src/main.c:347: void playCursorSelect(){
 ;	---------------------------------
 ; Function playCursorSelect
 ; ---------------------------------
 _playCursorSelect::
-;src/main.c:344: quickSwitch = 1;
+;src/main.c:348: quickSwitch = 1;
 	ld	hl, #_quickSwitch
 	ld	(hl), #0x01
-;src/main.c:345: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
+;src/main.c:349: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
 	ld	hl, #_rollsLeft
 	ld	a, (hl+)
 	sub	a, #0x03
@@ -1903,7 +1917,7 @@ _playCursorSelect::
 	ld	c, a
 	bit	0, c
 	ret	Z
-;src/main.c:346: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+;src/main.c:350: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
 	ld	hl, #_rollsLeft
 	ld	a, (hl+)
 	sub	a, #0x03
@@ -1913,22 +1927,22 @@ _playCursorSelect::
 	ld	a, c
 	or	a, a
 	ret	Z
-;src/main.c:347: viewMode = 1;
+;src/main.c:351: viewMode = 1;
 	ld	hl, #_viewMode
 	ld	(hl), #0x01
-;src/main.c:348: cardView(backgroundMap);
+;src/main.c:352: cardView(backgroundMap);
 	ld	de, #_backgroundMap
 	push	de
 	call	_cardView
 	pop	hl
-;src/main.c:350: }
+;src/main.c:354: }
 	ret
-;src/main.c:354: void playCursor(){
+;src/main.c:358: void playCursor(){
 ;	---------------------------------
 ; Function playCursor
 ; ---------------------------------
 _playCursor::
-;src/main.c:355: switch(joypad()){
+;src/main.c:359: switch(joypad()){
 	call	_joypad
 	ld	a, e
 	cp	a, #0x01
@@ -1944,73 +1958,73 @@ _playCursor::
 	sub	a, #0x80
 	jp	Z,_waitpadup
 	ret
-;src/main.c:356: case J_LEFT:
+;src/main.c:360: case J_LEFT:
 00101$:
-;src/main.c:357: playCursorLeft();
+;src/main.c:361: playCursorLeft();
 	call	_playCursorLeft
-;src/main.c:358: waitpadup();
-;src/main.c:359: break;
-	jp	_waitpadup
-;src/main.c:360: case J_RIGHT:
-00102$:
-;src/main.c:361: playCursorRight();
-	call	_playCursorRight
 ;src/main.c:362: waitpadup();
 ;src/main.c:363: break;
 	jp	_waitpadup
-;src/main.c:364: case J_A:
-00103$:
-;src/main.c:365: playCursorA();
-	call	_playCursorA
+;src/main.c:364: case J_RIGHT:
+00102$:
+;src/main.c:365: playCursorRight();
+	call	_playCursorRight
 ;src/main.c:366: waitpadup();
 ;src/main.c:367: break;
 	jp	_waitpadup
-;src/main.c:368: case J_B:
-00104$:
-;src/main.c:369: playCursorB();
-	call	_playCursorB
+;src/main.c:368: case J_A:
+00103$:
+;src/main.c:369: playCursorA();
+	call	_playCursorA
 ;src/main.c:370: waitpadup();
 ;src/main.c:371: break;
-;src/main.c:372: case J_START:
+	jp	_waitpadup
+;src/main.c:372: case J_B:
+00104$:
+;src/main.c:373: playCursorB();
+	call	_playCursorB
 ;src/main.c:374: waitpadup();
 ;src/main.c:375: break;
-	jp	_waitpadup
-;src/main.c:376: case J_SELECT:
-00106$:
-;src/main.c:377: playCursorSelect();
-	call	_playCursorSelect
+;src/main.c:376: case J_START:
 ;src/main.c:378: waitpadup();
-;src/main.c:380: }
-;src/main.c:381: }
+;src/main.c:379: break;
 	jp	_waitpadup
-;src/main.c:384: void main(){
+;src/main.c:380: case J_SELECT:
+00106$:
+;src/main.c:381: playCursorSelect();
+	call	_playCursorSelect
+;src/main.c:382: waitpadup();
+;src/main.c:384: }
+;src/main.c:385: }
+	jp	_waitpadup
+;src/main.c:388: void main(){
 ;	---------------------------------
 ; Function main
 ; ---------------------------------
 _main::
-;src/main.c:385: initGame();
+;src/main.c:389: initGame();
 	call	_initGame
-;src/main.c:387: DISPLAY_ON;
+;src/main.c:391: DISPLAY_ON;
 	ldh	a, (_LCDC_REG + 0)
 	or	a, #0x80
 	ldh	(_LCDC_REG + 0), a
-;src/main.c:389: while(1){
+;src/main.c:393: while(1){
 00107$:
-;src/main.c:390: if(viewMode == 0){
+;src/main.c:394: if(viewMode == 0){
 	ld	a, (#_viewMode)
 	or	a, a
 	jr	NZ, 00104$
-;src/main.c:391: playCursor();
+;src/main.c:395: playCursor();
 	call	_playCursor
 	jr	00107$
 00104$:
-;src/main.c:393: else if(viewMode == 1){
+;src/main.c:397: else if(viewMode == 1){
 	ld	a, (#_viewMode)
 	dec	a
 	jr	NZ, 00107$
-;src/main.c:394: cardCursor();
+;src/main.c:398: cardCursor();
 	call	_cardCursor
-;src/main.c:397: }
+;src/main.c:401: }
 	jr	00107$
 	.area _CODE
 	.area _INITIALIZER
