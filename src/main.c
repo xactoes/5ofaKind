@@ -13,6 +13,7 @@
 #include "../func/rollDi.h"
 #include "../func/scoreDisplay.h"
 #include "../func/spriteFlip.h"
+#include "../func/titleScreen.h"
 #include "../func/turnRollDisplay.h"
 
 //structs
@@ -150,6 +151,7 @@ void initGame(){
 	turn = 1;
 
     turnRollDisplay();
+
 
     SHOW_SPRITES;
 }
@@ -399,6 +401,9 @@ void playCursor(){
 
 
 void main(){
+
+	titleScreen();
+
 	initGame();
 
 	DISPLAY_ON;
