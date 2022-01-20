@@ -11,6 +11,8 @@ This game has not been tested on actual hardware of any sort. If you wish to tes
 That said, if you do test it, feel free to contact me about bugs and I'll try to fix them.
 
 MISSING FEATURES:
+* splash screen
+* title screen with hgih score
 * audio to play when dice are rolling
 * audio to play when dice cannot be rolled or hold and card are inaccessible
 * a start menu with info on how to play the game
