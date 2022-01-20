@@ -33,193 +33,199 @@
                                      33 	.globl _viewMode
                                      34 	.globl _upperRegion
                                      35 	.globl _quickSwitch
-                                     36 	.globl _buf
-                                     37 	.globl _turnsPassed
-                                     38 	.globl _turn
-                                     39 	.globl _scoresSet
-                                     40 	.globl _scoreBuf
-                                     41 	.globl _rollsLeft
-                                     42 	.globl _match5
-                                     43 	.globl _len
-                                     44 	.globl _diFaceBuf
-                                     45 	.globl _cursorPosition
-                                     46 	.globl _currentFace
-                                     47 	.globl _cursorIndex
-                                     48 	.globl _k
-                                     49 	.globl _j
-                                     50 	.globl _i
-                                     51 ;--------------------------------------------------------
-                                     52 ; special function registers
+                                     36 	.globl _endGame
+                                     37 	.globl _buf
+                                     38 	.globl _turnsPassed
+                                     39 	.globl _turn
+                                     40 	.globl _smStraightContinue
+                                     41 	.globl _scoresSet
+                                     42 	.globl _scoreBuf
+                                     43 	.globl _rollsLeft
+                                     44 	.globl _match5
+                                     45 	.globl _len
+                                     46 	.globl _diFaceBuf
+                                     47 	.globl _cursorPosition
+                                     48 	.globl _currentFace
+                                     49 	.globl _cursorIndex
+                                     50 	.globl _k
+                                     51 	.globl _j
+                                     52 	.globl _i
                                      53 ;--------------------------------------------------------
-                                     54 ;--------------------------------------------------------
-                                     55 ; ram data
+                                     54 ; special function registers
+                                     55 ;--------------------------------------------------------
                                      56 ;--------------------------------------------------------
-                                     57 	.area _DATA
-      000000                         58 _i::
-      000000                         59 	.ds 2
-      000002                         60 _j::
-      000002                         61 	.ds 2
-      000004                         62 _k::
-      000004                         63 	.ds 2
-      000006                         64 _cursorIndex::
-      000006                         65 	.ds 2
-      000008                         66 _currentFace::
-      000008                         67 	.ds 8
-      000010                         68 _cursorPosition::
-      000010                         69 	.ds 4
-      000014                         70 _diFaceBuf::
-      000014                         71 	.ds 2
-      000016                         72 _len::
-      000016                         73 	.ds 2
-      000018                         74 _match5::
-      000018                         75 	.ds 2
-      00001A                         76 _rollsLeft::
-      00001A                         77 	.ds 2
-      00001C                         78 _scoreBuf::
-      00001C                         79 	.ds 2
-      00001E                         80 _scoresSet::
-      00001E                         81 	.ds 2
-      000020                         82 _turn::
-      000020                         83 	.ds 2
-      000022                         84 _turnsPassed::
-      000022                         85 	.ds 2
-      000024                         86 _buf::
-      000024                         87 	.ds 10
-      00002E                         88 _quickSwitch::
-      00002E                         89 	.ds 1
-      00002F                         90 _upperRegion::
-      00002F                         91 	.ds 1
-      000030                         92 _viewMode::
+                                     57 ; ram data
+                                     58 ;--------------------------------------------------------
+                                     59 	.area _DATA
+      000000                         60 _i::
+      000000                         61 	.ds 2
+      000002                         62 _j::
+      000002                         63 	.ds 2
+      000004                         64 _k::
+      000004                         65 	.ds 2
+      000006                         66 _cursorIndex::
+      000006                         67 	.ds 2
+      000008                         68 _currentFace::
+      000008                         69 	.ds 8
+      000010                         70 _cursorPosition::
+      000010                         71 	.ds 4
+      000014                         72 _diFaceBuf::
+      000014                         73 	.ds 2
+      000016                         74 _len::
+      000016                         75 	.ds 2
+      000018                         76 _match5::
+      000018                         77 	.ds 2
+      00001A                         78 _rollsLeft::
+      00001A                         79 	.ds 2
+      00001C                         80 _scoreBuf::
+      00001C                         81 	.ds 2
+      00001E                         82 _scoresSet::
+      00001E                         83 	.ds 2
+      000020                         84 _smStraightContinue::
+      000020                         85 	.ds 2
+      000022                         86 _turn::
+      000022                         87 	.ds 2
+      000024                         88 _turnsPassed::
+      000024                         89 	.ds 2
+      000026                         90 _buf::
+      000026                         91 	.ds 10
+      000030                         92 _endGame::
       000030                         93 	.ds 1
-      000031                         94 _bonus5::
+      000031                         94 _quickSwitch::
       000031                         95 	.ds 1
-      000032                         96 _scorecardChangeA::
+      000032                         96 _upperRegion::
       000032                         97 	.ds 1
-      000033                         98 _scorecardChangeB::
+      000033                         98 _viewMode::
       000033                         99 	.ds 1
-                                    100 ;--------------------------------------------------------
-                                    101 ; ram data
-                                    102 ;--------------------------------------------------------
-                                    103 	.area _INITIALIZED
-      000000                        104 _diceValues::
-      000000                        105 	.ds 10
-      00000A                        106 _scorecard::
-      00000A                        107 	.ds 30
-      000028                        108 _scorecardSummed::
-      000028                        109 	.ds 30
-      000046                        110 _rollsEnabled::
-      000046                        111 	.ds 1
-      000047                        112 _upperScoreBCD::
-      000047                        113 	.ds 4
-      00004B                        114 _upperScoreBuf::
-      00004B                        115 	.ds 4
-      00004F                        116 _lowerScoreBCD::
-      00004F                        117 	.ds 4
-      000053                        118 _lowerScoreBuf::
-      000053                        119 	.ds 4
-      000057                        120 _totalScoreBCD::
-      000057                        121 	.ds 4
-      00005B                        122 _totalScoreAdd::
-      00005B                        123 	.ds 4
-      00005F                        124 _compareBCD::
-      00005F                        125 	.ds 4
-      000063                        126 _numOptBCD::
-      000063                        127 	.ds 4
-      000067                        128 _turnBCD::
-      000067                        129 	.ds 4
-      00006B                        130 _rollBCD::
-      00006B                        131 	.ds 4
-                                    132 ;--------------------------------------------------------
-                                    133 ; absolute external ram data
-                                    134 ;--------------------------------------------------------
-                                    135 	.area _DABS (ABS)
-                                    136 ;--------------------------------------------------------
-                                    137 ; global & static initialisations
+      000034                        100 _bonus5::
+      000034                        101 	.ds 1
+      000035                        102 _scorecardChangeA::
+      000035                        103 	.ds 1
+      000036                        104 _scorecardChangeB::
+      000036                        105 	.ds 1
+                                    106 ;--------------------------------------------------------
+                                    107 ; ram data
+                                    108 ;--------------------------------------------------------
+                                    109 	.area _INITIALIZED
+      000000                        110 _diceValues::
+      000000                        111 	.ds 10
+      00000A                        112 _scorecard::
+      00000A                        113 	.ds 30
+      000028                        114 _scorecardSummed::
+      000028                        115 	.ds 30
+      000046                        116 _rollsEnabled::
+      000046                        117 	.ds 1
+      000047                        118 _upperScoreBCD::
+      000047                        119 	.ds 4
+      00004B                        120 _upperScoreBuf::
+      00004B                        121 	.ds 4
+      00004F                        122 _lowerScoreBCD::
+      00004F                        123 	.ds 4
+      000053                        124 _lowerScoreBuf::
+      000053                        125 	.ds 4
+      000057                        126 _totalScoreBCD::
+      000057                        127 	.ds 4
+      00005B                        128 _totalScoreAdd::
+      00005B                        129 	.ds 4
+      00005F                        130 _compareBCD::
+      00005F                        131 	.ds 4
+      000063                        132 _numOptBCD::
+      000063                        133 	.ds 4
+      000067                        134 _turnBCD::
+      000067                        135 	.ds 4
+      00006B                        136 _rollBCD::
+      00006B                        137 	.ds 4
                                     138 ;--------------------------------------------------------
-                                    139 	.area _HOME
-                                    140 	.area _GSINIT
-                                    141 	.area _GSFINAL
-                                    142 	.area _GSINIT
-                                    143 ;--------------------------------------------------------
-                                    144 ; Home
-                                    145 ;--------------------------------------------------------
-                                    146 	.area _HOME
-                                    147 	.area _HOME
-                                    148 ;--------------------------------------------------------
-                                    149 ; code
-                                    150 ;--------------------------------------------------------
-                                    151 	.area _CODE
-                                    152 	.area _CODE
-      000000                        153 _diSpacing:
-      000000 18 00                  154 	.dw #0x0018
-      000002                        155 _diStartPosition:
-      000002 30 00                  156 	.dw #0x0030
-      000004 48 00                  157 	.dw #0x0048
-      000006                        158 _cursor:
-      000006 14 00                  159 	.dw #0x0014
-      000008                        160 _rollPosY:
-      000008 48 00                  161 	.dw #0x0048
-      00000A                        162 _heldPosY:
-      00000A 58 00                  163 	.dw #0x0058
-                                    164 	.area _INITIALIZER
-      000000                        165 __xinit__diceValues:
-      000000 00 00                  166 	.dw #0x0000
-      000002 00 00                  167 	.dw #0x0000
-      000004 00 00                  168 	.dw #0x0000
-      000006 00 00                  169 	.dw #0x0000
-      000008 00 00                  170 	.dw #0x0000
-      00000A                        171 __xinit__scorecard:
-      00000A FF 00                  172 	.dw #0x00ff
-      00000C FF 00                  173 	.dw #0x00ff
-      00000E FF 00                  174 	.dw #0x00ff
-      000010 FF 00                  175 	.dw #0x00ff
-      000012 FF 00                  176 	.dw #0x00ff
-      000014 FF 00                  177 	.dw #0x00ff
-      000016 FF 00                  178 	.dw #0x00ff
-      000018 FF 00                  179 	.dw #0x00ff
-      00001A FF 00                  180 	.dw #0x00ff
-      00001C FF 00                  181 	.dw #0x00ff
-      00001E FF 00                  182 	.dw #0x00ff
-      000020 FF 00                  183 	.dw #0x00ff
-      000022 FF 00                  184 	.dw #0x00ff
-      000024 FF 00                  185 	.dw #0x00ff
-      000026 FF 00                  186 	.dw #0x00ff
-      000028                        187 __xinit__scorecardSummed:
-      000028 FF 01                  188 	.dw #0x01ff
-      00002A FF 01                  189 	.dw #0x01ff
-      00002C FF 01                  190 	.dw #0x01ff
-      00002E FF 01                  191 	.dw #0x01ff
-      000030 FF 01                  192 	.dw #0x01ff
-      000032 FF 01                  193 	.dw #0x01ff
-      000034 FF 01                  194 	.dw #0x01ff
-      000036 FF 01                  195 	.dw #0x01ff
-      000038 FF 01                  196 	.dw #0x01ff
-      00003A FF 01                  197 	.dw #0x01ff
-      00003C FF 01                  198 	.dw #0x01ff
-      00003E FF 01                  199 	.dw #0x01ff
-      000040 FF 01                  200 	.dw #0x01ff
-      000042 FF 01                  201 	.dw #0x01ff
-      000044 FF 01                  202 	.dw #0x01ff
-      000046                        203 __xinit__rollsEnabled:
-      000046 01                     204 	.db #0x01	; 1
-      000047                        205 __xinit__upperScoreBCD:
-      000047 00 00 00 00            206 	.byte #0x00, #0x00, #0x00, #0x00	; 0
-      00004B                        207 __xinit__upperScoreBuf:
-      00004B 00 00 00 00            208 	.byte #0x00, #0x00, #0x00, #0x00	; 0
-      00004F                        209 __xinit__lowerScoreBCD:
-      00004F 00 00 00 00            210 	.byte #0x00, #0x00, #0x00, #0x00	; 0
-      000053                        211 __xinit__lowerScoreBuf:
-      000053 00 00 00 00            212 	.byte #0x00, #0x00, #0x00, #0x00	; 0
-      000057                        213 __xinit__totalScoreBCD:
-      000057 00 00 00 00            214 	.byte #0x00, #0x00, #0x00, #0x00	; 0
-      00005B                        215 __xinit__totalScoreAdd:
-      00005B 00 00 00 00            216 	.byte #0x00, #0x00, #0x00, #0x00	; 0
-      00005F                        217 __xinit__compareBCD:
-      00005F 00 00 00 00            218 	.byte #0x00, #0x00, #0x00, #0x00	; 0
-      000063                        219 __xinit__numOptBCD:
-      000063 00 00 00 00            220 	.byte #0x00, #0x00, #0x00, #0x00	; 0
-      000067                        221 __xinit__turnBCD:
-      000067 00 00 00 00            222 	.byte #0x00, #0x00, #0x00, #0x00	; 0
-      00006B                        223 __xinit__rollBCD:
-      00006B 00 00 00 00            224 	.byte #0x00, #0x00, #0x00, #0x00	; 0
-                                    225 	.area _CABS (ABS)
+                                    139 ; absolute external ram data
+                                    140 ;--------------------------------------------------------
+                                    141 	.area _DABS (ABS)
+                                    142 ;--------------------------------------------------------
+                                    143 ; global & static initialisations
+                                    144 ;--------------------------------------------------------
+                                    145 	.area _HOME
+                                    146 	.area _GSINIT
+                                    147 	.area _GSFINAL
+                                    148 	.area _GSINIT
+                                    149 ;--------------------------------------------------------
+                                    150 ; Home
+                                    151 ;--------------------------------------------------------
+                                    152 	.area _HOME
+                                    153 	.area _HOME
+                                    154 ;--------------------------------------------------------
+                                    155 ; code
+                                    156 ;--------------------------------------------------------
+                                    157 	.area _CODE
+                                    158 	.area _CODE
+      000000                        159 _diSpacing:
+      000000 18 00                  160 	.dw #0x0018
+      000002                        161 _diStartPosition:
+      000002 30 00                  162 	.dw #0x0030
+      000004 48 00                  163 	.dw #0x0048
+      000006                        164 _cursor:
+      000006 14 00                  165 	.dw #0x0014
+      000008                        166 _rollPosY:
+      000008 48 00                  167 	.dw #0x0048
+      00000A                        168 _heldPosY:
+      00000A 58 00                  169 	.dw #0x0058
+                                    170 	.area _INITIALIZER
+      000000                        171 __xinit__diceValues:
+      000000 00 00                  172 	.dw #0x0000
+      000002 00 00                  173 	.dw #0x0000
+      000004 00 00                  174 	.dw #0x0000
+      000006 00 00                  175 	.dw #0x0000
+      000008 00 00                  176 	.dw #0x0000
+      00000A                        177 __xinit__scorecard:
+      00000A FF 00                  178 	.dw #0x00ff
+      00000C FF 00                  179 	.dw #0x00ff
+      00000E FF 00                  180 	.dw #0x00ff
+      000010 FF 00                  181 	.dw #0x00ff
+      000012 FF 00                  182 	.dw #0x00ff
+      000014 FF 00                  183 	.dw #0x00ff
+      000016 FF 00                  184 	.dw #0x00ff
+      000018 FF 00                  185 	.dw #0x00ff
+      00001A FF 00                  186 	.dw #0x00ff
+      00001C FF 00                  187 	.dw #0x00ff
+      00001E FF 00                  188 	.dw #0x00ff
+      000020 FF 00                  189 	.dw #0x00ff
+      000022 FF 00                  190 	.dw #0x00ff
+      000024 FF 00                  191 	.dw #0x00ff
+      000026 FF 00                  192 	.dw #0x00ff
+      000028                        193 __xinit__scorecardSummed:
+      000028 FF 01                  194 	.dw #0x01ff
+      00002A FF 01                  195 	.dw #0x01ff
+      00002C FF 01                  196 	.dw #0x01ff
+      00002E FF 01                  197 	.dw #0x01ff
+      000030 FF 01                  198 	.dw #0x01ff
+      000032 FF 01                  199 	.dw #0x01ff
+      000034 FF 01                  200 	.dw #0x01ff
+      000036 FF 01                  201 	.dw #0x01ff
+      000038 FF 01                  202 	.dw #0x01ff
+      00003A FF 01                  203 	.dw #0x01ff
+      00003C FF 01                  204 	.dw #0x01ff
+      00003E FF 01                  205 	.dw #0x01ff
+      000040 FF 01                  206 	.dw #0x01ff
+      000042 FF 01                  207 	.dw #0x01ff
+      000044 FF 01                  208 	.dw #0x01ff
+      000046                        209 __xinit__rollsEnabled:
+      000046 01                     210 	.db #0x01	; 1
+      000047                        211 __xinit__upperScoreBCD:
+      000047 00 00 00 00            212 	.byte #0x00, #0x00, #0x00, #0x00	; 0
+      00004B                        213 __xinit__upperScoreBuf:
+      00004B 00 00 00 00            214 	.byte #0x00, #0x00, #0x00, #0x00	; 0
+      00004F                        215 __xinit__lowerScoreBCD:
+      00004F 00 00 00 00            216 	.byte #0x00, #0x00, #0x00, #0x00	; 0
+      000053                        217 __xinit__lowerScoreBuf:
+      000053 00 00 00 00            218 	.byte #0x00, #0x00, #0x00, #0x00	; 0
+      000057                        219 __xinit__totalScoreBCD:
+      000057 00 00 00 00            220 	.byte #0x00, #0x00, #0x00, #0x00	; 0
+      00005B                        221 __xinit__totalScoreAdd:
+      00005B 00 00 00 00            222 	.byte #0x00, #0x00, #0x00, #0x00	; 0
+      00005F                        223 __xinit__compareBCD:
+      00005F 00 00 00 00            224 	.byte #0x00, #0x00, #0x00, #0x00	; 0
+      000063                        225 __xinit__numOptBCD:
+      000063 00 00 00 00            226 	.byte #0x00, #0x00, #0x00, #0x00	; 0
+      000067                        227 __xinit__turnBCD:
+      000067 00 00 00 00            228 	.byte #0x00, #0x00, #0x00, #0x00	; 0
+      00006B                        229 __xinit__rollBCD:
+      00006B 00 00 00 00            230 	.byte #0x00, #0x00, #0x00, #0x00	; 0
+                                    231 	.area _CABS (ABS)

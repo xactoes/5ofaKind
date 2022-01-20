@@ -5,6 +5,7 @@
 #include "../func/global_variables.h"
 
 //functions
+#include "../func/betterDelay.h"
 #include "../func/playView.h"
 #include "../func/scoreDisplay.h"
 #include "../func/sortDice.h"
@@ -40,9 +41,80 @@ void logicUpper(){
 	for(i = 0; i != 5; i++){
 		if(diceValues[i] == valueToCheck){
 			scoreBuf += diceValues[i];
+			//scoreBuf += 63;
 		}
 	}
 	scorecard[cursorIndex - 8] = scoreBuf;
+}
+
+
+void smStraightLogicA(){
+	if(diceValues[0] == diceValues[1]){
+		if(diceValues[1] == diceValues[2]){
+			smStraightContinue = 0;
+		}
+		else if(diceValues[2] == diceValues[3]){
+			smStraightContinue = 0;
+		}
+		else if(diceValues[3] == diceValues[4]){
+			smStraightContinue = 0;
+		}
+		else{
+			smStraightContinue = 1;
+		}
+	}
+	else if(diceValues[1] == diceValues[2]){
+		if(diceValues[2] == diceValues[3]){
+			smStraightContinue = 0;
+		}
+		else if(diceValues[3] == diceValues[4]){
+			smStraightContinue = 0;
+		}
+		else{
+			smStraightContinue = 2;
+		}
+	}
+	else if(diceValues[2] == diceValues[3]){
+		if(diceValues[3] == diceValues[4]){
+			smStraightContinue = 0;
+		}
+		else{
+			smStraightContinue = 3;
+		}
+	}
+	else{
+		smStraightContinue = 4;
+	}
+}
+
+
+unsigned int smStraightLogicB(){
+	smStraightLogicA();
+	if(smStraightContinue == 1){
+		if(diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
+			return 1;
+		}
+		else return 0;
+	}
+	else if(smStraightContinue == 2){
+		if(diceValues[0] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
+			return 1;
+		}
+		else return 0;
+	}
+	else if(smStraightContinue == 3){
+		if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
+			return 1;
+		}
+		else return 0;
+	}
+	else if(smStraightContinue == 4){
+		if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[4] - 1)){
+			return 1;
+		}
+		else return 0;
+	}
+	else return 0;
 }
 
 
@@ -123,22 +195,15 @@ void logicLower(){
 			break;
 		//smStraight
 		case 19:
-			sortDice();
-			if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
+			if(smStraightLogicB()){
 				scoreBuf = 30;
 				//printf("%u", scoreBuf);
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[11] = scoreBuf;
 				//printf("SCL: %u\n", scorecard[12]);
 				set_bkg_tile_xy(17, 28, 0x13); // 3
 				set_bkg_tile_xy(18, 28, 0x10); // 0
-			}
-			else if(diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
-				scoreBuf = 30;
-				//printf("%u", scoreBuf);
-				scorecard[cursorIndex - 8] = scoreBuf;
-				//printf("SCL: %u\n", scorecard[12]);
-				set_bkg_tile_xy(17, 28, 0x13); // 3
-				set_bkg_tile_xy(18, 28, 0x10); // 0
+				//betterDelay(300);
+				//printf("%u", smStraightContinue);
 			}
 			else{
 				scoreBuf = 0;
@@ -198,14 +263,14 @@ void logicLower(){
 				}
 			}
 			if(match5 == 4 && scorecard[6] != 255 && scorecard[6] != 0){
-				if(scorecard[cursorIndex - 8] < 1000){
+				if(scorecard[14] < 1000){
 					//printf("\n New Line\n");
 					scoreBuf = 100;
-					if(scorecard[cursorIndex - 8] == 255){
-						scorecard[cursorIndex - 8] = scoreBuf;
+					if(scorecard[14] == 255){
+						scorecard[14] = scoreBuf;
 					}
 					else{
-						scorecard[cursorIndex - 8] += scoreBuf;
+						scorecard[14] += scoreBuf;
 					}
 					//printf("%u\n", scorecard[7]);
 				}
@@ -219,12 +284,12 @@ void bonusCheck(){
 	//parses entire scorecard
 	unsigned int bonusCompare = 0;
 	for(i = 0; i != 15; i++){
-		if(i <= 2 || i >= 7 && i <= 10){
+		if(i <= 2 || i >= 8 && i <= 10){
 			if(scorecard[i] != 255){
 				bonusCompare += scorecard[i];
 			}
 			if(bonusCompare >= 63){
-				scorecard[14] = 35;
+				scorecard[7] = 35;
 				set_bkg_tile_xy(17, 25, 0x13); // 3
 				set_bkg_tile_xy(18, 25, 0x15); // 5
 			}
@@ -255,11 +320,11 @@ void logicScorecard(){
 					scorecardChangeB++;
 				}
 			}
-			bonusCheck();
-			setScoreUpper();
-			setScoreLower();
-			scoreDisplay();
 		}
+		bonusCheck();
+		setScoreUpper();
+		setScoreLower();
+		scoreDisplay();
 		if(scorecardChangeA != scorecardChangeB){
 			rollsLeft = 0;
 			rollsEnabled = 0;

@@ -16,7 +16,6 @@
 	.globl _uint2bcd
 	.globl _set_bkg_tile_xy
 	.globl _set_bkg_tiles
-	.globl _wait_vbl_done
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -366,10 +365,8 @@ _turnRollDisplay::
 ;func/turnRollDisplay.c:58: rollDisplay();
 	call	_rollDisplay
 ;func/turnRollDisplay.c:59: turnDisplay();
-	call	_turnDisplay
-;func/turnRollDisplay.c:60: wait_vbl_done();
-;func/turnRollDisplay.c:61: }
-	jp	_wait_vbl_done
+;func/turnRollDisplay.c:60: }
+	jp	_turnDisplay
 	.area _CODE
 	.area _INITIALIZER
 	.area _CABS (ABS)

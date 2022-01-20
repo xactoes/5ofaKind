@@ -758,13 +758,13 @@
       000406 D5                     758 	push	de
       000407 CDr00r00               759 	call	_bcd_add
       00040A E8 04                  760 	add	sp, #4
-                                    761 ;func/scoreDisplay.c:113: if(&upperScoreBCD >= &compareBCD && scorecard[14] == 255){
+                                    761 ;func/scoreDisplay.c:113: if(&upperScoreBCD >= &compareBCD && scorecard[7] == 255){
       00040C 3Er00                  762 	ld	a, #<(_upperScoreBCD)
       00040E D6r00                  763 	sub	a, #<(_compareBCD)
       000410 3Es00                  764 	ld	a, #>(_upperScoreBCD)
       000412 DEs00                  765 	sbc	a, #>(_compareBCD)
       000414 38 3C                  766 	jr	C, 00130$
-      000416 21r1Cr00               767 	ld	hl, #(_scorecard + 28)
+      000416 21r0Er00               767 	ld	hl, #(_scorecard + 14)
       000419 2A                     768 	ld	a, (hl+)
       00041A 4F                     769 	ld	c, a
       00041B 46                     770 	ld	b, (hl)
@@ -772,22 +772,22 @@
       00041D 3C                     772 	inc	a
       00041E B0                     773 	or	a, b
       00041F 20 31                  774 	jr	NZ, 00130$
-                                    775 ;func/scoreDisplay.c:114: scorecard[14] = 35;
-      000421 21r1Cr00               776 	ld	hl, #(_scorecard + 28)
+                                    775 ;func/scoreDisplay.c:114: scorecard[7] = 35;
+      000421 21r0Er00               776 	ld	hl, #(_scorecard + 14)
       000424 3E 23                  777 	ld	a, #0x23
       000426 22                     778 	ld	(hl+), a
       000427 36 00                  779 	ld	(hl), #0x00
-                                    780 ;func/scoreDisplay.c:115: scorecardSummed[14] = scorecard[14];
-      000429 21r1Cr00               781 	ld	hl, #(_scorecard + 28)
+                                    780 ;func/scoreDisplay.c:115: scorecardSummed[7] = scorecard[7];
+      000429 21r0Er00               781 	ld	hl, #(_scorecard + 14)
       00042C 2A                     782 	ld	a, (hl+)
       00042D 4F                     783 	ld	c, a
       00042E 46                     784 	ld	b, (hl)
-      00042F 21r1Cr00               785 	ld	hl, #(_scorecardSummed + 28)
+      00042F 21r0Er00               785 	ld	hl, #(_scorecardSummed + 14)
       000432 79                     786 	ld	a, c
       000433 22                     787 	ld	(hl+), a
       000434 70                     788 	ld	(hl), b
-                                    789 ;func/scoreDisplay.c:116: uint2bcd(scorecard[14], &upperScoreBuf);
-      000435 21r1Cr00               790 	ld	hl, #(_scorecard + 28)
+                                    789 ;func/scoreDisplay.c:116: uint2bcd(scorecard[7], &upperScoreBuf);
+      000435 21r0Er00               790 	ld	hl, #(_scorecard + 14)
       000438 2A                     791 	ld	a, (hl+)
       000439 4F                     792 	ld	c, a
       00043A 46                     793 	ld	b, (hl)
@@ -865,7 +865,7 @@
       000497 F8 00                  865 	ldhl	sp,	#0
       000499 77                     866 	ld	(hl), a
       00049A CB 46                  867 	bit	0, (hl)
-      00049C C2rBEr07               868 	jp	NZ, 00131$
+      00049C C2rA4r07               868 	jp	NZ, 00131$
                                     869 ;func/scoreDisplay.c:128: if(scorecardSummed[cursorIndex - 8] != scorecard[cursorIndex - 8]){
       00049F FAr00r00               870 	ld	a, (#_cursorIndex)
       0004A2 C6 F8                  871 	add	a, #0xf8
@@ -911,16 +911,16 @@
       0004CF 23                     911 	inc	hl
       0004D0 7E                     912 	ld	a, (hl)
       0004D1 90                     913 	sub	a, b
-      0004D2 CArBEr07               914 	jp	Z,00131$
+      0004D2 CArA4r07               914 	jp	Z,00131$
       0004D5                        915 00230$:
                                     916 ;func/scoreDisplay.c:129: if(scorecard[cursorIndex - 8] != 255 && scorecard[cursorIndex - 8] != 0){
       0004D5 79                     917 	ld	a, c
       0004D6 3C                     918 	inc	a
       0004D7 B0                     919 	or	a, b
-      0004D8 CArBEr07               920 	jp	Z,00131$
+      0004D8 CArA4r07               920 	jp	Z,00131$
       0004DB 78                     921 	ld	a, b
       0004DC B1                     922 	or	a, c
-      0004DD CArBEr07               923 	jp	Z, 00131$
+      0004DD CArA4r07               923 	jp	Z, 00131$
                                     924 ;func/scoreDisplay.c:131: if(cursorIndex >= 11 && cursorIndex <= 14){
       0004E0 21r00r00               925 	ld	hl, #_cursorIndex
       0004E3 2A                     926 	ld	a, (hl+)
@@ -963,7 +963,7 @@
       000512 C5                     963 	push	bc
       000513 CDr00r00               964 	call	_uint2bcd
       000516 E8 04                  965 	add	sp, #4
-      000518 C3rC8r05               966 	jp	00119$
+      000518 C3rAEr05               966 	jp	00119$
       00051B                        967 00115$:
                                     968 ;func/scoreDisplay.c:137: else if(cursorIndex >= 19 && cursorIndex <= 21){
       00051B 21r00r00               969 	ld	hl, #_cursorIndex
@@ -983,7 +983,7 @@
       000530 79                     983 	ld	a, c
       000531 22                     984 	ld	(hl+), a
       000532 70                     985 	ld	(hl), b
-                                    986 ;func/scoreDisplay.c:142: uint2bcd(scorecard[cursorIndex - 8], &lowerScoreBuf);
+                                    986 ;func/scoreDisplay.c:142: uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
       000533 FAr00r00               987 	ld	a, (#_cursorIndex)
       000536 C6 F8                  988 	add	a, #0xf8
       000538 6F                     989 	ld	l, a
@@ -993,7 +993,7 @@
       00053A 9F                     993 	sbc	a, a
       00053B 67                     994 	ld	h, a
       00053C 29                     995 	add	hl, hl
-      00053D 11r00r00               996 	ld	de, #_scorecard
+      00053D 11r00r00               996 	ld	de, #_scorecardSummed
       000540 19                     997 	add	hl, de
       000541 2A                     998 	ld	a, (hl+)
       000542 4F                     999 	ld	c, a
@@ -1003,758 +1003,734 @@
       000548 C5                    1003 	push	bc
       000549 CDr00r00              1004 	call	_uint2bcd
       00054C E8 04                 1005 	add	sp, #4
-      00054E 18 78                 1006 	jr	00119$
+      00054E 18 5E                 1006 	jr	00119$
       000550                       1007 00111$:
                                    1008 ;func/scoreDisplay.c:145: else if(cursorIndex == 15){
       000550 21r00r00              1009 	ld	hl, #_cursorIndex
       000553 2A                    1010 	ld	a, (hl+)
       000554 D6 0F                 1011 	sub	a, #0x0f
       000556 B6                    1012 	or	a, (hl)
-      000557 20 6F                 1013 	jr	NZ, 00119$
-                                   1014 ;func/scoreDisplay.c:146: if(scorecard[7] < 1000){
-      000559 21r0Er00              1015 	ld	hl, #(_scorecard + 14)
+      000557 20 55                 1013 	jr	NZ, 00119$
+                                   1014 ;func/scoreDisplay.c:146: if(scorecard[14] < 1000){
+      000559 21r1Cr00              1015 	ld	hl, #(_scorecard + 28)
       00055C 2A                    1016 	ld	a, (hl+)
       00055D 4F                    1017 	ld	c, a
       00055E 46                    1018 	ld	b, (hl)
-      00055F 79                    1019 	ld	a, c
-      000560 D6 E8                 1020 	sub	a, #0xe8
-      000562 78                    1021 	ld	a, b
-      000563 DE 03                 1022 	sbc	a, #0x03
-      000565 30 27                 1023 	jr	NC, 00106$
-                                   1024 ;func/scoreDisplay.c:147: scorecardSummed[cursorIndex - 8] = 100;
-      000567 F8 01                 1025 	ldhl	sp,	#1
-      000569 2A                    1026 	ld	a,	(hl+)
-      00056A 66                    1027 	ld	h, (hl)
-      00056B 6F                    1028 	ld	l, a
-      00056C 3E 64                 1029 	ld	a, #0x64
-      00056E 22                    1030 	ld	(hl+), a
-      00056F 36 00                 1031 	ld	(hl), #0x00
-                                   1032 ;func/scoreDisplay.c:148: uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
-      000571 FAr00r00              1033 	ld	a, (#_cursorIndex)
-      000574 C6 F8                 1034 	add	a, #0xf8
-      000576 6F                    1035 	ld	l, a
-                                   1036 ;	spillPairReg hl
-                                   1037 ;	spillPairReg hl
-      000577 07                    1038 	rlca
-      000578 9F                    1039 	sbc	a, a
-      000579 67                    1040 	ld	h, a
-      00057A 29                    1041 	add	hl, hl
-      00057B 11r00r00              1042 	ld	de, #_scorecardSummed
-      00057E 19                    1043 	add	hl, de
-      00057F 2A                    1044 	ld	a, (hl+)
-      000580 4F                    1045 	ld	c, a
-      000581 46                    1046 	ld	b, (hl)
-      000582 11r00r00              1047 	ld	de, #_lowerScoreBuf
-      000585 D5                    1048 	push	de
-      000586 C5                    1049 	push	bc
-      000587 CDr00r00              1050 	call	_uint2bcd
-      00058A E8 04                 1051 	add	sp, #4
-      00058C 18 3A                 1052 	jr	00119$
-      00058E                       1053 00106$:
-                                   1054 ;func/scoreDisplay.c:150: else if(scorecard[7] == 1000 && bonus5 == 0){
-      00058E 79                    1055 	ld	a, c
-      00058F D6 E8                 1056 	sub	a, #0xe8
-      000591 20 35                 1057 	jr	NZ, 00119$
-      000593 78                    1058 	ld	a, b
-      000594 D6 03                 1059 	sub	a, #0x03
-      000596 20 30                 1060 	jr	NZ, 00119$
-      000598 FAr00r00              1061 	ld	a, (#_bonus5)
-      00059B B7                    1062 	or	a, a
-      00059C 20 2A                 1063 	jr	NZ, 00119$
-                                   1064 ;func/scoreDisplay.c:151: scorecardSummed[cursorIndex - 8] = 100;
-      00059E F8 01                 1065 	ldhl	sp,	#1
-      0005A0 2A                    1066 	ld	a,	(hl+)
-      0005A1 66                    1067 	ld	h, (hl)
-      0005A2 6F                    1068 	ld	l, a
-      0005A3 3E 64                 1069 	ld	a, #0x64
-      0005A5 22                    1070 	ld	(hl+), a
-      0005A6 36 00                 1071 	ld	(hl), #0x00
-                                   1072 ;func/scoreDisplay.c:152: uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
-      0005A8 FAr00r00              1073 	ld	a, (#_cursorIndex)
-      0005AB C6 F8                 1074 	add	a, #0xf8
-      0005AD 6F                    1075 	ld	l, a
-                                   1076 ;	spillPairReg hl
-                                   1077 ;	spillPairReg hl
-      0005AE 07                    1078 	rlca
-      0005AF 9F                    1079 	sbc	a, a
-      0005B0 67                    1080 	ld	h, a
-      0005B1 29                    1081 	add	hl, hl
-      0005B2 11r00r00              1082 	ld	de, #_scorecardSummed
-      0005B5 19                    1083 	add	hl, de
-      0005B6 2A                    1084 	ld	a, (hl+)
-      0005B7 4F                    1085 	ld	c, a
-      0005B8 46                    1086 	ld	b, (hl)
-      0005B9 11r00r00              1087 	ld	de, #_lowerScoreBuf
-      0005BC D5                    1088 	push	de
-      0005BD C5                    1089 	push	bc
-      0005BE CDr00r00              1090 	call	_uint2bcd
-      0005C1 E8 04                 1091 	add	sp, #4
-                                   1092 ;func/scoreDisplay.c:153: bonus5 = 1;
-      0005C3 21r00r00              1093 	ld	hl, #_bonus5
-      0005C6 36 01                 1094 	ld	(hl), #0x01
-                                   1095 ;func/scoreDisplay.c:159: scorecardSummed[7] == scorecard[7];
-      0005C8                       1096 00119$:
-                                   1097 ;func/scoreDisplay.c:162: bcd_sub(&numOptBCD, &numOptBCD);
-      0005C8 11r00r00              1098 	ld	de, #_numOptBCD
-      0005CB D5                    1099 	push	de
-      0005CC D5                    1100 	push	de
-      0005CD CDr00r00              1101 	call	_bcd_sub
-      0005D0 E8 04                 1102 	add	sp, #4
-                                   1103 ;func/scoreDisplay.c:163: uint2bcd(scorecard[cursorIndex - 8], &numOptBCD);
-      0005D2 FAr00r00              1104 	ld	a, (#_cursorIndex)
-      0005D5 C6 F8                 1105 	add	a, #0xf8
-      0005D7 6F                    1106 	ld	l, a
-                                   1107 ;	spillPairReg hl
-                                   1108 ;	spillPairReg hl
-      0005D8 07                    1109 	rlca
-      0005D9 9F                    1110 	sbc	a, a
-      0005DA 67                    1111 	ld	h, a
-      0005DB 29                    1112 	add	hl, hl
-      0005DC 11r00r00              1113 	ld	de, #_scorecard
-      0005DF 19                    1114 	add	hl, de
-      0005E0 2A                    1115 	ld	a, (hl+)
-      0005E1 4F                    1116 	ld	c, a
-      0005E2 46                    1117 	ld	b, (hl)
-      0005E3 11r00r00              1118 	ld	de, #_numOptBCD
-      0005E6 D5                    1119 	push	de
-      0005E7 C5                    1120 	push	bc
-      0005E8 CDr00r00              1121 	call	_uint2bcd
-      0005EB E8 04                 1122 	add	sp, #4
-                                   1123 ;func/scoreDisplay.c:164: len = bcd2text(&numOptBCD, 0x10, buf);
-      0005ED 11r00r00              1124 	ld	de, #_buf
-      0005F0 D5                    1125 	push	de
-      0005F1 3E 10                 1126 	ld	a, #0x10
-      0005F3 F5                    1127 	push	af
-      0005F4 33                    1128 	inc	sp
-      0005F5 11r00r00              1129 	ld	de, #_numOptBCD
-      0005F8 D5                    1130 	push	de
-      0005F9 CDr00r00              1131 	call	_bcd2text
-      0005FC E8 05                 1132 	add	sp, #5
-      0005FE 21r00r00              1133 	ld	hl, #_len
-      000601 7B                    1134 	ld	a, e
-      000602 22                    1135 	ld	(hl+), a
-                                   1136 ;func/scoreDisplay.c:168: set_bkg_tiles(2, 28, len, 1, buf);
-      000603 AF                    1137 	xor	a, a
-      000604 32                    1138 	ld	(hl-), a
-      000605 46                    1139 	ld	b, (hl)
-                                   1140 ;func/scoreDisplay.c:165: switch(cursorIndex){
-      000606 21r00r00              1141 	ld	hl, #_cursorIndex
-      000609 2A                    1142 	ld	a, (hl+)
-      00060A D6 0B                 1143 	sub	a, #0x0b
-      00060C B6                    1144 	or	a, (hl)
-      00060D 28 20                 1145 	jr	Z, 00120$
-      00060F 21r00r00              1146 	ld	hl, #_cursorIndex
-      000612 2A                    1147 	ld	a, (hl+)
-      000613 D6 0C                 1148 	sub	a, #0x0c
-      000615 B6                    1149 	or	a, (hl)
-      000616 28 7C                 1150 	jr	Z, 00121$
-      000618 21r00r00              1151 	ld	hl, #_cursorIndex
-      00061B 2A                    1152 	ld	a, (hl+)
-      00061C D6 0F                 1153 	sub	a, #0x0f
-      00061E B6                    1154 	or	a, (hl)
-      00061F CArF9r06              1155 	jp	Z,00122$
-      000622 21r00r00              1156 	ld	hl, #_cursorIndex
-      000625 2A                    1157 	ld	a, (hl+)
-      000626 D6 15                 1158 	sub	a, #0x15
-      000628 B6                    1159 	or	a, (hl)
-      000629 CAr5Dr07              1160 	jp	Z,00123$
-      00062C C3rBEr07              1161 	jp	00131$
-                                   1162 ;func/scoreDisplay.c:167: case 11:
-      00062F                       1163 00120$:
-                                   1164 ;func/scoreDisplay.c:168: set_bkg_tiles(2, 28, len, 1, buf);
-      00062F 11r00r00              1165 	ld	de, #_buf
-      000632 D5                    1166 	push	de
-      000633 3E 01                 1167 	ld	a, #0x01
-      000635 F5                    1168 	push	af
-      000636 33                    1169 	inc	sp
-      000637 C5                    1170 	push	bc
-      000638 33                    1171 	inc	sp
-      000639 21 02 1C              1172 	ld	hl, #0x1c02
-      00063C E5                    1173 	push	hl
-      00063D CDr00r00              1174 	call	_set_bkg_tiles
-      000640 E8 06                 1175 	add	sp, #6
-                                   1176 ;func/scoreDisplay.c:169: set_bkg_tile_xy(2, 28, 0x13); // 3
-      000642 21 1C 13              1177 	ld	hl, #0x131c
-      000645 E5                    1178 	push	hl
-      000646 3E 02                 1179 	ld	a, #0x02
-      000648 F5                    1180 	push	af
-      000649 33                    1181 	inc	sp
-      00064A CDr00r00              1182 	call	_set_bkg_tile_xy
-      00064D E8 03                 1183 	add	sp, #3
-                                   1184 ;func/scoreDisplay.c:170: set_bkg_tile_xy(3, 28, 0x2B); // K
-      00064F 21 1C 2B              1185 	ld	hl, #0x2b1c
-      000652 E5                    1186 	push	hl
-      000653 3E 03                 1187 	ld	a, #0x03
-      000655 F5                    1188 	push	af
-      000656 33                    1189 	inc	sp
-      000657 CDr00r00              1190 	call	_set_bkg_tile_xy
-      00065A E8 03                 1191 	add	sp, #3
-                                   1192 ;func/scoreDisplay.c:171: set_bkg_tile_xy(4, 28, 0x49); // i
-      00065C 21 1C 49              1193 	ld	hl, #0x491c
-      00065F E5                    1194 	push	hl
-      000660 3E 04                 1195 	ld	a, #0x04
-      000662 F5                    1196 	push	af
-      000663 33                    1197 	inc	sp
-      000664 CDr00r00              1198 	call	_set_bkg_tile_xy
-      000667 E8 03                 1199 	add	sp, #3
-                                   1200 ;func/scoreDisplay.c:172: set_bkg_tile_xy(5, 28, 0x4E); // n
-      000669 21 1C 4E              1201 	ld	hl, #0x4e1c
-      00066C E5                    1202 	push	hl
-      00066D 3E 05                 1203 	ld	a, #0x05
-      00066F F5                    1204 	push	af
-      000670 33                    1205 	inc	sp
-      000671 CDr00r00              1206 	call	_set_bkg_tile_xy
-      000674 E8 03                 1207 	add	sp, #3
-                                   1208 ;func/scoreDisplay.c:173: set_bkg_tile_xy(6, 28, 0x44); // d
-      000676 21 1C 44              1209 	ld	hl, #0x441c
-      000679 E5                    1210 	push	hl
-      00067A 3E 06                 1211 	ld	a, #0x06
-      00067C F5                    1212 	push	af
-      00067D 33                    1213 	inc	sp
-      00067E CDr00r00              1214 	call	_set_bkg_tile_xy
-      000681 E8 03                 1215 	add	sp, #3
-                                   1216 ;func/scoreDisplay.c:174: set_bkg_tile_xy(7, 28, 0x00); // blank
-      000683 AF                    1217 	xor	a, a
-      000684 67                    1218 	ld	h, a
-      000685 2E 1C                 1219 	ld	l, #0x1c
-      000687 E5                    1220 	push	hl
-      000688 3E 07                 1221 	ld	a, #0x07
-      00068A F5                    1222 	push	af
-      00068B 33                    1223 	inc	sp
-      00068C CDr00r00              1224 	call	_set_bkg_tile_xy
-      00068F E8 03                 1225 	add	sp, #3
-                                   1226 ;func/scoreDisplay.c:175: break;
-      000691 C3rBEr07              1227 	jp	00131$
-                                   1228 ;func/scoreDisplay.c:177: case 12:
-      000694                       1229 00121$:
-                                   1230 ;func/scoreDisplay.c:178: set_bkg_tiles(2, 28, len, 1, buf);
-      000694 11r00r00              1231 	ld	de, #_buf
-      000697 D5                    1232 	push	de
-      000698 3E 01                 1233 	ld	a, #0x01
-      00069A F5                    1234 	push	af
-      00069B 33                    1235 	inc	sp
-      00069C C5                    1236 	push	bc
-      00069D 33                    1237 	inc	sp
-      00069E 21 02 1C              1238 	ld	hl, #0x1c02
-      0006A1 E5                    1239 	push	hl
-      0006A2 CDr00r00              1240 	call	_set_bkg_tiles
-      0006A5 E8 06                 1241 	add	sp, #6
-                                   1242 ;func/scoreDisplay.c:179: set_bkg_tile_xy(2, 28, 0x14); // 4
-      0006A7 21 1C 14              1243 	ld	hl, #0x141c
-      0006AA E5                    1244 	push	hl
-      0006AB 3E 02                 1245 	ld	a, #0x02
-      0006AD F5                    1246 	push	af
-      0006AE 33                    1247 	inc	sp
-      0006AF CDr00r00              1248 	call	_set_bkg_tile_xy
-      0006B2 E8 03                 1249 	add	sp, #3
-                                   1250 ;func/scoreDisplay.c:180: set_bkg_tile_xy(3, 28, 0x2B); // K
-      0006B4 21 1C 2B              1251 	ld	hl, #0x2b1c
-      0006B7 E5                    1252 	push	hl
-      0006B8 3E 03                 1253 	ld	a, #0x03
-      0006BA F5                    1254 	push	af
-      0006BB 33                    1255 	inc	sp
-      0006BC CDr00r00              1256 	call	_set_bkg_tile_xy
-      0006BF E8 03                 1257 	add	sp, #3
-                                   1258 ;func/scoreDisplay.c:181: set_bkg_tile_xy(4, 28, 0x49); // i
-      0006C1 21 1C 49              1259 	ld	hl, #0x491c
-      0006C4 E5                    1260 	push	hl
-      0006C5 3E 04                 1261 	ld	a, #0x04
-      0006C7 F5                    1262 	push	af
-      0006C8 33                    1263 	inc	sp
-      0006C9 CDr00r00              1264 	call	_set_bkg_tile_xy
-      0006CC E8 03                 1265 	add	sp, #3
-                                   1266 ;func/scoreDisplay.c:182: set_bkg_tile_xy(5, 28, 0x4E); // n
-      0006CE 21 1C 4E              1267 	ld	hl, #0x4e1c
-      0006D1 E5                    1268 	push	hl
-      0006D2 3E 05                 1269 	ld	a, #0x05
-      0006D4 F5                    1270 	push	af
-      0006D5 33                    1271 	inc	sp
-      0006D6 CDr00r00              1272 	call	_set_bkg_tile_xy
-      0006D9 E8 03                 1273 	add	sp, #3
-                                   1274 ;func/scoreDisplay.c:183: set_bkg_tile_xy(6, 28, 0x44); // d
-      0006DB 21 1C 44              1275 	ld	hl, #0x441c
-      0006DE E5                    1276 	push	hl
-      0006DF 3E 06                 1277 	ld	a, #0x06
-      0006E1 F5                    1278 	push	af
-      0006E2 33                    1279 	inc	sp
-      0006E3 CDr00r00              1280 	call	_set_bkg_tile_xy
-      0006E6 E8 03                 1281 	add	sp, #3
-                                   1282 ;func/scoreDisplay.c:184: set_bkg_tile_xy(7, 28, 0x00); // blank
-      0006E8 AF                    1283 	xor	a, a
-      0006E9 67                    1284 	ld	h, a
-      0006EA 2E 1C                 1285 	ld	l, #0x1c
-      0006EC E5                    1286 	push	hl
-      0006ED 3E 07                 1287 	ld	a, #0x07
-      0006EF F5                    1288 	push	af
-      0006F0 33                    1289 	inc	sp
-      0006F1 CDr00r00              1290 	call	_set_bkg_tile_xy
-      0006F4 E8 03                 1291 	add	sp, #3
-                                   1292 ;func/scoreDisplay.c:185: break;
-      0006F6 C3rBEr07              1293 	jp	00131$
-                                   1294 ;func/scoreDisplay.c:187: case 15:
-      0006F9                       1295 00122$:
-                                   1296 ;func/scoreDisplay.c:188: set_bkg_tiles(11, 32, len, 1, buf);
-      0006F9 11r00r00              1297 	ld	de, #_buf
-      0006FC D5                    1298 	push	de
-      0006FD 3E 01                 1299 	ld	a, #0x01
-      0006FF F5                    1300 	push	af
-      000700 33                    1301 	inc	sp
-      000701 C5                    1302 	push	bc
-      000702 33                    1303 	inc	sp
-      000703 21 0B 20              1304 	ld	hl, #0x200b
-      000706 E5                    1305 	push	hl
-      000707 CDr00r00              1306 	call	_set_bkg_tiles
-      00070A E8 06                 1307 	add	sp, #6
-                                   1308 ;func/scoreDisplay.c:189: set_bkg_tile_xy(11, 32, 0x14); // B
-      00070C 21 20 14              1309 	ld	hl, #0x1420
-      00070F E5                    1310 	push	hl
-      000710 3E 0B                 1311 	ld	a, #0x0b
-      000712 F5                    1312 	push	af
-      000713 33                    1313 	inc	sp
-      000714 CDr00r00              1314 	call	_set_bkg_tile_xy
-      000717 E8 03                 1315 	add	sp, #3
-                                   1316 ;func/scoreDisplay.c:190: set_bkg_tile_xy(12, 32, 0x2B); // o
-      000719 21 20 2B              1317 	ld	hl, #0x2b20
-      00071C E5                    1318 	push	hl
-      00071D 3E 0C                 1319 	ld	a, #0x0c
-      00071F F5                    1320 	push	af
-      000720 33                    1321 	inc	sp
-      000721 CDr00r00              1322 	call	_set_bkg_tile_xy
-      000724 E8 03                 1323 	add	sp, #3
-                                   1324 ;func/scoreDisplay.c:191: set_bkg_tile_xy(13, 32, 0x49); // n
-      000726 21 20 49              1325 	ld	hl, #0x4920
-      000729 E5                    1326 	push	hl
-      00072A 3E 0D                 1327 	ld	a, #0x0d
-      00072C F5                    1328 	push	af
-      00072D 33                    1329 	inc	sp
-      00072E CDr00r00              1330 	call	_set_bkg_tile_xy
-      000731 E8 03                 1331 	add	sp, #3
-                                   1332 ;func/scoreDisplay.c:192: set_bkg_tile_xy(14, 32, 0x4E); // u
-      000733 21 20 4E              1333 	ld	hl, #0x4e20
-      000736 E5                    1334 	push	hl
-      000737 3E 0E                 1335 	ld	a, #0x0e
-      000739 F5                    1336 	push	af
-      00073A 33                    1337 	inc	sp
-      00073B CDr00r00              1338 	call	_set_bkg_tile_xy
-      00073E E8 03                 1339 	add	sp, #3
-                                   1340 ;func/scoreDisplay.c:193: set_bkg_tile_xy(15, 32, 0x44); // s
-      000740 21 20 44              1341 	ld	hl, #0x4420
-      000743 E5                    1342 	push	hl
-      000744 3E 0F                 1343 	ld	a, #0x0f
-      000746 F5                    1344 	push	af
-      000747 33                    1345 	inc	sp
-      000748 CDr00r00              1346 	call	_set_bkg_tile_xy
-      00074B E8 03                 1347 	add	sp, #3
-                                   1348 ;func/scoreDisplay.c:194: set_bkg_tile_xy(16, 32, 0x00); // :
-      00074D AF                    1349 	xor	a, a
-      00074E 67                    1350 	ld	h, a
-      00074F 2E 20                 1351 	ld	l, #0x20
-      000751 E5                    1352 	push	hl
-      000752 3E 10                 1353 	ld	a, #0x10
-      000754 F5                    1354 	push	af
-      000755 33                    1355 	inc	sp
-      000756 CDr00r00              1356 	call	_set_bkg_tile_xy
-      000759 E8 03                 1357 	add	sp, #3
-                                   1358 ;func/scoreDisplay.c:195: break;
-      00075B 18 61                 1359 	jr	00131$
-                                   1360 ;func/scoreDisplay.c:197: case 21:
-      00075D                       1361 00123$:
-                                   1362 ;func/scoreDisplay.c:198: set_bkg_tiles(11, 30, len, 1, buf);
-      00075D 11r00r00              1363 	ld	de, #_buf
-      000760 D5                    1364 	push	de
-      000761 3E 01                 1365 	ld	a, #0x01
-      000763 F5                    1366 	push	af
-      000764 33                    1367 	inc	sp
-      000765 C5                    1368 	push	bc
-      000766 33                    1369 	inc	sp
-      000767 21 0B 1E              1370 	ld	hl, #0x1e0b
-      00076A E5                    1371 	push	hl
-      00076B CDr00r00              1372 	call	_set_bkg_tiles
-      00076E E8 06                 1373 	add	sp, #6
-                                   1374 ;func/scoreDisplay.c:199: set_bkg_tile_xy(11, 30, 0x23); // C
-      000770 21 1E 23              1375 	ld	hl, #0x231e
-      000773 E5                    1376 	push	hl
-      000774 3E 0B                 1377 	ld	a, #0x0b
-      000776 F5                    1378 	push	af
-      000777 33                    1379 	inc	sp
-      000778 CDr00r00              1380 	call	_set_bkg_tile_xy
-      00077B E8 03                 1381 	add	sp, #3
-                                   1382 ;func/scoreDisplay.c:200: set_bkg_tile_xy(12, 30, 0x48); // h
-      00077D 21 1E 48              1383 	ld	hl, #0x481e
-      000780 E5                    1384 	push	hl
-      000781 3E 0C                 1385 	ld	a, #0x0c
-      000783 F5                    1386 	push	af
-      000784 33                    1387 	inc	sp
-      000785 CDr00r00              1388 	call	_set_bkg_tile_xy
-      000788 E8 03                 1389 	add	sp, #3
-                                   1390 ;func/scoreDisplay.c:201: set_bkg_tile_xy(13, 30, 0x41); // a
-      00078A 21 1E 41              1391 	ld	hl, #0x411e
-      00078D E5                    1392 	push	hl
-      00078E 3E 0D                 1393 	ld	a, #0x0d
-      000790 F5                    1394 	push	af
-      000791 33                    1395 	inc	sp
-      000792 CDr00r00              1396 	call	_set_bkg_tile_xy
-      000795 E8 03                 1397 	add	sp, #3
-                                   1398 ;func/scoreDisplay.c:202: set_bkg_tile_xy(14, 30, 0x4E); // n
-      000797 21 1E 4E              1399 	ld	hl, #0x4e1e
-      00079A E5                    1400 	push	hl
-      00079B 3E 0E                 1401 	ld	a, #0x0e
-      00079D F5                    1402 	push	af
-      00079E 33                    1403 	inc	sp
-      00079F CDr00r00              1404 	call	_set_bkg_tile_xy
-      0007A2 E8 03                 1405 	add	sp, #3
-                                   1406 ;func/scoreDisplay.c:203: set_bkg_tile_xy(15, 30, 0x43); // c
-      0007A4 21 1E 43              1407 	ld	hl, #0x431e
-      0007A7 E5                    1408 	push	hl
-      0007A8 3E 0F                 1409 	ld	a, #0x0f
-      0007AA F5                    1410 	push	af
-      0007AB 33                    1411 	inc	sp
-      0007AC CDr00r00              1412 	call	_set_bkg_tile_xy
-      0007AF E8 03                 1413 	add	sp, #3
-                                   1414 ;func/scoreDisplay.c:204: set_bkg_tile_xy(16, 30, 0x45); // e
-      0007B1 21 1E 45              1415 	ld	hl, #0x451e
-      0007B4 E5                    1416 	push	hl
-      0007B5 3E 10                 1417 	ld	a, #0x10
-      0007B7 F5                    1418 	push	af
-      0007B8 33                    1419 	inc	sp
-      0007B9 CDr00r00              1420 	call	_set_bkg_tile_xy
-      0007BC E8 03                 1421 	add	sp, #3
-                                   1422 ;func/scoreDisplay.c:206: }
-      0007BE                       1423 00131$:
-                                   1424 ;func/scoreDisplay.c:211: bcd_add(&lowerScoreBCD, &lowerScoreBuf);
-      0007BE 11r00r00              1425 	ld	de, #_lowerScoreBuf
-      0007C1 D5                    1426 	push	de
-      0007C2 11r00r00              1427 	ld	de, #_lowerScoreBCD
-      0007C5 D5                    1428 	push	de
-      0007C6 CDr00r00              1429 	call	_bcd_add
-                                   1430 ;func/scoreDisplay.c:212: }
-      0007C9 E8 09                 1431 	add	sp, #9
-      0007CB C9                    1432 	ret
-                                   1433 ;func/scoreDisplay.c:215: void setScoreTotal(){
-                                   1434 ;	---------------------------------
-                                   1435 ; Function setScoreTotal
-                                   1436 ; ---------------------------------
-      0007CC                       1437 _setScoreTotal::
-                                   1438 ;func/scoreDisplay.c:217: bcd_sub(&totalScoreAdd, &totalScoreAdd);
-      0007CC 11r00r00              1439 	ld	de, #_totalScoreAdd
-      0007CF D5                    1440 	push	de
-      0007D0 D5                    1441 	push	de
-      0007D1 CDr00r00              1442 	call	_bcd_sub
-      0007D4 E8 04                 1443 	add	sp, #4
-                                   1444 ;func/scoreDisplay.c:219: bcd_add(&totalScoreAdd, &upperScoreBCD);
-      0007D6 11r00r00              1445 	ld	de, #_upperScoreBCD
-      0007D9 D5                    1446 	push	de
-      0007DA 11r00r00              1447 	ld	de, #_totalScoreAdd
-      0007DD D5                    1448 	push	de
-      0007DE CDr00r00              1449 	call	_bcd_add
-      0007E1 E8 04                 1450 	add	sp, #4
-                                   1451 ;func/scoreDisplay.c:221: bcd_add(&totalScoreAdd, &lowerScoreBCD);
-      0007E3 11r00r00              1452 	ld	de, #_lowerScoreBCD
-      0007E6 D5                    1453 	push	de
-      0007E7 11r00r00              1454 	ld	de, #_totalScoreAdd
-      0007EA D5                    1455 	push	de
-      0007EB CDr00r00              1456 	call	_bcd_add
-      0007EE E8 04                 1457 	add	sp, #4
-                                   1458 ;func/scoreDisplay.c:222: if(&totalScoreBCD == &totalScoreAdd) return;
-      0007F0 3Er00                 1459 	ld	a, #<(_totalScoreAdd)
-      0007F2 D6r00                 1460 	sub	a, #<(_totalScoreBCD)
-      0007F4 20 07                 1461 	jr	NZ, 00105$
-      0007F6 3Es00                 1462 	ld	a, #>(_totalScoreAdd)
-      0007F8 D6s00                 1463 	sub	a, #>(_totalScoreBCD)
-      0007FA C8                    1464 	ret	Z
-      0007FB 18 00                 1465 	jr	00105$
-      0007FD                       1466 00105$:
-                                   1467 ;func/scoreDisplay.c:223: else if(&totalScoreBCD > &totalScoreAdd){
-      0007FD 3Er00                 1468 	ld	a, #<(_totalScoreAdd)
-      0007FF D6r00                 1469 	sub	a, #<(_totalScoreBCD)
-      000801 3Es00                 1470 	ld	a, #>(_totalScoreAdd)
-      000803 DEs00                 1471 	sbc	a, #>(_totalScoreBCD)
-      000805 30 09                 1472 	jr	NC, 00102$
-                                   1473 ;func/scoreDisplay.c:224: printf("Scoring Error");
-      000807 11r40r08              1474 	ld	de, #___str_0
-      00080A D5                    1475 	push	de
-      00080B CDr00r00              1476 	call	_printf
-      00080E E1                    1477 	pop	hl
-      00080F C9                    1478 	ret
-      000810                       1479 00102$:
-                                   1480 ;func/scoreDisplay.c:227: bcd_sub(&totalScoreBCD, &totalScoreBCD);
-      000810 11r00r00              1481 	ld	de, #_totalScoreBCD
-      000813 D5                    1482 	push	de
-      000814 D5                    1483 	push	de
-      000815 CDr00r00              1484 	call	_bcd_sub
-      000818 E8 04                 1485 	add	sp, #4
-                                   1486 ;func/scoreDisplay.c:228: bcd_add(&totalScoreBCD, &totalScoreAdd);
-      00081A 11r00r00              1487 	ld	de, #_totalScoreAdd
-      00081D D5                    1488 	push	de
-      00081E 11r00r00              1489 	ld	de, #_totalScoreBCD
-      000821 D5                    1490 	push	de
-      000822 CDr00r00              1491 	call	_bcd_add
-      000825 E8 04                 1492 	add	sp, #4
-                                   1493 ;func/scoreDisplay.c:229: len = bcd2text(&totalScoreBCD, 0x10, buf);
-      000827 11r00r00              1494 	ld	de, #_buf
-      00082A D5                    1495 	push	de
-      00082B 3E 10                 1496 	ld	a, #0x10
-      00082D F5                    1497 	push	af
-      00082E 33                    1498 	inc	sp
-      00082F 11r00r00              1499 	ld	de, #_totalScoreBCD
-      000832 D5                    1500 	push	de
-      000833 CDr00r00              1501 	call	_bcd2text
-      000836 E8 05                 1502 	add	sp, #5
-      000838 21r00r00              1503 	ld	hl, #_len
-      00083B 7B                    1504 	ld	a, e
-      00083C 22                    1505 	ld	(hl+), a
-      00083D 36 00                 1506 	ld	(hl), #0x00
-                                   1507 ;func/scoreDisplay.c:231: }
-      00083F C9                    1508 	ret
-      000840                       1509 ___str_0:
-      000840 53 63 6F 72 69 6E 67  1510 	.ascii "Scoring Error"
+                                   1019 ;func/scoreDisplay.c:147: scorecardSummed[14] = 100;
+                                   1020 ;func/scoreDisplay.c:146: if(scorecard[14] < 1000){
+      00055F 79                    1021 	ld	a, c
+      000560 D6 E8                 1022 	sub	a, #0xe8
+      000562 78                    1023 	ld	a, b
+      000563 DE 03                 1024 	sbc	a, #0x03
+      000565 30 1A                 1025 	jr	NC, 00106$
+                                   1026 ;func/scoreDisplay.c:147: scorecardSummed[14] = 100;
+      000567 21r1Cr00              1027 	ld	hl, #(_scorecardSummed + 28)
+      00056A 3E 64                 1028 	ld	a, #0x64
+      00056C 22                    1029 	ld	(hl+), a
+      00056D 36 00                 1030 	ld	(hl), #0x00
+                                   1031 ;func/scoreDisplay.c:148: uint2bcd(scorecardSummed[14], &lowerScoreBuf);
+      00056F 21r1Cr00              1032 	ld	hl, #(_scorecardSummed + 28)
+      000572 2A                    1033 	ld	a, (hl+)
+      000573 4F                    1034 	ld	c, a
+      000574 46                    1035 	ld	b, (hl)
+      000575 11r00r00              1036 	ld	de, #_lowerScoreBuf
+      000578 D5                    1037 	push	de
+      000579 C5                    1038 	push	bc
+      00057A CDr00r00              1039 	call	_uint2bcd
+      00057D E8 04                 1040 	add	sp, #4
+      00057F 18 2D                 1041 	jr	00119$
+      000581                       1042 00106$:
+                                   1043 ;func/scoreDisplay.c:150: else if(scorecard[14] == 1000 && bonus5 == 0){
+      000581 79                    1044 	ld	a, c
+      000582 D6 E8                 1045 	sub	a, #0xe8
+      000584 20 28                 1046 	jr	NZ, 00119$
+      000586 78                    1047 	ld	a, b
+      000587 D6 03                 1048 	sub	a, #0x03
+      000589 20 23                 1049 	jr	NZ, 00119$
+      00058B FAr00r00              1050 	ld	a, (#_bonus5)
+      00058E B7                    1051 	or	a, a
+      00058F 20 1D                 1052 	jr	NZ, 00119$
+                                   1053 ;func/scoreDisplay.c:151: scorecardSummed[14] = 100;
+      000591 21r1Cr00              1054 	ld	hl, #(_scorecardSummed + 28)
+      000594 3E 64                 1055 	ld	a, #0x64
+      000596 22                    1056 	ld	(hl+), a
+      000597 36 00                 1057 	ld	(hl), #0x00
+                                   1058 ;func/scoreDisplay.c:152: uint2bcd(scorecardSummed[14], &lowerScoreBuf);
+      000599 21r1Cr00              1059 	ld	hl, #(_scorecardSummed + 28)
+      00059C 2A                    1060 	ld	a, (hl+)
+      00059D 4F                    1061 	ld	c, a
+      00059E 46                    1062 	ld	b, (hl)
+      00059F 11r00r00              1063 	ld	de, #_lowerScoreBuf
+      0005A2 D5                    1064 	push	de
+      0005A3 C5                    1065 	push	bc
+      0005A4 CDr00r00              1066 	call	_uint2bcd
+      0005A7 E8 04                 1067 	add	sp, #4
+                                   1068 ;func/scoreDisplay.c:153: bonus5 = 1;
+      0005A9 21r00r00              1069 	ld	hl, #_bonus5
+      0005AC 36 01                 1070 	ld	(hl), #0x01
+                                   1071 ;func/scoreDisplay.c:159: scorecardSummed[14] == scorecard[14];
+      0005AE                       1072 00119$:
+                                   1073 ;func/scoreDisplay.c:162: bcd_sub(&numOptBCD, &numOptBCD);
+      0005AE 11r00r00              1074 	ld	de, #_numOptBCD
+      0005B1 D5                    1075 	push	de
+      0005B2 D5                    1076 	push	de
+      0005B3 CDr00r00              1077 	call	_bcd_sub
+      0005B6 E8 04                 1078 	add	sp, #4
+                                   1079 ;func/scoreDisplay.c:163: uint2bcd(scorecard[cursorIndex - 8], &numOptBCD);
+      0005B8 FAr00r00              1080 	ld	a, (#_cursorIndex)
+      0005BB C6 F8                 1081 	add	a, #0xf8
+      0005BD 6F                    1082 	ld	l, a
+                                   1083 ;	spillPairReg hl
+                                   1084 ;	spillPairReg hl
+      0005BE 07                    1085 	rlca
+      0005BF 9F                    1086 	sbc	a, a
+      0005C0 67                    1087 	ld	h, a
+      0005C1 29                    1088 	add	hl, hl
+      0005C2 11r00r00              1089 	ld	de, #_scorecard
+      0005C5 19                    1090 	add	hl, de
+      0005C6 2A                    1091 	ld	a, (hl+)
+      0005C7 4F                    1092 	ld	c, a
+      0005C8 46                    1093 	ld	b, (hl)
+      0005C9 11r00r00              1094 	ld	de, #_numOptBCD
+      0005CC D5                    1095 	push	de
+      0005CD C5                    1096 	push	bc
+      0005CE CDr00r00              1097 	call	_uint2bcd
+      0005D1 E8 04                 1098 	add	sp, #4
+                                   1099 ;func/scoreDisplay.c:164: len = bcd2text(&numOptBCD, 0x10, buf);
+      0005D3 11r00r00              1100 	ld	de, #_buf
+      0005D6 D5                    1101 	push	de
+      0005D7 3E 10                 1102 	ld	a, #0x10
+      0005D9 F5                    1103 	push	af
+      0005DA 33                    1104 	inc	sp
+      0005DB 11r00r00              1105 	ld	de, #_numOptBCD
+      0005DE D5                    1106 	push	de
+      0005DF CDr00r00              1107 	call	_bcd2text
+      0005E2 E8 05                 1108 	add	sp, #5
+      0005E4 21r00r00              1109 	ld	hl, #_len
+      0005E7 7B                    1110 	ld	a, e
+      0005E8 22                    1111 	ld	(hl+), a
+                                   1112 ;func/scoreDisplay.c:168: set_bkg_tiles(2, 28, len, 1, buf);
+      0005E9 AF                    1113 	xor	a, a
+      0005EA 32                    1114 	ld	(hl-), a
+      0005EB 46                    1115 	ld	b, (hl)
+                                   1116 ;func/scoreDisplay.c:165: switch(cursorIndex){
+      0005EC 21r00r00              1117 	ld	hl, #_cursorIndex
+      0005EF 2A                    1118 	ld	a, (hl+)
+      0005F0 D6 0B                 1119 	sub	a, #0x0b
+      0005F2 B6                    1120 	or	a, (hl)
+      0005F3 28 20                 1121 	jr	Z, 00120$
+      0005F5 21r00r00              1122 	ld	hl, #_cursorIndex
+      0005F8 2A                    1123 	ld	a, (hl+)
+      0005F9 D6 0C                 1124 	sub	a, #0x0c
+      0005FB B6                    1125 	or	a, (hl)
+      0005FC 28 7C                 1126 	jr	Z, 00121$
+      0005FE 21r00r00              1127 	ld	hl, #_cursorIndex
+      000601 2A                    1128 	ld	a, (hl+)
+      000602 D6 0F                 1129 	sub	a, #0x0f
+      000604 B6                    1130 	or	a, (hl)
+      000605 CArDFr06              1131 	jp	Z,00122$
+      000608 21r00r00              1132 	ld	hl, #_cursorIndex
+      00060B 2A                    1133 	ld	a, (hl+)
+      00060C D6 15                 1134 	sub	a, #0x15
+      00060E B6                    1135 	or	a, (hl)
+      00060F CAr43r07              1136 	jp	Z,00123$
+      000612 C3rA4r07              1137 	jp	00131$
+                                   1138 ;func/scoreDisplay.c:167: case 11:
+      000615                       1139 00120$:
+                                   1140 ;func/scoreDisplay.c:168: set_bkg_tiles(2, 28, len, 1, buf);
+      000615 11r00r00              1141 	ld	de, #_buf
+      000618 D5                    1142 	push	de
+      000619 3E 01                 1143 	ld	a, #0x01
+      00061B F5                    1144 	push	af
+      00061C 33                    1145 	inc	sp
+      00061D C5                    1146 	push	bc
+      00061E 33                    1147 	inc	sp
+      00061F 21 02 1C              1148 	ld	hl, #0x1c02
+      000622 E5                    1149 	push	hl
+      000623 CDr00r00              1150 	call	_set_bkg_tiles
+      000626 E8 06                 1151 	add	sp, #6
+                                   1152 ;func/scoreDisplay.c:169: set_bkg_tile_xy(2, 28, 0x13); // 3
+      000628 21 1C 13              1153 	ld	hl, #0x131c
+      00062B E5                    1154 	push	hl
+      00062C 3E 02                 1155 	ld	a, #0x02
+      00062E F5                    1156 	push	af
+      00062F 33                    1157 	inc	sp
+      000630 CDr00r00              1158 	call	_set_bkg_tile_xy
+      000633 E8 03                 1159 	add	sp, #3
+                                   1160 ;func/scoreDisplay.c:170: set_bkg_tile_xy(3, 28, 0x2B); // K
+      000635 21 1C 2B              1161 	ld	hl, #0x2b1c
+      000638 E5                    1162 	push	hl
+      000639 3E 03                 1163 	ld	a, #0x03
+      00063B F5                    1164 	push	af
+      00063C 33                    1165 	inc	sp
+      00063D CDr00r00              1166 	call	_set_bkg_tile_xy
+      000640 E8 03                 1167 	add	sp, #3
+                                   1168 ;func/scoreDisplay.c:171: set_bkg_tile_xy(4, 28, 0x49); // i
+      000642 21 1C 49              1169 	ld	hl, #0x491c
+      000645 E5                    1170 	push	hl
+      000646 3E 04                 1171 	ld	a, #0x04
+      000648 F5                    1172 	push	af
+      000649 33                    1173 	inc	sp
+      00064A CDr00r00              1174 	call	_set_bkg_tile_xy
+      00064D E8 03                 1175 	add	sp, #3
+                                   1176 ;func/scoreDisplay.c:172: set_bkg_tile_xy(5, 28, 0x4E); // n
+      00064F 21 1C 4E              1177 	ld	hl, #0x4e1c
+      000652 E5                    1178 	push	hl
+      000653 3E 05                 1179 	ld	a, #0x05
+      000655 F5                    1180 	push	af
+      000656 33                    1181 	inc	sp
+      000657 CDr00r00              1182 	call	_set_bkg_tile_xy
+      00065A E8 03                 1183 	add	sp, #3
+                                   1184 ;func/scoreDisplay.c:173: set_bkg_tile_xy(6, 28, 0x44); // d
+      00065C 21 1C 44              1185 	ld	hl, #0x441c
+      00065F E5                    1186 	push	hl
+      000660 3E 06                 1187 	ld	a, #0x06
+      000662 F5                    1188 	push	af
+      000663 33                    1189 	inc	sp
+      000664 CDr00r00              1190 	call	_set_bkg_tile_xy
+      000667 E8 03                 1191 	add	sp, #3
+                                   1192 ;func/scoreDisplay.c:174: set_bkg_tile_xy(7, 28, 0x00); // blank
+      000669 AF                    1193 	xor	a, a
+      00066A 67                    1194 	ld	h, a
+      00066B 2E 1C                 1195 	ld	l, #0x1c
+      00066D E5                    1196 	push	hl
+      00066E 3E 07                 1197 	ld	a, #0x07
+      000670 F5                    1198 	push	af
+      000671 33                    1199 	inc	sp
+      000672 CDr00r00              1200 	call	_set_bkg_tile_xy
+      000675 E8 03                 1201 	add	sp, #3
+                                   1202 ;func/scoreDisplay.c:175: break;
+      000677 C3rA4r07              1203 	jp	00131$
+                                   1204 ;func/scoreDisplay.c:177: case 12:
+      00067A                       1205 00121$:
+                                   1206 ;func/scoreDisplay.c:178: set_bkg_tiles(2, 28, len, 1, buf);
+      00067A 11r00r00              1207 	ld	de, #_buf
+      00067D D5                    1208 	push	de
+      00067E 3E 01                 1209 	ld	a, #0x01
+      000680 F5                    1210 	push	af
+      000681 33                    1211 	inc	sp
+      000682 C5                    1212 	push	bc
+      000683 33                    1213 	inc	sp
+      000684 21 02 1C              1214 	ld	hl, #0x1c02
+      000687 E5                    1215 	push	hl
+      000688 CDr00r00              1216 	call	_set_bkg_tiles
+      00068B E8 06                 1217 	add	sp, #6
+                                   1218 ;func/scoreDisplay.c:179: set_bkg_tile_xy(2, 28, 0x14); // 4
+      00068D 21 1C 14              1219 	ld	hl, #0x141c
+      000690 E5                    1220 	push	hl
+      000691 3E 02                 1221 	ld	a, #0x02
+      000693 F5                    1222 	push	af
+      000694 33                    1223 	inc	sp
+      000695 CDr00r00              1224 	call	_set_bkg_tile_xy
+      000698 E8 03                 1225 	add	sp, #3
+                                   1226 ;func/scoreDisplay.c:180: set_bkg_tile_xy(3, 28, 0x2B); // K
+      00069A 21 1C 2B              1227 	ld	hl, #0x2b1c
+      00069D E5                    1228 	push	hl
+      00069E 3E 03                 1229 	ld	a, #0x03
+      0006A0 F5                    1230 	push	af
+      0006A1 33                    1231 	inc	sp
+      0006A2 CDr00r00              1232 	call	_set_bkg_tile_xy
+      0006A5 E8 03                 1233 	add	sp, #3
+                                   1234 ;func/scoreDisplay.c:181: set_bkg_tile_xy(4, 28, 0x49); // i
+      0006A7 21 1C 49              1235 	ld	hl, #0x491c
+      0006AA E5                    1236 	push	hl
+      0006AB 3E 04                 1237 	ld	a, #0x04
+      0006AD F5                    1238 	push	af
+      0006AE 33                    1239 	inc	sp
+      0006AF CDr00r00              1240 	call	_set_bkg_tile_xy
+      0006B2 E8 03                 1241 	add	sp, #3
+                                   1242 ;func/scoreDisplay.c:182: set_bkg_tile_xy(5, 28, 0x4E); // n
+      0006B4 21 1C 4E              1243 	ld	hl, #0x4e1c
+      0006B7 E5                    1244 	push	hl
+      0006B8 3E 05                 1245 	ld	a, #0x05
+      0006BA F5                    1246 	push	af
+      0006BB 33                    1247 	inc	sp
+      0006BC CDr00r00              1248 	call	_set_bkg_tile_xy
+      0006BF E8 03                 1249 	add	sp, #3
+                                   1250 ;func/scoreDisplay.c:183: set_bkg_tile_xy(6, 28, 0x44); // d
+      0006C1 21 1C 44              1251 	ld	hl, #0x441c
+      0006C4 E5                    1252 	push	hl
+      0006C5 3E 06                 1253 	ld	a, #0x06
+      0006C7 F5                    1254 	push	af
+      0006C8 33                    1255 	inc	sp
+      0006C9 CDr00r00              1256 	call	_set_bkg_tile_xy
+      0006CC E8 03                 1257 	add	sp, #3
+                                   1258 ;func/scoreDisplay.c:184: set_bkg_tile_xy(7, 28, 0x00); // blank
+      0006CE AF                    1259 	xor	a, a
+      0006CF 67                    1260 	ld	h, a
+      0006D0 2E 1C                 1261 	ld	l, #0x1c
+      0006D2 E5                    1262 	push	hl
+      0006D3 3E 07                 1263 	ld	a, #0x07
+      0006D5 F5                    1264 	push	af
+      0006D6 33                    1265 	inc	sp
+      0006D7 CDr00r00              1266 	call	_set_bkg_tile_xy
+      0006DA E8 03                 1267 	add	sp, #3
+                                   1268 ;func/scoreDisplay.c:185: break;
+      0006DC C3rA4r07              1269 	jp	00131$
+                                   1270 ;func/scoreDisplay.c:187: case 15:
+      0006DF                       1271 00122$:
+                                   1272 ;func/scoreDisplay.c:188: set_bkg_tiles(11, 32, len, 1, buf);
+      0006DF 11r00r00              1273 	ld	de, #_buf
+      0006E2 D5                    1274 	push	de
+      0006E3 3E 01                 1275 	ld	a, #0x01
+      0006E5 F5                    1276 	push	af
+      0006E6 33                    1277 	inc	sp
+      0006E7 C5                    1278 	push	bc
+      0006E8 33                    1279 	inc	sp
+      0006E9 21 0B 20              1280 	ld	hl, #0x200b
+      0006EC E5                    1281 	push	hl
+      0006ED CDr00r00              1282 	call	_set_bkg_tiles
+      0006F0 E8 06                 1283 	add	sp, #6
+                                   1284 ;func/scoreDisplay.c:189: set_bkg_tile_xy(11, 32, 0x14); // B
+      0006F2 21 20 14              1285 	ld	hl, #0x1420
+      0006F5 E5                    1286 	push	hl
+      0006F6 3E 0B                 1287 	ld	a, #0x0b
+      0006F8 F5                    1288 	push	af
+      0006F9 33                    1289 	inc	sp
+      0006FA CDr00r00              1290 	call	_set_bkg_tile_xy
+      0006FD E8 03                 1291 	add	sp, #3
+                                   1292 ;func/scoreDisplay.c:190: set_bkg_tile_xy(12, 32, 0x2B); // o
+      0006FF 21 20 2B              1293 	ld	hl, #0x2b20
+      000702 E5                    1294 	push	hl
+      000703 3E 0C                 1295 	ld	a, #0x0c
+      000705 F5                    1296 	push	af
+      000706 33                    1297 	inc	sp
+      000707 CDr00r00              1298 	call	_set_bkg_tile_xy
+      00070A E8 03                 1299 	add	sp, #3
+                                   1300 ;func/scoreDisplay.c:191: set_bkg_tile_xy(13, 32, 0x49); // n
+      00070C 21 20 49              1301 	ld	hl, #0x4920
+      00070F E5                    1302 	push	hl
+      000710 3E 0D                 1303 	ld	a, #0x0d
+      000712 F5                    1304 	push	af
+      000713 33                    1305 	inc	sp
+      000714 CDr00r00              1306 	call	_set_bkg_tile_xy
+      000717 E8 03                 1307 	add	sp, #3
+                                   1308 ;func/scoreDisplay.c:192: set_bkg_tile_xy(14, 32, 0x4E); // u
+      000719 21 20 4E              1309 	ld	hl, #0x4e20
+      00071C E5                    1310 	push	hl
+      00071D 3E 0E                 1311 	ld	a, #0x0e
+      00071F F5                    1312 	push	af
+      000720 33                    1313 	inc	sp
+      000721 CDr00r00              1314 	call	_set_bkg_tile_xy
+      000724 E8 03                 1315 	add	sp, #3
+                                   1316 ;func/scoreDisplay.c:193: set_bkg_tile_xy(15, 32, 0x44); // s
+      000726 21 20 44              1317 	ld	hl, #0x4420
+      000729 E5                    1318 	push	hl
+      00072A 3E 0F                 1319 	ld	a, #0x0f
+      00072C F5                    1320 	push	af
+      00072D 33                    1321 	inc	sp
+      00072E CDr00r00              1322 	call	_set_bkg_tile_xy
+      000731 E8 03                 1323 	add	sp, #3
+                                   1324 ;func/scoreDisplay.c:194: set_bkg_tile_xy(16, 32, 0x00); // :
+      000733 AF                    1325 	xor	a, a
+      000734 67                    1326 	ld	h, a
+      000735 2E 20                 1327 	ld	l, #0x20
+      000737 E5                    1328 	push	hl
+      000738 3E 10                 1329 	ld	a, #0x10
+      00073A F5                    1330 	push	af
+      00073B 33                    1331 	inc	sp
+      00073C CDr00r00              1332 	call	_set_bkg_tile_xy
+      00073F E8 03                 1333 	add	sp, #3
+                                   1334 ;func/scoreDisplay.c:195: break;
+      000741 18 61                 1335 	jr	00131$
+                                   1336 ;func/scoreDisplay.c:197: case 21:
+      000743                       1337 00123$:
+                                   1338 ;func/scoreDisplay.c:198: set_bkg_tiles(11, 30, len, 1, buf);
+      000743 11r00r00              1339 	ld	de, #_buf
+      000746 D5                    1340 	push	de
+      000747 3E 01                 1341 	ld	a, #0x01
+      000749 F5                    1342 	push	af
+      00074A 33                    1343 	inc	sp
+      00074B C5                    1344 	push	bc
+      00074C 33                    1345 	inc	sp
+      00074D 21 0B 1E              1346 	ld	hl, #0x1e0b
+      000750 E5                    1347 	push	hl
+      000751 CDr00r00              1348 	call	_set_bkg_tiles
+      000754 E8 06                 1349 	add	sp, #6
+                                   1350 ;func/scoreDisplay.c:199: set_bkg_tile_xy(11, 30, 0x23); // C
+      000756 21 1E 23              1351 	ld	hl, #0x231e
+      000759 E5                    1352 	push	hl
+      00075A 3E 0B                 1353 	ld	a, #0x0b
+      00075C F5                    1354 	push	af
+      00075D 33                    1355 	inc	sp
+      00075E CDr00r00              1356 	call	_set_bkg_tile_xy
+      000761 E8 03                 1357 	add	sp, #3
+                                   1358 ;func/scoreDisplay.c:200: set_bkg_tile_xy(12, 30, 0x48); // h
+      000763 21 1E 48              1359 	ld	hl, #0x481e
+      000766 E5                    1360 	push	hl
+      000767 3E 0C                 1361 	ld	a, #0x0c
+      000769 F5                    1362 	push	af
+      00076A 33                    1363 	inc	sp
+      00076B CDr00r00              1364 	call	_set_bkg_tile_xy
+      00076E E8 03                 1365 	add	sp, #3
+                                   1366 ;func/scoreDisplay.c:201: set_bkg_tile_xy(13, 30, 0x41); // a
+      000770 21 1E 41              1367 	ld	hl, #0x411e
+      000773 E5                    1368 	push	hl
+      000774 3E 0D                 1369 	ld	a, #0x0d
+      000776 F5                    1370 	push	af
+      000777 33                    1371 	inc	sp
+      000778 CDr00r00              1372 	call	_set_bkg_tile_xy
+      00077B E8 03                 1373 	add	sp, #3
+                                   1374 ;func/scoreDisplay.c:202: set_bkg_tile_xy(14, 30, 0x4E); // n
+      00077D 21 1E 4E              1375 	ld	hl, #0x4e1e
+      000780 E5                    1376 	push	hl
+      000781 3E 0E                 1377 	ld	a, #0x0e
+      000783 F5                    1378 	push	af
+      000784 33                    1379 	inc	sp
+      000785 CDr00r00              1380 	call	_set_bkg_tile_xy
+      000788 E8 03                 1381 	add	sp, #3
+                                   1382 ;func/scoreDisplay.c:203: set_bkg_tile_xy(15, 30, 0x43); // c
+      00078A 21 1E 43              1383 	ld	hl, #0x431e
+      00078D E5                    1384 	push	hl
+      00078E 3E 0F                 1385 	ld	a, #0x0f
+      000790 F5                    1386 	push	af
+      000791 33                    1387 	inc	sp
+      000792 CDr00r00              1388 	call	_set_bkg_tile_xy
+      000795 E8 03                 1389 	add	sp, #3
+                                   1390 ;func/scoreDisplay.c:204: set_bkg_tile_xy(16, 30, 0x45); // e
+      000797 21 1E 45              1391 	ld	hl, #0x451e
+      00079A E5                    1392 	push	hl
+      00079B 3E 10                 1393 	ld	a, #0x10
+      00079D F5                    1394 	push	af
+      00079E 33                    1395 	inc	sp
+      00079F CDr00r00              1396 	call	_set_bkg_tile_xy
+      0007A2 E8 03                 1397 	add	sp, #3
+                                   1398 ;func/scoreDisplay.c:206: }
+      0007A4                       1399 00131$:
+                                   1400 ;func/scoreDisplay.c:211: bcd_add(&lowerScoreBCD, &lowerScoreBuf);
+      0007A4 11r00r00              1401 	ld	de, #_lowerScoreBuf
+      0007A7 D5                    1402 	push	de
+      0007A8 11r00r00              1403 	ld	de, #_lowerScoreBCD
+      0007AB D5                    1404 	push	de
+      0007AC CDr00r00              1405 	call	_bcd_add
+                                   1406 ;func/scoreDisplay.c:212: }
+      0007AF E8 09                 1407 	add	sp, #9
+      0007B1 C9                    1408 	ret
+                                   1409 ;func/scoreDisplay.c:215: void setScoreTotal(){
+                                   1410 ;	---------------------------------
+                                   1411 ; Function setScoreTotal
+                                   1412 ; ---------------------------------
+      0007B2                       1413 _setScoreTotal::
+                                   1414 ;func/scoreDisplay.c:217: bcd_sub(&totalScoreAdd, &totalScoreAdd);
+      0007B2 11r00r00              1415 	ld	de, #_totalScoreAdd
+      0007B5 D5                    1416 	push	de
+      0007B6 D5                    1417 	push	de
+      0007B7 CDr00r00              1418 	call	_bcd_sub
+      0007BA E8 04                 1419 	add	sp, #4
+                                   1420 ;func/scoreDisplay.c:219: bcd_add(&totalScoreAdd, &upperScoreBCD);
+      0007BC 11r00r00              1421 	ld	de, #_upperScoreBCD
+      0007BF D5                    1422 	push	de
+      0007C0 11r00r00              1423 	ld	de, #_totalScoreAdd
+      0007C3 D5                    1424 	push	de
+      0007C4 CDr00r00              1425 	call	_bcd_add
+      0007C7 E8 04                 1426 	add	sp, #4
+                                   1427 ;func/scoreDisplay.c:221: bcd_add(&totalScoreAdd, &lowerScoreBCD);
+      0007C9 11r00r00              1428 	ld	de, #_lowerScoreBCD
+      0007CC D5                    1429 	push	de
+      0007CD 11r00r00              1430 	ld	de, #_totalScoreAdd
+      0007D0 D5                    1431 	push	de
+      0007D1 CDr00r00              1432 	call	_bcd_add
+      0007D4 E8 04                 1433 	add	sp, #4
+                                   1434 ;func/scoreDisplay.c:222: if(&totalScoreBCD == &totalScoreAdd) return;
+      0007D6 3Er00                 1435 	ld	a, #<(_totalScoreAdd)
+      0007D8 D6r00                 1436 	sub	a, #<(_totalScoreBCD)
+      0007DA 20 07                 1437 	jr	NZ, 00105$
+      0007DC 3Es00                 1438 	ld	a, #>(_totalScoreAdd)
+      0007DE D6s00                 1439 	sub	a, #>(_totalScoreBCD)
+      0007E0 C8                    1440 	ret	Z
+      0007E1 18 00                 1441 	jr	00105$
+      0007E3                       1442 00105$:
+                                   1443 ;func/scoreDisplay.c:223: else if(&totalScoreBCD > &totalScoreAdd){
+      0007E3 3Er00                 1444 	ld	a, #<(_totalScoreAdd)
+      0007E5 D6r00                 1445 	sub	a, #<(_totalScoreBCD)
+      0007E7 3Es00                 1446 	ld	a, #>(_totalScoreAdd)
+      0007E9 DEs00                 1447 	sbc	a, #>(_totalScoreBCD)
+      0007EB 30 09                 1448 	jr	NC, 00102$
+                                   1449 ;func/scoreDisplay.c:224: printf("Scoring Error");
+      0007ED 11r26r08              1450 	ld	de, #___str_0
+      0007F0 D5                    1451 	push	de
+      0007F1 CDr00r00              1452 	call	_printf
+      0007F4 E1                    1453 	pop	hl
+      0007F5 C9                    1454 	ret
+      0007F6                       1455 00102$:
+                                   1456 ;func/scoreDisplay.c:227: bcd_sub(&totalScoreBCD, &totalScoreBCD);
+      0007F6 11r00r00              1457 	ld	de, #_totalScoreBCD
+      0007F9 D5                    1458 	push	de
+      0007FA D5                    1459 	push	de
+      0007FB CDr00r00              1460 	call	_bcd_sub
+      0007FE E8 04                 1461 	add	sp, #4
+                                   1462 ;func/scoreDisplay.c:228: bcd_add(&totalScoreBCD, &totalScoreAdd);
+      000800 11r00r00              1463 	ld	de, #_totalScoreAdd
+      000803 D5                    1464 	push	de
+      000804 11r00r00              1465 	ld	de, #_totalScoreBCD
+      000807 D5                    1466 	push	de
+      000808 CDr00r00              1467 	call	_bcd_add
+      00080B E8 04                 1468 	add	sp, #4
+                                   1469 ;func/scoreDisplay.c:229: len = bcd2text(&totalScoreBCD, 0x10, buf);
+      00080D 11r00r00              1470 	ld	de, #_buf
+      000810 D5                    1471 	push	de
+      000811 3E 10                 1472 	ld	a, #0x10
+      000813 F5                    1473 	push	af
+      000814 33                    1474 	inc	sp
+      000815 11r00r00              1475 	ld	de, #_totalScoreBCD
+      000818 D5                    1476 	push	de
+      000819 CDr00r00              1477 	call	_bcd2text
+      00081C E8 05                 1478 	add	sp, #5
+      00081E 21r00r00              1479 	ld	hl, #_len
+      000821 7B                    1480 	ld	a, e
+      000822 22                    1481 	ld	(hl+), a
+      000823 36 00                 1482 	ld	(hl), #0x00
+                                   1483 ;func/scoreDisplay.c:231: }
+      000825 C9                    1484 	ret
+      000826                       1485 ___str_0:
+      000826 53 63 6F 72 69 6E 67  1486 	.ascii "Scoring Error"
              20 45 72 72 6F 72
-      00084D 00                    1511 	.db 0x00
-                                   1512 ;func/scoreDisplay.c:234: void scoreDisplay(){
-                                   1513 ;	---------------------------------
-                                   1514 ; Function scoreDisplay
-                                   1515 ; ---------------------------------
-      00084E                       1516 _scoreDisplay::
-                                   1517 ;func/scoreDisplay.c:236: if(viewMode == 1){
-      00084E FAr00r00              1518 	ld	a, (#_viewMode)
-      000851 3D                    1519 	dec	a
-      000852 C2r64r09              1520 	jp	NZ,00102$
-                                   1521 ;func/scoreDisplay.c:240: len = bcd2text(&upperScoreBCD, 0x10, buf);
-      000855 11r00r00              1522 	ld	de, #_buf
-      000858 D5                    1523 	push	de
-      000859 3E 10                 1524 	ld	a, #0x10
-      00085B F5                    1525 	push	af
-      00085C 33                    1526 	inc	sp
-      00085D 11r00r00              1527 	ld	de, #_upperScoreBCD
-      000860 D5                    1528 	push	de
-      000861 CDr00r00              1529 	call	_bcd2text
-      000864 E8 05                 1530 	add	sp, #5
-      000866 21r00r00              1531 	ld	hl, #_len
-      000869 7B                    1532 	ld	a, e
-      00086A 22                    1533 	ld	(hl+), a
-                                   1534 ;func/scoreDisplay.c:241: set_bkg_tiles(11, 26, len, 1, buf);
-      00086B 3E 00                 1535 	ld	a, #0x00
-      00086D 32                    1536 	ld	(hl-), a
-      00086E 7E                    1537 	ld	a, (hl)
-      00086F 11r00r00              1538 	ld	de, #_buf
-      000872 D5                    1539 	push	de
-      000873 26 01                 1540 	ld	h, #0x01
-                                   1541 ;	spillPairReg hl
-                                   1542 ;	spillPairReg hl
-      000875 E5                    1543 	push	hl
-      000876 33                    1544 	inc	sp
-      000877 67                    1545 	ld	h, a
-      000878 2E 1A                 1546 	ld	l, #0x1a
-      00087A E5                    1547 	push	hl
-      00087B 3E 0B                 1548 	ld	a, #0x0b
-      00087D F5                    1549 	push	af
-      00087E 33                    1550 	inc	sp
-      00087F CDr00r00              1551 	call	_set_bkg_tiles
-      000882 E8 06                 1552 	add	sp, #6
-                                   1553 ;func/scoreDisplay.c:242: set_bkg_tile_xy(11, 26, 0x52); // r
-      000884 21 1A 52              1554 	ld	hl, #0x521a
-      000887 E5                    1555 	push	hl
-      000888 3E 0B                 1556 	ld	a, #0x0b
-      00088A F5                    1557 	push	af
-      00088B 33                    1558 	inc	sp
-      00088C CDr00r00              1559 	call	_set_bkg_tile_xy
-      00088F E8 03                 1560 	add	sp, #3
-                                   1561 ;func/scoreDisplay.c:243: set_bkg_tile_xy(12, 26, 0x1A); // :
-      000891 21 1A 1A              1562 	ld	hl, #0x1a1a
-      000894 E5                    1563 	push	hl
-      000895 3E 0C                 1564 	ld	a, #0x0c
-      000897 F5                    1565 	push	af
-      000898 33                    1566 	inc	sp
-      000899 CDr00r00              1567 	call	_set_bkg_tile_xy
-      00089C E8 03                 1568 	add	sp, #3
-                                   1569 ;func/scoreDisplay.c:244: set_bkg_tile_xy(13, 26, 0x00); // blank
-      00089E AF                    1570 	xor	a, a
-      00089F 67                    1571 	ld	h, a
-      0008A0 2E 1A                 1572 	ld	l, #0x1a
-      0008A2 E5                    1573 	push	hl
-      0008A3 3E 0D                 1574 	ld	a, #0x0d
-      0008A5 F5                    1575 	push	af
-      0008A6 33                    1576 	inc	sp
-      0008A7 CDr00r00              1577 	call	_set_bkg_tile_xy
-      0008AA E8 03                 1578 	add	sp, #3
-                                   1579 ;func/scoreDisplay.c:245: set_bkg_tile_xy(14, 26, 0x00); // blank
-      0008AC AF                    1580 	xor	a, a
-      0008AD 67                    1581 	ld	h, a
-      0008AE 2E 1A                 1582 	ld	l, #0x1a
-      0008B0 E5                    1583 	push	hl
-      0008B1 3E 0E                 1584 	ld	a, #0x0e
-      0008B3 F5                    1585 	push	af
-      0008B4 33                    1586 	inc	sp
-      0008B5 CDr00r00              1587 	call	_set_bkg_tile_xy
-      0008B8 E8 03                 1588 	add	sp, #3
-                                   1589 ;func/scoreDisplay.c:246: set_bkg_tile_xy(15, 26, 0x00); // blank
-      0008BA AF                    1590 	xor	a, a
-      0008BB 67                    1591 	ld	h, a
-      0008BC 2E 1A                 1592 	ld	l, #0x1a
-      0008BE E5                    1593 	push	hl
-      0008BF 3E 0F                 1594 	ld	a, #0x0f
-      0008C1 F5                    1595 	push	af
-      0008C2 33                    1596 	inc	sp
-      0008C3 CDr00r00              1597 	call	_set_bkg_tile_xy
-      0008C6 E8 03                 1598 	add	sp, #3
-                                   1599 ;func/scoreDisplay.c:250: len = bcd2text(&lowerScoreBCD, 0x10, buf);
-      0008C8 11r00r00              1600 	ld	de, #_buf
-      0008CB D5                    1601 	push	de
-      0008CC 3E 10                 1602 	ld	a, #0x10
-      0008CE F5                    1603 	push	af
-      0008CF 33                    1604 	inc	sp
-      0008D0 11r00r00              1605 	ld	de, #_lowerScoreBCD
-      0008D3 D5                    1606 	push	de
-      0008D4 CDr00r00              1607 	call	_bcd2text
-      0008D7 E8 05                 1608 	add	sp, #5
-      0008D9 21r00r00              1609 	ld	hl, #_len
-      0008DC 7B                    1610 	ld	a, e
-      0008DD 22                    1611 	ld	(hl+), a
-                                   1612 ;func/scoreDisplay.c:251: set_bkg_tiles(11, 33, len, 1, buf);
-      0008DE 3E 00                 1613 	ld	a, #0x00
-      0008E0 32                    1614 	ld	(hl-), a
-      0008E1 7E                    1615 	ld	a, (hl)
-      0008E2 11r00r00              1616 	ld	de, #_buf
-      0008E5 D5                    1617 	push	de
-      0008E6 26 01                 1618 	ld	h, #0x01
-                                   1619 ;	spillPairReg hl
-                                   1620 ;	spillPairReg hl
-      0008E8 E5                    1621 	push	hl
-      0008E9 33                    1622 	inc	sp
-      0008EA 67                    1623 	ld	h, a
-      0008EB 2E 21                 1624 	ld	l, #0x21
-      0008ED E5                    1625 	push	hl
-      0008EE 3E 0B                 1626 	ld	a, #0x0b
-      0008F0 F5                    1627 	push	af
-      0008F1 33                    1628 	inc	sp
-      0008F2 CDr00r00              1629 	call	_set_bkg_tiles
-      0008F5 E8 06                 1630 	add	sp, #6
-                                   1631 ;func/scoreDisplay.c:252: set_bkg_tile_xy(11, 33, 0x52); // r
-      0008F7 21 21 52              1632 	ld	hl, #0x5221
-      0008FA E5                    1633 	push	hl
-      0008FB 3E 0B                 1634 	ld	a, #0x0b
-      0008FD F5                    1635 	push	af
-      0008FE 33                    1636 	inc	sp
-      0008FF CDr00r00              1637 	call	_set_bkg_tile_xy
-      000902 E8 03                 1638 	add	sp, #3
-                                   1639 ;func/scoreDisplay.c:253: set_bkg_tile_xy(12, 33, 0x1A); // :
-      000904 21 21 1A              1640 	ld	hl, #0x1a21
-      000907 E5                    1641 	push	hl
-      000908 3E 0C                 1642 	ld	a, #0x0c
-      00090A F5                    1643 	push	af
-      00090B 33                    1644 	inc	sp
-      00090C CDr00r00              1645 	call	_set_bkg_tile_xy
-      00090F E8 03                 1646 	add	sp, #3
-                                   1647 ;func/scoreDisplay.c:254: set_bkg_tile_xy(13, 33, 0x00); // blank
-      000911 AF                    1648 	xor	a, a
-      000912 67                    1649 	ld	h, a
-      000913 2E 21                 1650 	ld	l, #0x21
-      000915 E5                    1651 	push	hl
-      000916 3E 0D                 1652 	ld	a, #0x0d
-      000918 F5                    1653 	push	af
-      000919 33                    1654 	inc	sp
-      00091A CDr00r00              1655 	call	_set_bkg_tile_xy
-      00091D E8 03                 1656 	add	sp, #3
-                                   1657 ;func/scoreDisplay.c:257: setScoreTotal();
-      00091F CDrCCr07              1658 	call	_setScoreTotal
-                                   1659 ;func/scoreDisplay.c:258: set_bkg_tiles(11, 34, len, 1, buf);
-      000922 21r00r00              1660 	ld	hl, #_len
-      000925 7E                    1661 	ld	a, (hl)
-      000926 11r00r00              1662 	ld	de, #_buf
-      000929 D5                    1663 	push	de
-      00092A 26 01                 1664 	ld	h, #0x01
-                                   1665 ;	spillPairReg hl
-                                   1666 ;	spillPairReg hl
-      00092C E5                    1667 	push	hl
-      00092D 33                    1668 	inc	sp
-      00092E 67                    1669 	ld	h, a
-      00092F 2E 22                 1670 	ld	l, #0x22
-      000931 E5                    1671 	push	hl
-      000932 3E 0B                 1672 	ld	a, #0x0b
-      000934 F5                    1673 	push	af
-      000935 33                    1674 	inc	sp
-      000936 CDr00r00              1675 	call	_set_bkg_tiles
-      000939 E8 06                 1676 	add	sp, #6
-                                   1677 ;func/scoreDisplay.c:259: set_bkg_tile_xy(11, 34, 0x4C); // l
-      00093B 21 22 4C              1678 	ld	hl, #0x4c22
-      00093E E5                    1679 	push	hl
-      00093F 3E 0B                 1680 	ld	a, #0x0b
-      000941 F5                    1681 	push	af
-      000942 33                    1682 	inc	sp
-      000943 CDr00r00              1683 	call	_set_bkg_tile_xy
-      000946 E8 03                 1684 	add	sp, #3
-                                   1685 ;func/scoreDisplay.c:260: set_bkg_tile_xy(12, 34, 0x1A); // :
-      000948 21 22 1A              1686 	ld	hl, #0x1a22
-      00094B E5                    1687 	push	hl
-      00094C 3E 0C                 1688 	ld	a, #0x0c
-      00094E F5                    1689 	push	af
-      00094F 33                    1690 	inc	sp
-      000950 CDr00r00              1691 	call	_set_bkg_tile_xy
-      000953 E8 03                 1692 	add	sp, #3
-                                   1693 ;func/scoreDisplay.c:261: set_bkg_tile_xy(13, 34, 0x00); // blank
-      000955 AF                    1694 	xor	a, a
-      000956 67                    1695 	ld	h, a
-      000957 2E 22                 1696 	ld	l, #0x22
-      000959 E5                    1697 	push	hl
-      00095A 3E 0D                 1698 	ld	a, #0x0d
-      00095C F5                    1699 	push	af
-      00095D 33                    1700 	inc	sp
-      00095E CDr00r00              1701 	call	_set_bkg_tile_xy
-      000961 E8 03                 1702 	add	sp, #3
-      000963 C9                    1703 	ret
-      000964                       1704 00102$:
-                                   1705 ;func/scoreDisplay.c:265: setScoreTotal();
-      000964 CDrCCr07              1706 	call	_setScoreTotal
-                                   1707 ;func/scoreDisplay.c:266: set_bkg_tiles(11, 2, len, 1, buf);
-      000967 01r00r00              1708 	ld	bc, #_buf+0
-      00096A 21r00r00              1709 	ld	hl, #_len
-      00096D 7E                    1710 	ld	a, (hl)
-      00096E C5                    1711 	push	bc
-      00096F 26 01                 1712 	ld	h, #0x01
-                                   1713 ;	spillPairReg hl
-                                   1714 ;	spillPairReg hl
-      000971 E5                    1715 	push	hl
-      000972 33                    1716 	inc	sp
-      000973 67                    1717 	ld	h, a
-      000974 2E 02                 1718 	ld	l, #0x02
-      000976 E5                    1719 	push	hl
-      000977 3E 0B                 1720 	ld	a, #0x0b
-      000979 F5                    1721 	push	af
-      00097A 33                    1722 	inc	sp
-      00097B CDr00r00              1723 	call	_set_bkg_tiles
-      00097E E8 06                 1724 	add	sp, #6
-                                   1725 ;func/scoreDisplay.c:267: set_bkg_tile_xy(11, 2, 0x00); // blank
-      000980 AF                    1726 	xor	a, a
-      000981 67                    1727 	ld	h, a
-      000982 2E 02                 1728 	ld	l, #0x02
-      000984 E5                    1729 	push	hl
-      000985 3E 0B                 1730 	ld	a, #0x0b
-      000987 F5                    1731 	push	af
-      000988 33                    1732 	inc	sp
-      000989 CDr00r00              1733 	call	_set_bkg_tile_xy
-      00098C E8 03                 1734 	add	sp, #3
-                                   1735 ;func/scoreDisplay.c:268: set_bkg_tile_xy(12, 2, 0x00); // blank
-      00098E AF                    1736 	xor	a, a
-      00098F 67                    1737 	ld	h, a
-      000990 2E 02                 1738 	ld	l, #0x02
-      000992 E5                    1739 	push	hl
-      000993 3E 0C                 1740 	ld	a, #0x0c
-      000995 F5                    1741 	push	af
-      000996 33                    1742 	inc	sp
-      000997 CDr00r00              1743 	call	_set_bkg_tile_xy
-      00099A E8 03                 1744 	add	sp, #3
-                                   1745 ;func/scoreDisplay.c:269: set_bkg_tile_xy(13, 2, 0x00); // blank
-      00099C AF                    1746 	xor	a, a
-      00099D 67                    1747 	ld	h, a
-      00099E 2E 02                 1748 	ld	l, #0x02
-      0009A0 E5                    1749 	push	hl
-      0009A1 3E 0D                 1750 	ld	a, #0x0d
-      0009A3 F5                    1751 	push	af
-      0009A4 33                    1752 	inc	sp
-      0009A5 CDr00r00              1753 	call	_set_bkg_tile_xy
-      0009A8 E8 03                 1754 	add	sp, #3
-                                   1755 ;func/scoreDisplay.c:272: }
-      0009AA C9                    1756 	ret
-                                   1757 	.area _CODE
-                                   1758 	.area _INITIALIZER
-                                   1759 	.area _CABS (ABS)
+      000833 00                    1487 	.db 0x00
+                                   1488 ;func/scoreDisplay.c:234: void scoreDisplay(){
+                                   1489 ;	---------------------------------
+                                   1490 ; Function scoreDisplay
+                                   1491 ; ---------------------------------
+      000834                       1492 _scoreDisplay::
+                                   1493 ;func/scoreDisplay.c:236: if(viewMode == 1){
+      000834 FAr00r00              1494 	ld	a, (#_viewMode)
+      000837 3D                    1495 	dec	a
+      000838 C2r4Ar09              1496 	jp	NZ,00102$
+                                   1497 ;func/scoreDisplay.c:240: len = bcd2text(&upperScoreBCD, 0x10, buf);
+      00083B 11r00r00              1498 	ld	de, #_buf
+      00083E D5                    1499 	push	de
+      00083F 3E 10                 1500 	ld	a, #0x10
+      000841 F5                    1501 	push	af
+      000842 33                    1502 	inc	sp
+      000843 11r00r00              1503 	ld	de, #_upperScoreBCD
+      000846 D5                    1504 	push	de
+      000847 CDr00r00              1505 	call	_bcd2text
+      00084A E8 05                 1506 	add	sp, #5
+      00084C 21r00r00              1507 	ld	hl, #_len
+      00084F 7B                    1508 	ld	a, e
+      000850 22                    1509 	ld	(hl+), a
+                                   1510 ;func/scoreDisplay.c:241: set_bkg_tiles(11, 26, len, 1, buf);
+      000851 3E 00                 1511 	ld	a, #0x00
+      000853 32                    1512 	ld	(hl-), a
+      000854 7E                    1513 	ld	a, (hl)
+      000855 11r00r00              1514 	ld	de, #_buf
+      000858 D5                    1515 	push	de
+      000859 26 01                 1516 	ld	h, #0x01
+                                   1517 ;	spillPairReg hl
+                                   1518 ;	spillPairReg hl
+      00085B E5                    1519 	push	hl
+      00085C 33                    1520 	inc	sp
+      00085D 67                    1521 	ld	h, a
+      00085E 2E 1A                 1522 	ld	l, #0x1a
+      000860 E5                    1523 	push	hl
+      000861 3E 0B                 1524 	ld	a, #0x0b
+      000863 F5                    1525 	push	af
+      000864 33                    1526 	inc	sp
+      000865 CDr00r00              1527 	call	_set_bkg_tiles
+      000868 E8 06                 1528 	add	sp, #6
+                                   1529 ;func/scoreDisplay.c:242: set_bkg_tile_xy(11, 26, 0x52); // r
+      00086A 21 1A 52              1530 	ld	hl, #0x521a
+      00086D E5                    1531 	push	hl
+      00086E 3E 0B                 1532 	ld	a, #0x0b
+      000870 F5                    1533 	push	af
+      000871 33                    1534 	inc	sp
+      000872 CDr00r00              1535 	call	_set_bkg_tile_xy
+      000875 E8 03                 1536 	add	sp, #3
+                                   1537 ;func/scoreDisplay.c:243: set_bkg_tile_xy(12, 26, 0x1A); // :
+      000877 21 1A 1A              1538 	ld	hl, #0x1a1a
+      00087A E5                    1539 	push	hl
+      00087B 3E 0C                 1540 	ld	a, #0x0c
+      00087D F5                    1541 	push	af
+      00087E 33                    1542 	inc	sp
+      00087F CDr00r00              1543 	call	_set_bkg_tile_xy
+      000882 E8 03                 1544 	add	sp, #3
+                                   1545 ;func/scoreDisplay.c:244: set_bkg_tile_xy(13, 26, 0x00); // blank
+      000884 AF                    1546 	xor	a, a
+      000885 67                    1547 	ld	h, a
+      000886 2E 1A                 1548 	ld	l, #0x1a
+      000888 E5                    1549 	push	hl
+      000889 3E 0D                 1550 	ld	a, #0x0d
+      00088B F5                    1551 	push	af
+      00088C 33                    1552 	inc	sp
+      00088D CDr00r00              1553 	call	_set_bkg_tile_xy
+      000890 E8 03                 1554 	add	sp, #3
+                                   1555 ;func/scoreDisplay.c:245: set_bkg_tile_xy(14, 26, 0x00); // blank
+      000892 AF                    1556 	xor	a, a
+      000893 67                    1557 	ld	h, a
+      000894 2E 1A                 1558 	ld	l, #0x1a
+      000896 E5                    1559 	push	hl
+      000897 3E 0E                 1560 	ld	a, #0x0e
+      000899 F5                    1561 	push	af
+      00089A 33                    1562 	inc	sp
+      00089B CDr00r00              1563 	call	_set_bkg_tile_xy
+      00089E E8 03                 1564 	add	sp, #3
+                                   1565 ;func/scoreDisplay.c:246: set_bkg_tile_xy(15, 26, 0x00); // blank
+      0008A0 AF                    1566 	xor	a, a
+      0008A1 67                    1567 	ld	h, a
+      0008A2 2E 1A                 1568 	ld	l, #0x1a
+      0008A4 E5                    1569 	push	hl
+      0008A5 3E 0F                 1570 	ld	a, #0x0f
+      0008A7 F5                    1571 	push	af
+      0008A8 33                    1572 	inc	sp
+      0008A9 CDr00r00              1573 	call	_set_bkg_tile_xy
+      0008AC E8 03                 1574 	add	sp, #3
+                                   1575 ;func/scoreDisplay.c:250: len = bcd2text(&lowerScoreBCD, 0x10, buf);
+      0008AE 11r00r00              1576 	ld	de, #_buf
+      0008B1 D5                    1577 	push	de
+      0008B2 3E 10                 1578 	ld	a, #0x10
+      0008B4 F5                    1579 	push	af
+      0008B5 33                    1580 	inc	sp
+      0008B6 11r00r00              1581 	ld	de, #_lowerScoreBCD
+      0008B9 D5                    1582 	push	de
+      0008BA CDr00r00              1583 	call	_bcd2text
+      0008BD E8 05                 1584 	add	sp, #5
+      0008BF 21r00r00              1585 	ld	hl, #_len
+      0008C2 7B                    1586 	ld	a, e
+      0008C3 22                    1587 	ld	(hl+), a
+                                   1588 ;func/scoreDisplay.c:251: set_bkg_tiles(11, 33, len, 1, buf);
+      0008C4 3E 00                 1589 	ld	a, #0x00
+      0008C6 32                    1590 	ld	(hl-), a
+      0008C7 7E                    1591 	ld	a, (hl)
+      0008C8 11r00r00              1592 	ld	de, #_buf
+      0008CB D5                    1593 	push	de
+      0008CC 26 01                 1594 	ld	h, #0x01
+                                   1595 ;	spillPairReg hl
+                                   1596 ;	spillPairReg hl
+      0008CE E5                    1597 	push	hl
+      0008CF 33                    1598 	inc	sp
+      0008D0 67                    1599 	ld	h, a
+      0008D1 2E 21                 1600 	ld	l, #0x21
+      0008D3 E5                    1601 	push	hl
+      0008D4 3E 0B                 1602 	ld	a, #0x0b
+      0008D6 F5                    1603 	push	af
+      0008D7 33                    1604 	inc	sp
+      0008D8 CDr00r00              1605 	call	_set_bkg_tiles
+      0008DB E8 06                 1606 	add	sp, #6
+                                   1607 ;func/scoreDisplay.c:252: set_bkg_tile_xy(11, 33, 0x52); // r
+      0008DD 21 21 52              1608 	ld	hl, #0x5221
+      0008E0 E5                    1609 	push	hl
+      0008E1 3E 0B                 1610 	ld	a, #0x0b
+      0008E3 F5                    1611 	push	af
+      0008E4 33                    1612 	inc	sp
+      0008E5 CDr00r00              1613 	call	_set_bkg_tile_xy
+      0008E8 E8 03                 1614 	add	sp, #3
+                                   1615 ;func/scoreDisplay.c:253: set_bkg_tile_xy(12, 33, 0x1A); // :
+      0008EA 21 21 1A              1616 	ld	hl, #0x1a21
+      0008ED E5                    1617 	push	hl
+      0008EE 3E 0C                 1618 	ld	a, #0x0c
+      0008F0 F5                    1619 	push	af
+      0008F1 33                    1620 	inc	sp
+      0008F2 CDr00r00              1621 	call	_set_bkg_tile_xy
+      0008F5 E8 03                 1622 	add	sp, #3
+                                   1623 ;func/scoreDisplay.c:254: set_bkg_tile_xy(13, 33, 0x00); // blank
+      0008F7 AF                    1624 	xor	a, a
+      0008F8 67                    1625 	ld	h, a
+      0008F9 2E 21                 1626 	ld	l, #0x21
+      0008FB E5                    1627 	push	hl
+      0008FC 3E 0D                 1628 	ld	a, #0x0d
+      0008FE F5                    1629 	push	af
+      0008FF 33                    1630 	inc	sp
+      000900 CDr00r00              1631 	call	_set_bkg_tile_xy
+      000903 E8 03                 1632 	add	sp, #3
+                                   1633 ;func/scoreDisplay.c:257: setScoreTotal();
+      000905 CDrB2r07              1634 	call	_setScoreTotal
+                                   1635 ;func/scoreDisplay.c:258: set_bkg_tiles(11, 34, len, 1, buf);
+      000908 21r00r00              1636 	ld	hl, #_len
+      00090B 7E                    1637 	ld	a, (hl)
+      00090C 11r00r00              1638 	ld	de, #_buf
+      00090F D5                    1639 	push	de
+      000910 26 01                 1640 	ld	h, #0x01
+                                   1641 ;	spillPairReg hl
+                                   1642 ;	spillPairReg hl
+      000912 E5                    1643 	push	hl
+      000913 33                    1644 	inc	sp
+      000914 67                    1645 	ld	h, a
+      000915 2E 22                 1646 	ld	l, #0x22
+      000917 E5                    1647 	push	hl
+      000918 3E 0B                 1648 	ld	a, #0x0b
+      00091A F5                    1649 	push	af
+      00091B 33                    1650 	inc	sp
+      00091C CDr00r00              1651 	call	_set_bkg_tiles
+      00091F E8 06                 1652 	add	sp, #6
+                                   1653 ;func/scoreDisplay.c:259: set_bkg_tile_xy(11, 34, 0x4C); // l
+      000921 21 22 4C              1654 	ld	hl, #0x4c22
+      000924 E5                    1655 	push	hl
+      000925 3E 0B                 1656 	ld	a, #0x0b
+      000927 F5                    1657 	push	af
+      000928 33                    1658 	inc	sp
+      000929 CDr00r00              1659 	call	_set_bkg_tile_xy
+      00092C E8 03                 1660 	add	sp, #3
+                                   1661 ;func/scoreDisplay.c:260: set_bkg_tile_xy(12, 34, 0x1A); // :
+      00092E 21 22 1A              1662 	ld	hl, #0x1a22
+      000931 E5                    1663 	push	hl
+      000932 3E 0C                 1664 	ld	a, #0x0c
+      000934 F5                    1665 	push	af
+      000935 33                    1666 	inc	sp
+      000936 CDr00r00              1667 	call	_set_bkg_tile_xy
+      000939 E8 03                 1668 	add	sp, #3
+                                   1669 ;func/scoreDisplay.c:261: set_bkg_tile_xy(13, 34, 0x00); // blank
+      00093B AF                    1670 	xor	a, a
+      00093C 67                    1671 	ld	h, a
+      00093D 2E 22                 1672 	ld	l, #0x22
+      00093F E5                    1673 	push	hl
+      000940 3E 0D                 1674 	ld	a, #0x0d
+      000942 F5                    1675 	push	af
+      000943 33                    1676 	inc	sp
+      000944 CDr00r00              1677 	call	_set_bkg_tile_xy
+      000947 E8 03                 1678 	add	sp, #3
+      000949 C9                    1679 	ret
+      00094A                       1680 00102$:
+                                   1681 ;func/scoreDisplay.c:265: setScoreTotal();
+      00094A CDrB2r07              1682 	call	_setScoreTotal
+                                   1683 ;func/scoreDisplay.c:266: set_bkg_tiles(11, 2, len, 1, buf);
+      00094D 01r00r00              1684 	ld	bc, #_buf+0
+      000950 21r00r00              1685 	ld	hl, #_len
+      000953 7E                    1686 	ld	a, (hl)
+      000954 C5                    1687 	push	bc
+      000955 26 01                 1688 	ld	h, #0x01
+                                   1689 ;	spillPairReg hl
+                                   1690 ;	spillPairReg hl
+      000957 E5                    1691 	push	hl
+      000958 33                    1692 	inc	sp
+      000959 67                    1693 	ld	h, a
+      00095A 2E 02                 1694 	ld	l, #0x02
+      00095C E5                    1695 	push	hl
+      00095D 3E 0B                 1696 	ld	a, #0x0b
+      00095F F5                    1697 	push	af
+      000960 33                    1698 	inc	sp
+      000961 CDr00r00              1699 	call	_set_bkg_tiles
+      000964 E8 06                 1700 	add	sp, #6
+                                   1701 ;func/scoreDisplay.c:267: set_bkg_tile_xy(11, 2, 0x00); // blank
+      000966 AF                    1702 	xor	a, a
+      000967 67                    1703 	ld	h, a
+      000968 2E 02                 1704 	ld	l, #0x02
+      00096A E5                    1705 	push	hl
+      00096B 3E 0B                 1706 	ld	a, #0x0b
+      00096D F5                    1707 	push	af
+      00096E 33                    1708 	inc	sp
+      00096F CDr00r00              1709 	call	_set_bkg_tile_xy
+      000972 E8 03                 1710 	add	sp, #3
+                                   1711 ;func/scoreDisplay.c:268: set_bkg_tile_xy(12, 2, 0x00); // blank
+      000974 AF                    1712 	xor	a, a
+      000975 67                    1713 	ld	h, a
+      000976 2E 02                 1714 	ld	l, #0x02
+      000978 E5                    1715 	push	hl
+      000979 3E 0C                 1716 	ld	a, #0x0c
+      00097B F5                    1717 	push	af
+      00097C 33                    1718 	inc	sp
+      00097D CDr00r00              1719 	call	_set_bkg_tile_xy
+      000980 E8 03                 1720 	add	sp, #3
+                                   1721 ;func/scoreDisplay.c:269: set_bkg_tile_xy(13, 2, 0x00); // blank
+      000982 AF                    1722 	xor	a, a
+      000983 67                    1723 	ld	h, a
+      000984 2E 02                 1724 	ld	l, #0x02
+      000986 E5                    1725 	push	hl
+      000987 3E 0D                 1726 	ld	a, #0x0d
+      000989 F5                    1727 	push	af
+      00098A 33                    1728 	inc	sp
+      00098B CDr00r00              1729 	call	_set_bkg_tile_xy
+      00098E E8 03                 1730 	add	sp, #3
+                                   1731 ;func/scoreDisplay.c:272: }
+      000990 C9                    1732 	ret
+                                   1733 	.area _CODE
+                                   1734 	.area _INITIALIZER
+                                   1735 	.area _CABS (ABS)

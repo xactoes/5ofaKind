@@ -16,11 +16,13 @@ extern unsigned int match5;
 extern unsigned int rollsLeft;
 extern unsigned int scoreBuf;
 extern unsigned int scoresSet;
+extern unsigned int smStraightContinue;
 extern unsigned int turn;
 extern unsigned int turnsPassed;
 extern unsigned int scorecard[15];
 extern unsigned int scorecardSummed[15];	//used for funky logic with BCD
 extern unsigned char buf[10];
+extern unsigned char endGame;
 extern unsigned char quickSwitch;
 extern unsigned char upperRegion;
 extern unsigned char viewMode;

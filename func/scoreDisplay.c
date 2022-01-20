@@ -110,10 +110,10 @@ void setScoreUpper(){
 	//made another BCD pointer to just make comparisons not need to be translated
 	//printf("%u ", &upperScoreBCD);
 
-	if(&upperScoreBCD >= &compareBCD && scorecard[14] == 255){
-		scorecard[14] = 35;
-		scorecardSummed[14] = scorecard[14];
-		uint2bcd(scorecard[14], &upperScoreBuf);
+	if(&upperScoreBCD >= &compareBCD && scorecard[7] == 255){
+		scorecard[7] = 35;
+		scorecardSummed[7] = scorecard[7];
+		uint2bcd(scorecard[7], &upperScoreBuf);
 		bcd_add(&upperScoreBCD, &upperScoreBuf);
 	}
 }
@@ -137,26 +137,26 @@ void setScoreLower(){
 				else if(cursorIndex >= 19 && cursorIndex <= 21){
 					//printf("upper check: %u\n", scorecard[i]);
 					scorecardSummed[cursorIndex - 8] = scorecard[cursorIndex - 8];
-					//printf("%u\n", scorecardSummed[12]);
-					//printf("%u\n", scorecard[12]);
-					uint2bcd(scorecard[cursorIndex - 8], &lowerScoreBuf);
+					//printf("%u\n", scorecardSummed[11]);
+					//printf("%u\n", scorecard[11]);
+					uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
 				//bonus 5-of-a-kind
 				}
 				else if(cursorIndex == 15){
-					if(scorecard[7] < 1000){
-						scorecardSummed[cursorIndex - 8] = 100;
-						uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
+					if(scorecard[14] < 1000){
+						scorecardSummed[14] = 100;
+						uint2bcd(scorecardSummed[14], &lowerScoreBuf);
 					}
-					else if(scorecard[7] == 1000 && bonus5 == 0){
-						scorecardSummed[cursorIndex - 8] = 100;
-						uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
+					else if(scorecard[14] == 1000 && bonus5 == 0){
+						scorecardSummed[14] = 100;
+						uint2bcd(scorecardSummed[14], &lowerScoreBuf);
 						bonus5 = 1;
 					}
 					//printf("sum: %u\n", scorecardSummed[i]);
 					//printf("card: %u\n", scorecard[i]);
 				}
 				if(bonus5 == 1){
-					scorecardSummed[7] == scorecard[7];
+					scorecardSummed[14] == scorecard[14];
 				}
 				//for display score on the card individually for each option
 				bcd_sub(&numOptBCD, &numOptBCD);

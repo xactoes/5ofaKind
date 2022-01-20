@@ -21,8 +21,8 @@ Symbol Table
   7 __xinit__turnBCD                                               000067 R
   7 __xinit__upperScoreBCD                                         000047 R
   7 __xinit__upperScoreBuf                                         00004B R
-  1 _bonus5                                                        000031 GR
-  1 _buf                                                           000024 GR
+  1 _bonus5                                                        000034 GR
+  1 _buf                                                           000026 GR
   2 _compareBCD                                                    00005F GR
   1 _currentFace                                                   000008 GR
   0 _cursor                                                        000006 GR
@@ -32,6 +32,7 @@ Symbol Table
   0 _diSpacing                                                     000000 GR
   0 _diStartPosition                                               000002 GR
   2 _diceValues                                                    000000 GR
+  1 _endGame                                                       000030 GR
   0 _heldPosY                                                      00000A GR
   1 _i                                                             000000 GR
   1 _j                                                             000002 GR
@@ -41,32 +42,32 @@ Symbol Table
   2 _lowerScoreBuf                                                 000053 GR
   1 _match5                                                        000018 GR
   2 _numOptBCD                                                     000063 GR
-  1 _quickSwitch                                                   00002E GR
+  1 _quickSwitch                                                   000031 GR
   2 _rollBCD                                                       00006B GR
   0 _rollPosY                                                      000008 GR
   2 _rollsEnabled                                                  000046 GR
   1 _rollsLeft                                                     00001A GR
   1 _scoreBuf                                                      00001C GR
   2 _scorecard                                                     00000A GR
-  1 _scorecardChangeA                                              000032 GR
-  1 _scorecardChangeB                                              000033 GR
+  1 _scorecardChangeA                                              000035 GR
+  1 _scorecardChangeB                                              000036 GR
   2 _scorecardSummed                                               000028 GR
   1 _scoresSet                                                     00001E GR
+  1 _smStraightContinue                                            000020 GR
   2 _totalScoreAdd                                                 00005B GR
   2 _totalScoreBCD                                                 000057 GR
-  1 _turn                                                          000020 GR
+  1 _turn                                                          000022 GR
   2 _turnBCD                                                       000067 GR
-  1 _turnsPassed                                                   000022 GR
-  1 _upperRegion                                                   00002F GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+  1 _turnsPassed                                                   000024 GR
+  1 _upperRegion                                                   000032 GR
   2 _upperScoreBCD                                                 000047 GR
   2 _upperScoreBuf                                                 00004B GR
-  1 _viewMode                                                      000030 GR
-
+  1 _viewMode                                                      000033 GR
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 3.
 Hexadecimal [24-Bits]
@@ -74,7 +75,7 @@ Hexadecimal [24-Bits]
 Area Table
 
    0 _CODE                                      size      C   flags    0
-   1 _DATA                                      size     34   flags    0
+   1 _DATA                                      size     37   flags    0
    2 _INITIALIZED                               size     6F   flags    0
    3 _DABS                                      size      0   flags    8
    4 _HOME                                      size      0   flags    0

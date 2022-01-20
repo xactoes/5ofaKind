@@ -33,9 +33,11 @@
 	.globl _viewMode
 	.globl _upperRegion
 	.globl _quickSwitch
+	.globl _endGame
 	.globl _buf
 	.globl _turnsPassed
 	.globl _turn
+	.globl _smStraightContinue
 	.globl _scoresSet
 	.globl _scoreBuf
 	.globl _rollsLeft
@@ -79,12 +81,16 @@ _scoreBuf::
 	.ds 2
 _scoresSet::
 	.ds 2
+_smStraightContinue::
+	.ds 2
 _turn::
 	.ds 2
 _turnsPassed::
 	.ds 2
 _buf::
 	.ds 10
+_endGame::
+	.ds 1
 _quickSwitch::
 	.ds 1
 _upperRegion::

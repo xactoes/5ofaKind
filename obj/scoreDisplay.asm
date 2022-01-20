@@ -758,13 +758,13 @@ _setScoreUpper::
 	push	de
 	call	_bcd_add
 	add	sp, #4
-;func/scoreDisplay.c:113: if(&upperScoreBCD >= &compareBCD && scorecard[14] == 255){
+;func/scoreDisplay.c:113: if(&upperScoreBCD >= &compareBCD && scorecard[7] == 255){
 	ld	a, #<(_upperScoreBCD)
 	sub	a, #<(_compareBCD)
 	ld	a, #>(_upperScoreBCD)
 	sbc	a, #>(_compareBCD)
 	jr	C, 00130$
-	ld	hl, #(_scorecard + 28)
+	ld	hl, #(_scorecard + 14)
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -772,22 +772,22 @@ _setScoreUpper::
 	inc	a
 	or	a, b
 	jr	NZ, 00130$
-;func/scoreDisplay.c:114: scorecard[14] = 35;
-	ld	hl, #(_scorecard + 28)
+;func/scoreDisplay.c:114: scorecard[7] = 35;
+	ld	hl, #(_scorecard + 14)
 	ld	a, #0x23
 	ld	(hl+), a
 	ld	(hl), #0x00
-;func/scoreDisplay.c:115: scorecardSummed[14] = scorecard[14];
-	ld	hl, #(_scorecard + 28)
+;func/scoreDisplay.c:115: scorecardSummed[7] = scorecard[7];
+	ld	hl, #(_scorecard + 14)
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
-	ld	hl, #(_scorecardSummed + 28)
+	ld	hl, #(_scorecardSummed + 14)
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-;func/scoreDisplay.c:116: uint2bcd(scorecard[14], &upperScoreBuf);
-	ld	hl, #(_scorecard + 28)
+;func/scoreDisplay.c:116: uint2bcd(scorecard[7], &upperScoreBuf);
+	ld	hl, #(_scorecard + 14)
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -983,7 +983,7 @@ _setScoreLower::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-;func/scoreDisplay.c:142: uint2bcd(scorecard[cursorIndex - 8], &lowerScoreBuf);
+;func/scoreDisplay.c:142: uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
 	ld	a, (#_cursorIndex)
 	add	a, #0xf8
 	ld	l, a
@@ -993,7 +993,7 @@ _setScoreLower::
 	sbc	a, a
 	ld	h, a
 	add	hl, hl
-	ld	de, #_scorecard
+	ld	de, #_scorecardSummed
 	add	hl, de
 	ld	a, (hl+)
 	ld	c, a
@@ -1011,36 +1011,25 @@ _setScoreLower::
 	sub	a, #0x0f
 	or	a, (hl)
 	jr	NZ, 00119$
-;func/scoreDisplay.c:146: if(scorecard[7] < 1000){
-	ld	hl, #(_scorecard + 14)
+;func/scoreDisplay.c:146: if(scorecard[14] < 1000){
+	ld	hl, #(_scorecard + 28)
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
+;func/scoreDisplay.c:147: scorecardSummed[14] = 100;
+;func/scoreDisplay.c:146: if(scorecard[14] < 1000){
 	ld	a, c
 	sub	a, #0xe8
 	ld	a, b
 	sbc	a, #0x03
 	jr	NC, 00106$
-;func/scoreDisplay.c:147: scorecardSummed[cursorIndex - 8] = 100;
-	ldhl	sp,	#1
-	ld	a,	(hl+)
-	ld	h, (hl)
-	ld	l, a
+;func/scoreDisplay.c:147: scorecardSummed[14] = 100;
+	ld	hl, #(_scorecardSummed + 28)
 	ld	a, #0x64
 	ld	(hl+), a
 	ld	(hl), #0x00
-;func/scoreDisplay.c:148: uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
-	ld	a, (#_cursorIndex)
-	add	a, #0xf8
-	ld	l, a
-;	spillPairReg hl
-;	spillPairReg hl
-	rlca
-	sbc	a, a
-	ld	h, a
-	add	hl, hl
-	ld	de, #_scorecardSummed
-	add	hl, de
+;func/scoreDisplay.c:148: uint2bcd(scorecardSummed[14], &lowerScoreBuf);
+	ld	hl, #(_scorecardSummed + 28)
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -1051,7 +1040,7 @@ _setScoreLower::
 	add	sp, #4
 	jr	00119$
 00106$:
-;func/scoreDisplay.c:150: else if(scorecard[7] == 1000 && bonus5 == 0){
+;func/scoreDisplay.c:150: else if(scorecard[14] == 1000 && bonus5 == 0){
 	ld	a, c
 	sub	a, #0xe8
 	jr	NZ, 00119$
@@ -1061,26 +1050,13 @@ _setScoreLower::
 	ld	a, (#_bonus5)
 	or	a, a
 	jr	NZ, 00119$
-;func/scoreDisplay.c:151: scorecardSummed[cursorIndex - 8] = 100;
-	ldhl	sp,	#1
-	ld	a,	(hl+)
-	ld	h, (hl)
-	ld	l, a
+;func/scoreDisplay.c:151: scorecardSummed[14] = 100;
+	ld	hl, #(_scorecardSummed + 28)
 	ld	a, #0x64
 	ld	(hl+), a
 	ld	(hl), #0x00
-;func/scoreDisplay.c:152: uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
-	ld	a, (#_cursorIndex)
-	add	a, #0xf8
-	ld	l, a
-;	spillPairReg hl
-;	spillPairReg hl
-	rlca
-	sbc	a, a
-	ld	h, a
-	add	hl, hl
-	ld	de, #_scorecardSummed
-	add	hl, de
+;func/scoreDisplay.c:152: uint2bcd(scorecardSummed[14], &lowerScoreBuf);
+	ld	hl, #(_scorecardSummed + 28)
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -1092,7 +1068,7 @@ _setScoreLower::
 ;func/scoreDisplay.c:153: bonus5 = 1;
 	ld	hl, #_bonus5
 	ld	(hl), #0x01
-;func/scoreDisplay.c:159: scorecardSummed[7] == scorecard[7];
+;func/scoreDisplay.c:159: scorecardSummed[14] == scorecard[14];
 00119$:
 ;func/scoreDisplay.c:162: bcd_sub(&numOptBCD, &numOptBCD);
 	ld	de, #_numOptBCD

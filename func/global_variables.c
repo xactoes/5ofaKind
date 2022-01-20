@@ -19,6 +19,7 @@ unsigned int match5;
 unsigned int rollsLeft;
 unsigned int scoreBuf;
 unsigned int scoresSet;
+unsigned int smStraightContinue;
 unsigned int turn;
 unsigned int turnsPassed;
 //255 used as a NULL value
@@ -31,6 +32,7 @@ unsigned int scorecardSummed[15] = {511, 511, 511, 511, 511,
 								511, 511, 511, 511, 511,
 								511, 511, 511, 511, 511};
 unsigned char buf[10];
+unsigned char endGame;
 unsigned char quickSwitch;
 unsigned char upperRegion;
 unsigned char viewMode;

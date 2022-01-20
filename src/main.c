@@ -184,11 +184,12 @@ void newTurn(){
     }
 }
 
+
 void rollTracker(){
 	turnsPassed = 0;
 	if(rollsLeft == 0){
 		//tally that counts how many scores have been set to compare with turns later
-		for(i = 0; i != 14; i++){
+		for(i = 0; i != 13; i++){
 			if(scorecard[i] != 255){
 				turnsPassed++;
 			}
@@ -199,7 +200,20 @@ void rollTracker(){
 		}
 		//and here
 		else if(turnsPassed == turn){
-			newTurn();
+			if(turn == 13){
+				if(scorecard[6] == 0){
+					endGame = 1;
+				}
+				else if(scorecard[6] == 50){
+					endGame = 1;
+				}
+			}
+			else if(turn >= 13){
+				endGame = 1;
+			}
+			else{
+				newTurn();
+			}
 		}
 	}
 	else if(rollsLeft > 0){
@@ -213,7 +227,7 @@ void playCursorLeft(){
 		cursorPosition[0] -= 48;
 		cursorIndex -= 1;
 	}
-	if(cursorIndex > 3 && cursorIndex <= 7){
+	if(cursorIndex > 3 && cursorIndex <= 7){//null for now
 		cursorPosition[0] -= 24;
 		cursorIndex -= 1;
 	}
@@ -294,7 +308,6 @@ void rollCheck(){
 	if(rollsEnabled == 0){
 		if(scorecardChangeA != scorecardChangeB){
 			newTurn();
-			printf("here");
 		}
 		else{
 			//replace with buzzing noise later
@@ -347,10 +360,10 @@ void playCursorB(){
 void playCursorSelect(){
 	quickSwitch = 1;
     if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
-		else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
-			viewMode = 1;
-			cardView(backgroundMap);
-		}
+	else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+		viewMode = 1;
+		cardView(backgroundMap);
+	}
 }
 
 
@@ -390,7 +403,7 @@ void main(){
 
 	DISPLAY_ON;
 
-	while(1){
+	while(endGame == 0){
 		if(viewMode == 0){
 			playCursor();
         }
@@ -398,4 +411,8 @@ void main(){
 			cardCursor();
         }
     }
+    while(endGame == 1){
+		printf("that's it for now!\n\n");
+		printf("reset game to play again!");
+	}
 }
