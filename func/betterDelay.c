@@ -1,4 +1,4 @@
-//#include </opt/gbdk/include/gb/gb.h>
+#include </opt/gbdk/include/gb/gb.h>
 
 void betterDelay(unsigned int loops){
 	unsigned int ii;

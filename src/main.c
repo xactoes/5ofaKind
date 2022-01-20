@@ -403,6 +403,7 @@ void playCursor(){
 void main(){
 
 	titleScreen();
+    betterDelay(180);
 
 	initGame();
 

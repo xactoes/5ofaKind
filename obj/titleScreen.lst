@@ -1,0 +1,79 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.1.6 #12539 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module titleScreen
+                                      6 	.optsdcc -mgbz80
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _titleScreen
+                                     12 	.globl _set_bkg_tiles
+                                     13 	.globl _set_bkg_data
+                                     14 ;--------------------------------------------------------
+                                     15 ; special function registers
+                                     16 ;--------------------------------------------------------
+                                     17 ;--------------------------------------------------------
+                                     18 ; ram data
+                                     19 ;--------------------------------------------------------
+                                     20 	.area _DATA
+                                     21 ;--------------------------------------------------------
+                                     22 ; ram data
+                                     23 ;--------------------------------------------------------
+                                     24 	.area _INITIALIZED
+                                     25 ;--------------------------------------------------------
+                                     26 ; absolute external ram data
+                                     27 ;--------------------------------------------------------
+                                     28 	.area _DABS (ABS)
+                                     29 ;--------------------------------------------------------
+                                     30 ; global & static initialisations
+                                     31 ;--------------------------------------------------------
+                                     32 	.area _HOME
+                                     33 	.area _GSINIT
+                                     34 	.area _GSFINAL
+                                     35 	.area _GSINIT
+                                     36 ;--------------------------------------------------------
+                                     37 ; Home
+                                     38 ;--------------------------------------------------------
+                                     39 	.area _HOME
+                                     40 	.area _HOME
+                                     41 ;--------------------------------------------------------
+                                     42 ; code
+                                     43 ;--------------------------------------------------------
+                                     44 	.area _CODE
+                                     45 ;func/titleScreen.c:6: void titleScreen(){
+                                     46 ;	---------------------------------
+                                     47 ; Function titleScreen
+                                     48 ; ---------------------------------
+      000000                         49 _titleScreen::
+                                     50 ;func/titleScreen.c:7: HIDE_BKG;
+      000000 F0r00                   51 	ldh	a, (_LCDC_REG + 0)
+      000002 E6 FE                   52 	and	a, #0xfe
+      000004 E0r00                   53 	ldh	(_LCDC_REG + 0), a
+                                     54 ;func/titleScreen.c:8: set_bkg_data(0, 68, splashScreen_data);
+      000006 11r00r00                55 	ld	de, #_splashScreen_data
+      000009 D5                      56 	push	de
+      00000A 21 00 44                57 	ld	hl, #0x4400
+      00000D E5                      58 	push	hl
+      00000E CDr00r00                59 	call	_set_bkg_data
+      000011 E8 04                   60 	add	sp, #4
+                                     61 ;func/titleScreen.c:9: set_bkg_tiles(0, 0, 20, 18, splashScreen_map);
+      000013 11r00r00                62 	ld	de, #_splashScreen_map
+      000016 D5                      63 	push	de
+      000017 21 14 12                64 	ld	hl, #0x1214
+      00001A E5                      65 	push	hl
+      00001B AF                      66 	xor	a, a
+      00001C 0F                      67 	rrca
+      00001D F5                      68 	push	af
+      00001E CDr00r00                69 	call	_set_bkg_tiles
+      000021 E8 06                   70 	add	sp, #6
+                                     71 ;func/titleScreen.c:10: SHOW_BKG;
+      000023 F0r00                   72 	ldh	a, (_LCDC_REG + 0)
+      000025 F6 01                   73 	or	a, #0x01
+      000027 E0r00                   74 	ldh	(_LCDC_REG + 0), a
+                                     75 ;func/titleScreen.c:11: }
+      000029 C9                      76 	ret
+                                     77 	.area _CODE
+                                     78 	.area _INITIALIZER
+                                     79 	.area _CABS (ABS)

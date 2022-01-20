@@ -1,0 +1,98 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 1.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  002710 L
+    .__.ABS.                                                    =  000000 G
+    .__.CPU.                                                    =  000000 L
+    .__.H$L.                                                    =  000000 L
+    _Di1                                                           ****** GX
+    _Di2                                                           ****** GX
+    _Di3                                                           ****** GX
+    _Di4                                                           ****** GX
+    _Di5                                                           ****** GX
+    _LCDC_REG                                                      ****** GX
+    _Sprites                                                       ****** GX
+  0 ___str_1                                                       00095C R
+  0 ___str_2                                                       000970 R
+    __mulint                                                       ****** GX
+    _backgroundData                                                ****** GX
+    _backgroundMap                                                 ****** GX
+    _betterDelay                                                   ****** GX
+    _cardCursor                                                    ****** GX
+    _cardView                                                      ****** GX
+    _currentFace                                                   ****** GX
+    _cursor                                                        ****** GX
+    _cursorIndex                                                   ****** GX
+    _cursorPosition                                                ****** GX
+    _diFaceBuf                                                     ****** GX
+    _diSpacing                                                     ****** GX
+    _diStartPosition                                               ****** GX
+  0 _diceToRoll                                                    000097 GR
+    _diceValues                                                    ****** GX
+    _endGame                                                       ****** GX
+    _heldPosY                                                      ****** GX
+    _i                                                             ****** GX
+  0 _initDi                                                        0001D0 GR
+  0 _initGame                                                      0002CA GR
+    _j                                                             ****** GX
+    _joypad                                                        ****** GX
+  0 _main                                                          000915 GR
+  0 _moveDiceStruct                                                00013E GR
+  0 _newTurn                                                       0003A3 GR
+  0 _playCursor                                                    0008D9 GR
+  0 _playCursorA                                                   00079A GR
+  0 _playCursorB                                                   00085B GR
+  0 _playCursorLeft                                                00051F GR
+  0 _playCursorRight                                               0005A1 GR
+  0 _playCursorSelect                                              0008A1 GR
+    _printf                                                        ****** GX
+    _puts                                                          ****** GX
+    _quickSwitch                                                   ****** GX
+  0 _rollCheck                                                     000777 GR
+    _rollDi                                                        ****** GX
+    _rollPosY                                                      ****** GX
+  0 _rollTracker                                                   000465 GR
+    _rollsEnabled                                                  ****** GX
+    _rollsLeft                                                     ****** GX
+    _scoreDisplay                                                  ****** GX
+    _scorecard                                                     ****** GX
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+    _scorecardChangeA                                              ****** GX
+    _scorecardChangeB                                              ****** GX
+  0 _setDiFace                                                     00003D GR
+  0 _setDiceValues                                                 000000 GR
+    _set_bkg_data                                                  ****** GX
+    _set_bkg_tiles                                                 ****** GX
+    _set_sprite_data                                               ****** GX
+    _shadow_OAM                                                    ****** GX
+    _spriteFlip                                                    ****** GX
+    _titleScreen                                                   ****** GX
+  0 _toggleDi                                                      000610 GR
+    _turn                                                          ****** GX
+    _turnRollDisplay                                               ****** GX
+    _turnsPassed                                                   ****** GX
+    _viewMode                                                      ****** GX
+    _waitpadup                                                     ****** GX
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 3.
+Hexadecimal [24-Bits]
+
+Area Table
+
+   0 _CODE                                      size    98A   flags    0
+   1 _DATA                                      size      0   flags    0
+   2 _INITIALIZED                               size      0   flags    0
+   3 _DABS                                      size      0   flags    8
+   4 _HOME                                      size      0   flags    0
+   5 _GSINIT                                    size      0   flags    0
+   6 _GSFINAL                                   size      0   flags    0
+   7 _INITIALIZER                               size      0   flags    0
+   8 _CABS                                      size      0   flags    8
+
