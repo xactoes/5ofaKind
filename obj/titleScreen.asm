@@ -51,10 +51,10 @@ _titleScreen::
 	ldh	a, (_LCDC_REG + 0)
 	and	a, #0xfe
 	ldh	(_LCDC_REG + 0), a
-;func/titleScreen.c:8: set_bkg_data(0, 68, splashScreen_data);
+;func/titleScreen.c:8: set_bkg_data(0, 93, splashScreen_data);
 	ld	de, #_splashScreen_data
 	push	de
-	ld	hl, #0x4400
+	ld	hl, #0x5d00
 	push	hl
 	call	_set_bkg_data
 	add	sp, #4

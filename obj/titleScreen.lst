@@ -51,10 +51,10 @@
       000000 F0r00                   51 	ldh	a, (_LCDC_REG + 0)
       000002 E6 FE                   52 	and	a, #0xfe
       000004 E0r00                   53 	ldh	(_LCDC_REG + 0), a
-                                     54 ;func/titleScreen.c:8: set_bkg_data(0, 68, splashScreen_data);
+                                     54 ;func/titleScreen.c:8: set_bkg_data(0, 93, splashScreen_data);
       000006 11r00r00                55 	ld	de, #_splashScreen_data
       000009 D5                      56 	push	de
-      00000A 21 00 44                57 	ld	hl, #0x4400
+      00000A 21 00 5D                57 	ld	hl, #0x5d00
       00000D E5                      58 	push	hl
       00000E CDr00r00                59 	call	_set_bkg_data
       000011 E8 04                   60 	add	sp, #4
