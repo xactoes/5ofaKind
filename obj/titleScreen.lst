@@ -1,0 +1,153 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.1.6 #12539 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module titleScreen
+                                      6 	.optsdcc -mgbz80
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _titleScreen
+                                     12 	.globl _set_sprite_data
+                                     13 	.globl _set_bkg_tiles
+                                     14 	.globl _set_bkg_data
+                                     15 ;--------------------------------------------------------
+                                     16 ; special function registers
+                                     17 ;--------------------------------------------------------
+                                     18 ;--------------------------------------------------------
+                                     19 ; ram data
+                                     20 ;--------------------------------------------------------
+                                     21 	.area _DATA
+                                     22 ;--------------------------------------------------------
+                                     23 ; ram data
+                                     24 ;--------------------------------------------------------
+                                     25 	.area _INITIALIZED
+                                     26 ;--------------------------------------------------------
+                                     27 ; absolute external ram data
+                                     28 ;--------------------------------------------------------
+                                     29 	.area _DABS (ABS)
+                                     30 ;--------------------------------------------------------
+                                     31 ; global & static initialisations
+                                     32 ;--------------------------------------------------------
+                                     33 	.area _HOME
+                                     34 	.area _GSINIT
+                                     35 	.area _GSFINAL
+                                     36 	.area _GSINIT
+                                     37 ;--------------------------------------------------------
+                                     38 ; Home
+                                     39 ;--------------------------------------------------------
+                                     40 	.area _HOME
+                                     41 	.area _HOME
+                                     42 ;--------------------------------------------------------
+                                     43 ; code
+                                     44 ;--------------------------------------------------------
+                                     45 	.area _CODE
+                                     46 ;func/titleScreen.c:12: void titleScreen(){
+                                     47 ;	---------------------------------
+                                     48 ; Function titleScreen
+                                     49 ; ---------------------------------
+      000000                         50 _titleScreen::
+      000000 3B                      51 	dec	sp
+      000001 3B                      52 	dec	sp
+                                     53 ;func/titleScreen.c:13: HIDE_BKG;
+      000002 F0r00                   54 	ldh	a, (_LCDC_REG + 0)
+      000004 E6 FE                   55 	and	a, #0xfe
+      000006 E0r00                   56 	ldh	(_LCDC_REG + 0), a
+                                     57 ;func/titleScreen.c:14: HIDE_SPRITES;
+      000008 F0r00                   58 	ldh	a, (_LCDC_REG + 0)
+      00000A E6 FD                   59 	and	a, #0xfd
+      00000C E0r00                   60 	ldh	(_LCDC_REG + 0), a
+                                     61 ;func/titleScreen.c:15: set_bkg_data(0, 93, splashScreen_data);
+      00000E 11r00r00                62 	ld	de, #_splashScreen_data
+      000011 D5                      63 	push	de
+      000012 21 00 5D                64 	ld	hl, #0x5d00
+      000015 E5                      65 	push	hl
+      000016 CDr00r00                66 	call	_set_bkg_data
+      000019 E8 04                   67 	add	sp, #4
+                                     68 ;func/titleScreen.c:16: set_bkg_tiles(0, 0, 20, 18, splashScreen_map);
+      00001B 11r00r00                69 	ld	de, #_splashScreen_map
+      00001E D5                      70 	push	de
+      00001F 21 14 12                71 	ld	hl, #0x1214
+      000022 E5                      72 	push	hl
+      000023 AF                      73 	xor	a, a
+      000024 0F                      74 	rrca
+      000025 F5                      75 	push	af
+      000026 CDr00r00                76 	call	_set_bkg_tiles
+      000029 E8 06                   77 	add	sp, #6
+                                     78 ;func/titleScreen.c:19: set_sprite_data(0, 7, Sprites);
+      00002B 11r00r00                79 	ld	de, #_Sprites
+      00002E D5                      80 	push	de
+      00002F 21 00 07                81 	ld	hl, #0x700
+      000032 E5                      82 	push	hl
+      000033 CDr00r00                83 	call	_set_sprite_data
+      000036 E8 04                   84 	add	sp, #4
+                                     85 ;/opt/gbdk/include/gb/gb.h:1326: shadow_OAM[nb].tile=tile;
+      000038 21r52r00                86 	ld	hl, #(_shadow_OAM + 82)
+      00003B 36 05                   87 	ld	(hl), #0x05
+      00003D 21r56r00                88 	ld	hl, #(_shadow_OAM + 86)
+      000040 36 06                   89 	ld	(hl), #0x06
+                                     90 ;func/titleScreen.c:23: titlePosL[0] = 64;
+      000042 21r00r00                91 	ld	hl, #_titlePosL
+      000045 3E 40                   92 	ld	a, #0x40
+      000047 22                      93 	ld	(hl+), a
+      000048 36 00                   94 	ld	(hl), #0x00
+                                     95 ;func/titleScreen.c:24: titlePosL[1] = 96;
+      00004A 21r02r00                96 	ld	hl, #(_titlePosL + 2)
+      00004D 3E 60                   97 	ld	a, #0x60
+      00004F 22                      98 	ld	(hl+), a
+      000050 36 00                   99 	ld	(hl), #0x00
+                                    100 ;func/titleScreen.c:25: titlePosR[0] = 104;
+      000052 21r00r00               101 	ld	hl, #_titlePosR
+      000055 3E 68                  102 	ld	a, #0x68
+      000057 22                     103 	ld	(hl+), a
+      000058 36 00                  104 	ld	(hl), #0x00
+                                    105 ;func/titleScreen.c:26: titlePosR[1] = titlePosR[1];
+      00005A 21r02r00               106 	ld	hl, #(_titlePosR + 2)
+      00005D 2A                     107 	ld	a, (hl+)
+      00005E 47                     108 	ld	b, a
+      00005F 4E                     109 	ld	c, (hl)
+      000060 21r02r00               110 	ld	hl, #(_titlePosR + 2)
+      000063 78                     111 	ld	a, b
+      000064 22                     112 	ld	(hl+), a
+      000065 71                     113 	ld	(hl), c
+                                    114 ;func/titleScreen.c:28: move_sprite(20, titlePosL[0], titlePosL[1]);
+      000066 FAr02r00               115 	ld	a, (#(_titlePosL + 2) + 0)
+      000069 F8 00                  116 	ldhl	sp,	#0
+      00006B 77                     117 	ld	(hl), a
+      00006C FAr00r00               118 	ld	a, (#_titlePosL + 0)
+      00006F F8 01                  119 	ldhl	sp,	#1
+      000071 77                     120 	ld	(hl), a
+                                    121 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      000072 11r50r00               122 	ld	de, #_shadow_OAM+80
+                                    123 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      000075 F8 00                  124 	ldhl	sp,	#0
+      000077 2A                     125 	ld	a, (hl+)
+      000078 12                     126 	ld	(de), a
+      000079 13                     127 	inc	de
+      00007A 7E                     128 	ld	a, (hl)
+      00007B 12                     129 	ld	(de), a
+                                    130 ;func/titleScreen.c:29: move_sprite(21, titlePosR[0], titlePosR[1]);
+      00007C 21r00r00               131 	ld	hl, #_titlePosR
+      00007F 4E                     132 	ld	c, (hl)
+                                    133 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      000080 21r54r00               134 	ld	hl, #(_shadow_OAM + 84)
+                                    135 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      000083 78                     136 	ld	a, b
+      000084 22                     137 	ld	(hl+), a
+      000085 71                     138 	ld	(hl), c
+                                    139 ;func/titleScreen.c:31: SHOW_BKG;
+      000086 F0r00                  140 	ldh	a, (_LCDC_REG + 0)
+      000088 F6 01                  141 	or	a, #0x01
+      00008A E0r00                  142 	ldh	(_LCDC_REG + 0), a
+                                    143 ;func/titleScreen.c:32: SHOW_SPRITES;
+      00008C F0r00                  144 	ldh	a, (_LCDC_REG + 0)
+      00008E F6 02                  145 	or	a, #0x02
+      000090 E0r00                  146 	ldh	(_LCDC_REG + 0), a
+                                    147 ;func/titleScreen.c:33: }
+      000092 33                     148 	inc	sp
+      000093 33                     149 	inc	sp
+      000094 C9                     150 	ret
+                                    151 	.area _CODE
+                                    152 	.area _INITIALIZER
+                                    153 	.area _CABS (ABS)

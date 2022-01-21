@@ -9,6 +9,7 @@
 #include "../func/betterDelay.h"
 #include "../func/cardCursor.h"
 #include "../func/cardView.h"
+#include "../func/fade.h"
 //#include "../func/playView.h"
 #include "../func/rollDi.h"
 #include "../func/scoreDisplay.h"
@@ -124,7 +125,7 @@ void initDi(struct DiceStruct * diSprite, unsigned int spot){
 
 
 void initGame(){
-    set_sprite_data(0, 6, Sprites);
+    set_sprite_data(0, 7, Sprites);
 	set_sprite_tile(cursor, 5);
 	set_bkg_data(0, 128, backgroundData);
     set_bkg_tiles(0, 0, 20, 32, backgroundMap);
@@ -151,9 +152,6 @@ void initGame(){
 	turn = 1;
 
     turnRollDisplay();
-
-
-    SHOW_SPRITES;
 }
 
 
@@ -401,13 +399,18 @@ void playCursor(){
 
 
 void main(){
+    DISPLAY_ON;
 
 	titleScreen();
     betterDelay(180);
 
+    fadeToBlack(30);
+
 	initGame();
 
-	DISPLAY_ON;
+    fadeFromBlack(30);
+
+    SHOW_SPRITES;
 
 	while(endGame == 0){
 		if(viewMode == 0){

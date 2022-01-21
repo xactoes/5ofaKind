@@ -1,0 +1,350 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.1.6 #12539 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module sortDice
+                                      6 	.optsdcc -mgbz80
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _sortDice
+                                     12 	.globl _printArray
+                                     13 	.globl _selectionSort
+                                     14 	.globl _swapDice
+                                     15 	.globl _puts
+                                     16 	.globl _printf
+                                     17 ;--------------------------------------------------------
+                                     18 ; special function registers
+                                     19 ;--------------------------------------------------------
+                                     20 ;--------------------------------------------------------
+                                     21 ; ram data
+                                     22 ;--------------------------------------------------------
+                                     23 	.area _DATA
+                                     24 ;--------------------------------------------------------
+                                     25 ; ram data
+                                     26 ;--------------------------------------------------------
+                                     27 	.area _INITIALIZED
+                                     28 ;--------------------------------------------------------
+                                     29 ; absolute external ram data
+                                     30 ;--------------------------------------------------------
+                                     31 	.area _DABS (ABS)
+                                     32 ;--------------------------------------------------------
+                                     33 ; global & static initialisations
+                                     34 ;--------------------------------------------------------
+                                     35 	.area _HOME
+                                     36 	.area _GSINIT
+                                     37 	.area _GSFINAL
+                                     38 	.area _GSINIT
+                                     39 ;--------------------------------------------------------
+                                     40 ; Home
+                                     41 ;--------------------------------------------------------
+                                     42 	.area _HOME
+                                     43 	.area _HOME
+                                     44 ;--------------------------------------------------------
+                                     45 ; code
+                                     46 ;--------------------------------------------------------
+                                     47 	.area _CODE
+                                     48 ;func/sortDice.c:10: void swapDice(unsigned int* xp, unsigned int* yp){
+                                     49 ;	---------------------------------
+                                     50 ; Function swapDice
+                                     51 ; ---------------------------------
+      000000                         52 _swapDice::
+      000000 E8 FA                   53 	add	sp, #-6
+                                     54 ;func/sortDice.c:11: unsigned int temp = *xp;
+      000002 F8 08                   55 	ldhl	sp,	#8
+      000004 2A                      56 	ld	a, (hl+)
+      000005 4F                      57 	ld	c, a
+      000006 46                      58 	ld	b, (hl)
+      000007 59                      59 	ld	e, c
+      000008 50                      60 	ld	d, b
+      000009 1A                      61 	ld	a, (de)
+      00000A F8 00                   62 	ldhl	sp,	#0
+      00000C 22                      63 	ld	(hl+), a
+      00000D 13                      64 	inc	de
+      00000E 1A                      65 	ld	a, (de)
+      00000F 77                      66 	ld	(hl), a
+                                     67 ;func/sortDice.c:12: *xp = *yp;
+      000010 F8 0A                   68 	ldhl	sp,	#10
+      000012 7E                      69 	ld	a, (hl)
+      000013 F8 02                   70 	ldhl	sp,	#2
+      000015 77                      71 	ld	(hl), a
+      000016 F8 0B                   72 	ldhl	sp,	#11
+      000018 7E                      73 	ld	a, (hl)
+      000019 F8 03                   74 	ldhl	sp,	#3
+      00001B 32                      75 	ld	(hl-), a
+      00001C 2A                      76 	ld	a, (hl+)
+      00001D 5F                      77 	ld	e, a
+      00001E 2A                      78 	ld	a, (hl+)
+      00001F 57                      79 	ld	d, a
+      000020 1A                      80 	ld	a, (de)
+      000021 22                      81 	ld	(hl+), a
+      000022 13                      82 	inc	de
+      000023 1A                      83 	ld	a, (de)
+      000024 32                      84 	ld	(hl-), a
+      000025 2A                      85 	ld	a, (hl+)
+      000026 02                      86 	ld	(bc), a
+      000027 03                      87 	inc	bc
+                                     88 ;func/sortDice.c:13: *yp = temp;
+      000028 3A                      89 	ld	a, (hl-)
+      000029 2B                      90 	dec	hl
+      00002A 2B                      91 	dec	hl
+      00002B 02                      92 	ld	(bc), a
+      00002C 2A                      93 	ld	a, (hl+)
+      00002D 5F                      94 	ld	e, a
+      00002E 56                      95 	ld	d, (hl)
+      00002F F8 00                   96 	ldhl	sp,	#0
+      000031 2A                      97 	ld	a, (hl+)
+      000032 12                      98 	ld	(de), a
+      000033 13                      99 	inc	de
+      000034 7E                     100 	ld	a, (hl)
+      000035 12                     101 	ld	(de), a
+                                    102 ;func/sortDice.c:14: }
+      000036 E8 06                  103 	add	sp, #6
+      000038 C9                     104 	ret
+                                    105 ;func/sortDice.c:17: void selectionSort(unsigned int arr[], unsigned int n){
+                                    106 ;	---------------------------------
+                                    107 ; Function selectionSort
+                                    108 ; ---------------------------------
+      000039                        109 _selectionSort::
+      000039 E8 FA                  110 	add	sp, #-6
+                                    111 ;func/sortDice.c:21: for (i = 0; i < n - 1; i++) {
+      00003B AF                     112 	xor	a, a
+      00003C 21r00r00               113 	ld	hl, #_i
+      00003F 22                     114 	ld	(hl+), a
+      000040 77                     115 	ld	(hl), a
+      000041 F8 0A                  116 	ldhl	sp,#10
+      000043 2A                     117 	ld	a, (hl+)
+      000044 4F                     118 	ld	c, a
+      000045 46                     119 	ld	b, (hl)
+      000046 0B                     120 	dec	bc
+      000047                        121 00109$:
+      000047 21r00r00               122 	ld	hl, #_i
+      00004A 2A                     123 	ld	a, (hl+)
+      00004B 91                     124 	sub	a, c
+      00004C 7E                     125 	ld	a, (hl)
+      00004D 98                     126 	sbc	a, b
+      00004E D2r0Br01               127 	jp	NC, 00111$
+                                    128 ;func/sortDice.c:23: minDi = i;
+      000051 2B                     129 	dec	hl
+      000052 7E                     130 	ld	a, (hl)
+      000053 F8 00                  131 	ldhl	sp,	#0
+      000055 77                     132 	ld	(hl), a
+      000056 FAr01r00               133 	ld	a, (#_i + 1)
+      000059 F8 01                  134 	ldhl	sp,	#1
+      00005B 77                     135 	ld	(hl), a
+                                    136 ;func/sortDice.c:24: for (j = i + 1; j < n; j++)
+      00005C FAr00r00               137 	ld	a, (#_i)
+      00005F C6 01                  138 	add	a, #0x01
+      000061 EAr00r00               139 	ld	(#_j),a
+      000064 FAr01r00               140 	ld	a, (#_i + 1)
+      000067 CE 00                  141 	adc	a, #0x00
+      000069 EAr01r00               142 	ld	(#_j + 1),a
+      00006C                        143 00106$:
+                                    144 ;func/sortDice.c:25: if (arr[j] < arr[minDi])
+      00006C F8 00                  145 	ldhl	sp,	#0
+      00006E 2A                     146 	ld	a, (hl+)
+      00006F 56                     147 	ld	d, (hl)
+      000070 87                     148 	add	a, a
+      000071 CB 12                  149 	rl	d
+      000073 5F                     150 	ld	e, a
+      000074 F8 08                  151 	ldhl	sp,	#8
+      000076 2A                     152 	ld	a,	(hl+)
+      000077 66                     153 	ld	h, (hl)
+      000078 6F                     154 	ld	l, a
+      000079 19                     155 	add	hl, de
+      00007A E5                     156 	push	hl
+      00007B 7D                     157 	ld	a, l
+      00007C F8 06                  158 	ldhl	sp,	#6
+      00007E 77                     159 	ld	(hl), a
+      00007F E1                     160 	pop	hl
+      000080 7C                     161 	ld	a, h
+      000081 F8 05                  162 	ldhl	sp,	#5
+      000083 77                     163 	ld	(hl), a
+                                    164 ;func/sortDice.c:24: for (j = i + 1; j < n; j++)
+      000084 11r00r00               165 	ld	de, #_j
+      000087 F8 0A                  166 	ldhl	sp,	#10
+      000089 1A                     167 	ld	a, (de)
+      00008A 13                     168 	inc	de
+      00008B 96                     169 	sub	a, (hl)
+      00008C 23                     170 	inc	hl
+      00008D 1A                     171 	ld	a, (de)
+      00008E 9E                     172 	sbc	a, (hl)
+      00008F 30 4F                  173 	jr	NC, 00103$
+                                    174 ;func/sortDice.c:25: if (arr[j] < arr[minDi])
+      000091 21r00r00               175 	ld	hl, #_j
+      000094 2A                     176 	ld	a, (hl+)
+      000095 56                     177 	ld	d, (hl)
+      000096 87                     178 	add	a, a
+      000097 CB 12                  179 	rl	d
+      000099 5F                     180 	ld	e, a
+      00009A F8 08                  181 	ldhl	sp,	#8
+      00009C 2A                     182 	ld	a,	(hl+)
+      00009D 66                     183 	ld	h, (hl)
+      00009E 6F                     184 	ld	l, a
+      00009F 19                     185 	add	hl, de
+      0000A0 E5                     186 	push	hl
+      0000A1 7D                     187 	ld	a, l
+      0000A2 F8 04                  188 	ldhl	sp,	#4
+      0000A4 77                     189 	ld	(hl), a
+      0000A5 E1                     190 	pop	hl
+      0000A6 7C                     191 	ld	a, h
+      0000A7 F8 03                  192 	ldhl	sp,	#3
+      0000A9 32                     193 	ld	(hl-), a
+      0000AA 2A                     194 	ld	a, (hl+)
+      0000AB 5F                     195 	ld	e, a
+      0000AC 3A                     196 	ld	a, (hl-)
+      0000AD 57                     197 	ld	d, a
+      0000AE 1A                     198 	ld	a, (de)
+      0000AF 22                     199 	ld	(hl+), a
+      0000B0 13                     200 	inc	de
+      0000B1 1A                     201 	ld	a, (de)
+      0000B2 22                     202 	ld	(hl+), a
+      0000B3 2A                     203 	ld	a, (hl+)
+      0000B4 5F                     204 	ld	e, a
+      0000B5 3A                     205 	ld	a, (hl-)
+      0000B6 57                     206 	ld	d, a
+      0000B7 1A                     207 	ld	a, (de)
+      0000B8 22                     208 	ld	(hl+), a
+      0000B9 13                     209 	inc	de
+      0000BA 1A                     210 	ld	a, (de)
+      0000BB 77                     211 	ld	(hl), a
+      0000BC F8 02                  212 	ldhl	sp,	#2
+      0000BE 5D                     213 	ld	e, l
+      0000BF 54                     214 	ld	d, h
+      0000C0 F8 04                  215 	ldhl	sp,	#4
+      0000C2 1A                     216 	ld	a, (de)
+      0000C3 13                     217 	inc	de
+      0000C4 96                     218 	sub	a, (hl)
+      0000C5 23                     219 	inc	hl
+      0000C6 1A                     220 	ld	a, (de)
+      0000C7 9E                     221 	sbc	a, (hl)
+      0000C8 30 0C                  222 	jr	NC, 00107$
+                                    223 ;func/sortDice.c:26: minDi = j;
+      0000CA FAr00r00               224 	ld	a, (#_j)
+      0000CD F8 00                  225 	ldhl	sp,	#0
+      0000CF 77                     226 	ld	(hl), a
+      0000D0 FAr01r00               227 	ld	a, (#_j + 1)
+      0000D3 F8 01                  228 	ldhl	sp,	#1
+      0000D5 77                     229 	ld	(hl), a
+      0000D6                        230 00107$:
+                                    231 ;func/sortDice.c:24: for (j = i + 1; j < n; j++)
+      0000D6 21r00r00               232 	ld	hl, #_j
+      0000D9 34                     233 	inc	(hl)
+      0000DA 20 90                  234 	jr	NZ, 00106$
+      0000DC 23                     235 	inc	hl
+      0000DD 34                     236 	inc	(hl)
+      0000DE 18 8C                  237 	jr	00106$
+      0000E0                        238 00103$:
+                                    239 ;func/sortDice.c:30: swapDice(&arr[minDi], &arr[i]);
+      0000E0 21r00r00               240 	ld	hl, #_i
+      0000E3 2A                     241 	ld	a, (hl+)
+      0000E4 56                     242 	ld	d, (hl)
+      0000E5 87                     243 	add	a, a
+      0000E6 CB 12                  244 	rl	d
+      0000E8 5F                     245 	ld	e, a
+      0000E9 F8 08                  246 	ldhl	sp,	#8
+      0000EB 2A                     247 	ld	a,	(hl+)
+      0000EC 66                     248 	ld	h, (hl)
+      0000ED 6F                     249 	ld	l, a
+      0000EE 19                     250 	add	hl, de
+      0000EF 5D                     251 	ld	e, l
+      0000F0 54                     252 	ld	d, h
+      0000F1 C5                     253 	push	bc
+      0000F2 D5                     254 	push	de
+      0000F3 F8 08                  255 	ldhl	sp,	#8
+      0000F5 2A                     256 	ld	a, (hl+)
+      0000F6 5F                     257 	ld	e, a
+      0000F7 56                     258 	ld	d, (hl)
+      0000F8 D5                     259 	push	de
+      0000F9 CDr00r00               260 	call	_swapDice
+      0000FC E8 04                  261 	add	sp, #4
+      0000FE C1                     262 	pop	bc
+                                    263 ;func/sortDice.c:21: for (i = 0; i < n - 1; i++) {
+      0000FF 21r00r00               264 	ld	hl, #_i
+      000102 34                     265 	inc	(hl)
+      000103 C2r47r00               266 	jp	NZ,00109$
+      000106 23                     267 	inc	hl
+      000107 34                     268 	inc	(hl)
+      000108 C3r47r00               269 	jp	00109$
+      00010B                        270 00111$:
+                                    271 ;func/sortDice.c:32: }
+      00010B E8 06                  272 	add	sp, #6
+      00010D C9                     273 	ret
+                                    274 ;func/sortDice.c:35: void printArray(unsigned int arr[], unsigned int size){
+                                    275 ;	---------------------------------
+                                    276 ; Function printArray
+                                    277 ; ---------------------------------
+      00010E                        278 _printArray::
+                                    279 ;func/sortDice.c:36: for (i = 0; i < size; i++)
+      00010E AF                     280 	xor	a, a
+      00010F 21r00r00               281 	ld	hl, #_i
+      000112 22                     282 	ld	(hl+), a
+      000113 77                     283 	ld	(hl), a
+      000114                        284 00103$:
+      000114 11r00r00               285 	ld	de, #_i
+      000117 F8 04                  286 	ldhl	sp,	#4
+      000119 1A                     287 	ld	a, (de)
+      00011A 13                     288 	inc	de
+      00011B 96                     289 	sub	a, (hl)
+      00011C 23                     290 	inc	hl
+      00011D 1A                     291 	ld	a, (de)
+      00011E 9E                     292 	sbc	a, (hl)
+      00011F 30 26                  293 	jr	NC, 00101$
+                                    294 ;func/sortDice.c:37: printf("%d ", arr[i]);
+      000121 21r00r00               295 	ld	hl, #_i
+      000124 2A                     296 	ld	a, (hl+)
+      000125 56                     297 	ld	d, (hl)
+      000126 87                     298 	add	a, a
+      000127 CB 12                  299 	rl	d
+      000129 5F                     300 	ld	e, a
+      00012A F8 02                  301 	ldhl	sp,	#2
+      00012C 2A                     302 	ld	a,	(hl+)
+      00012D 66                     303 	ld	h, (hl)
+      00012E 6F                     304 	ld	l, a
+      00012F 19                     305 	add	hl, de
+      000130 2A                     306 	ld	a, (hl+)
+      000131 4F                     307 	ld	c, a
+      000132 46                     308 	ld	b, (hl)
+      000133 C5                     309 	push	bc
+      000134 11r50r01               310 	ld	de, #___str_0
+      000137 D5                     311 	push	de
+      000138 CDr00r00               312 	call	_printf
+      00013B E8 04                  313 	add	sp, #4
+                                    314 ;func/sortDice.c:36: for (i = 0; i < size; i++)
+      00013D 21r00r00               315 	ld	hl, #_i
+      000140 34                     316 	inc	(hl)
+      000141 20 D1                  317 	jr	NZ, 00103$
+      000143 23                     318 	inc	hl
+      000144 34                     319 	inc	(hl)
+      000145 18 CD                  320 	jr	00103$
+      000147                        321 00101$:
+                                    322 ;func/sortDice.c:38: printf("\n");
+      000147 11r54r01               323 	ld	de, #___str_2
+      00014A D5                     324 	push	de
+      00014B CDr00r00               325 	call	_puts
+      00014E E1                     326 	pop	hl
+                                    327 ;func/sortDice.c:39: }
+      00014F C9                     328 	ret
+      000150                        329 ___str_0:
+      000150 25 64 20               330 	.ascii "%d "
+      000153 00                     331 	.db 0x00
+      000154                        332 ___str_2:
+      000154 00                     333 	.db 0x00
+                                    334 ;func/sortDice.c:42: void sortDice(){
+                                    335 ;	---------------------------------
+                                    336 ; Function sortDice
+                                    337 ; ---------------------------------
+      000155                        338 _sortDice::
+                                    339 ;func/sortDice.c:47: selectionSort(diceValues, n);
+      000155 11 05 00               340 	ld	de, #0x0005
+      000158 D5                     341 	push	de
+      000159 11r00r00               342 	ld	de, #_diceValues
+      00015C D5                     343 	push	de
+      00015D CDr39r00               344 	call	_selectionSort
+      000160 E8 04                  345 	add	sp, #4
+                                    346 ;func/sortDice.c:50: }
+      000162 C9                     347 	ret
+                                    348 	.area _CODE
+                                    349 	.area _INITIALIZER
+                                    350 	.area _CABS (ABS)

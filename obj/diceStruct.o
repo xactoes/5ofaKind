@@ -1,0 +1,39 @@
+XL3
+H 9 areas 6 global symbols
+M diceStruct
+O -mgbz80
+S .__.ABS. Def000000
+A _CODE size 0 flags 0 addr 0
+A _DATA size 55 flags 0 addr 0
+S _Di4 Def000033
+S _Di5 Def000044
+S _Di1 Def000000
+S _Di2 Def000011
+S _Di3 Def000022
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 01 00
+T 00 00 00
+R 00 00 01 00
+T 11 00 00
+R 00 00 01 00
+T 11 00 00
+R 00 00 01 00
+T 22 00 00
+R 00 00 01 00
+T 22 00 00
+R 00 00 01 00
+T 33 00 00
+R 00 00 01 00
+T 33 00 00
+R 00 00 01 00
+T 44 00 00
+R 00 00 01 00
+T 44 00 00
+R 00 00 01 00

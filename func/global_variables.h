@@ -17,12 +17,16 @@ extern unsigned int rollsLeft;
 extern unsigned int scoreBuf;
 extern unsigned int scoresSet;
 extern unsigned int smStraightContinue;
+extern unsigned int titlePosL[2];
+extern unsigned int titlePosR[2];
+extern unsigned int titleIndex;
 extern unsigned int turn;
 extern unsigned int turnsPassed;
 extern unsigned int scorecard[15];
 extern unsigned int scorecardSummed[15];	//used for funky logic with BCD
 extern unsigned char buf[10];
 extern unsigned char endGame;
+extern unsigned char gameStart;
 extern unsigned char quickSwitch;
 extern unsigned char upperRegion;
 extern unsigned char viewMode;
