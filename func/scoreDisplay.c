@@ -1,6 +1,6 @@
 #include </opt/gbdk/include/gb/gb.h>
 #include </opt/gbdk/include/gbdk/bcd.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 //global variables
 #include "../func/global_variables.h"
