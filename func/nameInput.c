@@ -37,24 +37,42 @@ void nameInput(){
         switch(joypad()){
             case J_LEFT:
                 if(nameCursorCol > 0){
-                    nameCursorCol--;
-                    nameCursorX -= 16;
+                    if(nameCursorRow != 4){
+                        nameCursorCol--;
+                        nameCursorX -= 16;
+                    }
+                    else if(nameCursorRow == 4){
+                        nameCursorCol--;
+                        nameCursorX -= 48;
+                    }
                 }
                 move_sprite(nameCursor, nameCursorX, nameCursorY);
                 waitpadup();
                 break;
             case J_RIGHT:
                 if(nameCursorCol < 9){
-                    nameCursorCol++;
-                    nameCursorX += 16;
+                    if(nameCursorRow != 4){
+                        nameCursorCol++;
+                        nameCursorX += 16;
+                    }
+                    else if(nameCursorRow == 4 && nameCursorCol < 2){
+                        nameCursorCol++;
+                        nameCursorX += 48;
+                    }
                 }
                 move_sprite(nameCursor, nameCursorX, nameCursorY);
                 waitpadup();
                 break;
             case J_UP:
-                if(nameCursorRow > 0){
+                if(nameCursorRow > 0 && nameCursorRow != 4){
                     nameCursorRow--;
                     nameCursorY -= 16;
+                }
+                else if(nameCursorRow == 4){
+                    nameCursorRow = 3;
+                    nameCursorCol = 0;
+                    nameCursorX = 12;
+                    nameCursorY = 120;
                 }
                 move_sprite(nameCursor, nameCursorX, nameCursorY);
                 waitpadup();
@@ -63,6 +81,12 @@ void nameInput(){
                 if(nameCursorRow < 3){
                     nameCursorRow++;
                     nameCursorY += 16;
+                }
+                else if(nameCursorRow == 3){
+                    nameCursorCol = 0;
+                    nameCursorRow = 4;
+                    nameCursorX = 36;
+                    nameCursorY = 136;
                 }
                 move_sprite(nameCursor, nameCursorX, nameCursorY);
                 waitpadup();
