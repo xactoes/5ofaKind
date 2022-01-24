@@ -98,6 +98,20 @@ void nameInput(){
                 waitpadup();
                 break;
             case J_SELECT:
+                /*
+                if(inputMode < 2){
+                    inputMode++;
+                    //code to update background tiles
+                    //need to make a const array that is effectively a map of all the tiles in order
+                    //they will appear on keyboard input
+                }
+                else{
+                    inputMode = 0;
+                    //code to update background tiles
+                    //need to make a const array that is effectively a map of all the tiles in order
+                    //they will appear on keyboard input
+                }
+                */
                 waitpadup();
                 break;
             case J_START:
