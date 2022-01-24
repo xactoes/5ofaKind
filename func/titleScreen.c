@@ -12,6 +12,8 @@
 //backgrounds
 #include "../res/maps.h"
 
+/* add in a made by text in bottom of screen */
+
 void titleScreen(){
     HIDE_BKG;
     HIDE_SPRITES;
