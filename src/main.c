@@ -402,13 +402,12 @@ void main(){
     DISPLAY_ON;
 
 	titleScreen();
-    betterDelay(180);
 
-    fadeToBlack(30);
+    fadeToBlack(4);
 
 	initGame();
 
-    fadeFromBlack(30);
+    fadeFromBlack(4);
 
     SHOW_SPRITES;
 

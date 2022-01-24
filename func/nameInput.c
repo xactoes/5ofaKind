@@ -118,17 +118,32 @@ void nameInput(){
                     }
                 }
                 else{
-                    for(i = 0; i != 7; i++){
+                    if(playerName[0] == 0x00){
+                        for(i = 0; i != 7; i++){
                         playerName[i] = playerName[i + 1];
+                        }
+                        playerName[7] = inputArray[(40 * inputMode) + (10 * nameCursorRow) + nameCursorCol];
+                        for(i = 0; i != 8; i++){
+                            set_bkg_tile_xy(i + 6, 3, playerName[i]);
+                        }
                     }
-                    playerName[7] = inputArray[(40 * inputMode) + (10 * nameCursorRow) + nameCursorCol];
-                    for(i = 0; i != 8; i++){
-                        set_bkg_tile_xy(i + 6, 3, playerName[i]);
+                    else{
+                        playerName[7] = inputArray[(40 * inputMode) + (10 * nameCursorRow) + nameCursorCol];
+                        for(i = 0; i != 8; i++){
+                            set_bkg_tile_xy(i + 6, 3, playerName[i]);
+                        }
                     }
                 }
                 waitpadup();
                 break;
             case J_B:
+                for(i = 7; i != 0; i--){
+                        playerName[i] = playerName[i - 1];
+                }
+                playerName[0] = 0x00;
+                for(i = 0; i != 8; i++){
+                    set_bkg_tile_xy(i + 6, 3, playerName[i]);
+                }
                 waitpadup();
                 break;
             case J_SELECT:
@@ -158,6 +173,13 @@ void nameInput(){
                 waitpadup();
                 break;
             case J_START:
+                nameInputMenu = 0;
+                HIDE_BKG;
+                HIDE_SPRITES;
+                move_sprite(nameCursor, 0, 0);
+                set_bkg_data(0, 93, splashScreen_data);
+                set_bkg_tiles(0, 0, 20, 18, splashScreen_map);
+                scroll_bkg(4, 0);
                 waitpadup();
                 break;
         }
