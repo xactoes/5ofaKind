@@ -1,0 +1,205 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.1.6 #12539 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module playView
+                                      6 	.optsdcc -mgbz80
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _playView
+                                     12 	.globl _turnRollDisplay
+                                     13 	.globl _scoreDisplay
+                                     14 	.globl _betterDelay
+                                     15 	.globl _set_bkg_submap
+                                     16 ;--------------------------------------------------------
+                                     17 ; special function registers
+                                     18 ;--------------------------------------------------------
+                                     19 ;--------------------------------------------------------
+                                     20 ; ram data
+                                     21 ;--------------------------------------------------------
+                                     22 	.area _DATA
+                                     23 ;--------------------------------------------------------
+                                     24 ; ram data
+                                     25 ;--------------------------------------------------------
+                                     26 	.area _INITIALIZED
+                                     27 ;--------------------------------------------------------
+                                     28 ; absolute external ram data
+                                     29 ;--------------------------------------------------------
+                                     30 	.area _DABS (ABS)
+                                     31 ;--------------------------------------------------------
+                                     32 ; global & static initialisations
+                                     33 ;--------------------------------------------------------
+                                     34 	.area _HOME
+                                     35 	.area _GSINIT
+                                     36 	.area _GSFINAL
+                                     37 	.area _GSINIT
+                                     38 ;--------------------------------------------------------
+                                     39 ; Home
+                                     40 ;--------------------------------------------------------
+                                     41 	.area _HOME
+                                     42 	.area _HOME
+                                     43 ;--------------------------------------------------------
+                                     44 ; code
+                                     45 ;--------------------------------------------------------
+                                     46 	.area _CODE
+                                     47 ;func/playView.c:12: void playView(unsigned char map[]){
+                                     48 ;	---------------------------------
+                                     49 ; Function playView
+                                     50 ; ---------------------------------
+      000000                         51 _playView::
+                                     52 ;func/playView.c:13: HIDE_SPRITES;
+      000000 F0r00                   53 	ldh	a, (_LCDC_REG + 0)
+      000002 E6 FD                   54 	and	a, #0xfd
+      000004 E0r00                   55 	ldh	(_LCDC_REG + 0), a
+                                     56 ;func/playView.c:14: for(i = 0; i != 36; i++){
+      000006 AF                      57 	xor	a, a
+      000007 21r00r00                58 	ld	hl, #_i
+      00000A 22                      59 	ld	(hl+), a
+      00000B 77                      60 	ld	(hl), a
+      00000C                         61 00110$:
+                                     62 ;func/playView.c:15: if(quickSwitch == 0){
+      00000C FAr00r00                63 	ld	a, (#_quickSwitch)
+      00000F B7                      64 	or	a, a
+      000010 20 08                   65 	jr	NZ, 00102$
+                                     66 ;func/playView.c:16: betterDelay(1);
+      000012 11 01 00                67 	ld	de, #0x0001
+      000015 D5                      68 	push	de
+      000016 CDr00r00                69 	call	_betterDelay
+      000019 E1                      70 	pop	hl
+      00001A                         71 00102$:
+                                     72 ;/opt/gbdk/include/gb/gb.h:1023: SCX_REG+=x, SCY_REG+=y;
+      00001A F0r00                   73 	ldh	a, (_SCY_REG + 0)
+      00001C C6 FC                   74 	add	a, #0xfc
+      00001E E0r00                   75 	ldh	(_SCY_REG + 0), a
+                                     76 ;func/playView.c:19: if(i == 10){
+      000020 21r00r00                77 	ld	hl, #_i
+      000023 2A                      78 	ld	a, (hl+)
+      000024 D6 0A                   79 	sub	a, #0x0a
+      000026 B6                      80 	or	a, (hl)
+      000027 20 16                   81 	jr	NZ, 00111$
+                                     82 ;func/playView.c:20: set_bkg_submap(0, 0, 20, 4, map, 20);
+      000029 3E 14                   83 	ld	a, #0x14
+      00002B F5                      84 	push	af
+      00002C 33                      85 	inc	sp
+      00002D F8 03                   86 	ldhl	sp,	#3
+      00002F 2A                      87 	ld	a, (hl+)
+      000030 5F                      88 	ld	e, a
+      000031 56                      89 	ld	d, (hl)
+      000032 D5                      90 	push	de
+      000033 21 14 04                91 	ld	hl, #0x414
+      000036 E5                      92 	push	hl
+      000037 AF                      93 	xor	a, a
+      000038 0F                      94 	rrca
+      000039 F5                      95 	push	af
+      00003A CDr00r00                96 	call	_set_bkg_submap
+      00003D E8 07                   97 	add	sp, #7
+      00003F                         98 00111$:
+                                     99 ;func/playView.c:14: for(i = 0; i != 36; i++){
+      00003F 21r00r00               100 	ld	hl, #_i
+      000042 34                     101 	inc	(hl)
+      000043 20 02                  102 	jr	NZ, 00148$
+      000045 23                     103 	inc	hl
+      000046 34                     104 	inc	(hl)
+      000047                        105 00148$:
+      000047 21r00r00               106 	ld	hl, #_i
+      00004A 2A                     107 	ld	a, (hl+)
+      00004B D6 24                  108 	sub	a, #0x24
+                                    109 ;func/playView.c:23: for(i = 0; i != 20; i++){
+      00004D B6                     110 	or	a,(hl)
+      00004E 20 BC                  111 	jr	NZ, 00110$
+      000050 21r00r00               112 	ld	hl, #_i
+      000053 22                     113 	ld	(hl+), a
+      000054 77                     114 	ld	(hl), a
+      000055                        115 00112$:
+                                    116 ;func/playView.c:24: scroll_sprite(i, 0, 88);
+      000055 21r00r00               117 	ld	hl, #_i
+                                    118 ;/opt/gbdk/include/gb/gb.h:1415: OAM_item_t * itm = &shadow_OAM[nb];
+      000058 6E                     119 	ld	l, (hl)
+      000059 01r00r00               120 	ld	bc, #_shadow_OAM+0
+                                    121 ;	spillPairReg hl
+                                    122 ;	spillPairReg hl
+      00005C 26 00                  123 	ld	h, #0x00
+                                    124 ;	spillPairReg hl
+                                    125 ;	spillPairReg hl
+      00005E 29                     126 	add	hl, hl
+      00005F 29                     127 	add	hl, hl
+      000060 09                     128 	add	hl, bc
+                                    129 ;/opt/gbdk/include/gb/gb.h:1416: itm->y+=y, itm->x+=x;
+      000061 7E                     130 	ld	a, (hl)
+      000062 C6 58                  131 	add	a, #0x58
+      000064 22                     132 	ld	(hl+), a
+      000065 7E                     133 	ld	a, (hl)
+      000066 77                     134 	ld	(hl), a
+                                    135 ;func/playView.c:23: for(i = 0; i != 20; i++){
+      000067 21r00r00               136 	ld	hl, #_i
+      00006A 34                     137 	inc	(hl)
+      00006B 20 02                  138 	jr	NZ, 00151$
+      00006D 23                     139 	inc	hl
+      00006E 34                     140 	inc	(hl)
+      00006F                        141 00151$:
+      00006F 21r00r00               142 	ld	hl, #_i
+      000072 2A                     143 	ld	a, (hl+)
+      000073 D6 14                  144 	sub	a, #0x14
+                                    145 ;func/playView.c:26: cursorIndex = 0;
+      000075 B6                     146 	or	a,(hl)
+      000076 20 DD                  147 	jr	NZ, 00112$
+      000078 21r00r00               148 	ld	hl, #_cursorIndex
+      00007B 22                     149 	ld	(hl+), a
+      00007C 77                     150 	ld	(hl), a
+                                    151 ;func/playView.c:27: cursorPosition[0] = 16;
+      00007D 21r00r00               152 	ld	hl, #_cursorPosition
+      000080 3E 10                  153 	ld	a, #0x10
+      000082 22                     154 	ld	(hl+), a
+      000083 36 00                  155 	ld	(hl), #0x00
+                                    156 ;func/playView.c:28: cursorPosition[1] = 144;
+      000085 01r02r00               157 	ld	bc, #_cursorPosition + 2
+      000088 69                     158 	ld	l, c
+      000089 60                     159 	ld	h, b
+      00008A 3E 90                  160 	ld	a, #0x90
+      00008C 22                     161 	ld	(hl+), a
+      00008D 36 00                  162 	ld	(hl), #0x00
+                                    163 ;func/playView.c:29: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+      00008F 0A                     164 	ld	a, (bc)
+      000090 47                     165 	ld	b, a
+      000091 21r00r00               166 	ld	hl, #_cursorPosition
+      000094 4E                     167 	ld	c, (hl)
+      000095 21r00r00               168 	ld	hl, #_cursor
+      000098 2A                     169 	ld	a, (hl+)
+      000099 5F                     170 	ld	e, a
+      00009A 56                     171 	ld	d, (hl)
+                                    172 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      00009B 6B                     173 	ld	l, e
+                                    174 ;	spillPairReg hl
+                                    175 ;	spillPairReg hl
+      00009C 26 00                  176 	ld	h, #0x00
+                                    177 ;	spillPairReg hl
+                                    178 ;	spillPairReg hl
+      00009E 29                     179 	add	hl, hl
+      00009F 29                     180 	add	hl, hl
+      0000A0 11r00r00               181 	ld	de, #_shadow_OAM
+      0000A3 19                     182 	add	hl, de
+                                    183 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      0000A4 78                     184 	ld	a, b
+      0000A5 22                     185 	ld	(hl+), a
+      0000A6 71                     186 	ld	(hl), c
+                                    187 ;func/playView.c:30: quickSwitch = 0;
+      0000A7 21r00r00               188 	ld	hl, #_quickSwitch
+      0000AA 36 00                  189 	ld	(hl), #0x00
+                                    190 ;func/playView.c:31: viewMode = 0;
+      0000AC 21r00r00               191 	ld	hl, #_viewMode
+      0000AF 36 00                  192 	ld	(hl), #0x00
+                                    193 ;func/playView.c:32: scoreDisplay();
+      0000B1 CDr00r00               194 	call	_scoreDisplay
+                                    195 ;func/playView.c:33: turnRollDisplay();
+      0000B4 CDr00r00               196 	call	_turnRollDisplay
+                                    197 ;func/playView.c:34: SHOW_SPRITES;
+      0000B7 F0r00                  198 	ldh	a, (_LCDC_REG + 0)
+      0000B9 F6 02                  199 	or	a, #0x02
+      0000BB E0r00                  200 	ldh	(_LCDC_REG + 0), a
+                                    201 ;func/playView.c:35: }
+      0000BD C9                     202 	ret
+                                    203 	.area _CODE
+                                    204 	.area _INITIALIZER
+                                    205 	.area _CABS (ABS)

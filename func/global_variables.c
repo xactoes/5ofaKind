@@ -9,6 +9,7 @@
 unsigned int i;
 unsigned int j;
 unsigned int k;
+
 unsigned int cursorIndex;
 unsigned int currentFace[4];
 unsigned int cursorPosition[2];
@@ -34,9 +35,11 @@ unsigned int scorecard[15] = {255, 255, 255, 255, 255,
 unsigned int scorecardSummed[15] = {511, 511, 511, 511, 511,
 								511, 511, 511, 511, 511,
 								511, 511, 511, 511, 511};
+
 unsigned char buf[10];
 unsigned char endGame;
 unsigned char gameStart;
+unsigned char nameInputMenu;
 unsigned char quickSwitch;
 unsigned char upperRegion;
 unsigned char viewMode;

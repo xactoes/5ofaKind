@@ -1,0 +1,2113 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.1.6 #12539 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module main
+                                      6 	.optsdcc -mgbz80
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _main
+                                     12 	.globl _playCursor
+                                     13 	.globl _playCursorSelect
+                                     14 	.globl _playCursorB
+                                     15 	.globl _playCursorA
+                                     16 	.globl _rollCheck
+                                     17 	.globl _toggleDi
+                                     18 	.globl _playCursorRight
+                                     19 	.globl _playCursorLeft
+                                     20 	.globl _rollTracker
+                                     21 	.globl _newTurn
+                                     22 	.globl _initGame
+                                     23 	.globl _initDi
+                                     24 	.globl _moveDiceStruct
+                                     25 	.globl _diceToRoll
+                                     26 	.globl _setDiFace
+                                     27 	.globl _setDiceValues
+                                     28 	.globl _turnRollDisplay
+                                     29 	.globl _titleScreen
+                                     30 	.globl _spriteFlip
+                                     31 	.globl _scoreDisplay
+                                     32 	.globl _rollDi
+                                     33 	.globl _fadeFromBlack
+                                     34 	.globl _fadeToBlack
+                                     35 	.globl _cardView
+                                     36 	.globl _cardCursor
+                                     37 	.globl _betterDelay
+                                     38 	.globl _puts
+                                     39 	.globl _printf
+                                     40 	.globl _set_sprite_data
+                                     41 	.globl _set_bkg_tiles
+                                     42 	.globl _set_bkg_data
+                                     43 	.globl _waitpadup
+                                     44 	.globl _joypad
+                                     45 ;--------------------------------------------------------
+                                     46 ; special function registers
+                                     47 ;--------------------------------------------------------
+                                     48 ;--------------------------------------------------------
+                                     49 ; ram data
+                                     50 ;--------------------------------------------------------
+                                     51 	.area _DATA
+                                     52 ;--------------------------------------------------------
+                                     53 ; ram data
+                                     54 ;--------------------------------------------------------
+                                     55 	.area _INITIALIZED
+                                     56 ;--------------------------------------------------------
+                                     57 ; absolute external ram data
+                                     58 ;--------------------------------------------------------
+                                     59 	.area _DABS (ABS)
+                                     60 ;--------------------------------------------------------
+                                     61 ; global & static initialisations
+                                     62 ;--------------------------------------------------------
+                                     63 	.area _HOME
+                                     64 	.area _GSINIT
+                                     65 	.area _GSFINAL
+                                     66 	.area _GSINIT
+                                     67 ;--------------------------------------------------------
+                                     68 ; Home
+                                     69 ;--------------------------------------------------------
+                                     70 	.area _HOME
+                                     71 	.area _HOME
+                                     72 ;--------------------------------------------------------
+                                     73 ; code
+                                     74 ;--------------------------------------------------------
+                                     75 	.area _CODE
+                                     76 ;src/main.c:31: void setDiceValues(){
+                                     77 ;	---------------------------------
+                                     78 ; Function setDiceValues
+                                     79 ; ---------------------------------
+      000000                         80 _setDiceValues::
+                                     81 ;src/main.c:32: diceValues[0] = Di1.face;
+      000000 21r0Er00                82 	ld	hl, #(_Di1 + 14)
+      000003 2A                      83 	ld	a, (hl+)
+      000004 4F                      84 	ld	c, a
+      000005 46                      85 	ld	b, (hl)
+      000006 21r00r00                86 	ld	hl, #_diceValues
+      000009 79                      87 	ld	a, c
+      00000A 22                      88 	ld	(hl+), a
+      00000B 70                      89 	ld	(hl), b
+                                     90 ;src/main.c:33: diceValues[1] = Di2.face;
+      00000C 21r0Er00                91 	ld	hl, #(_Di2 + 14)
+      00000F 2A                      92 	ld	a, (hl+)
+      000010 4F                      93 	ld	c, a
+      000011 46                      94 	ld	b, (hl)
+      000012 21r02r00                95 	ld	hl, #(_diceValues + 2)
+      000015 79                      96 	ld	a, c
+      000016 22                      97 	ld	(hl+), a
+      000017 70                      98 	ld	(hl), b
+                                     99 ;src/main.c:34: diceValues[2] = Di3.face;
+      000018 21r0Er00               100 	ld	hl, #(_Di3 + 14)
+      00001B 2A                     101 	ld	a, (hl+)
+      00001C 4F                     102 	ld	c, a
+      00001D 46                     103 	ld	b, (hl)
+      00001E 21r04r00               104 	ld	hl, #(_diceValues + 4)
+      000021 79                     105 	ld	a, c
+      000022 22                     106 	ld	(hl+), a
+      000023 70                     107 	ld	(hl), b
+                                    108 ;src/main.c:35: diceValues[3] = Di4.face;
+      000024 21r0Er00               109 	ld	hl, #(_Di4 + 14)
+      000027 2A                     110 	ld	a, (hl+)
+      000028 4F                     111 	ld	c, a
+      000029 46                     112 	ld	b, (hl)
+      00002A 21r06r00               113 	ld	hl, #(_diceValues + 6)
+      00002D 79                     114 	ld	a, c
+      00002E 22                     115 	ld	(hl+), a
+      00002F 70                     116 	ld	(hl), b
+                                    117 ;src/main.c:36: diceValues[4] = Di5.face;
+      000030 21r0Er00               118 	ld	hl, #(_Di5 + 14)
+      000033 2A                     119 	ld	a, (hl+)
+      000034 4F                     120 	ld	c, a
+      000035 46                     121 	ld	b, (hl)
+      000036 21r08r00               122 	ld	hl, #(_diceValues + 8)
+      000039 79                     123 	ld	a, c
+      00003A 22                     124 	ld	(hl+), a
+      00003B 70                     125 	ld	(hl), b
+                                    126 ;src/main.c:37: }
+      00003C C9                     127 	ret
+                                    128 ;src/main.c:40: void setDiFace(struct DiceStruct * diSprite){
+                                    129 ;	---------------------------------
+                                    130 ; Function setDiFace
+                                    131 ; ---------------------------------
+      00003D                        132 _setDiFace::
+      00003D 3B                     133 	dec	sp
+                                    134 ;src/main.c:41: rollDi();
+      00003E CDr00r00               135 	call	_rollDi
+                                    136 ;src/main.c:42: for(i = 0; i != 4; i++){
+      000041 AF                     137 	xor	a, a
+      000042 21r00r00               138 	ld	hl, #_i
+      000045 22                     139 	ld	(hl+), a
+      000046 77                     140 	ld	(hl), a
+      000047 F8 03                  141 	ldhl	sp,	#3
+      000049 2A                     142 	ld	a, (hl+)
+      00004A 4F                     143 	ld	c, a
+      00004B 46                     144 	ld	b, (hl)
+      00004C                        145 00103$:
+                                    146 ;src/main.c:43: set_sprite_tile(diSprite->spriteID[i], currentFace[i]);
+      00004C 21r00r00               147 	ld	hl, #_i
+      00004F 2A                     148 	ld	a, (hl+)
+      000050 5F                     149 	ld	e, a
+      000051 56                     150 	ld	d, (hl)
+      000052 CB 23                  151 	sla	e
+      000054 CB 12                  152 	rl	d
+      000056 21r00r00               153 	ld	hl, #_currentFace
+      000059 19                     154 	add	hl, de
+      00005A 7E                     155 	ld	a, (hl)
+      00005B F8 00                  156 	ldhl	sp,	#0
+      00005D 77                     157 	ld	(hl), a
+      00005E 6B                     158 	ld	l, e
+      00005F 62                     159 	ld	h, d
+      000060 09                     160 	add	hl, bc
+                                    161 ;/opt/gbdk/include/gb/gb.h:1326: shadow_OAM[nb].tile=tile;
+      000061 6E                     162 	ld	l, (hl)
+                                    163 ;	spillPairReg hl
+                                    164 ;	spillPairReg hl
+      000062 26 00                  165 	ld	h, #0x00
+                                    166 ;	spillPairReg hl
+                                    167 ;	spillPairReg hl
+      000064 29                     168 	add	hl, hl
+      000065 29                     169 	add	hl, hl
+      000066 11r00r00               170 	ld	de, #_shadow_OAM
+      000069 19                     171 	add	hl, de
+      00006A 23                     172 	inc	hl
+      00006B 23                     173 	inc	hl
+      00006C 5D                     174 	ld	e, l
+      00006D 54                     175 	ld	d, h
+      00006E F8 00                  176 	ldhl	sp,	#0
+      000070 7E                     177 	ld	a, (hl)
+      000071 12                     178 	ld	(de), a
+                                    179 ;src/main.c:42: for(i = 0; i != 4; i++){
+      000072 21r00r00               180 	ld	hl, #_i
+      000075 34                     181 	inc	(hl)
+      000076 20 02                  182 	jr	NZ, 00118$
+      000078 23                     183 	inc	hl
+      000079 34                     184 	inc	(hl)
+      00007A                        185 00118$:
+      00007A 21r00r00               186 	ld	hl, #_i
+      00007D 2A                     187 	ld	a, (hl+)
+      00007E D6 04                  188 	sub	a, #0x04
+      000080 B6                     189 	or	a, (hl)
+      000081 20 C9                  190 	jr	NZ, 00103$
+                                    191 ;src/main.c:45: diSprite->face = diFaceBuf;
+      000083 21 0E 00               192 	ld	hl, #0x000e
+      000086 09                     193 	add	hl, bc
+      000087 4D                     194 	ld	c, l
+      000088 44                     195 	ld	b, h
+      000089 21r00r00               196 	ld	hl, #_diFaceBuf
+      00008C 2A                     197 	ld	a, (hl+)
+      00008D 02                     198 	ld	(bc), a
+      00008E 03                     199 	inc	bc
+      00008F 7E                     200 	ld	a, (hl)
+      000090 02                     201 	ld	(bc), a
+                                    202 ;src/main.c:46: setDiceValues();
+      000091 33                     203 	inc	sp
+      000092 C3r00r00               204 	jp	_setDiceValues
+                                    205 ;src/main.c:47: }
+      000095 33                     206 	inc	sp
+      000096 C9                     207 	ret
+                                    208 ;src/main.c:50: void diceToRoll(){
+                                    209 ;	---------------------------------
+                                    210 ; Function diceToRoll
+                                    211 ; ---------------------------------
+      000097                        212 _diceToRoll::
+                                    213 ;src/main.c:51: if(rollsLeft > 0){
+      000097 21r01r00               214 	ld	hl, #_rollsLeft + 1
+      00009A 3A                     215 	ld	a, (hl-)
+      00009B B6                     216 	or	a, (hl)
+      00009C C8                     217 	ret	Z
+                                    218 ;src/main.c:52: rollsLeft -= 1;
+      00009D 2A                     219 	ld	a, (hl+)
+      00009E 5F                     220 	ld	e, a
+      00009F 3A                     221 	ld	a, (hl-)
+      0000A0 57                     222 	ld	d, a
+      0000A1 1B                     223 	dec	de
+      0000A2 7B                     224 	ld	a, e
+      0000A3 22                     225 	ld	(hl+), a
+      0000A4 72                     226 	ld	(hl), d
+                                    227 ;src/main.c:53: for(j = 0; j != 5; j++){
+      0000A5 AF                     228 	xor	a, a
+      0000A6 21r00r00               229 	ld	hl, #_j
+      0000A9 22                     230 	ld	(hl+), a
+      0000AA 77                     231 	ld	(hl), a
+      0000AB                        232 00128$:
+                                    233 ;src/main.c:54: betterDelay(6);
+      0000AB 11 06 00               234 	ld	de, #0x0006
+      0000AE D5                     235 	push	de
+      0000AF CDr00r00               236 	call	_betterDelay
+      0000B2 E1                     237 	pop	hl
+                                    238 ;src/main.c:55: if(j == 0){
+      0000B3 21r01r00               239 	ld	hl, #_j + 1
+      0000B6 3A                     240 	ld	a, (hl-)
+      0000B7 B6                     241 	or	a, (hl)
+      0000B8 20 10                  242 	jr	NZ, 00123$
+                                    243 ;src/main.c:56: if(Di1.inPlay == 1){
+      0000BA FAr10r00               244 	ld	a, (#(_Di1 + 16) + 0)
+      0000BD 3D                     245 	dec	a
+      0000BE 20 6B                  246 	jr	NZ, 00129$
+                                    247 ;src/main.c:57: setDiFace(&Di1);
+      0000C0 11r00r00               248 	ld	de, #_Di1
+      0000C3 D5                     249 	push	de
+      0000C4 CDr3Dr00               250 	call	_setDiFace
+      0000C7 E1                     251 	pop	hl
+      0000C8 18 61                  252 	jr	00129$
+      0000CA                        253 00123$:
+                                    254 ;src/main.c:61: else if(j == 1){
+      0000CA 21r00r00               255 	ld	hl, #_j
+      0000CD 2A                     256 	ld	a, (hl+)
+      0000CE 3D                     257 	dec	a
+      0000CF B6                     258 	or	a, (hl)
+      0000D0 20 10                  259 	jr	NZ, 00120$
+                                    260 ;src/main.c:62: if(Di2.inPlay == 1){
+      0000D2 FAr10r00               261 	ld	a, (#(_Di2 + 16) + 0)
+      0000D5 3D                     262 	dec	a
+      0000D6 20 53                  263 	jr	NZ, 00129$
+                                    264 ;src/main.c:63: setDiFace(&Di2);
+      0000D8 11r00r00               265 	ld	de, #_Di2
+      0000DB D5                     266 	push	de
+      0000DC CDr3Dr00               267 	call	_setDiFace
+      0000DF E1                     268 	pop	hl
+      0000E0 18 49                  269 	jr	00129$
+      0000E2                        270 00120$:
+                                    271 ;src/main.c:67: else if(j == 2){
+      0000E2 21r00r00               272 	ld	hl, #_j
+      0000E5 2A                     273 	ld	a, (hl+)
+      0000E6 D6 02                  274 	sub	a, #0x02
+      0000E8 B6                     275 	or	a, (hl)
+      0000E9 20 10                  276 	jr	NZ, 00117$
+                                    277 ;src/main.c:68: if(Di3.inPlay == 1){
+      0000EB FAr10r00               278 	ld	a, (#(_Di3 + 16) + 0)
+      0000EE 3D                     279 	dec	a
+      0000EF 20 3A                  280 	jr	NZ, 00129$
+                                    281 ;src/main.c:69: setDiFace(&Di3);
+      0000F1 11r00r00               282 	ld	de, #_Di3
+      0000F4 D5                     283 	push	de
+      0000F5 CDr3Dr00               284 	call	_setDiFace
+      0000F8 E1                     285 	pop	hl
+      0000F9 18 30                  286 	jr	00129$
+      0000FB                        287 00117$:
+                                    288 ;src/main.c:73: else if(j == 3){
+      0000FB 21r00r00               289 	ld	hl, #_j
+      0000FE 2A                     290 	ld	a, (hl+)
+      0000FF D6 03                  291 	sub	a, #0x03
+      000101 B6                     292 	or	a, (hl)
+      000102 20 10                  293 	jr	NZ, 00114$
+                                    294 ;src/main.c:74: if(Di4.inPlay == 1){
+      000104 FAr10r00               295 	ld	a, (#(_Di4 + 16) + 0)
+      000107 3D                     296 	dec	a
+      000108 20 21                  297 	jr	NZ, 00129$
+                                    298 ;src/main.c:75: setDiFace(&Di4);
+      00010A 11r00r00               299 	ld	de, #_Di4
+      00010D D5                     300 	push	de
+      00010E CDr3Dr00               301 	call	_setDiFace
+      000111 E1                     302 	pop	hl
+      000112 18 17                  303 	jr	00129$
+      000114                        304 00114$:
+                                    305 ;src/main.c:79: else if(j == 4){
+      000114 21r00r00               306 	ld	hl, #_j
+      000117 2A                     307 	ld	a, (hl+)
+      000118 D6 04                  308 	sub	a, #0x04
+      00011A B6                     309 	or	a, (hl)
+      00011B 20 0E                  310 	jr	NZ, 00129$
+                                    311 ;src/main.c:80: if(Di5.inPlay == 1){
+      00011D FAr10r00               312 	ld	a, (#(_Di5 + 16) + 0)
+      000120 3D                     313 	dec	a
+      000121 20 08                  314 	jr	NZ, 00129$
+                                    315 ;src/main.c:81: setDiFace(&Di5);
+      000123 11r00r00               316 	ld	de, #_Di5
+      000126 D5                     317 	push	de
+      000127 CDr3Dr00               318 	call	_setDiFace
+      00012A E1                     319 	pop	hl
+      00012B                        320 00129$:
+                                    321 ;src/main.c:53: for(j = 0; j != 5; j++){
+      00012B 21r00r00               322 	ld	hl, #_j
+      00012E 34                     323 	inc	(hl)
+      00012F 20 02                  324 	jr	NZ, 00210$
+      000131 23                     325 	inc	hl
+      000132 34                     326 	inc	(hl)
+      000133                        327 00210$:
+      000133 21r00r00               328 	ld	hl, #_j
+      000136 2A                     329 	ld	a, (hl+)
+      000137 D6 05                  330 	sub	a, #0x05
+      000139 B6                     331 	or	a, (hl)
+      00013A C2rABr00               332 	jp	NZ,00128$
+                                    333 ;src/main.c:87: }
+      00013D C9                     334 	ret
+                                    335 ;src/main.c:90: void moveDiceStruct(struct DiceStruct * diSprite, unsigned int x, unsigned int y){
+                                    336 ;	---------------------------------
+                                    337 ; Function moveDiceStruct
+                                    338 ; ---------------------------------
+      00013E                        339 _moveDiceStruct::
+      00013E E8 FA                  340 	add	sp, #-6
+                                    341 ;src/main.c:91: move_sprite(diSprite->spriteID[0], x, y);
+      000140 F8 0C                  342 	ldhl	sp,	#12
+      000142 7E                     343 	ld	a, (hl)
+      000143 F8 00                  344 	ldhl	sp,	#0
+      000145 77                     345 	ld	(hl), a
+      000146 2A                     346 	ld	a, (hl+)
+      000147 77                     347 	ld	(hl), a
+      000148 F8 0A                  348 	ldhl	sp,	#10
+      00014A 7E                     349 	ld	a, (hl)
+      00014B F8 02                  350 	ldhl	sp,	#2
+      00014D 77                     351 	ld	(hl), a
+      00014E 2A                     352 	ld	a, (hl+)
+      00014F 77                     353 	ld	(hl), a
+      000150 F8 08                  354 	ldhl	sp,	#8
+      000152 7E                     355 	ld	a, (hl)
+      000153 F8 04                  356 	ldhl	sp,	#4
+      000155 77                     357 	ld	(hl), a
+      000156 F8 09                  358 	ldhl	sp,	#9
+      000158 7E                     359 	ld	a, (hl)
+      000159 F8 05                  360 	ldhl	sp,	#5
+      00015B 32                     361 	ld	(hl-), a
+      00015C 2A                     362 	ld	a, (hl+)
+      00015D 5F                     363 	ld	e, a
+      00015E 56                     364 	ld	d, (hl)
+      00015F 1A                     365 	ld	a, (de)
+                                    366 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      000160 6F                     367 	ld	l, a
+      000161 11r00r00               368 	ld	de, #_shadow_OAM+0
+                                    369 ;	spillPairReg hl
+                                    370 ;	spillPairReg hl
+      000164 26 00                  371 	ld	h, #0x00
+                                    372 ;	spillPairReg hl
+                                    373 ;	spillPairReg hl
+      000166 29                     374 	add	hl, hl
+      000167 29                     375 	add	hl, hl
+      000168 19                     376 	add	hl, de
+      000169 4D                     377 	ld	c, l
+      00016A 44                     378 	ld	b, h
+                                    379 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      00016B F8 01                  380 	ldhl	sp,	#1
+      00016D 2A                     381 	ld	a, (hl+)
+      00016E 23                     382 	inc	hl
+      00016F 02                     383 	ld	(bc), a
+      000170 03                     384 	inc	bc
+                                    385 ;src/main.c:92: move_sprite(diSprite->spriteID[1], x + 8, y);
+      000171 3A                     386 	ld	a, (hl-)
+      000172 02                     387 	ld	(bc), a
+      000173 2A                     388 	ld	a, (hl+)
+      000174 23                     389 	inc	hl
+      000175 C6 08                  390 	add	a, #0x08
+      000177 4F                     391 	ld	c, a
+      000178 41                     392 	ld	b, c
+      000179 2A                     393 	ld	a, (hl+)
+      00017A 5F                     394 	ld	e, a
+      00017B 56                     395 	ld	d, (hl)
+      00017C 13                     396 	inc	de
+      00017D 13                     397 	inc	de
+      00017E 1A                     398 	ld	a, (de)
+                                    399 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      00017F 6F                     400 	ld	l, a
+                                    401 ;	spillPairReg hl
+                                    402 ;	spillPairReg hl
+      000180 26 00                  403 	ld	h, #0x00
+                                    404 ;	spillPairReg hl
+                                    405 ;	spillPairReg hl
+      000182 29                     406 	add	hl, hl
+      000183 29                     407 	add	hl, hl
+      000184 11r00r00               408 	ld	de, #_shadow_OAM
+      000187 19                     409 	add	hl, de
+      000188 5D                     410 	ld	e, l
+      000189 54                     411 	ld	d, h
+                                    412 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      00018A F8 00                  413 	ldhl	sp,	#0
+      00018C 7E                     414 	ld	a, (hl)
+      00018D 12                     415 	ld	(de), a
+      00018E 13                     416 	inc	de
+      00018F 78                     417 	ld	a, b
+      000190 12                     418 	ld	(de), a
+                                    419 ;src/main.c:93: move_sprite(diSprite->spriteID[2], x, y + 8);
+      000191 7E                     420 	ld	a, (hl)
+      000192 C6 08                  421 	add	a, #0x08
+      000194 47                     422 	ld	b, a
+      000195 F8 03                  423 	ldhl	sp,	#3
+      000197 78                     424 	ld	a, b
+      000198 22                     425 	ld	(hl+), a
+      000199 2A                     426 	ld	a, (hl+)
+      00019A 5F                     427 	ld	e, a
+      00019B 56                     428 	ld	d, (hl)
+      00019C 21 04 00               429 	ld	hl, #0x0004
+      00019F 19                     430 	add	hl, de
+      0001A0 5D                     431 	ld	e, l
+      0001A1 54                     432 	ld	d, h
+      0001A2 1A                     433 	ld	a, (de)
+                                    434 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      0001A3 6F                     435 	ld	l, a
+                                    436 ;	spillPairReg hl
+                                    437 ;	spillPairReg hl
+      0001A4 26 00                  438 	ld	h, #0x00
+                                    439 ;	spillPairReg hl
+                                    440 ;	spillPairReg hl
+      0001A6 29                     441 	add	hl, hl
+      0001A7 29                     442 	add	hl, hl
+      0001A8 11r00r00               443 	ld	de, #_shadow_OAM
+      0001AB 19                     444 	add	hl, de
+      0001AC 5D                     445 	ld	e, l
+      0001AD 54                     446 	ld	d, h
+                                    447 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      0001AE F8 03                  448 	ldhl	sp,	#3
+      0001B0 3A                     449 	ld	a, (hl-)
+      0001B1 12                     450 	ld	(de), a
+      0001B2 13                     451 	inc	de
+      0001B3 7E                     452 	ld	a, (hl)
+      0001B4 12                     453 	ld	(de), a
+                                    454 ;src/main.c:94: move_sprite(diSprite->spriteID[3], x + 8, y + 8);
+      0001B5 F8 04                  455 	ldhl	sp,#4
+      0001B7 2A                     456 	ld	a, (hl+)
+      0001B8 5F                     457 	ld	e, a
+      0001B9 56                     458 	ld	d, (hl)
+      0001BA 21 06 00               459 	ld	hl, #0x0006
+      0001BD 19                     460 	add	hl, de
+      0001BE 5D                     461 	ld	e, l
+      0001BF 54                     462 	ld	d, h
+      0001C0 1A                     463 	ld	a, (de)
+                                    464 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      0001C1 6F                     465 	ld	l, a
+                                    466 ;	spillPairReg hl
+                                    467 ;	spillPairReg hl
+      0001C2 26 00                  468 	ld	h, #0x00
+                                    469 ;	spillPairReg hl
+                                    470 ;	spillPairReg hl
+      0001C4 29                     471 	add	hl, hl
+      0001C5 29                     472 	add	hl, hl
+      0001C6 11r00r00               473 	ld	de, #_shadow_OAM
+      0001C9 19                     474 	add	hl, de
+                                    475 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      0001CA 78                     476 	ld	a, b
+      0001CB 22                     477 	ld	(hl+), a
+      0001CC 71                     478 	ld	(hl), c
+                                    479 ;src/main.c:94: move_sprite(diSprite->spriteID[3], x + 8, y + 8);
+                                    480 ;src/main.c:95: }
+      0001CD E8 06                  481 	add	sp, #6
+      0001CF C9                     482 	ret
+                                    483 ;src/main.c:99: void initDi(struct DiceStruct * diSprite, unsigned int spot){
+                                    484 ;	---------------------------------
+                                    485 ; Function initDi
+                                    486 ; ---------------------------------
+      0001D0                        487 _initDi::
+      0001D0 E8 F6                  488 	add	sp, #-10
+                                    489 ;src/main.c:100: for(i = 0; i != 4; i++){
+      0001D2 AF                     490 	xor	a, a
+      0001D3 21r00r00               491 	ld	hl, #_i
+      0001D6 22                     492 	ld	(hl+), a
+      0001D7 77                     493 	ld	(hl), a
+      0001D8 F8 0C                  494 	ldhl	sp,	#12
+      0001DA 7E                     495 	ld	a, (hl)
+      0001DB F8 00                  496 	ldhl	sp,	#0
+      0001DD 77                     497 	ld	(hl), a
+      0001DE F8 0D                  498 	ldhl	sp,	#13
+      0001E0 7E                     499 	ld	a, (hl)
+      0001E1 F8 01                  500 	ldhl	sp,	#1
+      0001E3 77                     501 	ld	(hl), a
+      0001E4 F8 0E                  502 	ldhl	sp,#14
+      0001E6 2A                     503 	ld	a, (hl+)
+      0001E7 5F                     504 	ld	e, a
+      0001E8 56                     505 	ld	d, (hl)
+      0001E9 21 01 00               506 	ld	hl, #0x0001
+      0001EC 7B                     507 	ld	a, e
+      0001ED 95                     508 	sub	a, l
+      0001EE 5F                     509 	ld	e, a
+      0001EF 7A                     510 	ld	a, d
+      0001F0 9C                     511 	sbc	a, h
+      0001F1 F8 03                  512 	ldhl	sp,	#3
+      0001F3 32                     513 	ld	(hl-), a
+      0001F4 73                     514 	ld	(hl), e
+      0001F5 2A                     515 	ld	a, (hl+)
+      0001F6 23                     516 	inc	hl
+      0001F7 32                     517 	ld	(hl-), a
+      0001F8 2A                     518 	ld	a, (hl+)
+      0001F9 23                     519 	inc	hl
+      0001FA 77                     520 	ld	(hl), a
+      0001FB 3E 02                  521 	ld	a, #0x02
+      0001FD                        522 00116$:
+      0001FD F8 04                  523 	ldhl	sp,	#4
+      0001FF CB 26                  524 	sla	(hl)
+      000201 23                     525 	inc	hl
+      000202 CB 16                  526 	rl	(hl)
+      000204 3D                     527 	dec	a
+      000205 20 F6                  528 	jr	NZ, 00116$
+      000207                        529 00102$:
+                                    530 ;src/main.c:104: diSprite->position = spot;
+      000207 D1                     531 	pop	de
+      000208 D5                     532 	push	de
+      000209 21 0C 00               533 	ld	hl, #0x000c
+      00020C 19                     534 	add	hl, de
+      00020D 4D                     535 	ld	c, l
+      00020E 44                     536 	ld	b, h
+      00020F F8 0E                  537 	ldhl	sp,	#14
+      000211 2A                     538 	ld	a, (hl+)
+      000212 02                     539 	ld	(bc), a
+      000213 03                     540 	inc	bc
+      000214 7E                     541 	ld	a, (hl)
+      000215 02                     542 	ld	(bc), a
+                                    543 ;src/main.c:107: spriteNumber = (4 * (spot - 1) ) + i;
+      000216 F8 04                  544 	ldhl	sp,#4
+      000218 2A                     545 	ld	a, (hl+)
+      000219 5F                     546 	ld	e, a
+      00021A 56                     547 	ld	d, (hl)
+      00021B 21r00r00               548 	ld	hl, #_i
+      00021E 2A                     549 	ld	a,	(hl+)
+      00021F 66                     550 	ld	h, (hl)
+      000220 6F                     551 	ld	l, a
+      000221 19                     552 	add	hl, de
+      000222 4D                     553 	ld	c, l
+      000223 44                     554 	ld	b, h
+                                    555 ;src/main.c:110: diSprite->spriteID[i] = spriteNumber;
+      000224 21r00r00               556 	ld	hl, #_i
+      000227 2A                     557 	ld	a, (hl+)
+      000228 56                     558 	ld	d, (hl)
+      000229 87                     559 	add	a, a
+      00022A CB 12                  560 	rl	d
+      00022C 5F                     561 	ld	e, a
+      00022D E1                     562 	pop	hl
+      00022E E5                     563 	push	hl
+      00022F 19                     564 	add	hl, de
+      000230 5D                     565 	ld	e, l
+      000231 54                     566 	ld	d, h
+      000232 79                     567 	ld	a, c
+      000233 12                     568 	ld	(de), a
+      000234 13                     569 	inc	de
+      000235 78                     570 	ld	a, b
+      000236 12                     571 	ld	(de), a
+                                    572 ;src/main.c:113: diSprite->x = diStartPosition[0] + ( (diSprite->position - 1) * diSpacing);
+      000237 D1                     573 	pop	de
+      000238 D5                     574 	push	de
+      000239 21 08 00               575 	ld	hl, #0x0008
+      00023C 19                     576 	add	hl, de
+      00023D E5                     577 	push	hl
+      00023E 7D                     578 	ld	a, l
+      00023F F8 08                  579 	ldhl	sp,	#8
+      000241 77                     580 	ld	(hl), a
+      000242 E1                     581 	pop	hl
+      000243 7C                     582 	ld	a, h
+      000244 F8 07                  583 	ldhl	sp,	#7
+      000246 77                     584 	ld	(hl), a
+      000247 21r00r00               585 	ld	hl, #_diStartPosition
+      00024A 2A                     586 	ld	a, (hl+)
+      00024B 4F                     587 	ld	c, a
+      00024C 46                     588 	ld	b, (hl)
+      00024D 21r00r00               589 	ld	hl, #_diSpacing
+      000250 2A                     590 	ld	a, (hl+)
+      000251 5F                     591 	ld	e, a
+      000252 56                     592 	ld	d, (hl)
+      000253 C5                     593 	push	bc
+      000254 D5                     594 	push	de
+      000255 F8 06                  595 	ldhl	sp,	#6
+      000257 2A                     596 	ld	a, (hl+)
+      000258 5F                     597 	ld	e, a
+      000259 56                     598 	ld	d, (hl)
+      00025A D5                     599 	push	de
+      00025B CDr00r00               600 	call	__mulint
+      00025E E8 04                  601 	add	sp, #4
+      000260 6B                     602 	ld	l, e
+                                    603 ;	spillPairReg hl
+                                    604 ;	spillPairReg hl
+      000261 62                     605 	ld	h, d
+                                    606 ;	spillPairReg hl
+                                    607 ;	spillPairReg hl
+      000262 C1                     608 	pop	bc
+      000263 09                     609 	add	hl, bc
+      000264 4D                     610 	ld	c, l
+      000265 44                     611 	ld	b, h
+      000266 F8 06                  612 	ldhl	sp,	#6
+      000268 2A                     613 	ld	a,	(hl+)
+      000269 66                     614 	ld	h, (hl)
+      00026A 6F                     615 	ld	l, a
+      00026B 79                     616 	ld	a, c
+      00026C 22                     617 	ld	(hl+), a
+      00026D 70                     618 	ld	(hl), b
+                                    619 ;src/main.c:114: diSprite->y = diStartPosition[1];
+      00026E D1                     620 	pop	de
+      00026F D5                     621 	push	de
+      000270 21 0A 00               622 	ld	hl, #0x000a
+      000273 19                     623 	add	hl, de
+      000274 4D                     624 	ld	c, l
+      000275 44                     625 	ld	b, h
+      000276 11r02r00               626 	ld	de, #(_diStartPosition + 2)
+      000279 1A                     627 	ld	a, (de)
+      00027A F8 08                  628 	ldhl	sp,	#8
+      00027C 22                     629 	ld	(hl+), a
+      00027D 13                     630 	inc	de
+      00027E 1A                     631 	ld	a, (de)
+      00027F 32                     632 	ld	(hl-), a
+      000280 59                     633 	ld	e, c
+      000281 50                     634 	ld	d, b
+      000282 2A                     635 	ld	a, (hl+)
+      000283 12                     636 	ld	(de), a
+      000284 13                     637 	inc	de
+      000285 7E                     638 	ld	a, (hl)
+      000286 12                     639 	ld	(de), a
+                                    640 ;src/main.c:100: for(i = 0; i != 4; i++){
+      000287 21r00r00               641 	ld	hl, #_i
+      00028A 34                     642 	inc	(hl)
+      00028B 20 02                  643 	jr	NZ, 00118$
+      00028D 23                     644 	inc	hl
+      00028E 34                     645 	inc	(hl)
+      00028F                        646 00118$:
+      00028F 21r00r00               647 	ld	hl, #_i
+      000292 2A                     648 	ld	a, (hl+)
+      000293 D6 04                  649 	sub	a, #0x04
+      000295 B6                     650 	or	a, (hl)
+      000296 C2r07r02               651 	jp	NZ,00102$
+                                    652 ;src/main.c:117: diSprite->inPlay = 1;
+      000299 D1                     653 	pop	de
+      00029A D5                     654 	push	de
+      00029B 21 10 00               655 	ld	hl, #0x0010
+      00029E 19                     656 	add	hl, de
+      00029F 36 01                  657 	ld	(hl), #0x01
+                                    658 ;src/main.c:120: moveDiceStruct(diSprite, diSprite->x, diSprite->y);
+      0002A1 69                     659 	ld	l, c
+      0002A2 60                     660 	ld	h, b
+      0002A3 2A                     661 	ld	a, (hl+)
+      0002A4 4F                     662 	ld	c, a
+      0002A5 46                     663 	ld	b, (hl)
+      0002A6 F8 06                  664 	ldhl	sp,#6
+      0002A8 2A                     665 	ld	a, (hl+)
+      0002A9 5F                     666 	ld	e, a
+      0002AA 56                     667 	ld	d, (hl)
+      0002AB 1A                     668 	ld	a, (de)
+      0002AC 6F                     669 	ld	l, a
+                                    670 ;	spillPairReg hl
+                                    671 ;	spillPairReg hl
+      0002AD 13                     672 	inc	de
+      0002AE 1A                     673 	ld	a, (de)
+      0002AF 67                     674 	ld	h, a
+                                    675 ;	spillPairReg hl
+                                    676 ;	spillPairReg hl
+      0002B0 C5                     677 	push	bc
+      0002B1 E5                     678 	push	hl
+      0002B2 F8 04                  679 	ldhl	sp,	#4
+      0002B4 2A                     680 	ld	a, (hl+)
+      0002B5 5F                     681 	ld	e, a
+      0002B6 56                     682 	ld	d, (hl)
+      0002B7 D5                     683 	push	de
+      0002B8 CDr3Er01               684 	call	_moveDiceStruct
+      0002BB E8 06                  685 	add	sp, #6
+                                    686 ;src/main.c:123: setDiFace(diSprite);
+      0002BD F8 0C                  687 	ldhl	sp,	#12
+      0002BF 2A                     688 	ld	a, (hl+)
+      0002C0 5F                     689 	ld	e, a
+      0002C1 56                     690 	ld	d, (hl)
+      0002C2 D5                     691 	push	de
+      0002C3 CDr3Dr00               692 	call	_setDiFace
+      0002C6 E1                     693 	pop	hl
+                                    694 ;src/main.c:124: }
+      0002C7 E8 0A                  695 	add	sp, #10
+      0002C9 C9                     696 	ret
+                                    697 ;src/main.c:127: void initGame(){
+                                    698 ;	---------------------------------
+                                    699 ; Function initGame
+                                    700 ; ---------------------------------
+      0002CA                        701 _initGame::
+                                    702 ;src/main.c:128: set_sprite_data(0, 7, Sprites);
+      0002CA 11r00r00               703 	ld	de, #_Sprites
+      0002CD D5                     704 	push	de
+      0002CE 21 00 07               705 	ld	hl, #0x700
+      0002D1 E5                     706 	push	hl
+      0002D2 CDr00r00               707 	call	_set_sprite_data
+      0002D5 E8 04                  708 	add	sp, #4
+                                    709 ;src/main.c:129: set_sprite_tile(cursor, 5);
+      0002D7 21r00r00               710 	ld	hl, #_cursor
+      0002DA 2A                     711 	ld	a, (hl+)
+      0002DB 5F                     712 	ld	e, a
+      0002DC 7E                     713 	ld	a, (hl)
+                                    714 ;/opt/gbdk/include/gb/gb.h:1326: shadow_OAM[nb].tile=tile;
+      0002DD 01r00r00               715 	ld	bc, #_shadow_OAM+0
+      0002E0 6B                     716 	ld	l, e
+                                    717 ;	spillPairReg hl
+                                    718 ;	spillPairReg hl
+      0002E1 26 00                  719 	ld	h, #0x00
+                                    720 ;	spillPairReg hl
+                                    721 ;	spillPairReg hl
+      0002E3 29                     722 	add	hl, hl
+      0002E4 29                     723 	add	hl, hl
+      0002E5 09                     724 	add	hl, bc
+      0002E6 23                     725 	inc	hl
+      0002E7 23                     726 	inc	hl
+      0002E8 36 05                  727 	ld	(hl), #0x05
+                                    728 ;src/main.c:130: set_bkg_data(0, 128, backgroundData);
+      0002EA 11r00r00               729 	ld	de, #_backgroundData
+      0002ED D5                     730 	push	de
+      0002EE 21 00 80               731 	ld	hl, #0x8000
+      0002F1 E5                     732 	push	hl
+      0002F2 CDr00r00               733 	call	_set_bkg_data
+      0002F5 E8 04                  734 	add	sp, #4
+                                    735 ;src/main.c:131: set_bkg_tiles(0, 0, 20, 32, backgroundMap);
+      0002F7 11r00r00               736 	ld	de, #_backgroundMap
+      0002FA D5                     737 	push	de
+      0002FB 21 14 20               738 	ld	hl, #0x2014
+      0002FE E5                     739 	push	hl
+      0002FF AF                     740 	xor	a, a
+      000300 0F                     741 	rrca
+      000301 F5                     742 	push	af
+      000302 CDr00r00               743 	call	_set_bkg_tiles
+      000305 E8 06                  744 	add	sp, #6
+                                    745 ;src/main.c:132: viewMode = 0;
+      000307 21r00r00               746 	ld	hl, #_viewMode
+      00030A 36 00                  747 	ld	(hl), #0x00
+                                    748 ;src/main.c:134: SHOW_BKG;
+      00030C F0r00                  749 	ldh	a, (_LCDC_REG + 0)
+      00030E F6 01                  750 	or	a, #0x01
+      000310 E0r00                  751 	ldh	(_LCDC_REG + 0), a
+                                    752 ;src/main.c:136: initDi(&Di1, 1);
+      000312 11 01 00               753 	ld	de, #0x0001
+      000315 D5                     754 	push	de
+      000316 11r00r00               755 	ld	de, #_Di1
+      000319 D5                     756 	push	de
+      00031A CDrD0r01               757 	call	_initDi
+      00031D E8 04                  758 	add	sp, #4
+                                    759 ;src/main.c:137: initDi(&Di2, 2);
+      00031F 11 02 00               760 	ld	de, #0x0002
+      000322 D5                     761 	push	de
+      000323 11r00r00               762 	ld	de, #_Di2
+      000326 D5                     763 	push	de
+      000327 CDrD0r01               764 	call	_initDi
+      00032A E8 04                  765 	add	sp, #4
+                                    766 ;src/main.c:138: initDi(&Di3, 3);
+      00032C 11 03 00               767 	ld	de, #0x0003
+      00032F D5                     768 	push	de
+      000330 11r00r00               769 	ld	de, #_Di3
+      000333 D5                     770 	push	de
+      000334 CDrD0r01               771 	call	_initDi
+      000337 E8 04                  772 	add	sp, #4
+                                    773 ;src/main.c:139: initDi(&Di4, 4);
+      000339 11 04 00               774 	ld	de, #0x0004
+      00033C D5                     775 	push	de
+      00033D 11r00r00               776 	ld	de, #_Di4
+      000340 D5                     777 	push	de
+      000341 CDrD0r01               778 	call	_initDi
+      000344 E8 04                  779 	add	sp, #4
+                                    780 ;src/main.c:140: initDi(&Di5, 5);
+      000346 11 05 00               781 	ld	de, #0x0005
+      000349 D5                     782 	push	de
+      00034A 11r00r00               783 	ld	de, #_Di5
+      00034D D5                     784 	push	de
+      00034E CDrD0r01               785 	call	_initDi
+      000351 E8 04                  786 	add	sp, #4
+                                    787 ;src/main.c:141: spriteFlip();
+      000353 CDr00r00               788 	call	_spriteFlip
+                                    789 ;src/main.c:144: cursorIndex = 0;
+      000356 AF                     790 	xor	a, a
+      000357 21r00r00               791 	ld	hl, #_cursorIndex
+      00035A 22                     792 	ld	(hl+), a
+      00035B 77                     793 	ld	(hl), a
+                                    794 ;src/main.c:145: cursorPosition[0] = 16;
+      00035C 21r00r00               795 	ld	hl, #_cursorPosition
+      00035F 3E 10                  796 	ld	a, #0x10
+      000361 22                     797 	ld	(hl+), a
+      000362 36 00                  798 	ld	(hl), #0x00
+                                    799 ;src/main.c:146: cursorPosition[1] = 144;
+      000364 01r02r00               800 	ld	bc, #_cursorPosition + 2
+      000367 69                     801 	ld	l, c
+      000368 60                     802 	ld	h, b
+      000369 3E 90                  803 	ld	a, #0x90
+      00036B 22                     804 	ld	(hl+), a
+      00036C 36 00                  805 	ld	(hl), #0x00
+                                    806 ;src/main.c:147: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+      00036E 0A                     807 	ld	a, (bc)
+      00036F 47                     808 	ld	b, a
+      000370 21r00r00               809 	ld	hl, #_cursorPosition
+      000373 4E                     810 	ld	c, (hl)
+      000374 21r00r00               811 	ld	hl, #_cursor
+      000377 2A                     812 	ld	a, (hl+)
+      000378 5F                     813 	ld	e, a
+      000379 56                     814 	ld	d, (hl)
+                                    815 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      00037A 6B                     816 	ld	l, e
+                                    817 ;	spillPairReg hl
+                                    818 ;	spillPairReg hl
+      00037B 26 00                  819 	ld	h, #0x00
+                                    820 ;	spillPairReg hl
+                                    821 ;	spillPairReg hl
+      00037D 29                     822 	add	hl, hl
+      00037E 29                     823 	add	hl, hl
+      00037F 11r00r00               824 	ld	de, #_shadow_OAM
+      000382 19                     825 	add	hl, de
+                                    826 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      000383 78                     827 	ld	a, b
+      000384 22                     828 	ld	(hl+), a
+      000385 71                     829 	ld	(hl), c
+                                    830 ;src/main.c:149: scoreDisplay();
+      000386 CDr00r00               831 	call	_scoreDisplay
+                                    832 ;src/main.c:151: rollsLeft = 3;
+      000389 21r00r00               833 	ld	hl, #_rollsLeft
+      00038C 3E 03                  834 	ld	a, #0x03
+      00038E 22                     835 	ld	(hl+), a
+      00038F AF                     836 	xor	a, a
+      000390 77                     837 	ld	(hl), a
+                                    838 ;src/main.c:152: turn = 1;
+      000391 21r00r00               839 	ld	hl, #_turn
+      000394 3E 01                  840 	ld	a, #0x01
+      000396 22                     841 	ld	(hl+), a
+      000397 AF                     842 	xor	a, a
+      000398 77                     843 	ld	(hl), a
+                                    844 ;src/main.c:154: turnRollDisplay();
+                                    845 ;src/main.c:155: }
+      000399 C3r00r00               846 	jp	_turnRollDisplay
+                                    847 ;src/main.c:158: void newTurn(){
+                                    848 ;	---------------------------------
+                                    849 ; Function newTurn
+                                    850 ; ---------------------------------
+      00039C                        851 _newTurn::
+                                    852 ;src/main.c:159: turn++;
+      00039C 21r00r00               853 	ld	hl, #_turn
+      00039F 34                     854 	inc	(hl)
+      0003A0 20 02                  855 	jr	NZ, 00138$
+      0003A2 23                     856 	inc	hl
+      0003A3 34                     857 	inc	(hl)
+      0003A4                        858 00138$:
+                                    859 ;src/main.c:160: rollsLeft = 3;
+      0003A4 21r00r00               860 	ld	hl, #_rollsLeft
+      0003A7 3E 03                  861 	ld	a, #0x03
+      0003A9 22                     862 	ld	(hl+), a
+      0003AA AF                     863 	xor	a, a
+      0003AB 77                     864 	ld	(hl), a
+                                    865 ;src/main.c:161: turnRollDisplay();
+      0003AC CDr00r00               866 	call	_turnRollDisplay
+                                    867 ;src/main.c:162: rollsEnabled = 1;
+      0003AF 21r00r00               868 	ld	hl, #_rollsEnabled
+      0003B2 36 01                  869 	ld	(hl), #0x01
+                                    870 ;src/main.c:163: scorecardChangeA = 0;
+      0003B4 21r00r00               871 	ld	hl, #_scorecardChangeA
+      0003B7 36 00                  872 	ld	(hl), #0x00
+                                    873 ;src/main.c:164: scorecardChangeB = 0;
+      0003B9 21r00r00               874 	ld	hl, #_scorecardChangeB
+      0003BC 36 00                  875 	ld	(hl), #0x00
+                                    876 ;src/main.c:165: if(Di1.inPlay == 0){
+      0003BE 21r10r00               877 	ld	hl, #_Di1 + 16
+      0003C1 7E                     878 	ld	a, (hl)
+      0003C2 B7                     879 	or	a, a
+      0003C3 20 19                  880 	jr	NZ, 00102$
+                                    881 ;src/main.c:166: Di1.inPlay = 1;
+      0003C5 36 01                  882 	ld	(hl), #0x01
+                                    883 ;src/main.c:167: moveDiceStruct(&Di1, Di1.x, rollPosY);
+      0003C7 21r00r00               884 	ld	hl, #_rollPosY
+      0003CA 2A                     885 	ld	a, (hl+)
+      0003CB 4F                     886 	ld	c, a
+      0003CC 46                     887 	ld	b, (hl)
+      0003CD 21r08r00               888 	ld	hl, #_Di1 + 8
+      0003D0 2A                     889 	ld	a,	(hl+)
+      0003D1 66                     890 	ld	h, (hl)
+                                    891 ;	spillPairReg hl
+      0003D2 6F                     892 	ld	l, a
+                                    893 ;	spillPairReg hl
+                                    894 ;	spillPairReg hl
+      0003D3 C5                     895 	push	bc
+      0003D4 E5                     896 	push	hl
+      0003D5 11r00r00               897 	ld	de, #_Di1
+      0003D8 D5                     898 	push	de
+      0003D9 CDr3Er01               899 	call	_moveDiceStruct
+      0003DC E8 06                  900 	add	sp, #6
+      0003DE                        901 00102$:
+                                    902 ;src/main.c:169: if(Di2.inPlay == 0){
+      0003DE 21r10r00               903 	ld	hl, #_Di2 + 16
+      0003E1 7E                     904 	ld	a, (hl)
+      0003E2 B7                     905 	or	a, a
+      0003E3 20 19                  906 	jr	NZ, 00104$
+                                    907 ;src/main.c:170: Di2.inPlay = 1;
+      0003E5 36 01                  908 	ld	(hl), #0x01
+                                    909 ;src/main.c:171: moveDiceStruct(&Di2, Di2.x, rollPosY);
+      0003E7 21r00r00               910 	ld	hl, #_rollPosY
+      0003EA 2A                     911 	ld	a, (hl+)
+      0003EB 4F                     912 	ld	c, a
+      0003EC 46                     913 	ld	b, (hl)
+      0003ED 21r08r00               914 	ld	hl, #_Di2 + 8
+      0003F0 2A                     915 	ld	a,	(hl+)
+      0003F1 66                     916 	ld	h, (hl)
+                                    917 ;	spillPairReg hl
+      0003F2 6F                     918 	ld	l, a
+                                    919 ;	spillPairReg hl
+                                    920 ;	spillPairReg hl
+      0003F3 C5                     921 	push	bc
+      0003F4 E5                     922 	push	hl
+      0003F5 11r00r00               923 	ld	de, #_Di2
+      0003F8 D5                     924 	push	de
+      0003F9 CDr3Er01               925 	call	_moveDiceStruct
+      0003FC E8 06                  926 	add	sp, #6
+      0003FE                        927 00104$:
+                                    928 ;src/main.c:173: if(Di3.inPlay == 0){
+      0003FE 21r10r00               929 	ld	hl, #_Di3 + 16
+      000401 7E                     930 	ld	a, (hl)
+      000402 B7                     931 	or	a, a
+      000403 20 19                  932 	jr	NZ, 00106$
+                                    933 ;src/main.c:174: Di3.inPlay = 1;
+      000405 36 01                  934 	ld	(hl), #0x01
+                                    935 ;src/main.c:175: moveDiceStruct(&Di3, Di3.x, rollPosY);
+      000407 21r00r00               936 	ld	hl, #_rollPosY
+      00040A 2A                     937 	ld	a, (hl+)
+      00040B 4F                     938 	ld	c, a
+      00040C 46                     939 	ld	b, (hl)
+      00040D 21r08r00               940 	ld	hl, #_Di3 + 8
+      000410 2A                     941 	ld	a,	(hl+)
+      000411 66                     942 	ld	h, (hl)
+                                    943 ;	spillPairReg hl
+      000412 6F                     944 	ld	l, a
+                                    945 ;	spillPairReg hl
+                                    946 ;	spillPairReg hl
+      000413 C5                     947 	push	bc
+      000414 E5                     948 	push	hl
+      000415 11r00r00               949 	ld	de, #_Di3
+      000418 D5                     950 	push	de
+      000419 CDr3Er01               951 	call	_moveDiceStruct
+      00041C E8 06                  952 	add	sp, #6
+      00041E                        953 00106$:
+                                    954 ;src/main.c:177: if(Di4.inPlay == 0){
+      00041E 21r10r00               955 	ld	hl, #_Di4 + 16
+      000421 7E                     956 	ld	a, (hl)
+      000422 B7                     957 	or	a, a
+      000423 20 19                  958 	jr	NZ, 00108$
+                                    959 ;src/main.c:178: Di4.inPlay = 1;
+      000425 36 01                  960 	ld	(hl), #0x01
+                                    961 ;src/main.c:179: moveDiceStruct(&Di4, Di4.x, rollPosY);
+      000427 21r00r00               962 	ld	hl, #_rollPosY
+      00042A 2A                     963 	ld	a, (hl+)
+      00042B 4F                     964 	ld	c, a
+      00042C 46                     965 	ld	b, (hl)
+      00042D 21r08r00               966 	ld	hl, #_Di4 + 8
+      000430 2A                     967 	ld	a,	(hl+)
+      000431 66                     968 	ld	h, (hl)
+                                    969 ;	spillPairReg hl
+      000432 6F                     970 	ld	l, a
+                                    971 ;	spillPairReg hl
+                                    972 ;	spillPairReg hl
+      000433 C5                     973 	push	bc
+      000434 E5                     974 	push	hl
+      000435 11r00r00               975 	ld	de, #_Di4
+      000438 D5                     976 	push	de
+      000439 CDr3Er01               977 	call	_moveDiceStruct
+      00043C E8 06                  978 	add	sp, #6
+      00043E                        979 00108$:
+                                    980 ;src/main.c:181: if(Di5.inPlay == 0){
+      00043E 21r10r00               981 	ld	hl, #_Di5 + 16
+      000441 7E                     982 	ld	a, (hl)
+      000442 B7                     983 	or	a, a
+      000443 C0                     984 	ret	NZ
+                                    985 ;src/main.c:182: Di5.inPlay = 1;
+      000444 36 01                  986 	ld	(hl), #0x01
+                                    987 ;src/main.c:183: moveDiceStruct(&Di5, Di5.x, rollPosY);
+      000446 21r00r00               988 	ld	hl, #_rollPosY
+      000449 2A                     989 	ld	a, (hl+)
+      00044A 4F                     990 	ld	c, a
+      00044B 46                     991 	ld	b, (hl)
+      00044C 21r08r00               992 	ld	hl, #_Di5 + 8
+      00044F 2A                     993 	ld	a,	(hl+)
+      000450 66                     994 	ld	h, (hl)
+                                    995 ;	spillPairReg hl
+      000451 6F                     996 	ld	l, a
+                                    997 ;	spillPairReg hl
+                                    998 ;	spillPairReg hl
+      000452 C5                     999 	push	bc
+      000453 E5                    1000 	push	hl
+      000454 11r00r00              1001 	ld	de, #_Di5
+      000457 D5                    1002 	push	de
+      000458 CDr3Er01              1003 	call	_moveDiceStruct
+      00045B E8 06                 1004 	add	sp, #6
+                                   1005 ;src/main.c:185: }
+      00045D C9                    1006 	ret
+                                   1007 ;src/main.c:188: void rollTracker(){
+                                   1008 ;	---------------------------------
+                                   1009 ; Function rollTracker
+                                   1010 ; ---------------------------------
+      00045E                       1011 _rollTracker::
+                                   1012 ;src/main.c:189: turnsPassed = 0;
+      00045E AF                    1013 	xor	a, a
+      00045F 21r00r00              1014 	ld	hl, #_turnsPassed
+      000462 22                    1015 	ld	(hl+), a
+      000463 77                    1016 	ld	(hl), a
+                                   1017 ;src/main.c:190: if(rollsLeft == 0){
+      000464 21r01r00              1018 	ld	hl, #_rollsLeft + 1
+      000467 3A                    1019 	ld	a, (hl-)
+                                   1020 ;src/main.c:192: for(i = 0; i != 13; i++){
+      000468 B6                    1021 	or	a,(hl)
+      000469 C2r05r05              1022 	jp	NZ,00123$
+      00046C 21r00r00              1023 	ld	hl, #_i
+      00046F 22                    1024 	ld	(hl+), a
+      000470 77                    1025 	ld	(hl), a
+      000471                       1026 00125$:
+                                   1027 ;src/main.c:193: if(scorecard[i] != 255){
+      000471 21r00r00              1028 	ld	hl, #_i
+      000474 2A                    1029 	ld	a, (hl+)
+      000475 4F                    1030 	ld	c, a
+      000476 46                    1031 	ld	b, (hl)
+      000477 CB 21                 1032 	sla	c
+      000479 CB 10                 1033 	rl	b
+      00047B 21r00r00              1034 	ld	hl, #_scorecard
+      00047E 09                    1035 	add	hl, bc
+      00047F 2A                    1036 	ld	a, (hl+)
+      000480 4F                    1037 	ld	c, a
+      000481 46                    1038 	ld	b, (hl)
+      000482 79                    1039 	ld	a, c
+      000483 3C                    1040 	inc	a
+      000484 B0                    1041 	or	a, b
+      000485 28 08                 1042 	jr	Z, 00126$
+                                   1043 ;src/main.c:194: turnsPassed++;
+      000487 21r00r00              1044 	ld	hl, #_turnsPassed
+      00048A 34                    1045 	inc	(hl)
+      00048B 20 02                 1046 	jr	NZ, 00186$
+      00048D 23                    1047 	inc	hl
+      00048E 34                    1048 	inc	(hl)
+      00048F                       1049 00186$:
+      00048F                       1050 00126$:
+                                   1051 ;src/main.c:192: for(i = 0; i != 13; i++){
+      00048F 21r00r00              1052 	ld	hl, #_i
+      000492 34                    1053 	inc	(hl)
+      000493 20 02                 1054 	jr	NZ, 00187$
+      000495 23                    1055 	inc	hl
+      000496 34                    1056 	inc	(hl)
+      000497                       1057 00187$:
+      000497 21r00r00              1058 	ld	hl, #_i
+      00049A 2A                    1059 	ld	a, (hl+)
+      00049B D6 0D                 1060 	sub	a, #0x0d
+      00049D B6                    1061 	or	a, (hl)
+      00049E 20 D1                 1062 	jr	NZ, 00125$
+                                   1063 ;src/main.c:198: if(turnsPassed < turn){
+      0004A0 11r00r00              1064 	ld	de, #_turnsPassed
+      0004A3 21r00r00              1065 	ld	hl, #_turn
+      0004A6 1A                    1066 	ld	a, (de)
+      0004A7 13                    1067 	inc	de
+      0004A8 96                    1068 	sub	a, (hl)
+      0004A9 23                    1069 	inc	hl
+      0004AA 1A                    1070 	ld	a, (de)
+      0004AB 9E                    1071 	sbc	a, (hl)
+      0004AC 30 07                 1072 	jr	NC, 00118$
+                                   1073 ;src/main.c:199: rollsEnabled = 0;
+      0004AE 21r00r00              1074 	ld	hl, #_rollsEnabled
+      0004B1 36 00                 1075 	ld	(hl), #0x00
+      0004B3 18 5C                 1076 	jr	00124$
+      0004B5                       1077 00118$:
+                                   1078 ;src/main.c:202: else if(turnsPassed == turn){
+      0004B5 FAr00r00              1079 	ld	a, (#_turnsPassed)
+      0004B8 21r00r00              1080 	ld	hl, #_turn
+      0004BB 96                    1081 	sub	a, (hl)
+      0004BC 20 53                 1082 	jr	NZ, 00124$
+      0004BE FAr01r00              1083 	ld	a, (#_turnsPassed + 1)
+      0004C1 21r01r00              1084 	ld	hl, #_turn + 1
+      0004C4 96                    1085 	sub	a, (hl)
+      0004C5 20 4A                 1086 	jr	NZ, 00124$
+                                   1087 ;src/main.c:203: if(turn == 13){
+      0004C7 21r00r00              1088 	ld	hl, #_turn
+      0004CA 2A                    1089 	ld	a, (hl+)
+      0004CB D6 0D                 1090 	sub	a, #0x0d
+      0004CD B6                    1091 	or	a, (hl)
+      0004CE 20 1E                 1092 	jr	NZ, 00113$
+                                   1093 ;src/main.c:204: if(scorecard[6] == 0){
+      0004D0 21r0Cr00              1094 	ld	hl, #(_scorecard + 12)
+      0004D3 2A                    1095 	ld	a, (hl+)
+      0004D4 4F                    1096 	ld	c, a
+      0004D5 46                    1097 	ld	b, (hl)
+      0004D6 78                    1098 	ld	a, b
+      0004D7 B1                    1099 	or	a, c
+      0004D8 20 07                 1100 	jr	NZ, 00107$
+                                   1101 ;src/main.c:205: endGame = 1;
+      0004DA 21r00r00              1102 	ld	hl, #_endGame
+      0004DD 36 01                 1103 	ld	(hl), #0x01
+      0004DF 18 30                 1104 	jr	00124$
+      0004E1                       1105 00107$:
+                                   1106 ;src/main.c:207: else if(scorecard[6] == 50){
+      0004E1 79                    1107 	ld	a, c
+      0004E2 D6 32                 1108 	sub	a, #0x32
+      0004E4 B0                    1109 	or	a, b
+      0004E5 20 2A                 1110 	jr	NZ, 00124$
+                                   1111 ;src/main.c:208: endGame = 1;
+      0004E7 21r00r00              1112 	ld	hl, #_endGame
+      0004EA 36 01                 1113 	ld	(hl), #0x01
+      0004EC 18 23                 1114 	jr	00124$
+      0004EE                       1115 00113$:
+                                   1116 ;src/main.c:211: else if(turn >= 13){
+      0004EE 21r00r00              1117 	ld	hl, #_turn
+      0004F1 2A                    1118 	ld	a, (hl+)
+      0004F2 D6 0D                 1119 	sub	a, #0x0d
+      0004F4 7E                    1120 	ld	a, (hl)
+      0004F5 DE 00                 1121 	sbc	a, #0x00
+      0004F7 38 07                 1122 	jr	C, 00110$
+                                   1123 ;src/main.c:212: endGame = 1;
+      0004F9 21r00r00              1124 	ld	hl, #_endGame
+      0004FC 36 01                 1125 	ld	(hl), #0x01
+      0004FE 18 11                 1126 	jr	00124$
+      000500                       1127 00110$:
+                                   1128 ;src/main.c:215: newTurn();
+      000500 CDr9Cr03              1129 	call	_newTurn
+      000503 18 0C                 1130 	jr	00124$
+      000505                       1131 00123$:
+                                   1132 ;src/main.c:219: else if(rollsLeft > 0){
+      000505 21r01r00              1133 	ld	hl, #_rollsLeft + 1
+      000508 3A                    1134 	ld	a, (hl-)
+      000509 B6                    1135 	or	a, (hl)
+      00050A 28 05                 1136 	jr	Z, 00124$
+                                   1137 ;src/main.c:220: rollsEnabled = 1;
+      00050C 21r00r00              1138 	ld	hl, #_rollsEnabled
+      00050F 36 01                 1139 	ld	(hl), #0x01
+      000511                       1140 00124$:
+                                   1141 ;src/main.c:222: turnsPassed = 0;
+      000511 AF                    1142 	xor	a, a
+      000512 21r00r00              1143 	ld	hl, #_turnsPassed
+      000515 22                    1144 	ld	(hl+), a
+      000516 77                    1145 	ld	(hl), a
+                                   1146 ;src/main.c:223: }
+      000517 C9                    1147 	ret
+                                   1148 ;src/main.c:225: void playCursorLeft(){
+                                   1149 ;	---------------------------------
+                                   1150 ; Function playCursorLeft
+                                   1151 ; ---------------------------------
+      000518                       1152 _playCursorLeft::
+                                   1153 ;src/main.c:226: if(cursorIndex == 1 || cursorIndex == 2){
+      000518 21r00r00              1154 	ld	hl, #_cursorIndex
+      00051B 2A                    1155 	ld	a, (hl+)
+      00051C 3D                    1156 	dec	a
+      00051D B6                    1157 	or	a, (hl)
+      00051E 28 09                 1158 	jr	Z, 00101$
+      000520 21r00r00              1159 	ld	hl, #_cursorIndex
+      000523 2A                    1160 	ld	a, (hl+)
+      000524 D6 02                 1161 	sub	a, #0x02
+      000526 B6                    1162 	or	a, (hl)
+      000527 20 1F                 1163 	jr	NZ, 00102$
+      000529                       1164 00101$:
+                                   1165 ;src/main.c:227: cursorPosition[0] -= 48;
+      000529 21r00r00              1166 	ld	hl, #_cursorPosition
+      00052C 2A                    1167 	ld	a, (hl+)
+      00052D 4F                    1168 	ld	c, a
+      00052E 46                    1169 	ld	b, (hl)
+      00052F 79                    1170 	ld	a, c
+      000530 C6 D0                 1171 	add	a, #0xd0
+      000532 4F                    1172 	ld	c, a
+      000533 78                    1173 	ld	a, b
+      000534 CE FF                 1174 	adc	a, #0xff
+      000536 47                    1175 	ld	b, a
+      000537 21r00r00              1176 	ld	hl, #_cursorPosition
+      00053A 79                    1177 	ld	a, c
+      00053B 22                    1178 	ld	(hl+), a
+      00053C 70                    1179 	ld	(hl), b
+                                   1180 ;src/main.c:228: cursorIndex -= 1;
+      00053D 21r00r00              1181 	ld	hl, #_cursorIndex
+      000540 2A                    1182 	ld	a, (hl+)
+      000541 5F                    1183 	ld	e, a
+      000542 3A                    1184 	ld	a, (hl-)
+      000543 57                    1185 	ld	d, a
+      000544 1B                    1186 	dec	de
+      000545 7B                    1187 	ld	a, e
+      000546 22                    1188 	ld	(hl+), a
+      000547 72                    1189 	ld	(hl), d
+      000548                       1190 00102$:
+                                   1191 ;src/main.c:230: if(cursorIndex > 3 && cursorIndex <= 7){//null for now
+      000548 21r00r00              1192 	ld	hl, #_cursorIndex
+      00054B 3E 03                 1193 	ld	a, #0x03
+      00054D 96                    1194 	sub	a, (hl)
+      00054E 23                    1195 	inc	hl
+      00054F 3E 00                 1196 	ld	a, #0x00
+      000551 9E                    1197 	sbc	a, (hl)
+      000552 30 2B                 1198 	jr	NC, 00105$
+      000554 21r00r00              1199 	ld	hl, #_cursorIndex
+      000557 3E 07                 1200 	ld	a, #0x07
+      000559 96                    1201 	sub	a, (hl)
+      00055A 23                    1202 	inc	hl
+      00055B 3E 00                 1203 	ld	a, #0x00
+      00055D 9E                    1204 	sbc	a, (hl)
+      00055E 38 1F                 1205 	jr	C, 00105$
+                                   1206 ;src/main.c:231: cursorPosition[0] -= 24;
+      000560 21r00r00              1207 	ld	hl, #_cursorPosition
+      000563 2A                    1208 	ld	a, (hl+)
+      000564 4F                    1209 	ld	c, a
+      000565 46                    1210 	ld	b, (hl)
+      000566 79                    1211 	ld	a, c
+      000567 C6 E8                 1212 	add	a, #0xe8
+      000569 4F                    1213 	ld	c, a
+      00056A 78                    1214 	ld	a, b
+      00056B CE FF                 1215 	adc	a, #0xff
+      00056D 47                    1216 	ld	b, a
+      00056E 21r00r00              1217 	ld	hl, #_cursorPosition
+      000571 79                    1218 	ld	a, c
+      000572 22                    1219 	ld	(hl+), a
+      000573 70                    1220 	ld	(hl), b
+                                   1221 ;src/main.c:232: cursorIndex -= 1;
+      000574 21r00r00              1222 	ld	hl, #_cursorIndex
+      000577 2A                    1223 	ld	a, (hl+)
+      000578 5F                    1224 	ld	e, a
+      000579 3A                    1225 	ld	a, (hl-)
+      00057A 57                    1226 	ld	d, a
+      00057B 1B                    1227 	dec	de
+      00057C 7B                    1228 	ld	a, e
+      00057D 22                    1229 	ld	(hl+), a
+      00057E 72                    1230 	ld	(hl), d
+      00057F                       1231 00105$:
+                                   1232 ;src/main.c:234: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+      00057F 21r02r00              1233 	ld	hl, #_cursorPosition + 2
+      000582 46                    1234 	ld	b, (hl)
+      000583 21r00r00              1235 	ld	hl, #_cursorPosition
+      000586 4E                    1236 	ld	c, (hl)
+      000587 21r00r00              1237 	ld	hl, #_cursor
+      00058A 2A                    1238 	ld	a, (hl+)
+      00058B 5F                    1239 	ld	e, a
+      00058C 56                    1240 	ld	d, (hl)
+                                   1241 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      00058D 6B                    1242 	ld	l, e
+                                   1243 ;	spillPairReg hl
+                                   1244 ;	spillPairReg hl
+      00058E 26 00                 1245 	ld	h, #0x00
+                                   1246 ;	spillPairReg hl
+                                   1247 ;	spillPairReg hl
+      000590 29                    1248 	add	hl, hl
+      000591 29                    1249 	add	hl, hl
+      000592 11r00r00              1250 	ld	de, #_shadow_OAM
+      000595 19                    1251 	add	hl, de
+                                   1252 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      000596 78                    1253 	ld	a, b
+      000597 22                    1254 	ld	(hl+), a
+      000598 71                    1255 	ld	(hl), c
+                                   1256 ;src/main.c:234: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+                                   1257 ;src/main.c:235: }
+      000599 C9                    1258 	ret
+                                   1259 ;src/main.c:238: void playCursorRight(){
+                                   1260 ;	---------------------------------
+                                   1261 ; Function playCursorRight
+                                   1262 ; ---------------------------------
+      00059A                       1263 _playCursorRight::
+                                   1264 ;src/main.c:239: if(cursorIndex == 0 || cursorIndex == 1){
+      00059A 21r01r00              1265 	ld	hl, #_cursorIndex + 1
+      00059D 3A                    1266 	ld	a, (hl-)
+      00059E B6                    1267 	or	a, (hl)
+      00059F 28 05                 1268 	jr	Z, 00101$
+      0005A1 2A                    1269 	ld	a, (hl+)
+      0005A2 3D                    1270 	dec	a
+      0005A3 B6                    1271 	or	a, (hl)
+      0005A4 20 1A                 1272 	jr	NZ, 00102$
+      0005A6                       1273 00101$:
+                                   1274 ;src/main.c:240: cursorPosition[0] += 48;
+      0005A6 21r00r00              1275 	ld	hl, #_cursorPosition
+      0005A9 2A                    1276 	ld	a, (hl+)
+      0005AA 4F                    1277 	ld	c, a
+      0005AB 46                    1278 	ld	b, (hl)
+      0005AC 21 30 00              1279 	ld	hl, #0x0030
+      0005AF 09                    1280 	add	hl, bc
+      0005B0 4D                    1281 	ld	c, l
+      0005B1 44                    1282 	ld	b, h
+      0005B2 21r00r00              1283 	ld	hl, #_cursorPosition
+      0005B5 79                    1284 	ld	a, c
+      0005B6 22                    1285 	ld	(hl+), a
+      0005B7 70                    1286 	ld	(hl), b
+                                   1287 ;src/main.c:241: cursorIndex += 1;
+      0005B8 21r00r00              1288 	ld	hl, #_cursorIndex
+      0005BB 34                    1289 	inc	(hl)
+      0005BC 20 02                 1290 	jr	NZ, 00127$
+      0005BE 23                    1291 	inc	hl
+      0005BF 34                    1292 	inc	(hl)
+      0005C0                       1293 00127$:
+      0005C0                       1294 00102$:
+                                   1295 ;src/main.c:243: if(cursorIndex >= 3 && cursorIndex < 7){
+      0005C0 21r00r00              1296 	ld	hl, #_cursorIndex
+      0005C3 2A                    1297 	ld	a, (hl+)
+      0005C4 D6 03                 1298 	sub	a, #0x03
+      0005C6 7E                    1299 	ld	a, (hl)
+      0005C7 DE 00                 1300 	sbc	a, #0x00
+      0005C9 38 23                 1301 	jr	C, 00105$
+      0005CB 2B                    1302 	dec	hl
+      0005CC 2A                    1303 	ld	a, (hl+)
+      0005CD D6 07                 1304 	sub	a, #0x07
+      0005CF 7E                    1305 	ld	a, (hl)
+      0005D0 DE 00                 1306 	sbc	a, #0x00
+      0005D2 30 1A                 1307 	jr	NC, 00105$
+                                   1308 ;src/main.c:244: cursorPosition[0] += 24;
+      0005D4 21r00r00              1309 	ld	hl, #_cursorPosition
+      0005D7 2A                    1310 	ld	a, (hl+)
+      0005D8 4F                    1311 	ld	c, a
+      0005D9 46                    1312 	ld	b, (hl)
+      0005DA 21 18 00              1313 	ld	hl, #0x0018
+      0005DD 09                    1314 	add	hl, bc
+      0005DE 4D                    1315 	ld	c, l
+      0005DF 44                    1316 	ld	b, h
+      0005E0 21r00r00              1317 	ld	hl, #_cursorPosition
+      0005E3 79                    1318 	ld	a, c
+      0005E4 22                    1319 	ld	(hl+), a
+      0005E5 70                    1320 	ld	(hl), b
+                                   1321 ;src/main.c:245: cursorIndex += 1;
+      0005E6 21r00r00              1322 	ld	hl, #_cursorIndex
+      0005E9 34                    1323 	inc	(hl)
+      0005EA 20 02                 1324 	jr	NZ, 00128$
+      0005EC 23                    1325 	inc	hl
+      0005ED 34                    1326 	inc	(hl)
+      0005EE                       1327 00128$:
+      0005EE                       1328 00105$:
+                                   1329 ;src/main.c:247: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+      0005EE 21r02r00              1330 	ld	hl, #_cursorPosition + 2
+      0005F1 46                    1331 	ld	b, (hl)
+      0005F2 21r00r00              1332 	ld	hl, #_cursorPosition
+      0005F5 4E                    1333 	ld	c, (hl)
+      0005F6 21r00r00              1334 	ld	hl, #_cursor
+      0005F9 2A                    1335 	ld	a, (hl+)
+      0005FA 5F                    1336 	ld	e, a
+      0005FB 56                    1337 	ld	d, (hl)
+                                   1338 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      0005FC 6B                    1339 	ld	l, e
+                                   1340 ;	spillPairReg hl
+                                   1341 ;	spillPairReg hl
+      0005FD 26 00                 1342 	ld	h, #0x00
+                                   1343 ;	spillPairReg hl
+                                   1344 ;	spillPairReg hl
+      0005FF 29                    1345 	add	hl, hl
+      000600 29                    1346 	add	hl, hl
+      000601 11r00r00              1347 	ld	de, #_shadow_OAM
+      000604 19                    1348 	add	hl, de
+                                   1349 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      000605 78                    1350 	ld	a, b
+      000606 22                    1351 	ld	(hl+), a
+      000607 71                    1352 	ld	(hl), c
+                                   1353 ;src/main.c:247: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+                                   1354 ;src/main.c:248: }
+      000608 C9                    1355 	ret
+                                   1356 ;src/main.c:251: void toggleDi(){
+                                   1357 ;	---------------------------------
+                                   1358 ; Function toggleDi
+                                   1359 ; ---------------------------------
+      000609                       1360 _toggleDi::
+                                   1361 ;src/main.c:252: switch(cursorIndex){
+      000609 21r00r00              1362 	ld	hl, #_cursorIndex
+      00060C 2A                    1363 	ld	a, (hl+)
+      00060D D6 03                 1364 	sub	a, #0x03
+      00060F B6                    1365 	or	a, (hl)
+      000610 28 28                 1366 	jr	Z, 00101$
+      000612 21r00r00              1367 	ld	hl, #_cursorIndex
+      000615 2A                    1368 	ld	a, (hl+)
+      000616 D6 04                 1369 	sub	a, #0x04
+      000618 B6                    1370 	or	a, (hl)
+      000619 28 5D                 1371 	jr	Z, 00107$
+      00061B 21r00r00              1372 	ld	hl, #_cursorIndex
+      00061E 2A                    1373 	ld	a, (hl+)
+      00061F D6 05                 1374 	sub	a, #0x05
+      000621 B6                    1375 	or	a, (hl)
+      000622 CArB6r06              1376 	jp	Z,00113$
+      000625 21r00r00              1377 	ld	hl, #_cursorIndex
+      000628 2A                    1378 	ld	a, (hl+)
+      000629 D6 06                 1379 	sub	a, #0x06
+      00062B B6                    1380 	or	a, (hl)
+      00062C CArF4r06              1381 	jp	Z,00119$
+      00062F 21r00r00              1382 	ld	hl, #_cursorIndex
+      000632 2A                    1383 	ld	a, (hl+)
+      000633 D6 07                 1384 	sub	a, #0x07
+      000635 B6                    1385 	or	a, (hl)
+      000636 CAr32r07              1386 	jp	Z,00125$
+      000639 C9                    1387 	ret
+                                   1388 ;src/main.c:253: case 3:
+      00063A                       1389 00101$:
+                                   1390 ;src/main.c:254: if(Di1.inPlay == 1){
+      00063A 21r10r00              1391 	ld	hl, #_Di1 + 16
+      00063D 4E                    1392 	ld	c, (hl)
+                                   1393 ;src/main.c:256: moveDiceStruct(&Di1, Di1.x, heldPosY);
+                                   1394 ;src/main.c:254: if(Di1.inPlay == 1){
+      00063E 79                    1395 	ld	a, c
+                                   1396 ;src/main.c:255: Di1.inPlay = 0;
+      00063F 3D                    1397 	dec	a
+      000640 20 19                 1398 	jr	NZ, 00105$
+      000642 77                    1399 	ld	(hl),a
+                                   1400 ;src/main.c:256: moveDiceStruct(&Di1, Di1.x, heldPosY);
+      000643 21r00r00              1401 	ld	hl, #_heldPosY
+      000646 2A                    1402 	ld	a, (hl+)
+      000647 4F                    1403 	ld	c, a
+      000648 46                    1404 	ld	b, (hl)
+      000649 21r08r00              1405 	ld	hl, #(_Di1 + 8)
+      00064C 2A                    1406 	ld	a,	(hl+)
+      00064D 66                    1407 	ld	h, (hl)
+                                   1408 ;	spillPairReg hl
+      00064E 6F                    1409 	ld	l, a
+                                   1410 ;	spillPairReg hl
+                                   1411 ;	spillPairReg hl
+      00064F C5                    1412 	push	bc
+      000650 E5                    1413 	push	hl
+      000651 11r00r00              1414 	ld	de, #_Di1
+      000654 D5                    1415 	push	de
+      000655 CDr3Er01              1416 	call	_moveDiceStruct
+      000658 E8 06                 1417 	add	sp, #6
+      00065A C9                    1418 	ret
+      00065B                       1419 00105$:
+                                   1420 ;src/main.c:258: else if(Di1.inPlay == 0){
+      00065B 79                    1421 	ld	a, c
+      00065C B7                    1422 	or	a, a
+      00065D C0                    1423 	ret	NZ
+                                   1424 ;src/main.c:259: Di1.inPlay = 1;
+      00065E 36 01                 1425 	ld	(hl), #0x01
+                                   1426 ;src/main.c:260: moveDiceStruct(&Di1, Di1.x, rollPosY);
+      000660 21r00r00              1427 	ld	hl, #_rollPosY
+      000663 2A                    1428 	ld	a, (hl+)
+      000664 4F                    1429 	ld	c, a
+      000665 46                    1430 	ld	b, (hl)
+      000666 21r08r00              1431 	ld	hl, #(_Di1 + 8)
+      000669 2A                    1432 	ld	a,	(hl+)
+      00066A 66                    1433 	ld	h, (hl)
+                                   1434 ;	spillPairReg hl
+      00066B 6F                    1435 	ld	l, a
+                                   1436 ;	spillPairReg hl
+                                   1437 ;	spillPairReg hl
+      00066C C5                    1438 	push	bc
+      00066D E5                    1439 	push	hl
+      00066E 11r00r00              1440 	ld	de, #_Di1
+      000671 D5                    1441 	push	de
+      000672 CDr3Er01              1442 	call	_moveDiceStruct
+      000675 E8 06                 1443 	add	sp, #6
+                                   1444 ;src/main.c:262: break;
+      000677 C9                    1445 	ret
+                                   1446 ;src/main.c:263: case 4:
+      000678                       1447 00107$:
+                                   1448 ;src/main.c:264: if(Di2.inPlay == 1){
+      000678 21r10r00              1449 	ld	hl, #_Di2 + 16
+      00067B 4E                    1450 	ld	c, (hl)
+                                   1451 ;src/main.c:266: moveDiceStruct(&Di2, Di2.x, heldPosY);
+                                   1452 ;src/main.c:264: if(Di2.inPlay == 1){
+      00067C 79                    1453 	ld	a, c
+                                   1454 ;src/main.c:265: Di2.inPlay = 0;
+      00067D 3D                    1455 	dec	a
+      00067E 20 19                 1456 	jr	NZ, 00111$
+      000680 77                    1457 	ld	(hl),a
+                                   1458 ;src/main.c:266: moveDiceStruct(&Di2, Di2.x, heldPosY);
+      000681 21r00r00              1459 	ld	hl, #_heldPosY
+      000684 2A                    1460 	ld	a, (hl+)
+      000685 4F                    1461 	ld	c, a
+      000686 46                    1462 	ld	b, (hl)
+      000687 21r08r00              1463 	ld	hl, #(_Di2 + 8)
+      00068A 2A                    1464 	ld	a,	(hl+)
+      00068B 66                    1465 	ld	h, (hl)
+                                   1466 ;	spillPairReg hl
+      00068C 6F                    1467 	ld	l, a
+                                   1468 ;	spillPairReg hl
+                                   1469 ;	spillPairReg hl
+      00068D C5                    1470 	push	bc
+      00068E E5                    1471 	push	hl
+      00068F 11r00r00              1472 	ld	de, #_Di2
+      000692 D5                    1473 	push	de
+      000693 CDr3Er01              1474 	call	_moveDiceStruct
+      000696 E8 06                 1475 	add	sp, #6
+      000698 C9                    1476 	ret
+      000699                       1477 00111$:
+                                   1478 ;src/main.c:268: else if(Di2.inPlay == 0){
+      000699 79                    1479 	ld	a, c
+      00069A B7                    1480 	or	a, a
+      00069B C0                    1481 	ret	NZ
+                                   1482 ;src/main.c:269: Di2.inPlay = 1;
+      00069C 36 01                 1483 	ld	(hl), #0x01
+                                   1484 ;src/main.c:270: moveDiceStruct(&Di2, Di2.x, rollPosY);
+      00069E 21r00r00              1485 	ld	hl, #_rollPosY
+      0006A1 2A                    1486 	ld	a, (hl+)
+      0006A2 4F                    1487 	ld	c, a
+      0006A3 46                    1488 	ld	b, (hl)
+      0006A4 21r08r00              1489 	ld	hl, #(_Di2 + 8)
+      0006A7 2A                    1490 	ld	a,	(hl+)
+      0006A8 66                    1491 	ld	h, (hl)
+                                   1492 ;	spillPairReg hl
+      0006A9 6F                    1493 	ld	l, a
+                                   1494 ;	spillPairReg hl
+                                   1495 ;	spillPairReg hl
+      0006AA C5                    1496 	push	bc
+      0006AB E5                    1497 	push	hl
+      0006AC 11r00r00              1498 	ld	de, #_Di2
+      0006AF D5                    1499 	push	de
+      0006B0 CDr3Er01              1500 	call	_moveDiceStruct
+      0006B3 E8 06                 1501 	add	sp, #6
+                                   1502 ;src/main.c:272: break;
+      0006B5 C9                    1503 	ret
+                                   1504 ;src/main.c:273: case 5:
+      0006B6                       1505 00113$:
+                                   1506 ;src/main.c:274: if(Di3.inPlay == 1){
+      0006B6 21r10r00              1507 	ld	hl, #_Di3 + 16
+      0006B9 4E                    1508 	ld	c, (hl)
+                                   1509 ;src/main.c:276: moveDiceStruct(&Di3, Di3.x, heldPosY);
+                                   1510 ;src/main.c:274: if(Di3.inPlay == 1){
+      0006BA 79                    1511 	ld	a, c
+                                   1512 ;src/main.c:275: Di3.inPlay = 0;
+      0006BB 3D                    1513 	dec	a
+      0006BC 20 19                 1514 	jr	NZ, 00117$
+      0006BE 77                    1515 	ld	(hl),a
+                                   1516 ;src/main.c:276: moveDiceStruct(&Di3, Di3.x, heldPosY);
+      0006BF 21r00r00              1517 	ld	hl, #_heldPosY
+      0006C2 2A                    1518 	ld	a, (hl+)
+      0006C3 4F                    1519 	ld	c, a
+      0006C4 46                    1520 	ld	b, (hl)
+      0006C5 21r08r00              1521 	ld	hl, #(_Di3 + 8)
+      0006C8 2A                    1522 	ld	a,	(hl+)
+      0006C9 66                    1523 	ld	h, (hl)
+                                   1524 ;	spillPairReg hl
+      0006CA 6F                    1525 	ld	l, a
+                                   1526 ;	spillPairReg hl
+                                   1527 ;	spillPairReg hl
+      0006CB C5                    1528 	push	bc
+      0006CC E5                    1529 	push	hl
+      0006CD 11r00r00              1530 	ld	de, #_Di3
+      0006D0 D5                    1531 	push	de
+      0006D1 CDr3Er01              1532 	call	_moveDiceStruct
+      0006D4 E8 06                 1533 	add	sp, #6
+      0006D6 C9                    1534 	ret
+      0006D7                       1535 00117$:
+                                   1536 ;src/main.c:278: else if(Di3.inPlay == 0){
+      0006D7 79                    1537 	ld	a, c
+      0006D8 B7                    1538 	or	a, a
+      0006D9 C0                    1539 	ret	NZ
+                                   1540 ;src/main.c:279: Di3.inPlay = 1;
+      0006DA 36 01                 1541 	ld	(hl), #0x01
+                                   1542 ;src/main.c:280: moveDiceStruct(&Di3, Di3.x, rollPosY);
+      0006DC 21r00r00              1543 	ld	hl, #_rollPosY
+      0006DF 2A                    1544 	ld	a, (hl+)
+      0006E0 4F                    1545 	ld	c, a
+      0006E1 46                    1546 	ld	b, (hl)
+      0006E2 21r08r00              1547 	ld	hl, #(_Di3 + 8)
+      0006E5 2A                    1548 	ld	a,	(hl+)
+      0006E6 66                    1549 	ld	h, (hl)
+                                   1550 ;	spillPairReg hl
+      0006E7 6F                    1551 	ld	l, a
+                                   1552 ;	spillPairReg hl
+                                   1553 ;	spillPairReg hl
+      0006E8 C5                    1554 	push	bc
+      0006E9 E5                    1555 	push	hl
+      0006EA 11r00r00              1556 	ld	de, #_Di3
+      0006ED D5                    1557 	push	de
+      0006EE CDr3Er01              1558 	call	_moveDiceStruct
+      0006F1 E8 06                 1559 	add	sp, #6
+                                   1560 ;src/main.c:282: break;
+      0006F3 C9                    1561 	ret
+                                   1562 ;src/main.c:283: case 6:
+      0006F4                       1563 00119$:
+                                   1564 ;src/main.c:284: if(Di4.inPlay == 1){
+      0006F4 21r10r00              1565 	ld	hl, #_Di4 + 16
+      0006F7 4E                    1566 	ld	c, (hl)
+                                   1567 ;src/main.c:286: moveDiceStruct(&Di4, Di4.x, heldPosY);
+                                   1568 ;src/main.c:284: if(Di4.inPlay == 1){
+      0006F8 79                    1569 	ld	a, c
+                                   1570 ;src/main.c:285: Di4.inPlay = 0;
+      0006F9 3D                    1571 	dec	a
+      0006FA 20 19                 1572 	jr	NZ, 00123$
+      0006FC 77                    1573 	ld	(hl),a
+                                   1574 ;src/main.c:286: moveDiceStruct(&Di4, Di4.x, heldPosY);
+      0006FD 21r00r00              1575 	ld	hl, #_heldPosY
+      000700 2A                    1576 	ld	a, (hl+)
+      000701 4F                    1577 	ld	c, a
+      000702 46                    1578 	ld	b, (hl)
+      000703 21r08r00              1579 	ld	hl, #(_Di4 + 8)
+      000706 2A                    1580 	ld	a,	(hl+)
+      000707 66                    1581 	ld	h, (hl)
+                                   1582 ;	spillPairReg hl
+      000708 6F                    1583 	ld	l, a
+                                   1584 ;	spillPairReg hl
+                                   1585 ;	spillPairReg hl
+      000709 C5                    1586 	push	bc
+      00070A E5                    1587 	push	hl
+      00070B 11r00r00              1588 	ld	de, #_Di4
+      00070E D5                    1589 	push	de
+      00070F CDr3Er01              1590 	call	_moveDiceStruct
+      000712 E8 06                 1591 	add	sp, #6
+      000714 C9                    1592 	ret
+      000715                       1593 00123$:
+                                   1594 ;src/main.c:288: else if(Di4.inPlay == 0){
+      000715 79                    1595 	ld	a, c
+      000716 B7                    1596 	or	a, a
+      000717 C0                    1597 	ret	NZ
+                                   1598 ;src/main.c:289: Di4.inPlay = 1;
+      000718 36 01                 1599 	ld	(hl), #0x01
+                                   1600 ;src/main.c:290: moveDiceStruct(&Di4, Di4.x, rollPosY);
+      00071A 21r00r00              1601 	ld	hl, #_rollPosY
+      00071D 2A                    1602 	ld	a, (hl+)
+      00071E 4F                    1603 	ld	c, a
+      00071F 46                    1604 	ld	b, (hl)
+      000720 21r08r00              1605 	ld	hl, #(_Di4 + 8)
+      000723 2A                    1606 	ld	a,	(hl+)
+      000724 66                    1607 	ld	h, (hl)
+                                   1608 ;	spillPairReg hl
+      000725 6F                    1609 	ld	l, a
+                                   1610 ;	spillPairReg hl
+                                   1611 ;	spillPairReg hl
+      000726 C5                    1612 	push	bc
+      000727 E5                    1613 	push	hl
+      000728 11r00r00              1614 	ld	de, #_Di4
+      00072B D5                    1615 	push	de
+      00072C CDr3Er01              1616 	call	_moveDiceStruct
+      00072F E8 06                 1617 	add	sp, #6
+                                   1618 ;src/main.c:292: break;
+      000731 C9                    1619 	ret
+                                   1620 ;src/main.c:293: case 7:
+      000732                       1621 00125$:
+                                   1622 ;src/main.c:294: if(Di5.inPlay == 1){
+      000732 21r10r00              1623 	ld	hl, #_Di5 + 16
+      000735 4E                    1624 	ld	c, (hl)
+                                   1625 ;src/main.c:296: moveDiceStruct(&Di5, Di5.x, heldPosY);
+                                   1626 ;src/main.c:294: if(Di5.inPlay == 1){
+      000736 79                    1627 	ld	a, c
+                                   1628 ;src/main.c:295: Di5.inPlay = 0;
+      000737 3D                    1629 	dec	a
+      000738 20 19                 1630 	jr	NZ, 00129$
+      00073A 77                    1631 	ld	(hl),a
+                                   1632 ;src/main.c:296: moveDiceStruct(&Di5, Di5.x, heldPosY);
+      00073B 21r00r00              1633 	ld	hl, #_heldPosY
+      00073E 2A                    1634 	ld	a, (hl+)
+      00073F 4F                    1635 	ld	c, a
+      000740 46                    1636 	ld	b, (hl)
+      000741 21r08r00              1637 	ld	hl, #(_Di5 + 8)
+      000744 2A                    1638 	ld	a,	(hl+)
+      000745 66                    1639 	ld	h, (hl)
+                                   1640 ;	spillPairReg hl
+      000746 6F                    1641 	ld	l, a
+                                   1642 ;	spillPairReg hl
+                                   1643 ;	spillPairReg hl
+      000747 C5                    1644 	push	bc
+      000748 E5                    1645 	push	hl
+      000749 11r00r00              1646 	ld	de, #_Di5
+      00074C D5                    1647 	push	de
+      00074D CDr3Er01              1648 	call	_moveDiceStruct
+      000750 E8 06                 1649 	add	sp, #6
+      000752 C9                    1650 	ret
+      000753                       1651 00129$:
+                                   1652 ;src/main.c:298: else if(Di5.inPlay == 0){
+      000753 79                    1653 	ld	a, c
+      000754 B7                    1654 	or	a, a
+      000755 C0                    1655 	ret	NZ
+                                   1656 ;src/main.c:299: Di5.inPlay = 1;
+      000756 36 01                 1657 	ld	(hl), #0x01
+                                   1658 ;src/main.c:300: moveDiceStruct(&Di5, Di5.x, rollPosY);
+      000758 21r00r00              1659 	ld	hl, #_rollPosY
+      00075B 2A                    1660 	ld	a, (hl+)
+      00075C 4F                    1661 	ld	c, a
+      00075D 46                    1662 	ld	b, (hl)
+      00075E 21r08r00              1663 	ld	hl, #(_Di5 + 8)
+      000761 2A                    1664 	ld	a,	(hl+)
+      000762 66                    1665 	ld	h, (hl)
+                                   1666 ;	spillPairReg hl
+      000763 6F                    1667 	ld	l, a
+                                   1668 ;	spillPairReg hl
+                                   1669 ;	spillPairReg hl
+      000764 C5                    1670 	push	bc
+      000765 E5                    1671 	push	hl
+      000766 11r00r00              1672 	ld	de, #_Di5
+      000769 D5                    1673 	push	de
+      00076A CDr3Er01              1674 	call	_moveDiceStruct
+      00076D E8 06                 1675 	add	sp, #6
+                                   1676 ;src/main.c:303: }
+                                   1677 ;src/main.c:304: }
+      00076F C9                    1678 	ret
+                                   1679 ;src/main.c:307: void rollCheck(){
+                                   1680 ;	---------------------------------
+                                   1681 ; Function rollCheck
+                                   1682 ; ---------------------------------
+      000770                       1683 _rollCheck::
+                                   1684 ;src/main.c:308: if(rollsEnabled == 0){
+      000770 FAr00r00              1685 	ld	a, (#_rollsEnabled)
+      000773 B7                    1686 	or	a, a
+      000774 20 13                 1687 	jr	NZ, 00107$
+                                   1688 ;src/main.c:309: if(scorecardChangeA != scorecardChangeB){
+      000776 FAr00r00              1689 	ld	a, (#_scorecardChangeA)
+      000779 21r00r00              1690 	ld	hl, #_scorecardChangeB
+      00077C 96                    1691 	sub	a, (hl)
+                                   1692 ;src/main.c:310: newTurn();
+      00077D C2r9Cr03              1693 	jp	NZ,_newTurn
+                                   1694 ;src/main.c:314: cardView(backgroundMap);
+      000780 11r00r00              1695 	ld	de, #_backgroundMap
+      000783 D5                    1696 	push	de
+      000784 CDr00r00              1697 	call	_cardView
+      000787 E1                    1698 	pop	hl
+      000788 C9                    1699 	ret
+      000789                       1700 00107$:
+                                   1701 ;src/main.c:317: else if(rollsEnabled == 1){
+      000789 21r00r00              1702 	ld	hl, #_rollsEnabled
+      00078C 7E                    1703 	ld	a, (hl)
+      00078D 3D                    1704 	dec	a
+      00078E CAr97r00              1705 	jp	Z,_diceToRoll
+                                   1706 ;src/main.c:318: diceToRoll();
+      000791 C9                    1707 	ret
+                                   1708 ;src/main.c:320: }
+      000792 C9                    1709 	ret
+                                   1710 ;src/main.c:323: void playCursorA(){
+                                   1711 ;	---------------------------------
+                                   1712 ; Function playCursorA
+                                   1713 ; ---------------------------------
+      000793                       1714 _playCursorA::
+                                   1715 ;src/main.c:325: if(cursorIndex == 0){
+      000793 21r01r00              1716 	ld	hl, #_cursorIndex + 1
+      000796 3A                    1717 	ld	a, (hl-)
+      000797 B6                    1718 	or	a, (hl)
+      000798 20 0C                 1719 	jr	NZ, 00125$
+                                   1720 ;src/main.c:326: rollTracker();
+      00079A CDr5Er04              1721 	call	_rollTracker
+                                   1722 ;src/main.c:327: rollCheck();
+      00079D CDr70r07              1723 	call	_rollCheck
+                                   1724 ;src/main.c:328: turnRollDisplay();
+      0007A0 CDr00r00              1725 	call	_turnRollDisplay
+      0007A3 C3r39r08              1726 	jp	00126$
+      0007A6                       1727 00125$:
+                                   1728 ;src/main.c:331: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
+      0007A6 21r00r00              1729 	ld	hl, #_rollsLeft
+      0007A9 2A                    1730 	ld	a, (hl+)
+      0007AA D6 03                 1731 	sub	a, #0x03
+      0007AC B6                    1732 	or	a, (hl)
+      0007AD 3E 01                 1733 	ld	a, #0x01
+      0007AF 28 01                 1734 	jr	Z, 00186$
+      0007B1 AF                    1735 	xor	a, a
+      0007B2                       1736 00186$:
+      0007B2 5F                    1737 	ld	e, a
+      0007B3 FAr00r00              1738 	ld	a, (#_scorecardChangeA)
+      0007B6 21r00r00              1739 	ld	hl, #_scorecardChangeB
+      0007B9 96                    1740 	sub	a, (hl)
+      0007BA 3E 01                 1741 	ld	a, #0x01
+      0007BC 28 01                 1742 	jr	Z, 00188$
+      0007BE AF                    1743 	xor	a, a
+      0007BF                       1744 00188$:
+      0007BF 4F                    1745 	ld	c, a
+                                   1746 ;src/main.c:332: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+      0007C0 21r00r00              1747 	ld	hl, #_rollsLeft
+      0007C3 2A                    1748 	ld	a, (hl+)
+      0007C4 D6 03                 1749 	sub	a, #0x03
+      0007C6 7E                    1750 	ld	a, (hl)
+      0007C7 DE 00                 1751 	sbc	a, #0x00
+      0007C9 3E 00                 1752 	ld	a, #0x00
+      0007CB 17                    1753 	rla
+      0007CC 47                    1754 	ld	b, a
+                                   1755 ;src/main.c:330: else if(cursorIndex == 1){
+      0007CD 21r00r00              1756 	ld	hl, #_cursorIndex
+      0007D0 2A                    1757 	ld	a, (hl+)
+      0007D1 3D                    1758 	dec	a
+                                   1759 ;src/main.c:331: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
+      0007D2 B6                    1760 	or	a,(hl)
+      0007D3 20 27                 1761 	jr	NZ, 00122$
+      0007D5 B3                    1762 	or	a,e
+      0007D6 C0                    1763 	ret	NZ
+      0007D7 CB 41                 1764 	bit	0, c
+      0007D9 C8                    1765 	ret	Z
+                                   1766 ;src/main.c:332: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+      0007DA 78                    1767 	ld	a, b
+      0007DB B7                    1768 	or	a, a
+      0007DC 28 5B                 1769 	jr	Z, 00126$
+      0007DE 79                    1770 	ld	a, c
+      0007DF B7                    1771 	or	a, a
+      0007E0 28 57                 1772 	jr	Z, 00126$
+                                   1773 ;src/main.c:333: cursorPosition[0] = 40;
+      0007E2 21r00r00              1774 	ld	hl, #_cursorPosition
+      0007E5 3E 28                 1775 	ld	a, #0x28
+      0007E7 22                    1776 	ld	(hl+), a
+      0007E8 36 00                 1777 	ld	(hl), #0x00
+                                   1778 ;src/main.c:334: cursorPosition[1] = 128;
+      0007EA 21r02r00              1779 	ld	hl, #(_cursorPosition + 2)
+      0007ED 3E 80                 1780 	ld	a, #0x80
+      0007EF 22                    1781 	ld	(hl+), a
+      0007F0 36 00                 1782 	ld	(hl), #0x00
+                                   1783 ;src/main.c:335: cursorIndex = 3;
+      0007F2 21r00r00              1784 	ld	hl, #_cursorIndex
+      0007F5 3E 03                 1785 	ld	a, #0x03
+      0007F7 22                    1786 	ld	(hl+), a
+      0007F8 AF                    1787 	xor	a, a
+      0007F9 77                    1788 	ld	(hl), a
+      0007FA 18 3D                 1789 	jr	00126$
+      0007FC                       1790 00122$:
+                                   1791 ;src/main.c:338: else if(cursorIndex == 2){
+      0007FC 21r00r00              1792 	ld	hl, #_cursorIndex
+      0007FF 2A                    1793 	ld	a, (hl+)
+      000800 D6 02                 1794 	sub	a, #0x02
+                                   1795 ;src/main.c:339: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
+      000802 B6                    1796 	or	a,(hl)
+      000803 20 1C                 1797 	jr	NZ, 00119$
+      000805 B3                    1798 	or	a,e
+      000806 C0                    1799 	ret	NZ
+      000807 CB 41                 1800 	bit	0, c
+      000809 C8                    1801 	ret	Z
+                                   1802 ;src/main.c:340: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+      00080A 78                    1803 	ld	a, b
+      00080B B7                    1804 	or	a, a
+      00080C 28 2B                 1805 	jr	Z, 00126$
+      00080E 79                    1806 	ld	a, c
+      00080F B7                    1807 	or	a, a
+      000810 28 27                 1808 	jr	Z, 00126$
+                                   1809 ;src/main.c:341: viewMode = 1;
+      000812 21r00r00              1810 	ld	hl, #_viewMode
+      000815 36 01                 1811 	ld	(hl), #0x01
+                                   1812 ;src/main.c:342: cardView(backgroundMap);
+      000817 11r00r00              1813 	ld	de, #_backgroundMap
+      00081A D5                    1814 	push	de
+      00081B CDr00r00              1815 	call	_cardView
+      00081E E1                    1816 	pop	hl
+      00081F 18 18                 1817 	jr	00126$
+      000821                       1818 00119$:
+                                   1819 ;src/main.c:345: else if(cursorIndex >= 3 && cursorIndex <= 7){
+      000821 21r00r00              1820 	ld	hl, #_cursorIndex
+      000824 2A                    1821 	ld	a, (hl+)
+      000825 D6 03                 1822 	sub	a, #0x03
+      000827 7E                    1823 	ld	a, (hl)
+      000828 DE 00                 1824 	sbc	a, #0x00
+      00082A 38 0D                 1825 	jr	C, 00126$
+      00082C 2B                    1826 	dec	hl
+      00082D 3E 07                 1827 	ld	a, #0x07
+      00082F 96                    1828 	sub	a, (hl)
+      000830 23                    1829 	inc	hl
+      000831 3E 00                 1830 	ld	a, #0x00
+      000833 9E                    1831 	sbc	a, (hl)
+      000834 38 03                 1832 	jr	C, 00126$
+                                   1833 ;src/main.c:346: toggleDi();
+      000836 CDr09r06              1834 	call	_toggleDi
+      000839                       1835 00126$:
+                                   1836 ;src/main.c:348: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+      000839 21r02r00              1837 	ld	hl, #_cursorPosition + 2
+      00083C 46                    1838 	ld	b, (hl)
+      00083D 21r00r00              1839 	ld	hl, #_cursorPosition
+      000840 4E                    1840 	ld	c, (hl)
+      000841 21r00r00              1841 	ld	hl, #_cursor
+      000844 2A                    1842 	ld	a, (hl+)
+      000845 5F                    1843 	ld	e, a
+      000846 56                    1844 	ld	d, (hl)
+                                   1845 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      000847 6B                    1846 	ld	l, e
+                                   1847 ;	spillPairReg hl
+                                   1848 ;	spillPairReg hl
+      000848 26 00                 1849 	ld	h, #0x00
+                                   1850 ;	spillPairReg hl
+                                   1851 ;	spillPairReg hl
+      00084A 29                    1852 	add	hl, hl
+      00084B 29                    1853 	add	hl, hl
+      00084C 11r00r00              1854 	ld	de, #_shadow_OAM
+      00084F 19                    1855 	add	hl, de
+                                   1856 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      000850 78                    1857 	ld	a, b
+      000851 22                    1858 	ld	(hl+), a
+      000852 71                    1859 	ld	(hl), c
+                                   1860 ;src/main.c:348: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+                                   1861 ;src/main.c:349: }
+      000853 C9                    1862 	ret
+                                   1863 ;src/main.c:351: void playCursorB(){
+                                   1864 ;	---------------------------------
+                                   1865 ; Function playCursorB
+                                   1866 ; ---------------------------------
+      000854                       1867 _playCursorB::
+                                   1868 ;src/main.c:352: if(cursorIndex >= 3 && cursorIndex <= 7){
+      000854 21r00r00              1869 	ld	hl, #_cursorIndex
+      000857 2A                    1870 	ld	a, (hl+)
+      000858 D6 03                 1871 	sub	a, #0x03
+      00085A 7E                    1872 	ld	a, (hl)
+      00085B DE 00                 1873 	sbc	a, #0x00
+      00085D 38 20                 1874 	jr	C, 00102$
+      00085F 2B                    1875 	dec	hl
+      000860 3E 07                 1876 	ld	a, #0x07
+      000862 96                    1877 	sub	a, (hl)
+      000863 23                    1878 	inc	hl
+      000864 3E 00                 1879 	ld	a, #0x00
+      000866 9E                    1880 	sbc	a, (hl)
+      000867 38 16                 1881 	jr	C, 00102$
+                                   1882 ;src/main.c:353: cursorPosition[0] = 16;
+      000869 21r00r00              1883 	ld	hl, #_cursorPosition
+      00086C 3E 10                 1884 	ld	a, #0x10
+      00086E 22                    1885 	ld	(hl+), a
+      00086F 36 00                 1886 	ld	(hl), #0x00
+                                   1887 ;src/main.c:354: cursorPosition[1] = 144;
+      000871 21r02r00              1888 	ld	hl, #(_cursorPosition + 2)
+      000874 3E 90                 1889 	ld	a, #0x90
+      000876 22                    1890 	ld	(hl+), a
+      000877 36 00                 1891 	ld	(hl), #0x00
+                                   1892 ;src/main.c:355: cursorIndex = 0;
+      000879 AF                    1893 	xor	a, a
+      00087A 21r00r00              1894 	ld	hl, #_cursorIndex
+      00087D 22                    1895 	ld	(hl+), a
+      00087E 77                    1896 	ld	(hl), a
+      00087F                       1897 00102$:
+                                   1898 ;src/main.c:357: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+      00087F 21r02r00              1899 	ld	hl, #_cursorPosition + 2
+      000882 46                    1900 	ld	b, (hl)
+      000883 21r00r00              1901 	ld	hl, #_cursorPosition
+      000886 4E                    1902 	ld	c, (hl)
+      000887 21r00r00              1903 	ld	hl, #_cursor
+      00088A 2A                    1904 	ld	a, (hl+)
+      00088B 5F                    1905 	ld	e, a
+      00088C 56                    1906 	ld	d, (hl)
+                                   1907 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      00088D 6B                    1908 	ld	l, e
+                                   1909 ;	spillPairReg hl
+                                   1910 ;	spillPairReg hl
+      00088E 26 00                 1911 	ld	h, #0x00
+                                   1912 ;	spillPairReg hl
+                                   1913 ;	spillPairReg hl
+      000890 29                    1914 	add	hl, hl
+      000891 29                    1915 	add	hl, hl
+      000892 11r00r00              1916 	ld	de, #_shadow_OAM
+      000895 19                    1917 	add	hl, de
+                                   1918 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      000896 78                    1919 	ld	a, b
+      000897 22                    1920 	ld	(hl+), a
+      000898 71                    1921 	ld	(hl), c
+                                   1922 ;src/main.c:357: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+                                   1923 ;src/main.c:358: }
+      000899 C9                    1924 	ret
+                                   1925 ;src/main.c:360: void playCursorSelect(){
+                                   1926 ;	---------------------------------
+                                   1927 ; Function playCursorSelect
+                                   1928 ; ---------------------------------
+      00089A                       1929 _playCursorSelect::
+                                   1930 ;src/main.c:361: quickSwitch = 1;
+      00089A 21r00r00              1931 	ld	hl, #_quickSwitch
+      00089D 36 01                 1932 	ld	(hl), #0x01
+                                   1933 ;src/main.c:362: if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
+      00089F 21r00r00              1934 	ld	hl, #_rollsLeft
+      0008A2 2A                    1935 	ld	a, (hl+)
+      0008A3 D6 03                 1936 	sub	a, #0x03
+      0008A5 B6                    1937 	or	a, (hl)
+      0008A6 C8                    1938 	ret	Z
+      0008A7 FAr00r00              1939 	ld	a, (#_scorecardChangeA)
+      0008AA 21r00r00              1940 	ld	hl, #_scorecardChangeB
+      0008AD 96                    1941 	sub	a, (hl)
+      0008AE 3E 01                 1942 	ld	a, #0x01
+      0008B0 28 01                 1943 	jr	Z, 00127$
+      0008B2 AF                    1944 	xor	a, a
+      0008B3                       1945 00127$:
+      0008B3 4F                    1946 	ld	c, a
+      0008B4 CB 41                 1947 	bit	0, c
+      0008B6 C8                    1948 	ret	Z
+                                   1949 ;src/main.c:363: else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+      0008B7 21r00r00              1950 	ld	hl, #_rollsLeft
+      0008BA 2A                    1951 	ld	a, (hl+)
+      0008BB D6 03                 1952 	sub	a, #0x03
+      0008BD 7E                    1953 	ld	a, (hl)
+      0008BE DE 00                 1954 	sbc	a, #0x00
+      0008C0 D0                    1955 	ret	NC
+      0008C1 79                    1956 	ld	a, c
+      0008C2 B7                    1957 	or	a, a
+      0008C3 C8                    1958 	ret	Z
+                                   1959 ;src/main.c:364: viewMode = 1;
+      0008C4 21r00r00              1960 	ld	hl, #_viewMode
+      0008C7 36 01                 1961 	ld	(hl), #0x01
+                                   1962 ;src/main.c:365: cardView(backgroundMap);
+      0008C9 11r00r00              1963 	ld	de, #_backgroundMap
+      0008CC D5                    1964 	push	de
+      0008CD CDr00r00              1965 	call	_cardView
+      0008D0 E1                    1966 	pop	hl
+                                   1967 ;src/main.c:367: }
+      0008D1 C9                    1968 	ret
+                                   1969 ;src/main.c:371: void playCursor(){
+                                   1970 ;	---------------------------------
+                                   1971 ; Function playCursor
+                                   1972 ; ---------------------------------
+      0008D2                       1973 _playCursor::
+                                   1974 ;src/main.c:372: switch(joypad()){
+      0008D2 CDr00r00              1975 	call	_joypad
+      0008D5 7B                    1976 	ld	a, e
+      0008D6 FE 01                 1977 	cp	a, #0x01
+      0008D8 28 1C                 1978 	jr	Z, 00102$
+      0008DA FE 02                 1979 	cp	a, #0x02
+      0008DC 28 12                 1980 	jr	Z, 00101$
+      0008DE FE 10                 1981 	cp	a, #0x10
+      0008E0 28 1A                 1982 	jr	Z, 00103$
+      0008E2 FE 20                 1983 	cp	a, #0x20
+      0008E4 28 1C                 1984 	jr	Z, 00104$
+      0008E6 FE 40                 1985 	cp	a, #0x40
+      0008E8 28 1E                 1986 	jr	Z, 00106$
+      0008EA D6 80                 1987 	sub	a, #0x80
+      0008EC CAr00r00              1988 	jp	Z,_waitpadup
+      0008EF C9                    1989 	ret
+                                   1990 ;src/main.c:373: case J_LEFT:
+      0008F0                       1991 00101$:
+                                   1992 ;src/main.c:374: playCursorLeft();
+      0008F0 CDr18r05              1993 	call	_playCursorLeft
+                                   1994 ;src/main.c:375: waitpadup();
+                                   1995 ;src/main.c:376: break;
+      0008F3 C3r00r00              1996 	jp	_waitpadup
+                                   1997 ;src/main.c:377: case J_RIGHT:
+      0008F6                       1998 00102$:
+                                   1999 ;src/main.c:378: playCursorRight();
+      0008F6 CDr9Ar05              2000 	call	_playCursorRight
+                                   2001 ;src/main.c:379: waitpadup();
+                                   2002 ;src/main.c:380: break;
+      0008F9 C3r00r00              2003 	jp	_waitpadup
+                                   2004 ;src/main.c:381: case J_A:
+      0008FC                       2005 00103$:
+                                   2006 ;src/main.c:382: playCursorA();
+      0008FC CDr93r07              2007 	call	_playCursorA
+                                   2008 ;src/main.c:383: waitpadup();
+                                   2009 ;src/main.c:384: break;
+      0008FF C3r00r00              2010 	jp	_waitpadup
+                                   2011 ;src/main.c:385: case J_B:
+      000902                       2012 00104$:
+                                   2013 ;src/main.c:386: playCursorB();
+      000902 CDr54r08              2014 	call	_playCursorB
+                                   2015 ;src/main.c:387: waitpadup();
+                                   2016 ;src/main.c:388: break;
+                                   2017 ;src/main.c:389: case J_START:
+                                   2018 ;src/main.c:391: waitpadup();
+                                   2019 ;src/main.c:392: break;
+      000905 C3r00r00              2020 	jp	_waitpadup
+                                   2021 ;src/main.c:393: case J_SELECT:
+      000908                       2022 00106$:
+                                   2023 ;src/main.c:394: playCursorSelect();
+      000908 CDr9Ar08              2024 	call	_playCursorSelect
+                                   2025 ;src/main.c:395: waitpadup();
+                                   2026 ;src/main.c:397: }
+                                   2027 ;src/main.c:398: }
+      00090B C3r00r00              2028 	jp	_waitpadup
+                                   2029 ;src/main.c:401: void main(){
+                                   2030 ;	---------------------------------
+                                   2031 ; Function main
+                                   2032 ; ---------------------------------
+      00090E                       2033 _main::
+                                   2034 ;src/main.c:402: DISPLAY_ON;
+      00090E F0r00                 2035 	ldh	a, (_LCDC_REG + 0)
+      000910 F6 80                 2036 	or	a, #0x80
+      000912 E0r00                 2037 	ldh	(_LCDC_REG + 0), a
+                                   2038 ;src/main.c:404: titleScreen();
+      000914 CDr00r00              2039 	call	_titleScreen
+                                   2040 ;src/main.c:405: betterDelay(180);
+      000917 11 B4 00              2041 	ld	de, #0x00b4
+      00091A D5                    2042 	push	de
+      00091B CDr00r00              2043 	call	_betterDelay
+      00091E E1                    2044 	pop	hl
+                                   2045 ;src/main.c:407: fadeToBlack(30);
+      00091F 11 1E 00              2046 	ld	de, #0x001e
+      000922 D5                    2047 	push	de
+      000923 CDr00r00              2048 	call	_fadeToBlack
+      000926 E1                    2049 	pop	hl
+                                   2050 ;src/main.c:409: initGame();
+      000927 CDrCAr02              2051 	call	_initGame
+                                   2052 ;src/main.c:411: fadeFromBlack(30);
+      00092A 11 1E 00              2053 	ld	de, #0x001e
+      00092D D5                    2054 	push	de
+      00092E CDr00r00              2055 	call	_fadeFromBlack
+      000931 E1                    2056 	pop	hl
+                                   2057 ;src/main.c:413: SHOW_SPRITES;
+      000932 F0r00                 2058 	ldh	a, (_LCDC_REG + 0)
+      000934 F6 02                 2059 	or	a, #0x02
+      000936 E0r00                 2060 	ldh	(_LCDC_REG + 0), a
+                                   2061 ;src/main.c:415: while(endGame == 0){
+      000938                       2062 00106$:
+      000938 FAr00r00              2063 	ld	a, (#_endGame)
+      00093B B7                    2064 	or	a, a
+      00093C 20 16                 2065 	jr	NZ, 00119$
+                                   2066 ;src/main.c:416: if(viewMode == 0){
+      00093E FAr00r00              2067 	ld	a, (#_viewMode)
+      000941 B7                    2068 	or	a, a
+      000942 20 05                 2069 	jr	NZ, 00104$
+                                   2070 ;src/main.c:417: playCursor();
+      000944 CDrD2r08              2071 	call	_playCursor
+      000947 18 EF                 2072 	jr	00106$
+      000949                       2073 00104$:
+                                   2074 ;src/main.c:419: else if(viewMode == 1){
+      000949 FAr00r00              2075 	ld	a, (#_viewMode)
+      00094C 3D                    2076 	dec	a
+      00094D 20 E9                 2077 	jr	NZ, 00106$
+                                   2078 ;src/main.c:420: cardCursor();
+      00094F CDr00r00              2079 	call	_cardCursor
+      000952 18 E4                 2080 	jr	00106$
+                                   2081 ;src/main.c:423: while(endGame == 1){
+      000954                       2082 00119$:
+      000954                       2083 00109$:
+      000954 FAr00r00              2084 	ld	a, (#_endGame)
+      000957 3D                    2085 	dec	a
+      000958 C0                    2086 	ret	NZ
+                                   2087 ;src/main.c:424: printf("that's it for now!\n\n");
+      000959 11r6Br09              2088 	ld	de, #___str_1
+      00095C D5                    2089 	push	de
+      00095D CDr00r00              2090 	call	_puts
+      000960 E1                    2091 	pop	hl
+                                   2092 ;src/main.c:425: printf("reset game to play again!");
+      000961 11r7Fr09              2093 	ld	de, #___str_2
+      000964 D5                    2094 	push	de
+      000965 CDr00r00              2095 	call	_printf
+      000968 E1                    2096 	pop	hl
+                                   2097 ;src/main.c:427: }
+      000969 18 E9                 2098 	jr	00109$
+      00096B                       2099 ___str_1:
+      00096B 74 68 61 74 27 73 20  2100 	.ascii "that's it for now!"
+             69 74 20 66 6F 72 20
+             6E 6F 77 21
+      00097D 0A                    2101 	.db 0x0a
+      00097E 00                    2102 	.db 0x00
+      00097F                       2103 ___str_2:
+      00097F 72 65 73 65 74 20 67  2104 	.ascii "reset game to play again!"
+             61 6D 65 20 74 6F 20
+             70 6C 61 79 20 61 67
+             61 69 6E 21
+      000998 00                    2105 	.db 0x00
+                                   2106 	.area _CODE
+                                   2107 	.area _INITIALIZER
+                                   2108 	.area _CABS (ABS)

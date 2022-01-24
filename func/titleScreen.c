@@ -91,6 +91,12 @@ void titleScreen(){
                     HIDE_SPRITES;
                     move_sprite(21, 0, 0);
                 }
+                else if(titleIndex == 3){
+                    //optionsMenu = 1;
+                    HIDE_BKG;
+                    HIDE_SPRITES
+                    nameInputMenu = 1;
+                }
                 waitpadup();
                 break;
         }

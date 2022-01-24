@@ -1,0 +1,163 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.1.6 #12539 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module spriteFlip
+                                      6 	.optsdcc -mgbz80
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _spriteFlip
+                                     12 ;--------------------------------------------------------
+                                     13 ; special function registers
+                                     14 ;--------------------------------------------------------
+                                     15 ;--------------------------------------------------------
+                                     16 ; ram data
+                                     17 ;--------------------------------------------------------
+                                     18 	.area _DATA
+                                     19 ;--------------------------------------------------------
+                                     20 ; ram data
+                                     21 ;--------------------------------------------------------
+                                     22 	.area _INITIALIZED
+                                     23 ;--------------------------------------------------------
+                                     24 ; absolute external ram data
+                                     25 ;--------------------------------------------------------
+                                     26 	.area _DABS (ABS)
+                                     27 ;--------------------------------------------------------
+                                     28 ; global & static initialisations
+                                     29 ;--------------------------------------------------------
+                                     30 	.area _HOME
+                                     31 	.area _GSINIT
+                                     32 	.area _GSFINAL
+                                     33 	.area _GSINIT
+                                     34 ;--------------------------------------------------------
+                                     35 ; Home
+                                     36 ;--------------------------------------------------------
+                                     37 	.area _HOME
+                                     38 	.area _HOME
+                                     39 ;--------------------------------------------------------
+                                     40 ; code
+                                     41 ;--------------------------------------------------------
+                                     42 	.area _CODE
+                                     43 ;func/spriteFlip.c:6: void spriteFlip(){
+                                     44 ;	---------------------------------
+                                     45 ; Function spriteFlip
+                                     46 ; ---------------------------------
+      000000                         47 _spriteFlip::
+                                     48 ;func/spriteFlip.c:7: for(i = 1; i <= 17; i = i + 4){
+      000000 21r00r00                49 	ld	hl, #_i
+      000003 3E 01                   50 	ld	a, #0x01
+      000005 22                      51 	ld	(hl+), a
+      000006 AF                      52 	xor	a, a
+      000007 77                      53 	ld	(hl), a
+      000008                         54 00107$:
+                                     55 ;func/spriteFlip.c:8: set_sprite_prop(i, S_FLIPX);
+      000008 21r00r00                56 	ld	hl, #_i
+      00000B 4E                      57 	ld	c, (hl)
+                                     58 ;/opt/gbdk/include/gb/gb.h:1372: shadow_OAM[nb].prop=prop;
+      00000C 26 00                   59 	ld	h, #0x00
+                                     60 ;	spillPairReg hl
+                                     61 ;	spillPairReg hl
+      00000E 69                      62 	ld	l, c
+      00000F 29                      63 	add	hl, hl
+      000010 29                      64 	add	hl, hl
+      000011 11r00r00                65 	ld	de, #_shadow_OAM
+      000014 19                      66 	add	hl, de
+      000015 23                      67 	inc	hl
+      000016 23                      68 	inc	hl
+      000017 23                      69 	inc	hl
+      000018 36 20                   70 	ld	(hl), #0x20
+                                     71 ;func/spriteFlip.c:7: for(i = 1; i <= 17; i = i + 4){
+      00001A 21r00r00                72 	ld	hl, #_i
+      00001D 7E                      73 	ld	a, (hl)
+      00001E C6 04                   74 	add	a, #0x04
+      000020 22                      75 	ld	(hl+), a
+      000021 7E                      76 	ld	a, (hl)
+      000022 CE 00                   77 	adc	a, #0x00
+      000024 32                      78 	ld	(hl-), a
+      000025 3E 11                   79 	ld	a, #0x11
+      000027 96                      80 	sub	a, (hl)
+      000028 23                      81 	inc	hl
+      000029 3E 00                   82 	ld	a, #0x00
+      00002B 9E                      83 	sbc	a, (hl)
+      00002C 30 DA                   84 	jr	NC, 00107$
+                                     85 ;func/spriteFlip.c:11: for(i = 2; i <= 18; i = i + 4){
+      00002E 21r00r00                86 	ld	hl, #_i
+      000031 3E 02                   87 	ld	a, #0x02
+      000033 22                      88 	ld	(hl+), a
+      000034 AF                      89 	xor	a, a
+      000035 77                      90 	ld	(hl), a
+      000036                         91 00109$:
+                                     92 ;func/spriteFlip.c:12: set_sprite_prop(i, S_FLIPY);
+      000036 21r00r00                93 	ld	hl, #_i
+      000039 4E                      94 	ld	c, (hl)
+                                     95 ;/opt/gbdk/include/gb/gb.h:1372: shadow_OAM[nb].prop=prop;
+      00003A 26 00                   96 	ld	h, #0x00
+                                     97 ;	spillPairReg hl
+                                     98 ;	spillPairReg hl
+      00003C 69                      99 	ld	l, c
+      00003D 29                     100 	add	hl, hl
+      00003E 29                     101 	add	hl, hl
+      00003F 11r00r00               102 	ld	de, #_shadow_OAM
+      000042 19                     103 	add	hl, de
+      000043 23                     104 	inc	hl
+      000044 23                     105 	inc	hl
+      000045 23                     106 	inc	hl
+      000046 36 40                  107 	ld	(hl), #0x40
+                                    108 ;func/spriteFlip.c:11: for(i = 2; i <= 18; i = i + 4){
+      000048 21r00r00               109 	ld	hl, #_i
+      00004B 7E                     110 	ld	a, (hl)
+      00004C C6 04                  111 	add	a, #0x04
+      00004E 22                     112 	ld	(hl+), a
+      00004F 7E                     113 	ld	a, (hl)
+      000050 CE 00                  114 	adc	a, #0x00
+      000052 32                     115 	ld	(hl-), a
+      000053 3E 12                  116 	ld	a, #0x12
+      000055 96                     117 	sub	a, (hl)
+      000056 23                     118 	inc	hl
+      000057 3E 00                  119 	ld	a, #0x00
+      000059 9E                     120 	sbc	a, (hl)
+      00005A 30 DA                  121 	jr	NC, 00109$
+                                    122 ;func/spriteFlip.c:15: for(i = 3; i <= 19; i = i + 4){
+      00005C 21r00r00               123 	ld	hl, #_i
+      00005F 3E 03                  124 	ld	a, #0x03
+      000061 22                     125 	ld	(hl+), a
+      000062 AF                     126 	xor	a, a
+      000063 77                     127 	ld	(hl), a
+      000064                        128 00111$:
+                                    129 ;func/spriteFlip.c:16: set_sprite_prop(i, S_FLIPX | S_FLIPY);
+      000064 21r00r00               130 	ld	hl, #_i
+      000067 4E                     131 	ld	c, (hl)
+                                    132 ;/opt/gbdk/include/gb/gb.h:1372: shadow_OAM[nb].prop=prop;
+      000068 26 00                  133 	ld	h, #0x00
+                                    134 ;	spillPairReg hl
+                                    135 ;	spillPairReg hl
+      00006A 69                     136 	ld	l, c
+      00006B 29                     137 	add	hl, hl
+      00006C 29                     138 	add	hl, hl
+      00006D 11r00r00               139 	ld	de, #_shadow_OAM
+      000070 19                     140 	add	hl, de
+      000071 23                     141 	inc	hl
+      000072 23                     142 	inc	hl
+      000073 23                     143 	inc	hl
+      000074 36 60                  144 	ld	(hl), #0x60
+                                    145 ;func/spriteFlip.c:15: for(i = 3; i <= 19; i = i + 4){
+      000076 21r00r00               146 	ld	hl, #_i
+      000079 7E                     147 	ld	a, (hl)
+      00007A C6 04                  148 	add	a, #0x04
+      00007C 22                     149 	ld	(hl+), a
+      00007D 7E                     150 	ld	a, (hl)
+      00007E CE 00                  151 	adc	a, #0x00
+      000080 32                     152 	ld	(hl-), a
+      000081 3E 13                  153 	ld	a, #0x13
+      000083 96                     154 	sub	a, (hl)
+      000084 23                     155 	inc	hl
+      000085 3E 00                  156 	ld	a, #0x00
+      000087 9E                     157 	sbc	a, (hl)
+      000088 30 DA                  158 	jr	NC, 00111$
+                                    159 ;func/spriteFlip.c:18: }
+      00008A C9                     160 	ret
+                                    161 	.area _CODE
+                                    162 	.area _INITIALIZER
+                                    163 	.area _CABS (ABS)

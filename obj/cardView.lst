@@ -1,0 +1,206 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.1.6 #12539 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module cardView
+                                      6 	.optsdcc -mgbz80
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _cardView
+                                     12 	.globl _scoreDisplay
+                                     13 	.globl _betterDelay
+                                     14 	.globl _set_bkg_submap
+                                     15 ;--------------------------------------------------------
+                                     16 ; special function registers
+                                     17 ;--------------------------------------------------------
+                                     18 ;--------------------------------------------------------
+                                     19 ; ram data
+                                     20 ;--------------------------------------------------------
+                                     21 	.area _DATA
+                                     22 ;--------------------------------------------------------
+                                     23 ; ram data
+                                     24 ;--------------------------------------------------------
+                                     25 	.area _INITIALIZED
+                                     26 ;--------------------------------------------------------
+                                     27 ; absolute external ram data
+                                     28 ;--------------------------------------------------------
+                                     29 	.area _DABS (ABS)
+                                     30 ;--------------------------------------------------------
+                                     31 ; global & static initialisations
+                                     32 ;--------------------------------------------------------
+                                     33 	.area _HOME
+                                     34 	.area _GSINIT
+                                     35 	.area _GSFINAL
+                                     36 	.area _GSINIT
+                                     37 ;--------------------------------------------------------
+                                     38 ; Home
+                                     39 ;--------------------------------------------------------
+                                     40 	.area _HOME
+                                     41 	.area _HOME
+                                     42 ;--------------------------------------------------------
+                                     43 ; code
+                                     44 ;--------------------------------------------------------
+                                     45 	.area _CODE
+                                     46 ;func/cardView.c:11: void cardView(unsigned char map[]){
+                                     47 ;	---------------------------------
+                                     48 ; Function cardView
+                                     49 ; ---------------------------------
+      000000                         50 _cardView::
+                                     51 ;func/cardView.c:12: HIDE_SPRITES;
+      000000 F0r00                   52 	ldh	a, (_LCDC_REG + 0)
+      000002 E6 FD                   53 	and	a, #0xfd
+      000004 E0r00                   54 	ldh	(_LCDC_REG + 0), a
+                                     55 ;func/cardView.c:13: for(i = 0; i != 36; i++){
+      000006 AF                      56 	xor	a, a
+      000007 21r00r00                57 	ld	hl, #_i
+      00000A 22                      58 	ld	(hl+), a
+      00000B 77                      59 	ld	(hl), a
+      00000C                         60 00110$:
+                                     61 ;func/cardView.c:14: if(quickSwitch == 0){
+      00000C FAr00r00                62 	ld	a, (#_quickSwitch)
+      00000F B7                      63 	or	a, a
+      000010 20 08                   64 	jr	NZ, 00102$
+                                     65 ;func/cardView.c:15: betterDelay(1);
+      000012 11 01 00                66 	ld	de, #0x0001
+      000015 D5                      67 	push	de
+      000016 CDr00r00                68 	call	_betterDelay
+      000019 E1                      69 	pop	hl
+      00001A                         70 00102$:
+                                     71 ;/opt/gbdk/include/gb/gb.h:1023: SCX_REG+=x, SCY_REG+=y;
+      00001A F0r00                   72 	ldh	a, (_SCY_REG + 0)
+      00001C C6 04                   73 	add	a, #0x04
+      00001E E0r00                   74 	ldh	(_SCY_REG + 0), a
+                                     75 ;func/cardView.c:18: if(i == 10){
+      000020 21r00r00                76 	ld	hl, #_i
+      000023 2A                      77 	ld	a, (hl+)
+      000024 D6 0A                   78 	sub	a, #0x0a
+      000026 B6                      79 	or	a, (hl)
+      000027 20 17                   80 	jr	NZ, 00111$
+                                     81 ;func/cardView.c:19: set_bkg_submap(0, 32, 20, 4, map, 20);
+      000029 3E 14                   82 	ld	a, #0x14
+      00002B F5                      83 	push	af
+      00002C 33                      84 	inc	sp
+      00002D F8 03                   85 	ldhl	sp,	#3
+      00002F 2A                      86 	ld	a, (hl+)
+      000030 5F                      87 	ld	e, a
+      000031 56                      88 	ld	d, (hl)
+      000032 D5                      89 	push	de
+      000033 21 14 04                90 	ld	hl, #0x414
+      000036 E5                      91 	push	hl
+      000037 21 00 20                92 	ld	hl, #0x2000
+      00003A E5                      93 	push	hl
+      00003B CDr00r00                94 	call	_set_bkg_submap
+      00003E E8 07                   95 	add	sp, #7
+      000040                         96 00111$:
+                                     97 ;func/cardView.c:13: for(i = 0; i != 36; i++){
+      000040 21r00r00                98 	ld	hl, #_i
+      000043 34                      99 	inc	(hl)
+      000044 20 02                  100 	jr	NZ, 00148$
+      000046 23                     101 	inc	hl
+      000047 34                     102 	inc	(hl)
+      000048                        103 00148$:
+      000048 21r00r00               104 	ld	hl, #_i
+      00004B 2A                     105 	ld	a, (hl+)
+      00004C D6 24                  106 	sub	a, #0x24
+                                    107 ;func/cardView.c:22: for(i = 0; i != 20; i++){
+      00004E B6                     108 	or	a,(hl)
+      00004F 20 BB                  109 	jr	NZ, 00110$
+      000051 21r00r00               110 	ld	hl, #_i
+      000054 22                     111 	ld	(hl+), a
+      000055 77                     112 	ld	(hl), a
+      000056                        113 00112$:
+                                    114 ;func/cardView.c:23: scroll_sprite(i, 0, -88);
+      000056 21r00r00               115 	ld	hl, #_i
+                                    116 ;/opt/gbdk/include/gb/gb.h:1415: OAM_item_t * itm = &shadow_OAM[nb];
+      000059 6E                     117 	ld	l, (hl)
+      00005A 01r00r00               118 	ld	bc, #_shadow_OAM+0
+                                    119 ;	spillPairReg hl
+                                    120 ;	spillPairReg hl
+      00005D 26 00                  121 	ld	h, #0x00
+                                    122 ;	spillPairReg hl
+                                    123 ;	spillPairReg hl
+      00005F 29                     124 	add	hl, hl
+      000060 29                     125 	add	hl, hl
+      000061 09                     126 	add	hl, bc
+                                    127 ;/opt/gbdk/include/gb/gb.h:1416: itm->y+=y, itm->x+=x;
+      000062 7E                     128 	ld	a, (hl)
+      000063 C6 A8                  129 	add	a, #0xa8
+      000065 22                     130 	ld	(hl+), a
+      000066 7E                     131 	ld	a, (hl)
+      000067 77                     132 	ld	(hl), a
+                                    133 ;func/cardView.c:22: for(i = 0; i != 20; i++){
+      000068 21r00r00               134 	ld	hl, #_i
+      00006B 34                     135 	inc	(hl)
+      00006C 20 02                  136 	jr	NZ, 00151$
+      00006E 23                     137 	inc	hl
+      00006F 34                     138 	inc	(hl)
+      000070                        139 00151$:
+      000070 21r00r00               140 	ld	hl, #_i
+      000073 2A                     141 	ld	a, (hl+)
+      000074 D6 14                  142 	sub	a, #0x14
+      000076 B6                     143 	or	a, (hl)
+      000077 20 DD                  144 	jr	NZ, 00112$
+                                    145 ;func/cardView.c:25: cursorIndex = 8;
+      000079 21r00r00               146 	ld	hl, #_cursorIndex
+      00007C 3E 08                  147 	ld	a, #0x08
+      00007E 22                     148 	ld	(hl+), a
+      00007F AF                     149 	xor	a, a
+      000080 77                     150 	ld	(hl), a
+                                    151 ;func/cardView.c:26: cursorPosition[0] = 16;
+      000081 21r00r00               152 	ld	hl, #_cursorPosition
+      000084 3E 10                  153 	ld	a, #0x10
+      000086 22                     154 	ld	(hl+), a
+      000087 36 00                  155 	ld	(hl), #0x00
+                                    156 ;func/cardView.c:27: cursorPosition[1] = 48;
+      000089 01r02r00               157 	ld	bc, #_cursorPosition + 2
+      00008C 69                     158 	ld	l, c
+      00008D 60                     159 	ld	h, b
+      00008E 3E 30                  160 	ld	a, #0x30
+      000090 22                     161 	ld	(hl+), a
+      000091 36 00                  162 	ld	(hl), #0x00
+                                    163 ;func/cardView.c:28: move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+      000093 0A                     164 	ld	a, (bc)
+      000094 47                     165 	ld	b, a
+      000095 21r00r00               166 	ld	hl, #_cursorPosition
+      000098 4E                     167 	ld	c, (hl)
+      000099 21r00r00               168 	ld	hl, #_cursor
+      00009C 2A                     169 	ld	a, (hl+)
+      00009D 5F                     170 	ld	e, a
+      00009E 56                     171 	ld	d, (hl)
+                                    172 ;/opt/gbdk/include/gb/gb.h:1399: OAM_item_t * itm = &shadow_OAM[nb];
+      00009F 6B                     173 	ld	l, e
+                                    174 ;	spillPairReg hl
+                                    175 ;	spillPairReg hl
+      0000A0 26 00                  176 	ld	h, #0x00
+                                    177 ;	spillPairReg hl
+                                    178 ;	spillPairReg hl
+      0000A2 29                     179 	add	hl, hl
+      0000A3 29                     180 	add	hl, hl
+      0000A4 11r00r00               181 	ld	de, #_shadow_OAM
+      0000A7 19                     182 	add	hl, de
+                                    183 ;/opt/gbdk/include/gb/gb.h:1400: itm->y=y, itm->x=x;
+      0000A8 78                     184 	ld	a, b
+      0000A9 22                     185 	ld	(hl+), a
+      0000AA 71                     186 	ld	(hl), c
+                                    187 ;func/cardView.c:29: upperRegion = 1;
+      0000AB 21r00r00               188 	ld	hl, #_upperRegion
+      0000AE 36 01                  189 	ld	(hl), #0x01
+                                    190 ;func/cardView.c:30: quickSwitch = 0;
+      0000B0 21r00r00               191 	ld	hl, #_quickSwitch
+      0000B3 36 00                  192 	ld	(hl), #0x00
+                                    193 ;func/cardView.c:31: viewMode = 1;
+      0000B5 21r00r00               194 	ld	hl, #_viewMode
+      0000B8 36 01                  195 	ld	(hl), #0x01
+                                    196 ;func/cardView.c:32: scoreDisplay();
+      0000BA CDr00r00               197 	call	_scoreDisplay
+                                    198 ;func/cardView.c:33: SHOW_SPRITES;
+      0000BD F0r00                  199 	ldh	a, (_LCDC_REG + 0)
+      0000BF F6 02                  200 	or	a, #0x02
+      0000C1 E0r00                  201 	ldh	(_LCDC_REG + 0), a
+                                    202 ;func/cardView.c:34: }
+      0000C3 C9                     203 	ret
+                                    204 	.area _CODE
+                                    205 	.area _INITIALIZER
+                                    206 	.area _CABS (ABS)

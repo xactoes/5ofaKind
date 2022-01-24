@@ -6,6 +6,7 @@
 extern unsigned int i;
 extern unsigned int j;
 extern unsigned int k;
+
 extern unsigned int cursorIndex;
 extern unsigned int currentFace[4];
 extern unsigned int cursorPosition[2];
@@ -24,16 +25,20 @@ extern unsigned int turn;
 extern unsigned int turnsPassed;
 extern unsigned int scorecard[15];
 extern unsigned int scorecardSummed[15];	//used for funky logic with BCD
+
+
+extern unsigned char bonus5;
 extern unsigned char buf[10];
 extern unsigned char endGame;
 extern unsigned char gameStart;
+extern unsigned char nameInputMenu;
 extern unsigned char quickSwitch;
-extern unsigned char upperRegion;
-extern unsigned char viewMode;
-extern unsigned char bonus5;
 extern unsigned char rollsEnabled;
 extern unsigned char scorecardChangeA;
 extern unsigned char scorecardChangeB;
+extern unsigned char upperRegion;
+extern unsigned char viewMode;
+
 extern const unsigned int diSpacing;
 extern const unsigned int diStartPosition[2];
 extern const unsigned int cursor;
