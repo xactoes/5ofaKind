@@ -1,5 +1,5 @@
 #include </opt/gbdk/include/gb/gb.h>
-
+#include <stdio.h>
 
 //global variables
 #include "../func/global_variables.h"
@@ -13,16 +13,21 @@
 #include "../res/maps.h"
 
 
+unsigned int nameCursor = 22;
+unsigned int nameCursorCol;
+unsigned int nameCursorRow;
+unsigned int nameCursorX = 12;
+unsigned int nameCursorY = 72;
+
+unsigned int inputMode;
+unsigned int setX;
+unsigned int setY;
+
+unsigned int setCol = 0;
+unsigned int setRow = 0;
+
 
 void nameInput(){
-
-    unsigned int nameCursor = 22;
-    unsigned int nameCursorCol;
-    unsigned int nameCursorRow;
-    unsigned int nameCursorX = 12;
-    unsigned int nameCursorY = 72;
-
-
     set_bkg_data(0, 128, backgroundData);
     set_bkg_tiles(0, 0, 20, 18, nameInputMap);
     scroll_bkg(-4, 0);
@@ -92,26 +97,64 @@ void nameInput(){
                 waitpadup();
                 break;
             case J_A:
+                if(nameCursorRow == 4){
+                    inputMode = nameCursorCol;
+                    setX = 0;
+                    setY = 6;
+                    setCol = 0;
+                    setRow = 0;
+                    for(i = 0; i != 40; i++){
+                        set_bkg_tile_xy(setX, setY, inputArray[(40 * inputMode) + (10 * setRow) + setCol]);
+                        if(setX == 18){
+                            setX = 0;
+                            setY += 2;
+                            setCol = 0;
+                            setRow++;
+                        }
+                        else{
+                            setX += 2;
+                            setCol++;
+                        }
+                    }
+                }
+                else{
+                    for(i = 0; i != 7; i++){
+                        playerName[i] = playerName[i + 1];
+                    }
+                    playerName[7] = inputArray[(40 * inputMode) + (10 * nameCursorRow) + nameCursorCol];
+                    for(i = 0; i != 8; i++){
+                        set_bkg_tile_xy(i + 6, 3, playerName[i]);
+                    }
+                }
                 waitpadup();
                 break;
             case J_B:
                 waitpadup();
                 break;
             case J_SELECT:
-                /*
-                if(inputMode < 2){
+                setX = 0;
+                setY = 6;
+                setCol = 0;
+                setRow = 0;
+                if(inputMode < 1){
                     inputMode++;
-                    //code to update background tiles
-                    //need to make a const array that is effectively a map of all the tiles in order
-                    //they will appear on keyboard input
                 }
                 else{
                     inputMode = 0;
-                    //code to update background tiles
-                    //need to make a const array that is effectively a map of all the tiles in order
-                    //they will appear on keyboard input
                 }
-                */
+                for(i = 0; i != 40; i++){
+                    set_bkg_tile_xy(setX, setY, inputArray[(40 * inputMode) + (10 * setRow) + setCol]);
+                    if(setX == 18){
+                        setX = 0;
+                        setY += 2;
+                        setCol = 0;
+                        setRow++;
+                    }
+                    else{
+                        setX += 2;
+                        setCol++;
+                    }
+                }
                 waitpadup();
                 break;
             case J_START:

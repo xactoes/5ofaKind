@@ -95,6 +95,7 @@ void titleScreen(){
                     gameStart = 1;
                     HIDE_SPRITES;
                     move_sprite(21, 0, 0);
+                    waitpadup();
                 }
                 else if(titleIndex == 3){
                     //optionsMenu = 1;
@@ -103,13 +104,13 @@ void titleScreen(){
                     move_sprite(20, 0, 0);
                     move_sprite(21, 0, 0);
                     nameInputMenu = 1;
+                    waitpadup();
                     nameInput();
                     SHOW_BKG;
                     SHOW_SPRITES;
                     move_sprite(20, titlePosL[0], titlePosL[1]);
                     move_sprite(21, titlePosR[0], titlePosR[1]);
                 }
-                waitpadup();
                 break;
         }
     }
