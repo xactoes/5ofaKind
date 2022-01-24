@@ -129,6 +129,13 @@ void initGame(){
 	set_sprite_tile(cursor, 5);
 	set_bkg_data(0, 128, backgroundData);
     set_bkg_tiles(0, 0, 20, 32, backgroundMap);
+
+    //sets player name on screen
+    for(i = 7; i != -1; i--){
+        // i + 2 aligns it to the right by going from 7+2= 9 first, then back to 8, 7, and so on
+        set_bkg_tile_xy(i + 2, 2, playerName[i]);
+    }
+
     viewMode = 0;
 
     SHOW_BKG;
