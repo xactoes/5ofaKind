@@ -6,7 +6,7 @@
 #include "../func/global_variables.h"
 
 //backgrounds
-#include "../res/backgroundMap.h"
+#include "../res/maps.h"
 
 
 void rollDisplay(){

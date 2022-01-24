@@ -33,6 +33,7 @@
 	.globl _viewMode
 	.globl _upperRegion
 	.globl _quickSwitch
+	.globl _nameInputMenu
 	.globl _gameStart
 	.globl _endGame
 	.globl _buf
@@ -102,6 +103,8 @@ _buf::
 _endGame::
 	.ds 1
 _gameStart::
+	.ds 1
+_nameInputMenu::
 	.ds 1
 _quickSwitch::
 	.ds 1

@@ -8,7 +8,7 @@
 #include "../func/logicScorecard.h"
 
 //backgrounds
-#include "../res/backgroundMap.h"
+#include "../res/maps.h"
 
 void cardCursorUp(){
 	if(cursorIndex > 8 && cursorIndex <= 15 || cursorIndex > 16 && cursorIndex <= 21){

@@ -20,8 +20,6 @@
 ; ram data
 ;--------------------------------------------------------
 	.area _INITIALIZED
-_nameInputMap::
-	.ds 360
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -43,8 +41,7 @@ _nameInputMap::
 ;--------------------------------------------------------
 	.area _CODE
 	.area _CODE
-	.area _INITIALIZER
-__xinit__nameInputMap:
+_nameInputMap:
 	.db #0x00	; 0
 	.db #0x00	; 0
 	.db #0x00	; 0
@@ -405,4 +402,5 @@ __xinit__nameInputMap:
 	.db #0x00	; 0
 	.db #0x00	; 0
 	.db #0x00	; 0
+	.area _INITIALIZER
 	.area _CABS (ABS)

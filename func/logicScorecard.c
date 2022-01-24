@@ -12,7 +12,7 @@
 #include "../func/turnRollDisplay.h"
 
 //backgrounds
-#include "../res/backgroundMap.h"
+#include "../res/maps.h"
 
 
 void logicUpper(){

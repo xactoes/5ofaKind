@@ -11,6 +11,8 @@ Symbol Table
     _Sprites                                                       ****** GX
     _gameStart                                                     ****** GX
     _joypad                                                        ****** GX
+    _nameInput                                                     ****** GX
+    _nameInputMenu                                                 ****** GX
     _set_bkg_data                                                  ****** GX
     _set_bkg_tiles                                                 ****** GX
     _set_sprite_data                                               ****** GX
@@ -23,13 +25,12 @@ Symbol Table
   0 _titleScreen                                                   000000 GR
     _waitpadup                                                     ****** GX
 
-
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
 Hexadecimal [24-Bits]
 
 Area Table
 
-   0 _CODE                                      size    2A7   flags    0
+   0 _CODE                                      size    2BD   flags    0
    1 _DATA                                      size      0   flags    0
    2 _INITIALIZED                               size      0   flags    0
    3 _DABS                                      size      0   flags    8

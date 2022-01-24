@@ -1,5 +1,5 @@
 XL3
-H 9 areas 2F global symbols
+H 9 areas 30 global symbols
 M global_variables
 O -mgbz80
 S .__.ABS. Def000000
@@ -9,7 +9,7 @@ S _diStartPosition Def000002
 S _rollPosY Def000008
 S _diSpacing Def000000
 S _cursor Def000006
-A _DATA size 42 flags 0 addr 0
+A _DATA size 43 flags 0 addr 0
 S _titlePosR Def000026
 S _gameStart Def00003B
 S _i Def000000
@@ -23,19 +23,20 @@ S _rollsLeft Def00001A
 S _scoreBuf Def00001C
 S _scoresSet Def00001E
 S _buf Def000030
-S _scorecardChangeA Def000040
-S _scorecardChangeB Def000041
+S _scorecardChangeA Def000041
+S _scorecardChangeB Def000042
 S _len Def000016
-S _viewMode Def00003E
+S _viewMode Def00003F
 S _match5 Def000018
+S _nameInputMenu Def00003C
 S _turn Def00002C
-S _quickSwitch Def00003C
-S _upperRegion Def00003D
+S _quickSwitch Def00003D
+S _upperRegion Def00003E
 S _cursorIndex Def000006
 S _diFaceBuf Def000014
 S _titleIndex Def00002A
 S _turnsPassed Def00002E
-S _bonus5 Def00003F
+S _bonus5 Def000040
 S _titlePosL Def000022
 A _INITIALIZED size 6F flags 0 addr 0
 S _scorecardSummed Def000028
@@ -165,6 +166,10 @@ R 00 00 01 00
 T 41 00 00
 R 00 00 01 00
 T 41 00 00
+R 00 00 01 00
+T 42 00 00
+R 00 00 01 00
+T 42 00 00
 R 00 00 01 00
 T 00 00 00
 R 00 00 02 00

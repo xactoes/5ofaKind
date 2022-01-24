@@ -3,11 +3,14 @@
 //global variables
 #include "../func/global_variables.h"
 
+//functions
+#include "../func/nameInput.h"
+
 //sprites
 #include "../res/Sprites.h"
 
 //backgrounds
-#include "../res/splashScreen.h"
+#include "../res/maps.h"
 
 void titleScreen(){
     HIDE_BKG;
@@ -94,8 +97,9 @@ void titleScreen(){
                 else if(titleIndex == 3){
                     //optionsMenu = 1;
                     HIDE_BKG;
-                    HIDE_SPRITES
+                    HIDE_SPRITES;
                     nameInputMenu = 1;
+                    nameInput();
                 }
                 waitpadup();
                 break;

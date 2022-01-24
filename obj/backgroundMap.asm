@@ -20,8 +20,6 @@
 ; ram data
 ;--------------------------------------------------------
 	.area _INITIALIZED
-_backgroundMap::
-	.ds 720
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -43,8 +41,7 @@ _backgroundMap::
 ;--------------------------------------------------------
 	.area _CODE
 	.area _CODE
-	.area _INITIALIZER
-__xinit__backgroundMap:
+_backgroundMap:
 	.db #0x75	; 117	'u'
 	.db #0x7a	; 122	'z'
 	.db #0x7a	; 122	'z'
@@ -765,4 +762,5 @@ __xinit__backgroundMap:
 	.db #0x7c	; 124
 	.db #0x7c	; 124
 	.db #0x78	; 120	'x'
+	.area _INITIALIZER
 	.area _CABS (ABS)

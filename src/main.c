@@ -25,7 +25,7 @@
 
 //backgrounds
 #include "../res/backgroundData.h"
-#include "../res/backgroundMap.h"
+#include "../res/maps.h"
 
 
 void setDiceValues(){
