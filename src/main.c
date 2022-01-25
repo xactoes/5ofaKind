@@ -4,6 +4,7 @@
 
 //global variables
 #include "../func/global_variables.h"
+#include "../sram/saveVars.h"
 
 //functions
 #include "../func/betterDelay.h"
@@ -133,7 +134,7 @@ void initGame(){
     //sets player name on screen
     for(i = 7; i != -1; i--){
         // i + 2 aligns it to the right by going from 7+2= 9 first, then back to 8, 7, and so on
-        set_bkg_tile_xy(i + 2, 2, playerName[i]);
+        set_bkg_tile_xy(i + 2, 2, storedName[i]);
     }
 
     viewMode = 0;
@@ -407,6 +408,7 @@ void playCursor(){
 
 void main(){
     DISPLAY_ON;
+    ENABLE_RAM_MBC1;
 
 	titleScreen();
 

@@ -2,6 +2,7 @@
 
 //global variables
 #include "../func/global_variables.h"
+#include "../sram/saveVars.h"
 
 //functions
 #include "../func/nameInput.h"
@@ -13,6 +14,8 @@
 #include "../res/maps.h"
 
 /* add in a made by text in bottom of screen */
+
+unsigned char playerName[8];
 
 void titleScreen(){
     HIDE_BKG;
@@ -105,7 +108,16 @@ void titleScreen(){
                     move_sprite(21, 0, 0);
                     nameInputMenu = 1;
                     waitpadup();
+                    ENABLE_RAM_MBC1;
+                    SWITCH_RAM_MBC1(0);
+                    for(i = 0; i != 8; i++){
+                        playerName[i] = storedName[i];
+                    }
                     nameInput();
+                    for(i = 0; i != 8; i++){
+                        storedName[i] = playerName[i];
+                    }
+                    DISABLE_RAM_MBC1;
                     SHOW_BKG;
                     SHOW_SPRITES;
                     move_sprite(20, titlePosL[0], titlePosL[1]);

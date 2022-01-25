@@ -3,7 +3,6 @@
 //global variables
 //#include "../func/global_variables.h"
 
-
 #include "../func/diceStruct.h"
 
 unsigned int i;
@@ -67,7 +66,7 @@ const unsigned char inputArray[80] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-unsigned char playerName[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
 
 
 BCD upperScoreBCD = MAKE_BCD(00000000);
