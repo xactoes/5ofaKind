@@ -29,11 +29,17 @@ unsigned int setCol = 0;
 unsigned int setRow = 0;
 
 extern unsigned char playerName[8];
+//unsigned char workInitialized;
 
 void nameInput(){
     set_bkg_data(0, 128, backgroundData);
     set_bkg_tiles(0, 0, 20, 18, nameInputMap);
     scroll_bkg(-4, 0);
+
+    //display current player name on top of drawn map
+    for(i = 0; i != 8; i++){
+        set_bkg_tile_xy(i + 6, 3, playerName[i]);
+    }
 
     set_sprite_data(0, 8, Sprites);
     set_sprite_tile(nameCursor, 7);
@@ -177,6 +183,8 @@ void nameInput(){
                 break;
             case J_START:
                 nameInputMenu = 0;
+                saveInitialized = 1;
+                //workInitialized = 1;
                 HIDE_BKG;
                 HIDE_SPRITES;
                 move_sprite(nameCursor, 0, 0);
