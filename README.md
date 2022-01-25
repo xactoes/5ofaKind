@@ -19,5 +19,5 @@ MISSING FEATURES:
 * a quit option in the start menu
 * saving of high scores
 * background music
-* player name entry up to 8 characters
+* ~~player name entry up to 8 characters~~
 * potential other features that are implemented but borked and I haven't realized yet
