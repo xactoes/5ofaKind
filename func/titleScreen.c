@@ -1,4 +1,6 @@
 #include </opt/gbdk/include/gb/gb.h>
+#include <stdio.h>
+#include <string.h>
 
 //global variables
 #include "../func/global_variables.h"
@@ -38,6 +40,18 @@ void titleScreen(){
 
     SHOW_BKG;
     SHOW_SPRITES;
+
+    //checks if a player name has ever been set
+    if(saveInitialized != 1){
+        //printf("no saveInitialized");
+        for(i = 0; i != 8; i ++){
+            playerName[i] = inputArray[26];
+        }
+        ENABLE_RAM_MBC1;
+        SWITCH_RAM_MBC1(0);
+        memcpy(storedName, playerName, sizeof(storedName));
+        //DISABLE_RAM_MBC1;
+    }
 
     while(gameStart == 0){
         switch(joypad()){
@@ -110,14 +124,13 @@ void titleScreen(){
                     waitpadup();
                     ENABLE_RAM_MBC1;
                     SWITCH_RAM_MBC1(0);
-                    for(i = 0; i != 8; i++){
-                        playerName[i] = storedName[i];
-                    }
+                    //copies storedName into playerName
+                    memcpy(playerName, storedName, sizeof(playerName));
                     nameInput();
-                    for(i = 0; i != 8; i++){
-                        storedName[i] = playerName[i];
-                    }
-                    DISABLE_RAM_MBC1;
+                    //copies playerName into storedName
+                    memcpy(storedName, playerName, sizeof(storedName));
+                    //memcpy(saveInitialized, workInitialized, sizeof(saveInitialized));
+                    //DISABLE_RAM_MBC1;
                     SHOW_BKG;
                     SHOW_SPRITES;
                     move_sprite(20, titlePosL[0], titlePosL[1]);

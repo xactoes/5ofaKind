@@ -408,6 +408,7 @@ void playCursor(){
 
 void main(){
     DISPLAY_ON;
+
     ENABLE_RAM_MBC1;
 
 	titleScreen();

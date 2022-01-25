@@ -1,2 +1,2 @@
-
-unsigned char storedName[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+unsigned char storedName[8];
+unsigned char saveInitialized;
