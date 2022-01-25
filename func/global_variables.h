@@ -45,6 +45,9 @@ extern const unsigned int cursor;
 extern const unsigned int rollPosY;
 extern const unsigned int heldPosY;
 
+extern const unsigned char inputArray[80];
+extern unsigned char playerName[8];
+
 extern BCD upperScoreBCD;
 extern BCD upperScoreBuf;
 extern BCD lowerScoreBCD;
