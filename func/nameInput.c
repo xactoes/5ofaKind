@@ -1,4 +1,5 @@
-#include </opt/gbdk/include/gb/gb.h>
+//#include </opt/gbdk/include/gb/gb.h>
+#include <gb/gb.h>
 #include <stdio.h>
 
 //global variables
