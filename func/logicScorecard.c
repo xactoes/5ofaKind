@@ -97,13 +97,13 @@ unsigned int smStraightLogicB(){
 		else return 0;
 	}
 	else if(smStraightContinue == 2){
-		if(diceValues[0] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
+		if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
 			return 1;
 		}
 		else return 0;
 	}
 	else if(smStraightContinue == 3){
-		if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
+		if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[4] - 1)){
 			return 1;
 		}
 		else return 0;
@@ -112,6 +112,9 @@ unsigned int smStraightLogicB(){
 		if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1)){
 			return 1;
 		}
+		else if(diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
+            return 1;
+        }
 		else return 0;
 	}
 	else return 0;

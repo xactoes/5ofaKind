@@ -3,6 +3,7 @@
 
 //global variables
 #include "../func/global_variables.h"
+#include "../sram/saveVars.h"
 
 
 //sprites
@@ -26,6 +27,7 @@ unsigned int setY;
 unsigned int setCol = 0;
 unsigned int setRow = 0;
 
+extern unsigned char playerName[8];
 
 void nameInput(){
     set_bkg_data(0, 128, backgroundData);
