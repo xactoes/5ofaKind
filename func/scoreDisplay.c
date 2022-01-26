@@ -5,6 +5,7 @@
 //global variables
 #include "../func/global_variables.h"
 
+
 void setScoreUpper(){
 	len = 0;
 	uint2bcd(63, &compareBCD);
@@ -102,7 +103,7 @@ void setScoreUpper(){
 			}
 		}
 	}
-	//add upperScore INTO upperScoreBCD
+	//add upperScoreBuf INTO upperScoreBCD
 	bcd_add(&upperScoreBCD, &upperScoreBuf);
 
 	//returns funky numbers that are indeed 16 bits in binary but i don't
@@ -110,11 +111,16 @@ void setScoreUpper(){
 	//made another BCD pointer to just make comparisons not need to be translated
 	//printf("%u ", &upperScoreBCD);
 
-	if(&upperScoreBCD >= &compareBCD && scorecard[7] == 255){
-		scorecard[7] = 35;
-		scorecardSummed[7] = scorecard[7];
-		uint2bcd(scorecard[7], &upperScoreBuf);
-		bcd_add(&upperScoreBCD, &upperScoreBuf);
+	if(&upperScoreBCD >= &compareBCD){
+        if(scorecard[14] == 255){
+            scorecard[14] = 35;
+            scorecardSummed[14] = scorecard[14];
+            uint2bcd(scorecardSummed[14], &upperScoreBuf);
+            if(trackBonusUpperAdd == 0){
+                bcd_add(&upperScoreBCD, &upperScoreBuf);
+                trackBonusUpperAdd = 1;
+            }
+        }
 	}
 }
 
@@ -131,7 +137,7 @@ void setScoreLower(){
 				if(cursorIndex >= 11 && cursorIndex <= 14){
 					//printf("upper check: %u\n", scorecard[i]);
 					scorecardSummed[cursorIndex - 8] = scorecard[cursorIndex - 8];
-					uint2bcd(scorecard[cursorIndex - 8], &lowerScoreBuf);
+					uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
 				}
 				//smStraight lgStraight chance
 				else if(cursorIndex >= 19 && cursorIndex <= 21){
@@ -143,21 +149,22 @@ void setScoreLower(){
 				//bonus 5-of-a-kind
 				}
 				else if(cursorIndex == 15){
-					if(scorecard[14] < 1000){
-						scorecardSummed[14] = 100;
-						uint2bcd(scorecardSummed[14], &lowerScoreBuf);
+					if(scorecard[7] < 1000){
+						scorecardSummed[7] = 100;
+						uint2bcd(scorecardSummed[7], &lowerScoreBuf);
 					}
-					else if(scorecard[14] == 1000 && bonus5 == 0){
-						scorecardSummed[14] = 100;
-						uint2bcd(scorecardSummed[14], &lowerScoreBuf);
+					else if(scorecard[7] == 1000 && bonus5 == 0){
+						scorecardSummed[7] = 100;
+						uint2bcd(scorecardSummed[7], &lowerScoreBuf);
 						bonus5 = 1;
 					}
 					//printf("sum: %u\n", scorecardSummed[i]);
 					//printf("card: %u\n", scorecard[i]);
 				}
 				if(bonus5 == 1){
-					scorecardSummed[14] == scorecard[14];
+					scorecardSummed[7] == scorecard[7];
 				}
+
 				//for display score on the card individually for each option
 				bcd_sub(&numOptBCD, &numOptBCD);
 				uint2bcd(scorecard[cursorIndex - 8], &numOptBCD);
@@ -175,23 +182,23 @@ void setScoreLower(){
                         break;
                     //4 of a Kind
                     case 12:
-                        set_bkg_tiles(2, 28, len, 1, buf);
-						set_bkg_tile_xy(2, 28, 0x14); // 4
-						set_bkg_tile_xy(3, 28, 0x2B); // K
-						set_bkg_tile_xy(4, 28, 0x49); // i
-						set_bkg_tile_xy(5, 28, 0x4E); // n
-						set_bkg_tile_xy(6, 28, 0x44); // d
-						set_bkg_tile_xy(7, 28, 0x00); // blank
+                        set_bkg_tiles(2, 29, len, 1, buf);
+						set_bkg_tile_xy(2, 29, 0x14); // 4
+						set_bkg_tile_xy(3, 29, 0x2B); // K
+						set_bkg_tile_xy(4, 29, 0x49); // i
+						set_bkg_tile_xy(5, 29, 0x4E); // n
+						set_bkg_tile_xy(6, 29, 0x44); // d
+						set_bkg_tile_xy(7, 29, 0x00); // blank
                         break;
                     //5 of a Kind Bonus
                     case 15:
                         set_bkg_tiles(11, 32, len, 1, buf);
-                        set_bkg_tile_xy(11, 32, 0x14); // B
-						set_bkg_tile_xy(12, 32, 0x2B); // o
-						set_bkg_tile_xy(13, 32, 0x49); // n
-						set_bkg_tile_xy(14, 32, 0x4E); // u
-						set_bkg_tile_xy(15, 32, 0x44); // s
-						set_bkg_tile_xy(16, 32, 0x00); // :
+                        set_bkg_tile_xy(9, 32, 0x22); // B
+						set_bkg_tile_xy(10, 32, 0x4F); // o
+						set_bkg_tile_xy(11, 32, 0x4E); // n
+						set_bkg_tile_xy(12, 32, 0x55); // u
+						set_bkg_tile_xy(13, 32, 0x53); // s
+						set_bkg_tile_xy(14, 32, 0x1A); // :
                         break;
                     //Chance
                     case 21:

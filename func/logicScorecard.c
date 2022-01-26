@@ -1,5 +1,5 @@
 #include </opt/gbdk/include/gb/gb.h>
-//#include <stdio.h>
+#include <stdio.h>
 
 //global variables
 #include "../func/global_variables.h"
@@ -180,6 +180,10 @@ void logicLower(){
 					set_bkg_tile_xy(8, 30, 0x12); // 2
 					set_bkg_tile_xy(9, 30, 0x15); // 5
 				}
+				else{
+				scoreBuf = 0;
+				scorecard[cursorIndex - 8] = scoreBuf;
+			}
 			}
 			else if(diceValues[0] == diceValues[1]){
 				if(diceValues[1] != diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
@@ -190,6 +194,10 @@ void logicLower(){
 					set_bkg_tile_xy(8, 30, 0x12); // 2
 					set_bkg_tile_xy(9, 30, 0x15); // 5
 				}
+				else{
+				scoreBuf = 0;
+				scorecard[cursorIndex - 8] = scoreBuf;
+			}
 			}
 			else{
 				scoreBuf = 0;
@@ -244,18 +252,16 @@ void logicLower(){
 					//printf("%u ", match5);
 				}
 			}
-			if(match5 == 4){
-				//printf("\n New Line\n");
+			if(turn <= 13 && match5 == 4){
 				scoreBuf = 50;
-				scorecard[cursorIndex - 8] = scoreBuf;
-				//printf("%u\n", scorecard[6]);
+				scorecard[6] = scoreBuf;
 				set_bkg_tile_xy(17, 31, 0x15); // 5
 				set_bkg_tile_xy(18, 31, 0x10); // 0
 			}
-			else if(turn == 13){
+			else if(turn <= 13 && match5 != 4){
 				scoreBuf = 0;
-				scorecard[cursorIndex - 8] = scoreBuf;
-			}
+				scorecard[6] = scoreBuf;
+            }
 			break;
 		case 15:
 			match5 = 0;
@@ -265,19 +271,31 @@ void logicLower(){
 					//printf("%u ", match5);
 				}
 			}
-			if(match5 == 4 && scorecard[6] != 255 && scorecard[6] != 0){
-				if(scorecard[14] < 1000){
-					//printf("\n New Line\n");
+			if(match5 == 4 && scorecard[6] == 50 && scorecard[7] != 0){
+				if(scorecard[7] < 1000){
 					scoreBuf = 100;
-					if(scorecard[14] == 255){
-						scorecard[14] = scoreBuf;
+                    trueTurnOffset += 1;
+					if(scorecard[7] == 255){
+						scorecard[7] = scoreBuf;
 					}
 					else{
-						scorecard[14] += scoreBuf;
+						scorecard[7] += scoreBuf;
 					}
 					//printf("%u\n", scorecard[7]);
 				}
 			}
+			else if(match5 == 4 && scorecard[6] == 50 && scorecard[7] == 0){
+                //play error sound
+                return;
+            }
+			else if(match5 != 4 && scorecard[6] == 50 && turn >13){
+                scorecard[7] = 0;
+                endGame = 1;
+            }
+            else if(match5 == 4 && scorecard[6] != 50){
+                //play error sound
+                return;
+            }
 			break;
 	}
 }
@@ -292,7 +310,7 @@ void bonusCheck(){
 				bonusCompare += scorecard[i];
 			}
 			if(bonusCompare >= 63){
-				scorecard[7] = 35;
+				scorecard[14] = 35;
 				set_bkg_tile_xy(17, 25, 0x13); // 3
 				set_bkg_tile_xy(18, 25, 0x15); // 5
 			}
@@ -306,8 +324,13 @@ void logicScorecard(){
 	if(scorecardChangeA == scorecardChangeB){
 		scorecardChangeA = 0;
 		scorecardChangeB = 0;
-		if(scorecard[cursorIndex - 8] == 255){
-			for(i = 0; i != 14; i++){
+		if(scorecard[cursorIndex - 8] == 255 || (scorecard[7] != 0 && cursorIndex == 15)){
+			for(i = 0; i != 7; i++){
+				if(scorecard[i] != 255){
+					scorecardChangeA++;
+				}
+			}
+			for(i = 8; i != 14; i++){
 				if(scorecard[i] != 255){
 					scorecardChangeA++;
 				}
@@ -318,7 +341,12 @@ void logicScorecard(){
 			else{
 				logicLower();
 			}
-			for(i = 0; i != 14; i++){
+			for(i = 0; i != 7; i++){
+				if(scorecard[i] != 255){
+					scorecardChangeB++;
+				}
+			}
+			for(i = 8; i != 14; i++){
 				if(scorecard[i] != 255){
 					scorecardChangeB++;
 				}
@@ -328,7 +356,7 @@ void logicScorecard(){
 		setScoreUpper();
 		setScoreLower();
 		scoreDisplay();
-		if(scorecardChangeA != scorecardChangeB){
+		if(scorecardChangeA != scorecardChangeB || scoreBuf == 100){
 			rollsLeft = 0;
 			rollsEnabled = 0;
             playView(backgroundMap);

@@ -7,6 +7,7 @@ extern unsigned int i;
 extern unsigned int j;
 extern unsigned int k;
 
+extern unsigned int cheatRolls;
 extern unsigned int cursorIndex;
 extern unsigned int currentFace[4];
 extern unsigned int cursorPosition[2];
@@ -21,6 +22,8 @@ extern unsigned int smStraightContinue;
 extern unsigned int titlePosL[2];
 extern unsigned int titlePosR[2];
 extern unsigned int titleIndex;
+extern unsigned int trackUpperBonusAdd;
+extern unsigned int trueTurnOffset;
 extern unsigned int turn;
 extern unsigned int turnsPassed;
 extern unsigned int scorecard[15];

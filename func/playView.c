@@ -2,6 +2,7 @@
 
 //global variables
 #include "../func/global_variables.h"
+#include "../sram/saveVars.h"
 
 //functions
 #include "../func/betterDelay.h"
@@ -19,6 +20,10 @@ void playView(unsigned char map[]){
         if(i == 10){
             set_bkg_submap(0, 0, 20, 4, map, 20);
         }
+    }
+    for(i = 7; i != -1; i--){
+        // i + 2 aligns it to the right by going from 7+2= 9 first, then back to 8, 7, and so on
+        set_bkg_tile_xy(i + 2, 2, storedName[i]);
     }
     for(i = 0; i != 20; i++){
 		scroll_sprite(i, 0, 88);
