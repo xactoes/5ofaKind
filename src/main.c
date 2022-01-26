@@ -335,7 +335,7 @@ void toggleDi(){
 
 void rollCheck(){
 	if(rollsEnabled == 0){
-		if(scorecardChangeA != scorecardChangeB){
+		if(scorecardChangeA != scorecardChangeB || scoreBuf == 100){
 			newTurn();
 		}
 		else{

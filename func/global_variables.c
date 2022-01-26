@@ -24,6 +24,7 @@ unsigned int smStraightContinue;
 unsigned int titlePosL[2];
 unsigned int titlePosR[2];
 unsigned int titleIndex;
+unsigned int trackUpperBonusAdd;
 //tTO is used ot offset the turn counter (internally) depending on if 5K bonus was chosen
 //this allows pre-existing code to still work
 unsigned int trueTurnOffset = 0;

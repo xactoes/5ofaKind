@@ -5,6 +5,7 @@
 //global variables
 #include "../func/global_variables.h"
 
+
 void setScoreUpper(){
 	len = 0;
 	uint2bcd(63, &compareBCD);
@@ -102,7 +103,7 @@ void setScoreUpper(){
 			}
 		}
 	}
-	//add upperScore INTO upperScoreBCD
+	//add upperScoreBuf INTO upperScoreBCD
 	bcd_add(&upperScoreBCD, &upperScoreBuf);
 
 	//returns funky numbers that are indeed 16 bits in binary but i don't
@@ -110,11 +111,16 @@ void setScoreUpper(){
 	//made another BCD pointer to just make comparisons not need to be translated
 	//printf("%u ", &upperScoreBCD);
 
-	if(&upperScoreBCD >= &compareBCD && scorecard[14] == 255){
-		scorecard[14] = 35;
-		scorecardSummed[14] = scorecard[14];
-		uint2bcd(scorecard[14], &upperScoreBuf);
-		bcd_add(&upperScoreBCD, &upperScoreBuf);
+	if(&upperScoreBCD >= &compareBCD){
+        if(scorecard[14] == 255){
+            scorecard[14] = 35;
+            scorecardSummed[14] = scorecard[14];
+            uint2bcd(scorecardSummed[14], &upperScoreBuf);
+            if(trackBonusUpperAdd == 0){
+                bcd_add(&upperScoreBCD, &upperScoreBuf);
+                trackBonusUpperAdd = 1;
+            }
+        }
 	}
 }
 
