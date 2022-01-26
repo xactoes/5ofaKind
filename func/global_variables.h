@@ -7,6 +7,7 @@ extern unsigned int i;
 extern unsigned int j;
 extern unsigned int k;
 
+extern unsigned int cheatRolls;
 extern unsigned int cursorIndex;
 extern unsigned int currentFace[4];
 extern unsigned int cursorPosition[2];

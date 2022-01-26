@@ -131,7 +131,7 @@ void setScoreLower(){
 				if(cursorIndex >= 11 && cursorIndex <= 14){
 					//printf("upper check: %u\n", scorecard[i]);
 					scorecardSummed[cursorIndex - 8] = scorecard[cursorIndex - 8];
-					uint2bcd(scorecard[cursorIndex - 8], &lowerScoreBuf);
+					uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
 				}
 				//smStraight lgStraight chance
 				else if(cursorIndex >= 19 && cursorIndex <= 21){
@@ -158,6 +158,7 @@ void setScoreLower(){
 				if(bonus5 == 1){
 					scorecardSummed[7] == scorecard[7];
 				}
+
 				//for display score on the card individually for each option
 				bcd_sub(&numOptBCD, &numOptBCD);
 				uint2bcd(scorecard[cursorIndex - 8], &numOptBCD);
@@ -186,12 +187,12 @@ void setScoreLower(){
                     //5 of a Kind Bonus
                     case 15:
                         set_bkg_tiles(11, 32, len, 1, buf);
-                        set_bkg_tile_xy(11, 32, 0x14); // B
-						set_bkg_tile_xy(12, 32, 0x2B); // o
-						set_bkg_tile_xy(13, 32, 0x49); // n
-						set_bkg_tile_xy(14, 32, 0x4E); // u
-						set_bkg_tile_xy(15, 32, 0x44); // s
-						set_bkg_tile_xy(16, 32, 0x00); // :
+                        set_bkg_tile_xy(9, 32, 0x22); // B
+						set_bkg_tile_xy(10, 32, 0x4F); // o
+						set_bkg_tile_xy(11, 32, 0x4E); // n
+						set_bkg_tile_xy(12, 32, 0x55); // u
+						set_bkg_tile_xy(13, 32, 0x53); // s
+						set_bkg_tile_xy(14, 32, 0x1A); // :
                         break;
                     //Chance
                     case 21:

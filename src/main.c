@@ -1,6 +1,6 @@
 #include </opt/gbdk/include/gb/gb.h>
 //#include </opt/gbdk/include/gbdk/bcd.h>
-//#include <stdio.h>
+#include <stdio.h>
 
 //global variables
 #include "../func/global_variables.h"
@@ -157,7 +157,7 @@ void initGame(){
 
 	scoreDisplay();
 
-	rollsLeft = 3;
+	rollsLeft = cheatRolls;
 	turn = 1;
 
     turnRollDisplay();
@@ -166,7 +166,7 @@ void initGame(){
 
 void newTurn(){
     turn++;
-    rollsLeft = 3;
+    rollsLeft = cheatRolls;
 	turnRollDisplay();
     rollsEnabled = 1;
     scorecardChangeA = 0;
@@ -209,7 +209,21 @@ void rollTracker(){
 			rollsEnabled = 0;
 		}
 		//and here
+
+		else if(turnsPassed == (turn - trueTurnOffset) ){
+            //if 13 turns have passed
+            if(turnsPassed == 13){
+                if(scorecard[6] == 0){
+                    printf("t - tT0: %u", (turn - trueTurnOffset));
+                }
+                else if(scorecard[6] == 50){
+                    newTurn();
+                    printf("new turn");
+                }
+            }
+        }
 		else if(turnsPassed == turn - trueTurnOffset){
+            //if next turn is 14 (not counting turns spent on bonus 5K)
 			if(turn - trueTurnOffset + 1 == 14){
                 //if 5K is 0 at start of turn 14
 				if(scorecard[6] == 0){
@@ -217,13 +231,14 @@ void rollTracker(){
 				}
 				//if it isn't 0 then
 				else if(scorecard[6] == 50){
+                    //this will be changed later but for now it is there to test stuff
 					endGame = 1;
 				}
 			}
-			//if the score buffer is 100, then a yahtzee bonus was last chosen
+			//if the score buffer is 100, then a 5k bonus was last chosen
 			//allow to keep playing
-			else if(turn - trueTurnOffset + 1 >= 13 && scoreBuf){
-				endGame = 1;
+			else if( (turn - trueTurnOffset + 1) >= 13 && scoreBuf == 100){
+				newTurn();
 			}
 			else{
 				newTurn();
@@ -342,16 +357,16 @@ void playCursorA(){
 		turnRollDisplay();
 	}
 	else if(cursorIndex == 1){
-		if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
-		else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+		if(rollsLeft == cheatRolls || scorecardChangeA != scorecardChangeB) return;
+		else if(rollsLeft < cheatRolls && scorecardChangeA == scorecardChangeB){
 			cursorPosition[0] = 40;
 			cursorPosition[1] = 128;
 			cursorIndex = 3;
 		}
 	}
 	else if(cursorIndex == 2){
-		if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
-		else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+		if(rollsLeft == cheatRolls || scorecardChangeA != scorecardChangeB) return;
+		else if(rollsLeft < cheatRolls && scorecardChangeA == scorecardChangeB){
 			viewMode = 1;
 			cardView(backgroundMap);
 		}
@@ -373,8 +388,8 @@ void playCursorB(){
 
 void playCursorSelect(){
 	quickSwitch = 1;
-    if(rollsLeft == 3 || scorecardChangeA != scorecardChangeB) return;
-	else if(rollsLeft < 3 && scorecardChangeA == scorecardChangeB){
+    if(rollsLeft == cheatRolls || scorecardChangeA != scorecardChangeB) return;
+	else if(rollsLeft < cheatRolls && scorecardChangeA == scorecardChangeB){
 		viewMode = 1;
 		cardView(backgroundMap);
 	}
@@ -436,6 +451,7 @@ void main(){
         }
     }
     while(endGame == 1){
+        printf("end game");
 		saveScore();
 	}
 }

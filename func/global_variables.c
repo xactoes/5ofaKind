@@ -9,6 +9,7 @@ unsigned int i;
 unsigned int j;
 unsigned int k;
 
+unsigned int cheatRolls = 300;
 unsigned int cursorIndex;
 unsigned int currentFace[4];
 unsigned int cursorPosition[2];
@@ -25,7 +26,7 @@ unsigned int titlePosR[2];
 unsigned int titleIndex;
 //tTO is used ot offset the turn counter (internally) depending on if 5K bonus was chosen
 //this allows pre-existing code to still work
-unsigned int trueTurnOffset;
+unsigned int trueTurnOffset = 0;
 unsigned int turn;
 unsigned int turnsPassed;
 //255 used as a NULL value
