@@ -23,6 +23,9 @@ unsigned int smStraightContinue;
 unsigned int titlePosL[2];
 unsigned int titlePosR[2];
 unsigned int titleIndex;
+//tTO is used ot offset the turn counter (internally) depending on if 5K bonus was chosen
+//this allows pre-existing code to still work
+unsigned int trueTurnOffset;
 unsigned int turn;
 unsigned int turnsPassed;
 //255 used as a NULL value
@@ -35,17 +38,17 @@ unsigned int scorecardSummed[15] = {511, 511, 511, 511, 511,
 								511, 511, 511, 511, 511,
 								511, 511, 511, 511, 511};
 
+unsigned char bonus5;
 unsigned char buf[10];
 unsigned char endGame;
 unsigned char gameStart;
 unsigned char nameInputMenu;
 unsigned char quickSwitch;
-unsigned char upperRegion;
-unsigned char viewMode;
-unsigned char bonus5;
 unsigned char rollsEnabled = 1;
 unsigned char scorecardChangeA;
 unsigned char scorecardChangeB;
+unsigned char upperRegion;
+unsigned char viewMode;
 
 const unsigned int diSpacing = 24;
 const unsigned int diStartPosition[2] = {48, 72};

@@ -110,10 +110,10 @@ void setScoreUpper(){
 	//made another BCD pointer to just make comparisons not need to be translated
 	//printf("%u ", &upperScoreBCD);
 
-	if(&upperScoreBCD >= &compareBCD && scorecard[7] == 255){
-		scorecard[7] = 35;
-		scorecardSummed[7] = scorecard[7];
-		uint2bcd(scorecard[7], &upperScoreBuf);
+	if(&upperScoreBCD >= &compareBCD && scorecard[14] == 255){
+		scorecard[14] = 35;
+		scorecardSummed[14] = scorecard[14];
+		uint2bcd(scorecard[14], &upperScoreBuf);
 		bcd_add(&upperScoreBCD, &upperScoreBuf);
 	}
 }
@@ -143,20 +143,20 @@ void setScoreLower(){
 				//bonus 5-of-a-kind
 				}
 				else if(cursorIndex == 15){
-					if(scorecard[14] < 1000){
-						scorecardSummed[14] = 100;
-						uint2bcd(scorecardSummed[14], &lowerScoreBuf);
+					if(scorecard[7] < 1000){
+						scorecardSummed[7] = 100;
+						uint2bcd(scorecardSummed[7], &lowerScoreBuf);
 					}
-					else if(scorecard[14] == 1000 && bonus5 == 0){
-						scorecardSummed[14] = 100;
-						uint2bcd(scorecardSummed[14], &lowerScoreBuf);
+					else if(scorecard[7] == 1000 && bonus5 == 0){
+						scorecardSummed[7] = 100;
+						uint2bcd(scorecardSummed[7], &lowerScoreBuf);
 						bonus5 = 1;
 					}
 					//printf("sum: %u\n", scorecardSummed[i]);
 					//printf("card: %u\n", scorecard[i]);
 				}
 				if(bonus5 == 1){
-					scorecardSummed[14] == scorecard[14];
+					scorecardSummed[7] == scorecard[7];
 				}
 				//for display score on the card individually for each option
 				bcd_sub(&numOptBCD, &numOptBCD);
@@ -175,13 +175,13 @@ void setScoreLower(){
                         break;
                     //4 of a Kind
                     case 12:
-                        set_bkg_tiles(2, 28, len, 1, buf);
-						set_bkg_tile_xy(2, 28, 0x14); // 4
-						set_bkg_tile_xy(3, 28, 0x2B); // K
-						set_bkg_tile_xy(4, 28, 0x49); // i
-						set_bkg_tile_xy(5, 28, 0x4E); // n
-						set_bkg_tile_xy(6, 28, 0x44); // d
-						set_bkg_tile_xy(7, 28, 0x00); // blank
+                        set_bkg_tiles(2, 29, len, 1, buf);
+						set_bkg_tile_xy(2, 29, 0x14); // 4
+						set_bkg_tile_xy(3, 29, 0x2B); // K
+						set_bkg_tile_xy(4, 29, 0x49); // i
+						set_bkg_tile_xy(5, 29, 0x4E); // n
+						set_bkg_tile_xy(6, 29, 0x44); // d
+						set_bkg_tile_xy(7, 29, 0x00); // blank
                         break;
                     //5 of a Kind Bonus
                     case 15:

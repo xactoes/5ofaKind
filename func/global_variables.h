@@ -21,6 +21,7 @@ extern unsigned int smStraightContinue;
 extern unsigned int titlePosL[2];
 extern unsigned int titlePosR[2];
 extern unsigned int titleIndex;
+extern unsigned int trueTurnOffset;
 extern unsigned int turn;
 extern unsigned int turnsPassed;
 extern unsigned int scorecard[15];

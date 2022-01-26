@@ -1,6 +1,6 @@
 #include </opt/gbdk/include/gb/gb.h>
 //#include </opt/gbdk/include/gbdk/bcd.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 //global variables
 #include "../func/global_variables.h"
@@ -13,6 +13,7 @@
 #include "../func/fade.h"
 //#include "../func/playView.h"
 #include "../func/rollDi.h"
+#include "../func/saveScore.h"
 #include "../func/scoreDisplay.h"
 #include "../func/spriteFlip.h"
 #include "../func/titleScreen.h"
@@ -201,22 +202,27 @@ void rollTracker(){
 			if(scorecard[i] != 255){
 				turnsPassed++;
 			}
+			turnsPassed = turnsPassed - trueTurnOffset;
 		}
 		//compared with turns here
-		if(turnsPassed < turn){
+		if(turnsPassed < turn - trueTurnOffset){
 			rollsEnabled = 0;
 		}
 		//and here
-		else if(turnsPassed == turn){
-			if(turn == 13){
+		else if(turnsPassed == turn - trueTurnOffset){
+			if(turn - trueTurnOffset + 1 == 14){
+                //if 5K is 0 at start of turn 14
 				if(scorecard[6] == 0){
 					endGame = 1;
 				}
+				//if it isn't 0 then
 				else if(scorecard[6] == 50){
 					endGame = 1;
 				}
 			}
-			else if(turn >= 13){
+			//if the score buffer is 100, then a yahtzee bonus was last chosen
+			//allow to keep playing
+			else if(turn - trueTurnOffset + 1 >= 13 && scoreBuf){
 				endGame = 1;
 			}
 			else{
@@ -430,7 +436,6 @@ void main(){
         }
     }
     while(endGame == 1){
-		printf("that's it for now!\n\n");
-		printf("reset game to play again!");
+		saveScore();
 	}
 }
