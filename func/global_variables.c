@@ -9,7 +9,7 @@ unsigned int i;
 unsigned int j;
 unsigned int k;
 
-unsigned int cheatRolls = 300;
+unsigned int cheatRolls = 3;
 unsigned int cursorIndex;
 unsigned int currentFace[4];
 unsigned int cursorPosition[2];
