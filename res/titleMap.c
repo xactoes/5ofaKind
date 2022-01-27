@@ -6,7 +6,7 @@
  TileMap Size      : 20 x 18
 */ 
 
-const unsigned char splashScreen_map[] = {
+const unsigned char titleMap[] = {
 	//lines divied in 2
 	//1
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,

@@ -15,5 +15,6 @@ extern void options();
 //linkTransfer() screens
 
 //options() screens
+extern void nameInput();
 
 #endif

@@ -3,8 +3,8 @@
 #include <stdio.h>
 
 //global variables
-#include "../func/global_variables.h"
-#include "../sram/saveVars.h"
+#include "../func/glob_vars.h"
+#include "../sram/save_vars.h"
 
 
 //sprites
@@ -188,8 +188,8 @@ void nameInput(){
                 HIDE_BKG;
                 HIDE_SPRITES;
                 move_sprite(nameCursor, 0, 0);
-                set_bkg_data(0, 93, splashScreen_data);
-                set_bkg_tiles(0, 0, 20, 18, splashScreen_map);
+                set_bkg_data(0, 93, titleData);
+                set_bkg_tiles(0, 0, 20, 18, titleMap);
                 scroll_bkg(4, 0);
                 waitpadup();
                 break;

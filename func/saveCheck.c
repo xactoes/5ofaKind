@@ -1,7 +1,11 @@
+#include <gb/gb.h>
 #include <string.h>
 
+#include "../func/glob_vars.h"
+#include "../sram/save_vars.h"
+
 //checks if a player name has ever been set
-void saveCheck(){
+void checkName(){
     if(saveInitialized == 0){
         for(i = 0; i != 8; i ++){
             //set each character to blank (memory location 0x00)
@@ -13,5 +17,7 @@ void saveCheck(){
 
         //store tempName into storedName for use in future games
         memcpy(currentName, tempName, sizeof(currentName));
+
+        saveInitialized = 1;
     }
 }

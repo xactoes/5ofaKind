@@ -1,7 +1,29 @@
-#ifndef GLOBAL_VARIABLES_H
-#define GLOBAL_VARIABLES_H
+#ifndef GLOB_VARS_H
+#define GLOB_VARS_H
 
 #include </opt/gbdk/include/gbdk/bcd.h>
+
+//variables used to switch between screens
+extern unsigned char viewTitle;
+extern unsigned char viewGame;
+extern unsigned char viewScores;
+extern unsigned char viewLink;
+extern unsigned char viewOptions;
+
+//variables for sprites
+//0 - 19 are used by diceStruct for the dice
+extern const unsigned int cursorLeft;
+extern const unsigned int cursorRight;
+
+//variables for tracking cursor-highlighted options
+extern unsigned int indexTitle;
+
+//temp variables to hold data until it is ready to overwrite saved data
+extern unsigned char tempName[8];
+
+
+
+
 
 extern unsigned int i;
 extern unsigned int j;

@@ -1,8 +1,5 @@
 #include </opt/gbdk/include/gbdk/bcd.h>
 
-//global variables
-//#include "../func/global_variables.h"
-
 #include "../func/diceStruct.h"
 
 //variables used to switch between screens
@@ -19,7 +16,6 @@ const unsigned int cursorRight  = 21;
 
 //variables for tracking cursor-highlighted options
 unsigned int indexTitle;
-
 
 //temp variables to hold data until it is ready to overwrite saved data
 unsigned char tempName[8];

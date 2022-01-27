@@ -6,7 +6,7 @@
  Number of Tiles   : 67 + 26 = 93
 */ 
 
-const unsigned char splashScreen_data[] = {
+const unsigned char titleData[] = {
 	//start of logo data
 	//0x00
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,

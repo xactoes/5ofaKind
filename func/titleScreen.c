@@ -1,12 +1,7 @@
 #include </opt/gbdk/include/gb/gb.h>
-#include <stdio.h>
 
 //global variables
-#include "../func/global_variables.h"
-#include "../sram/saveVars.h"
-
-//functions
-#include "../func/nameInput.h"
+#include "../func/glob_vars.h"
 
 //sprites
 #include "../res/Sprites.h"
@@ -17,25 +12,28 @@
 /* add in a made by text in bottom of screen */
 
 void titleScreen(){
+
+    //setup background
     HIDE_BKG;
     HIDE_SPRITES;
-    set_bkg_data(0, 93, splashScreen_data);
-    set_bkg_tiles(0, 0, 20, 18, splashScreen_map);
+    set_bkg_data(0, 93, titleData);
+    set_bkg_tiles(0, 0, 20, 18, titleMap);
+    //display background
+    SHOW_BKG;
 
-
+    //setup cursor sprites
     set_sprite_data(0, 7, Sprites);
 	set_sprite_tile(cursorLeft, 5);
     set_sprite_tile(cursorRight, 6);
-
+    //set cursor positions
     titlePosL[0] = 64;
     titlePosL[1] = 96;
     titlePosR[0] = 104;
     titlePosR[1] = titlePosL[1];
-
+    //move cursors to position
     move_sprite(cursorLeft, titlePosL[0], titlePosL[1]);
     move_sprite(cursorRight, titlePosR[0], titlePosR[1]);
-
-    SHOW_BKG;
+    //display sprites
     SHOW_SPRITES;
 
 

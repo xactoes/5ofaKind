@@ -1,7 +1,7 @@
 #ifndef DICESTRUCT_H
 #define DICESTRUCT_H
 
-#include </opt/gbdk/include/gb/gb.h>
+//#include </opt/gbdk/include/gb/gb.h>
 
 typedef struct DiceStruct{
 	unsigned int spriteID[4]; //4 sprites per character

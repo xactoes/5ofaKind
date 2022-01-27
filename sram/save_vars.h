@@ -1,5 +1,5 @@
-#ifndef SAVEVARS_H
-#define SAVEVARS_H
+#ifndef SAVE_VARS_H
+#define SAVE_VARS_H
 
 #include </opt/gbdk/include/gbdk/bcd.h>
 
