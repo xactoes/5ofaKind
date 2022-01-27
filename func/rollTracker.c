@@ -1,3 +1,6 @@
+#include "../func/glob_vars.h"
+#include "../func/newTurn.h"
+
 void rollTracker(){
 	turnsPassed = 0;
 	if(rollsLeft == 0){

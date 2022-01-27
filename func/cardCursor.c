@@ -1,7 +1,7 @@
 #include </opt/gbdk/include/gb/gb.h>
 
 //global variables
-#include "../func/global_variables.h"
+#include "../func/glob_vars.h"
 
 //functions
 #include "../func/playView.h"
@@ -21,7 +21,7 @@ void cardCursorUp(){
 		}
 		cursorIndex -= 1;
 	}
-	move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
 
@@ -42,7 +42,7 @@ void cardCursorDown(){
 			cursorIndex += 1;
 		}
 	}
-	move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
 
@@ -51,7 +51,7 @@ void cardCursorLeft(){
 		cursorPosition[0] -= 72;
 		cursorIndex -= 8;
 	}
-	move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
 
@@ -60,7 +60,7 @@ void cardCursorRight(){
 		cursorPosition[0] += 72;
 		cursorIndex += 8;
 	}
-	move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
 void cardCursorA(){

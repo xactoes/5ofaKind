@@ -28,7 +28,6 @@ unsigned int setY;
 unsigned int setCol = 0;
 unsigned int setRow = 0;
 
-extern unsigned char playerName[8];
 //unsigned char workInitialized;
 
 void nameInput(){
@@ -38,7 +37,7 @@ void nameInput(){
 
     //display current player name on top of drawn map
     for(i = 0; i != 8; i++){
-        set_bkg_tile_xy(i + 6, 3, playerName[i]);
+        set_bkg_tile_xy(i + 6, 3, tempName[i]);
     }
 
     set_sprite_data(0, 8, Sprites);
@@ -127,19 +126,19 @@ void nameInput(){
                     }
                 }
                 else{
-                    if(playerName[0] == 0x00){
+                    if(tempName[0] == 0x00){
                         for(i = 0; i != 7; i++){
-                        playerName[i] = playerName[i + 1];
+                        tempName[i] = tempName[i + 1];
                         }
-                        playerName[7] = inputArray[(40 * inputMode) + (10 * nameCursorRow) + nameCursorCol];
+                        tempName[7] = inputArray[(40 * inputMode) + (10 * nameCursorRow) + nameCursorCol];
                         for(i = 0; i != 8; i++){
-                            set_bkg_tile_xy(i + 6, 3, playerName[i]);
+                            set_bkg_tile_xy(i + 6, 3, tempName[i]);
                         }
                     }
                     else{
-                        playerName[7] = inputArray[(40 * inputMode) + (10 * nameCursorRow) + nameCursorCol];
+                        tempName[7] = inputArray[(40 * inputMode) + (10 * nameCursorRow) + nameCursorCol];
                         for(i = 0; i != 8; i++){
-                            set_bkg_tile_xy(i + 6, 3, playerName[i]);
+                            set_bkg_tile_xy(i + 6, 3, tempName[i]);
                         }
                     }
                 }
@@ -147,11 +146,11 @@ void nameInput(){
                 break;
             case J_B:
                 for(i = 7; i != 0; i--){
-                        playerName[i] = playerName[i - 1];
+                        tempName[i] = tempName[i - 1];
                 }
-                playerName[0] = 0x00;
+                tempName[0] = 0x00;
                 for(i = 0; i != 8; i++){
-                    set_bkg_tile_xy(i + 6, 3, playerName[i]);
+                    set_bkg_tile_xy(i + 6, 3, tempName[i]);
                 }
                 waitpadup();
                 break;

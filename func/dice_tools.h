@@ -3,10 +3,11 @@
 
 #include "../func/diceStruct.h"
 
-void initDi(struct DiceStruct * diSprite, unsigned int spot);
-void moveDiceStruct(struct DiceStruct * diSprite, unsigned int x, unsigned int y);
-void setDiFace(struct DiceStruct * diSprite);
-void setDiceValues();
-void diceToRoll();
+extern void initDi(struct DiceStruct * diSprite, unsigned int spot);
+extern void moveDiceStruct(struct DiceStruct * diSprite, unsigned int x, unsigned int y);
+extern void setDiFace(struct DiceStruct * diSprite);
+extern void setDiceValues();
+extern void diceToRoll();
+extern void rollDi();
 
 #endif

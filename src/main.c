@@ -16,8 +16,6 @@
 #include "../func/cardView.h"
 #include "../func/endScreen.h"
 #include "../func/fade.h"
-//#include "../func/playView.h"
-#include "../func/rollDi.h"
 #include "../func/saveScore.h"
 #include "../func/scoreDisplay.h"
 #include "../func/spriteFlip.h"
@@ -50,7 +48,7 @@ void playCursorLeft(){
 		cursorPosition[0] -= 24;
 		cursorIndex -= 1;
 	}
-	move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
 
@@ -63,7 +61,7 @@ void playCursorRight(){
 		cursorPosition[0] += 24;
 		cursorIndex += 1;
 	}
-	move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
 
@@ -116,7 +114,7 @@ void playCursorA(){
 	else if(cursorIndex >= 3 && cursorIndex <= 7){
 		toggleDi();
 	}
-	move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
 void playCursorB(){
@@ -125,7 +123,7 @@ void playCursorB(){
 		cursorPosition[1] = 144;
 		cursorIndex = 0;
 	}
-	move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
 void playCursorSelect(){

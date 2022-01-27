@@ -9,6 +9,7 @@ extern unsigned char viewGame;
 extern unsigned char viewScores;
 extern unsigned char viewLink;
 extern unsigned char viewOptions;
+extern unsigned char viewNameInput;
 
 //variables for sprites
 //0 - 19 are used by diceStruct for the dice
@@ -17,6 +18,7 @@ extern const unsigned int cursorRight;
 
 //variables for tracking cursor-highlighted options
 extern unsigned int indexTitle;
+extern unsigned int indexOptions;
 
 //temp variables to hold data until it is ready to overwrite saved data
 extern unsigned char tempName[8];

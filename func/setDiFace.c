@@ -1,5 +1,8 @@
+#include <gb/gb.h>
+
 #include "../func/dice_tools.h"
 #include "../func/diceStruct.h"
+#include "../func/glob_vars.h"
 
 void setDiFace(DiceStruct * diSprite){
 	rollDi();

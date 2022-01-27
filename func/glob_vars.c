@@ -8,6 +8,7 @@ unsigned char viewGame      = 0;
 unsigned char viewScores    = 0;
 unsigned char viewLink      = 0;
 unsigned char viewOptions   = 0;
+unsigned char viewNameInput = 0;
 
 //variables for sprites
 //0 - 19 are used by diceStruct for the dice
@@ -16,6 +17,7 @@ const unsigned int cursorRight  = 21;
 
 //variables for tracking cursor-highlighted options
 unsigned int indexTitle;
+unsigned int indexOptions;
 
 //temp variables to hold data until it is ready to overwrite saved data
 unsigned char tempName[8];

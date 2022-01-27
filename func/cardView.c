@@ -1,7 +1,7 @@
 #include </opt/gbdk/include/gb/gb.h>
 
 //global variables
-#include "../func/global_variables.h"
+#include "../func/glob_vars.h"
 
 //functions
 #include "../func/betterDelay.h"
@@ -25,7 +25,7 @@ void cardView(unsigned char map[]){
 	cursorIndex = 8;
 	cursorPosition[0] = 16;
 	cursorPosition[1] = 48;
-	move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 	upperRegion = 1;
 	quickSwitch = 0;
     viewMode = 1;

@@ -75,7 +75,7 @@ void titleScreen(){
                 if(indexTitle == 0) return;
 
                 //otherwise, move it up one
-                else if(indexTitle > 0 && indexTitle <= 3{
+                else if(indexTitle > 0 && indexTitle <= 3){
                     if(indexTitle == 1){
                         titlePosL[0] = 64;
                         titlePosR[0] = 104;
@@ -128,6 +128,7 @@ void titleScreen(){
                         viewOptions = 1;
                         waitpadup();
                         break;
+            }
         }
     }
 }

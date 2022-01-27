@@ -14,7 +14,7 @@
 
 void initGame(){
     set_sprite_data(0, 7, Sprites);
-	set_sprite_tile(cursor, 5);
+	set_sprite_tile(cursorLeft, 5);
 	set_bkg_data(0, 128, backgroundData);
     set_bkg_tiles(0, 0, 20, 32, backgroundMap);
 
@@ -39,7 +39,7 @@ void initGame(){
 	cursorIndex = 0;
 	cursorPosition[0] = 16;
 	cursorPosition[1] = 144;
-	move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 
 	scoreDisplay();
 

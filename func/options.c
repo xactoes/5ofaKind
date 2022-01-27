@@ -1,5 +1,8 @@
 #include <gb/gb.h>
+#include <string.h>
 
+#include "../func/glob_vars.h"
+#include "../sram/save_vars.h"
 #include "../func/screens.h"
 
 void options(){
@@ -13,7 +16,7 @@ void options(){
     //call nameInput screen
     nameInput();
     //copies playerName into storedName
-    memcpy(currentName, tempName, sizeof(storedName));
+    memcpy(currentName, tempName, sizeof(currentName));
     SHOW_BKG;
     SHOW_SPRITES;
     move_sprite(cursorLeft, titlePosL[0], titlePosL[1]);
@@ -37,6 +40,7 @@ void options(){
                         break;
                 }
             case J_B:
+                break;
         }
     }
 }

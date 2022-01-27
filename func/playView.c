@@ -1,8 +1,8 @@
 #include </opt/gbdk/include/gb/gb.h>
 
 //global variables
-#include "../func/global_variables.h"
-#include "../sram/saveVars.h"
+#include "../func/glob_vars.h"
+#include "../sram/save_vars.h"
 
 //functions
 #include "../func/betterDelay.h"
@@ -23,7 +23,7 @@ void playView(unsigned char map[]){
     }
     for(i = 7; i != -1; i--){
         // i + 2 aligns it to the right by going from 7+2= 9 first, then back to 8, 7, and so on
-        set_bkg_tile_xy(i + 2, 2, storedName[i]);
+        set_bkg_tile_xy(i + 2, 2, currentName[i]);
     }
     for(i = 0; i != 20; i++){
 		scroll_sprite(i, 0, 88);
@@ -31,7 +31,7 @@ void playView(unsigned char map[]){
 	cursorIndex = 0;
 	cursorPosition[0] = 16;
 	cursorPosition[1] = 144;
-	move_sprite(cursor, cursorPosition[0], cursorPosition[1]);
+	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 	quickSwitch = 0;
 	viewMode = 0;
 	scoreDisplay();
