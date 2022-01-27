@@ -2,6 +2,10 @@
 //#include </opt/gbdk/include/gbdk/bcd.h>
 #include <stdio.h>
 
+
+#include "../func/screens.h"
+
+
 //global variables
 #include "../func/global_variables.h"
 #include "../sram/saveVars.h"
@@ -440,9 +444,49 @@ void playCursor(){
 void main(){
     DISPLAY_ON;
 
-    ENABLE_RAM_MBC1;
+    //checks for save data and loads it in
+    saveCheck();
 
-    //titleView = 1;
+
+    viewTitle = 1;
+
+    while(1){
+        //title screen
+        if(viewTitle){
+            titleScreen();
+        }
+
+        //game being played
+        if(viewGame){
+            //game();
+        }
+
+        //high score menu
+        if(viewScores){
+            //highScores();
+        }
+
+        //transfer data screen
+        if(viewLink){
+            //linkTransfer();
+        }
+
+        //options screen
+        if(viewOptions){
+            //options();
+        }
+    }
+
+
+
+
+
+
+
+
+
+    /*
+
 
     titleScreen();
 
@@ -472,4 +516,5 @@ void main(){
         endScreen();
 		saveScore();
 	}
+	*/
 }

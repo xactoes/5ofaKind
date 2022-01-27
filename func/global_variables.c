@@ -5,6 +5,29 @@
 
 #include "../func/diceStruct.h"
 
+//variables used to switch between screens
+unsigned char viewTitle     = 0;
+unsigned char viewGame      = 0;
+unsigned char viewScores    = 0;
+unsigned char viewLink      = 0;
+unsigned char viewOptions   = 0;
+
+//variables for sprites
+//0 - 19 are used by diceStruct for the dice
+const unsigned int cursorLeft   = 20;
+const unsigned int cursorRight  = 21;
+
+//variables for tracking cursor-highlighted options
+unsigned int indexTitle;
+
+
+//temp variables to hold data until it is ready to overwrite saved data
+unsigned char tempName[8];
+
+
+
+
+
 unsigned int i;
 unsigned int j;
 unsigned int k;
@@ -24,7 +47,6 @@ unsigned int scoresSet;
 unsigned int smStraightContinue;
 unsigned int titlePosL[2];
 unsigned int titlePosR[2];
-unsigned int titleIndex;
 unsigned int trackUpperBonusAdd;
 //tTO is used ot offset the turn counter (internally) depending on if 5K bonus was chosen
 //this allows pre-existing code to still work
@@ -57,7 +79,6 @@ unsigned char viewMode;
 
 const unsigned int diSpacing = 24;
 const unsigned int diStartPosition[2] = {48, 72};
-const unsigned int cursor = 20;
 const unsigned int rollPosY = 72;
 const unsigned int heldPosY = 88;
 

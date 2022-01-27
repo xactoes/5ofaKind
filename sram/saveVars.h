@@ -3,7 +3,7 @@
 
 #include </opt/gbdk/include/gbdk/bcd.h>
 
-extern unsigned char storedName[8];
+extern unsigned char currentName[8];
 extern unsigned char saveInitialized;
 
 extern BCD hiScore[5];
