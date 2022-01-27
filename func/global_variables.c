@@ -9,12 +9,13 @@ unsigned int i;
 unsigned int j;
 unsigned int k;
 
-unsigned int cheatRolls = 3;
+unsigned int cheatRolls = 300;
 unsigned int cursorIndex;
 unsigned int currentFace[4];
 unsigned int cursorPosition[2];
 unsigned int diceValues[5] = {0, 0, 0, 0, 0};
 unsigned int diFaceBuf;
+unsigned int endScreenScrolled;
 unsigned int len;
 unsigned int match5;
 unsigned int rollsLeft;
@@ -43,12 +44,14 @@ unsigned int scorecardSummed[15] = {511, 511, 511, 511, 511,
 unsigned char bonus5;
 unsigned char buf[10];
 unsigned char endGame;
+unsigned char gameOn;
 unsigned char gameStart;
 unsigned char nameInputMenu;
 unsigned char quickSwitch;
 unsigned char rollsEnabled = 1;
 unsigned char scorecardChangeA;
 unsigned char scorecardChangeB;
+unsigned char titleView;
 unsigned char upperRegion;
 unsigned char viewMode;
 

@@ -116,9 +116,9 @@ void setScoreUpper(){
             scorecard[14] = 35;
             scorecardSummed[14] = scorecard[14];
             uint2bcd(scorecardSummed[14], &upperScoreBuf);
-            if(trackBonusUpperAdd == 0){
+            if(trackUpperBonusAdd == 0){
                 bcd_add(&upperScoreBCD, &upperScoreBuf);
-                trackBonusUpperAdd = 1;
+                trackUpperBonusAdd = 1;
             }
         }
 	}

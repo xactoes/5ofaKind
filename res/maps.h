@@ -9,5 +9,7 @@ extern const unsigned char splashScreen_map[];
 
 extern const unsigned char nameInputMap[];
 
+extern const unsigned char endScreenMap[];
+
 
 #endif

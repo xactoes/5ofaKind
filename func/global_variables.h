@@ -13,6 +13,7 @@ extern unsigned int currentFace[4];
 extern unsigned int cursorPosition[2];
 extern unsigned int diceValues[5];
 extern unsigned int diFaceBuf;
+extern unsigned int endScreenScrolled;
 extern unsigned int len;
 extern unsigned int match5;
 extern unsigned int rollsLeft;
@@ -33,12 +34,14 @@ extern unsigned int scorecardSummed[15];	//used for funky logic with BCD
 extern unsigned char bonus5;
 extern unsigned char buf[10];
 extern unsigned char endGame;
+extern unsigned char gameOn;
 extern unsigned char gameStart;
 extern unsigned char nameInputMenu;
 extern unsigned char quickSwitch;
 extern unsigned char rollsEnabled;
 extern unsigned char scorecardChangeA;
 extern unsigned char scorecardChangeB;
+extern unsigned char titleView;
 extern unsigned char upperRegion;
 extern unsigned char viewMode;
 

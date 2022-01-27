@@ -1,4 +1,4 @@
-#include </opt/gbdk/include/gb/gb.h>
+#include <gb/gb.h>
 //#include </opt/gbdk/include/gbdk/bcd.h>
 #include <stdio.h>
 
@@ -10,6 +10,7 @@
 #include "../func/betterDelay.h"
 #include "../func/cardCursor.h"
 #include "../func/cardView.h"
+#include "../func/endScreen.h"
 #include "../func/fade.h"
 //#include "../func/playView.h"
 #include "../func/rollDi.h"
@@ -161,6 +162,8 @@ void initGame(){
 	turn = 1;
 
     turnRollDisplay();
+
+    gameOn = 1;
 }
 
 
@@ -227,11 +230,13 @@ void rollTracker(){
 			if(turn - trueTurnOffset + 1 == 14){
                 //if 5K is 0 at start of turn 14
 				if(scorecard[6] == 0){
+                    gameOn = 0;
 					endGame = 1;
 				}
 				//if it isn't 0 then
 				else if(scorecard[6] == 50){
                     //this will be changed later but for now it is there to test stuff
+                    gameOn = 0;
 					endGame = 1;
 				}
 			}
@@ -334,8 +339,11 @@ void toggleDi(){
 
 
 void rollCheck(){
+    if(gameOn == 0 || endGame == 1){
+        return;
+    }
 	if(rollsEnabled == 0){
-		if(scorecardChangeA != scorecardChangeB || scoreBuf == 100){
+		if( (scorecardChangeA != scorecardChangeB || scoreBuf == 100) && gameOn == 1){
 			newTurn();
 		}
 		else{
@@ -350,7 +358,9 @@ void rollCheck(){
 
 
 void playCursorA(){
-	//waitpadup();
+    if(gameOn == 0){
+        return;
+    }
 	if(cursorIndex == 0){
 		rollTracker();
 		rollCheck();
@@ -432,26 +442,34 @@ void main(){
 
     ENABLE_RAM_MBC1;
 
-	titleScreen();
+    //titleView = 1;
+
+    titleScreen();
 
     fadeToBlack(4);
 
-	initGame();
+    initGame();
 
     fadeFromBlack(4);
+
 
     SHOW_SPRITES;
 
 	while(endGame == 0){
-		if(viewMode == 0){
-			playCursor();
-        }
-        else if(viewMode == 1){
-			cardCursor();
+        while(gameOn == 1){
+            if(viewMode == 0 && gameOn == 1){
+                playCursor();
+            }
+            else if(viewMode == 1 && gameOn == 1){
+                cardCursor();
+            }
+            else if(gameOn == 0){
+                break;
+            }
         }
     }
     while(endGame == 1){
-        printf("end game");
+        endScreen();
 		saveScore();
 	}
 }
