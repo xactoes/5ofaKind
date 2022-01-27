@@ -14,6 +14,7 @@ unsigned char viewNameInput = 0;
 //0 - 19 are used by diceStruct for the dice
 const unsigned int cursorLeft   = 20;
 const unsigned int cursorRight  = 21;
+const unsigned int nameCursor   = 22;
 
 //variables for tracking cursor-highlighted options
 unsigned int indexTitle;

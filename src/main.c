@@ -37,7 +37,7 @@ void main(){
 
         //options screen
         if(viewOptions){
-            //options();
+            options();
         }
     }
 

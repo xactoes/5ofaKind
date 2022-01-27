@@ -15,6 +15,7 @@ extern unsigned char viewNameInput;
 //0 - 19 are used by diceStruct for the dice
 extern const unsigned int cursorLeft;
 extern const unsigned int cursorRight;
+extern const unsigned int nameCursor;
 
 //variables for tracking cursor-highlighted options
 extern unsigned int indexTitle;

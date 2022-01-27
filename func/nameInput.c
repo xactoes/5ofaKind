@@ -1,21 +1,14 @@
-//#include </opt/gbdk/include/gb/gb.h>
 #include <gb/gb.h>
-#include <stdio.h>
+#include <string.h>
 
-//global variables
 #include "../func/glob_vars.h"
 #include "../sram/save_vars.h"
 
-
-//sprites
 #include "../res/Sprites.h"
 
-//maps
-#include "../res/backgroundData.h"
 #include "../res/maps.h"
 
 
-unsigned int nameCursor = 22;
 unsigned int nameCursorCol;
 unsigned int nameCursorRow;
 unsigned int nameCursorX = 12;
@@ -28,25 +21,44 @@ unsigned int setY;
 unsigned int setCol = 0;
 unsigned int setRow = 0;
 
+unsigned char backgroundScrolled;
+
 //unsigned char workInitialized;
 
 void nameInput(){
-    set_bkg_data(0, 128, backgroundData);
-    set_bkg_tiles(0, 0, 20, 18, nameInputMap);
-    scroll_bkg(-4, 0);
+    //make save variables accessible as they can be written to in this function
+    ENABLE_RAM_MBC1;
+    SWITCH_RAM_MBC1(0);
+
+    //copies currentName into tempName
+    memcpy(tempName, currentName, sizeof(tempName));
+
+    //hide screen objects during setup
+    HIDE_BKG;
+    HIDE_SPRITES;
+
+    if(backgroundScrolled == 0){
+        //switch map and offset to the right by 4
+        set_bkg_tiles(0, 0, 20, 18, nameInputMap);
+        scroll_bkg(-4, 0);
+        backgroundScrolled = 1;
+    }
 
     //display current player name on top of drawn map
     for(i = 0; i != 8; i++){
         set_bkg_tile_xy(i + 6, 3, tempName[i]);
     }
 
+    //setup ^ cursor for this screen
     set_sprite_data(0, 8, Sprites);
     set_sprite_tile(nameCursor, 7);
     move_sprite(nameCursor, nameCursorX, nameCursorY);
 
+    //setup done, display screen
     SHOW_BKG;
     SHOW_SPRITES;
-    while(nameInputMenu == 1){
+
+    while(viewNameInput == 1){
         switch(joypad()){
             case J_LEFT:
                 if(nameCursorCol > 0){
@@ -181,15 +193,32 @@ void nameInput(){
                 waitpadup();
                 break;
             case J_START:
-                nameInputMenu = 0;
-                saveInitialized = 1;
-                //workInitialized = 1;
+                //copies tempName into currentName
+                memcpy(currentName, tempName, sizeof(currentName));
+
+                //hide screen objects while cleaning up
                 HIDE_BKG;
                 HIDE_SPRITES;
-                move_sprite(nameCursor, 0, 0);
-                set_bkg_data(0, 93, titleData);
-                set_bkg_tiles(0, 0, 20, 18, titleMap);
+
+                //fix background back to non-scrolled position
                 scroll_bkg(4, 0);
+
+                //mark background as not scrolled
+                backgroundScrolled = 0;
+
+                //hide sprite offscreen
+                move_sprite(nameCursor, 0, 0);
+
+                //mark variable to indicate a save has been initialized with a player
+                //chosen name for next startup check by checkName() in main()
+                saveInitialized = 1;
+
+                //leave name input
+                viewNameInput = 0;
+                //leave options
+                viewOptions = 0;
+                //enter into title again
+                viewTitle = 1;
                 waitpadup();
                 break;
         }

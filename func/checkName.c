@@ -17,7 +17,5 @@ void checkName(){
 
         //store tempName into storedName for use in future games
         memcpy(currentName, tempName, sizeof(currentName));
-
-        saveInitialized = 1;
     }
 }

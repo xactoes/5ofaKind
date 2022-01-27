@@ -13,16 +13,18 @@
 
 void titleScreen(){
 
-    //setup background
+    //hide screen while setting up
     HIDE_BKG;
     HIDE_SPRITES;
+
+    //setup background
     set_bkg_data(0, 93, titleData);
     set_bkg_tiles(0, 0, 20, 18, titleMap);
     //display background
     SHOW_BKG;
 
     //setup cursor sprites
-    set_sprite_data(0, 7, Sprites);
+    set_sprite_data(0, 8, Sprites);
 	set_sprite_tile(cursorLeft, 5);
     set_sprite_tile(cursorRight, 6);
     //set cursor positions
@@ -36,6 +38,7 @@ void titleScreen(){
     //display sprites
     SHOW_SPRITES;
 
+    indexTitle = 0;
 
     //while on the title screen, listen for navigation and selection input
     while(viewTitle == 1){
@@ -44,11 +47,8 @@ void titleScreen(){
             //menu navigation
 
             case J_DOWN:
-                //if it is at the bottom, do nothing
-                if(indexTitle >= 3) return;
-
-                //otherwise, move it down one
-                else if(indexTitle >= 0 && indexTitle < 3){
+                //if not at bottom, move it down one
+                if(indexTitle >= 0 && indexTitle < 3){
                     if(indexTitle == 0){
                         titlePosL[0] = 40;
                         titlePosR[0] = 136;
@@ -58,8 +58,8 @@ void titleScreen(){
                         titlePosR[0] = 120;
                     }
                     else if(indexTitle == 2){
-                        titlePosL[0] = 56;
-                        titlePosR[0] = 120;
+                        titlePosL[0] = 48;
+                        titlePosR[0] = 112;
                     }
                     titlePosL[1] += 8;
                     titlePosR[1] = titlePosL[1];
@@ -71,11 +71,8 @@ void titleScreen(){
                 break;
 
             case J_UP:
-                //if it is at the top, do nothing
-                if(indexTitle == 0) return;
-
-                //otherwise, move it up one
-                else if(indexTitle > 0 && indexTitle <= 3){
+                //if not at top, move it up one
+                if(indexTitle > 0 && indexTitle <= 3){
                     if(indexTitle == 1){
                         titlePosL[0] = 64;
                         titlePosR[0] = 104;
@@ -86,7 +83,7 @@ void titleScreen(){
                     }
                     else if(indexTitle == 3){
                         titlePosL[0] = 48;
-                        titlePosR[0] = 120;
+                        titlePosR[0] = 112;
                     }
                     titlePosL[1] -= 8;
                     titlePosR[1] = titlePosL[1];
