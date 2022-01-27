@@ -9,5 +9,6 @@ extern void setDiFace(struct DiceStruct * diSprite);
 extern void setDiceValues();
 extern void diceToRoll();
 extern void rollDi();
+extern void toggleDi();
 
 #endif
