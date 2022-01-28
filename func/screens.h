@@ -2,7 +2,7 @@
 #define SCREENS_H
 
 //main() screens
-extern void titleScreen();
+extern void title();
 extern void game();
 extern void highScores();
 extern void linkTransfer();

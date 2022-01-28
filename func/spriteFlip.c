@@ -1,7 +1,7 @@
 #include </opt/gbdk/include/gb/gb.h>
 
 //global variables
-#include "../func/global_variables.h"
+#include "../func/glob_vars.h"
 
 void spriteFlip(){
 	for(i = 1; i <= 17; i = i + 4){

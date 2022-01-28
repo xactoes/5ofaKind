@@ -4,111 +4,110 @@
 #include "../func/glob_vars.h"
 
 //functions
-#include "../func/playView.h"
-#include "../func/logicScorecard.h"
+#include "../func/logicGame.h"
+#include "../func/logicScore.h"
 
 //backgrounds
 #include "../res/maps.h"
 
-void cardCursorUp(){
-	if(cursorIndex > 8 && cursorIndex <= 15 || cursorIndex > 16 && cursorIndex <= 21){
-		if(cursorIndex == 11 || cursorIndex == 19){
+void cursorCardUp(){
+	if(indexCursor > 8 && indexCursor <= 15 || indexCursor > 16 && indexCursor <= 21){
+		if(indexCursor == 11 || indexCursor == 19){
 			cursorPosition[1] -= 32;
 			upperRegion = 1;
 		}
 		else{
 			cursorPosition[1] -= 8;
 		}
-		cursorIndex -= 1;
+		indexCursor -= 1;
 	}
 	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
 
-void cardCursorDown(){
-	if(cursorIndex >= 8 && cursorIndex < 15 || cursorIndex >= 16 && cursorIndex <= 21){
-		if(cursorIndex == 10 || cursorIndex == 18){
+void cursorCardDown(){
+	if(indexCursor >= 8 && indexCursor < 15 || indexCursor >= 16 && indexCursor <= 21){
+		if(indexCursor == 10 || indexCursor == 18){
 			cursorPosition[1] += 32;
-			cursorIndex += 1;
+			indexCursor += 1;
 			upperRegion = 0;
 		}
-		else if(cursorIndex == 21){
+		else if(indexCursor == 21){
 			cursorPosition[0] = 16;
 			cursorPosition[1] += 8;
-			cursorIndex = 14;
+			indexCursor = 14;
 		}
 		else{
 			cursorPosition[1] += 8;
-			cursorIndex += 1;
+			indexCursor += 1;
 		}
 	}
 	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
 
-void cardCursorLeft(){
-	if(cursorIndex >= 16 && cursorIndex <= 21){
+void cursorCardLeft(){
+	if(indexCursor >= 16 && indexCursor <= 21){
 		cursorPosition[0] -= 72;
-		cursorIndex -= 8;
+		indexCursor -= 8;
 	}
 	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
 
-void cardCursorRight(){
-	if(cursorIndex >= 8 && cursorIndex <= 13){
+void cursorCardRight(){
+	if(indexCursor >= 8 && indexCursor <= 13){
 		cursorPosition[0] += 72;
-		cursorIndex += 8;
+		indexCursor += 8;
 	}
 	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 }
 
-void cardCursorA(){
+void cursorCardA(){
 	logicScorecard();
 }
 
-void cardCursorB(){
-	playView(backgroundMap);
-	//turnTracker();
+void cursorCardB(){
+	play(backgroundMap);
 }
 
 
-void cardCursorSelect(){
+void cursorCardSelect(){
 	quickSwitch = 1;
-	playView(backgroundMap);
+	play(backgroundMap);
 }
 
 
-void cardCursor(){
+void cursorCard(){
 	switch(joypad()){
 		case J_LEFT:
-			cardCursorLeft();
+			cursorCardLeft();
 			waitpadup();
 			break;
 		case J_RIGHT:
-			cardCursorRight();
+			cursorCardRight();
 			waitpadup();
 			break;
 		case J_UP:
-			cardCursorUp();
+			cursorCardUp();
 			waitpadup();
 			break;
 		case J_DOWN:
-			cardCursorDown();
+			cursorCardDown();
 			waitpadup();
 			break;
 		case J_A:
-			cardCursorA();
+			cursorCardA();
 			waitpadup();
 			break;
 		case J_B:
-			cardCursorB();
+			cursorCardB();
 			waitpadup();
 			break;
 		case J_START:
 			break;
 		case J_SELECT:
-			cardCursorSelect();
+			cursorCardSelect();
 			waitpadup();
 			break;
 	}

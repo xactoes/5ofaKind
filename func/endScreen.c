@@ -1,7 +1,7 @@
 #include <gb/gb.h>
 
 //global variables
-#include "../func/global_variables.h"
+#include "../func/glob_vars.h"
 
 //backgrounds
 #include "../res/backgroundData.h"
@@ -34,16 +34,16 @@ void endScreen(){
 
     switch(joypad()){
         case J_START:
-            endGame = 0;
+            viewEnd = 0;
             waitpadup();
             break;
         case J_A:
-            endGame = 0;
+            viewEnd = 0;
             waitpadup();
             break;
         case J_B:
-            endGame = 0;
-            titleView = 1;
+            viewEnd = 0;
+            viewTitle = 1;
             waitpadup();
             break;
     }

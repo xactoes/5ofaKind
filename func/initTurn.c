@@ -5,11 +5,8 @@
 
 #include "../func/turnRollDisplay.h"
 
-void newTurn(){
-    turn++;
-    rollsLeft = cheatRolls;
-	turnRollDisplay();
-    rollsEnabled = 1;
+void initTurn(){
+    rollsLeft = initRolls;
     scorecardChangeA = 0;
     scorecardChangeB = 0;
     if(Di1.inPlay == 0){

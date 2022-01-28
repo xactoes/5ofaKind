@@ -58,7 +58,7 @@ void nameInput(){
     SHOW_BKG;
     SHOW_SPRITES;
 
-    while(viewNameInput == 1){
+    while(viewNameInput){
         switch(joypad()){
             case J_LEFT:
                 if(nameCursorCol > 0){

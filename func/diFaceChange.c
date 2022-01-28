@@ -1,13 +1,13 @@
 #include </opt/gbdk/include/gb/gb.h>
 
 //global variables
-#include "../func/global_variables.h"
+#include "../func/glob_vars.h"
 
 //functions
 #include "../func/myRandom.h"
 #include "../func/diFaces.h"
 
-void rollDi(){
+void diFaceChange(){
     unsigned int r;
 	switch(myRandom(5)){
 		case 0:

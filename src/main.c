@@ -17,12 +17,12 @@ void main(){
     while(1){
         //title screen
         if(viewTitle){
-            titleScreen();
+            title();
         }
 
         //game being played
         if(viewGame){
-            //game();
+            game();
         }
 
         //high score menu

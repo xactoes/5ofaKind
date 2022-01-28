@@ -10,6 +10,10 @@ extern unsigned char viewScores;
 extern unsigned char viewLink;
 extern unsigned char viewOptions;
 extern unsigned char viewNameInput;
+extern unsigned char viewPlay;
+extern unsigned char viewCard;
+extern unsigned char viewSwitch;
+extern unsigned char viewEnd;
 
 //variables for sprites
 //0 - 19 are used by diceStruct for the dice
@@ -20,20 +24,26 @@ extern const unsigned int nameCursor;
 //variables for tracking cursor-highlighted options
 extern unsigned int indexTitle;
 extern unsigned int indexOptions;
+extern unsigned int indexCursor;
 
 //temp variables to hold data until it is ready to overwrite saved data
 extern unsigned char tempName[8];
 
+//incrementing variables
+extern unsigned int bonusTally;
 
+//decrementing variables
+extern unsigned int initRolls;
 
-
-
+//misc variables
 extern unsigned int i;
 extern unsigned int j;
-extern unsigned int k;
+//extern unsigned int k;
 
-extern unsigned int cheatRolls;
-extern unsigned int cursorIndex;
+
+
+
+
 extern unsigned int currentFace[4];
 extern unsigned int cursorPosition[2];
 extern unsigned int diceValues[5];
@@ -63,7 +73,6 @@ extern unsigned char gameOn;
 extern unsigned char gameStart;
 extern unsigned char nameInputMenu;
 extern unsigned char quickSwitch;
-extern unsigned char rollsEnabled;
 extern unsigned char scorecardChangeA;
 extern unsigned char scorecardChangeB;
 extern unsigned char titleView;

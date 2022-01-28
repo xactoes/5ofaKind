@@ -2,6 +2,7 @@
 
 #include "../func/diceStruct.h"
 
+//toggle variables
 //variables used to switch between screens
 unsigned char viewTitle     = 0;
 unsigned char viewGame      = 0;
@@ -9,6 +10,14 @@ unsigned char viewScores    = 0;
 unsigned char viewLink      = 0;
 unsigned char viewOptions   = 0;
 unsigned char viewNameInput = 0;
+unsigned char viewPlay      = 0;
+unsigned char viewCard      = 0;
+unsigned char viewSwitch    = 0;
+unsigned char viewEnd       = 0;
+
+//non-screen toggle variables
+unsigned char bonus5;
+
 
 //variables for sprites
 //0 - 19 are used by diceStruct for the dice
@@ -19,63 +28,45 @@ const unsigned int nameCursor   = 22;
 //variables for tracking cursor-highlighted options
 unsigned int indexTitle;
 unsigned int indexOptions;
+unsigned int indexCursor;
 
 //temp variables to hold data until it is ready to overwrite saved data
 unsigned char tempName[8];
 
+//incrementing variables
+unsigned int bonusTally     = 0;
+unsigned int turn;
 
+//decrementing variables
+unsigned int initRolls      = 3;   //DO NOT SET TO 255 OR HIGHER
 
-
-
+//misc variables
 unsigned int i;
 unsigned int j;
-unsigned int k;
+//unsigned int k;
 
-unsigned int cheatRolls = 300;
-unsigned int cursorIndex;
-unsigned int currentFace[4];
-unsigned int cursorPosition[2];
-unsigned int diceValues[5] = {0, 0, 0, 0, 0};
-unsigned int diFaceBuf;
-unsigned int endScreenScrolled;
-unsigned int len;
-unsigned int match5;
-unsigned int rollsLeft;
-unsigned int scoreBuf;
-unsigned int scoresSet;
-unsigned int smStraightContinue;
-unsigned int titlePosL[2];
-unsigned int titlePosR[2];
-unsigned int trackUpperBonusAdd;
-//tTO is used ot offset the turn counter (internally) depending on if 5K bonus was chosen
-//this allows pre-existing code to still work
-unsigned int trueTurnOffset = 0;
-unsigned int turn;
-unsigned int turnsPassed;
+//initialized arrays with self-chosen NULL values
 //255 used as a NULL value
-unsigned int scorecard[15] = {255, 255, 255, 255, 255,
-						255, 255, 255, 255, 255,
-						255, 255, 255, 255, 255};
+unsigned int scorecard[15] =        {255, 255, 255, 255, 255,
+                                    255, 255, 255, 255, 255,
+                                    255, 255, 255, 255, 255};
 //used for funky logic with BCD
 //511 used as a NULL value
 unsigned int scorecardSummed[15] = {511, 511, 511, 511, 511,
-								511, 511, 511, 511, 511,
-								511, 511, 511, 511, 511};
+                                    511, 511, 511, 511, 511,
+                                    511, 511, 511, 511, 511};
 
-unsigned char bonus5;
+//variables that might go into options later
+unsigned char quickSwitch   = 0;
+
+//buffer variables
+unsigned int diFaceBuf;
 unsigned char buf[10];
-unsigned char endGame;
-unsigned char gameOn;
-unsigned char gameStart;
-unsigned char nameInputMenu;
-unsigned char quickSwitch;
-unsigned char rollsEnabled = 1;
 unsigned char scorecardChangeA;
 unsigned char scorecardChangeB;
-unsigned char titleView;
-unsigned char upperRegion;
-unsigned char viewMode;
+unsigned int scoreBuf;
 
+//misc constant variables
 const unsigned int diSpacing = 24;
 const unsigned int diStartPosition[2] = {48, 72};
 const unsigned int rollPosY = 72;
@@ -94,9 +85,7 @@ const unsigned char inputArray[80] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-
-
-
+//BCD variables
 BCD upperScoreBCD = MAKE_BCD(00000000);
 BCD upperScoreBuf = MAKE_BCD(00000000);
 BCD lowerScoreBCD = MAKE_BCD(00000000);
@@ -107,3 +96,22 @@ BCD compareBCD = MAKE_BCD(00000000);
 BCD numOptBCD = MAKE_BCD(00000000);
 BCD turnBCD = MAKE_BCD(00000000);
 BCD rollBCD = MAKE_BCD(00000000);
+
+
+
+
+unsigned int currentFace[4];
+unsigned int cursorPosition[2];
+unsigned int diceValues[5] = {0, 0, 0, 0, 0};
+
+unsigned int endScreenScrolled;
+unsigned int len;
+unsigned int match5;
+unsigned int rollsLeft;
+unsigned int scoresSet;
+unsigned int smStraightContinue;
+unsigned int titlePosL[2];
+unsigned int titlePosR[2];
+unsigned int trackUpperBonusAdd;
+
+unsigned char upperRegion;

@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 //global variables
-#include "../func/global_variables.h"
+#include "../func/glob_vars.h"
 
 
 void setScoreUpper(){
@@ -14,31 +14,31 @@ void setScoreUpper(){
 	for(i = 0; i != 10; i++){
 		buf[i] = 0;
 	}
-	if(cursorIndex >= 8 && cursorIndex <= 10 || cursorIndex >= 16 && cursorIndex <= 18){
-		if(scorecardSummed[cursorIndex - 8] != scorecard[cursorIndex - 8]){
-			if(scorecard[cursorIndex - 8] != 255 && scorecard[cursorIndex - 8] != 0){
+	if(indexCursor >= 8 && indexCursor <= 10 || indexCursor >= 16 && indexCursor <= 18){
+		if(scorecardSummed[indexCursor - 8] != scorecard[indexCursor - 8]){
+			if(scorecard[indexCursor - 8] != 255 && scorecard[indexCursor - 8] != 0){
 				//ones twos threes
-				if(cursorIndex <= 11){
+				if(indexCursor <= 11){
 					//printf("upper check: %u\n", scorecard[i]);
-					scorecardSummed[cursorIndex - 8] = scorecard[cursorIndex - 8];
+					scorecardSummed[indexCursor - 8] = scorecard[indexCursor - 8];
 					//number and where to store it as a BCD value
-					uint2bcd(scorecardSummed[cursorIndex - 8], &upperScoreBuf);
-					//printf("sum: %u\n", scorecardSummed[cursorIndex - 8]);
-					//printf("card: %u\n", scorecard[cursorIndex - 9]);
+					uint2bcd(scorecardSummed[indexCursor - 8], &upperScoreBuf);
+					//printf("sum: %u\n", scorecardSummed[indexCursor - 8]);
+					//printf("card: %u\n", scorecard[indexCursor - 9]);
 				}
 				//fours fives sixes
-				else if(cursorIndex >= 16 && cursorIndex <= 18){
-					//printf("cursorIndex: %u\n", cursorIndex);
-					scorecardSummed[cursorIndex - 8] = scorecard[cursorIndex - 8];
+				else if(indexCursor >= 16 && indexCursor <= 18){
+					//printf("indexCursor: %u\n", indexCursor);
+					scorecardSummed[indexCursor - 8] = scorecard[indexCursor - 8];
 					//number and where to store it as a BCD value
-					uint2bcd(scorecardSummed[cursorIndex - 8], &upperScoreBuf);
+					uint2bcd(scorecardSummed[indexCursor - 8], &upperScoreBuf);
 				}
 				//for displaying the scores totals next to their option individually
 				//resets number option buffer to zero
 				bcd_sub(&numOptBCD, &numOptBCD);
-				uint2bcd(scorecard[cursorIndex - 8], &numOptBCD);
+				uint2bcd(scorecard[indexCursor - 8], &numOptBCD);
 				len = bcd2text(&numOptBCD, 0x10, buf);
-				switch(cursorIndex){
+				switch(indexCursor){
 					//1's
 					case 8:
 						set_bkg_tiles(2, 22, len, 1, buf);
@@ -130,25 +130,25 @@ void setScoreLower(){
 	for(i = 0; i != 10; i++){
 		buf[i] = 0;
 	}
-	if(cursorIndex <= 21){
-		if(scorecardSummed[cursorIndex - 8] != scorecard[cursorIndex - 8]){
-			if(scorecard[cursorIndex - 8] != 255 && scorecard[cursorIndex - 8] != 0){
+	if(indexCursor <= 21){
+		if(scorecardSummed[indexCursor - 8] != scorecard[indexCursor - 8]){
+			if(scorecard[indexCursor - 8] != 255 && scorecard[indexCursor - 8] != 0){
 				//3kind 4kind fhouse 5kind
-				if(cursorIndex >= 11 && cursorIndex <= 14){
+				if(indexCursor >= 11 && indexCursor <= 14){
 					//printf("upper check: %u\n", scorecard[i]);
-					scorecardSummed[cursorIndex - 8] = scorecard[cursorIndex - 8];
-					uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
+					scorecardSummed[indexCursor - 8] = scorecard[indexCursor - 8];
+					uint2bcd(scorecardSummed[indexCursor - 8], &lowerScoreBuf);
 				}
 				//smStraight lgStraight chance
-				else if(cursorIndex >= 19 && cursorIndex <= 21){
+				else if(indexCursor >= 19 && indexCursor <= 21){
 					//printf("upper check: %u\n", scorecard[i]);
-					scorecardSummed[cursorIndex - 8] = scorecard[cursorIndex - 8];
+					scorecardSummed[indexCursor - 8] = scorecard[indexCursor - 8];
 					//printf("%u\n", scorecardSummed[11]);
 					//printf("%u\n", scorecard[11]);
-					uint2bcd(scorecardSummed[cursorIndex - 8], &lowerScoreBuf);
+					uint2bcd(scorecardSummed[indexCursor - 8], &lowerScoreBuf);
 				//bonus 5-of-a-kind
 				}
-				else if(cursorIndex == 15){
+				else if(indexCursor == 15){
 					if(scorecard[7] < 1000){
 						scorecardSummed[7] = 100;
 						uint2bcd(scorecardSummed[7], &lowerScoreBuf);
@@ -167,9 +167,9 @@ void setScoreLower(){
 
 				//for display score on the card individually for each option
 				bcd_sub(&numOptBCD, &numOptBCD);
-				uint2bcd(scorecard[cursorIndex - 8], &numOptBCD);
+				uint2bcd(scorecard[indexCursor - 8], &numOptBCD);
 				len = bcd2text(&numOptBCD, 0x10, buf);
-				switch(cursorIndex){
+				switch(indexCursor){
                     //3 of a Kind
                     case 11:
                         set_bkg_tiles(2, 28, len, 1, buf);
@@ -240,7 +240,7 @@ void setScoreTotal(){
 
 void scoreDisplay(){
 	//card view score
-	if(viewMode == 1){
+	if(viewCard){
 		//returns length in characters (always 8)
 		//0x10 is where 0 is in the tile viewer
 		//sets Total Upper score display
@@ -268,7 +268,7 @@ void scoreDisplay(){
 		set_bkg_tile_xy(13, 34, 0x00); // blank
 	}
 	//play view score
-	else{
+	else if(viewPlay){
 		setScoreTotal();
 		set_bkg_tiles(11, 2, len, 1, buf);
 		set_bkg_tile_xy(11, 2, 0x00); // blank

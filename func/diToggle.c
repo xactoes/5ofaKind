@@ -1,8 +1,8 @@
 #include "../func/dice_tools.h"
 #include "../func/glob_vars.h"
 
-void toggleDi(){
-	switch(cursorIndex){
+void diToggle(){
+	switch(indexCursor){
 		case 3:
 			if(Di1.inPlay == 1){
 				Di1.inPlay = 0;

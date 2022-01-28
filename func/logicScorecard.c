@@ -2,13 +2,13 @@
 #include <stdio.h>
 
 //global variables
-#include "../func/global_variables.h"
+#include "../func/glob_vars.h"
 
 //functions
 #include "../func/betterDelay.h"
-#include "../func/playView.h"
-#include "../func/scoreDisplay.h"
-#include "../func/sortDice.h"
+#include "../func/logicGame.h"
+#include "../func/logicScore.h"
+#include "../func/dice_tools.h"
 #include "../func/turnRollDisplay.h"
 
 //backgrounds
@@ -18,7 +18,7 @@
 void logicUpper(){
 	unsigned int valueToCheck = 0;
 	scoreBuf = 0;
-	switch(cursorIndex){
+	switch(indexCursor){
 		case 8:
 			valueToCheck = 1;
 			break;
@@ -44,7 +44,7 @@ void logicUpper(){
 			//scoreBuf += 63;
 		}
 	}
-	scorecard[cursorIndex - 8] = scoreBuf;
+	scorecard[indexCursor - 8] = scoreBuf;
 }
 
 
@@ -124,30 +124,30 @@ unsigned int smStraightLogicB(){
 void logicLower(){
 	scoreBuf = 0;
 	sortDice();
-	switch(cursorIndex){
+	switch(indexCursor){
 		//3 of a Kind
 		case 11:
 			if(diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]){
 				for(i = 0; i != 5; i++){
 					scoreBuf += diceValues[i];
 				}
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3]){
 				for(i = 0; i != 5; i++){
 					scoreBuf += diceValues[i];
 				}
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			else if(diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
 				for(i = 0; i != 5; i++){
 					scoreBuf += diceValues[i];
 				}
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			else{
 				scoreBuf = 0;
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			break;
 		//4 of a Kind
@@ -156,17 +156,17 @@ void logicLower(){
 				for(i = 0; i != 5; i++){
 					scoreBuf += diceValues[i];
 				}
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
 				for(i = 0; i != 5; i++){
 					scoreBuf += diceValues[i];
 				}
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			else{
 				scoreBuf = 0;
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			break;
 		//full house;
@@ -175,33 +175,33 @@ void logicLower(){
 				if(diceValues[2] != diceValues[3] && diceValues[3] == diceValues[4]){
 					scoreBuf = 25;
 					//printf("%u", scoreBuf);
-					scorecard[cursorIndex - 8] = scoreBuf;
+					scorecard[indexCursor - 8] = scoreBuf;
 					//printf("SCL: %u\n", scorecard[12]);
 					set_bkg_tile_xy(8, 30, 0x12); // 2
 					set_bkg_tile_xy(9, 30, 0x15); // 5
 				}
 				else{
 				scoreBuf = 0;
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			}
 			else if(diceValues[0] == diceValues[1]){
 				if(diceValues[1] != diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
 					scoreBuf = 25;
 					//printf("%u", scoreBuf);
-					scorecard[cursorIndex - 8] = scoreBuf;
+					scorecard[indexCursor - 8] = scoreBuf;
 					//printf("SCL: %u\n", scorecard[12]);
 					set_bkg_tile_xy(8, 30, 0x12); // 2
 					set_bkg_tile_xy(9, 30, 0x15); // 5
 				}
 				else{
 				scoreBuf = 0;
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			}
 			else{
 				scoreBuf = 0;
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			break;
 		//smStraight
@@ -218,7 +218,7 @@ void logicLower(){
 			}
 			else{
 				scoreBuf = 0;
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			break;
 			//lgStraight
@@ -226,21 +226,21 @@ void logicLower(){
 			if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
 				scoreBuf = 40;
 				//printf("%u", scoreBuf);
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 				//printf("SCL: %u\n", scorecard[12]);
 				set_bkg_tile_xy(17, 29, 0x14); // 4
 				set_bkg_tile_xy(18, 29, 0x10); // 0
 			}
 			else{
 				scoreBuf = 0;
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			break;
 		//chance
 		case 21:
 			for(i = 0; i < 5; i++){
 				scoreBuf += diceValues[i];
-				scorecard[cursorIndex - 8] = scoreBuf;
+				scorecard[indexCursor - 8] = scoreBuf;
 			}
 			break;
 		//5-of-a-Kind
@@ -274,7 +274,7 @@ void logicLower(){
 			if(match5 == 4 && scorecard[6] == 50 && scorecard[7] != 0){
 				if(scorecard[7] < 1000){
 					scoreBuf = 100;
-                    trueTurnOffset += 1;
+                    bonusTally += 1;
 					if(scorecard[7] == 255){
 						scorecard[7] = scoreBuf;
 					}
@@ -290,7 +290,7 @@ void logicLower(){
             }
 			else if(match5 != 4 && scorecard[6] == 50 && turn >13){
                 scorecard[7] = 0;
-                endGame = 1;
+                viewEnd = 1;
             }
             else if(match5 == 4 && scorecard[6] != 50){
                 //play error sound
@@ -320,46 +320,69 @@ void bonusCheck(){
 
 
 void logicScorecard(){
-	//checks if card has been selected this turn or if the turn is over
+	//if scorecard hasn't changed this turn
 	if(scorecardChangeA == scorecardChangeB){
+        //set the change tracking variables to 0 (still equal but now a known value)
 		scorecardChangeA = 0;
 		scorecardChangeB = 0;
-		if(scorecard[cursorIndex - 8] == 255 || (scorecard[7] != 0 && cursorIndex == 15)){
+        //if a value is null, OR (5KIND has been prev. chosen AND now Bonus is being chosen)
+		if(scorecard[indexCursor - 8] == 255 || (scorecard[7] != 0 && indexCursor == 15)){
+            //for 1, 2, 3, 3k, 4, fh, and 5k
 			for(i = 0; i != 7; i++){
+                //if they aren't null, a score has been set, record that in A
 				if(scorecard[i] != 255){
 					scorecardChangeA++;
 				}
 			}
+			//for 4, 5, 6, sm, lg, and chance
 			for(i = 8; i != 14; i++){
+                //if they aren't null, a score has been set, record that in A
 				if(scorecard[i] != 255){
 					scorecardChangeA++;
 				}
 			}
+
+
+			//BEGIN SCORE LOGIC
 			if(upperRegion == 1){
 				logicUpper();
 			}
 			else{
 				logicLower();
 			}
+			//END SCORE LOGIC
+
+
+			//for 1, 2, 3, 3k, 4, fh, and 5k
 			for(i = 0; i != 7; i++){
+                //if they aren't null, a score has been set, record that in B
 				if(scorecard[i] != 255){
 					scorecardChangeB++;
 				}
 			}
+			//for 4, 5, 6, sm, lg, and chance
 			for(i = 8; i != 14; i++){
+                //if they aren't null, a score has been set, record that in A
 				if(scorecard[i] != 255){
 					scorecardChangeB++;
 				}
 			}
 		}
+
+		//check if upper card has a bonus score
 		bonusCheck();
+
+        //set scores on screen
 		setScoreUpper();
 		setScoreLower();
 		scoreDisplay();
-		if(scorecardChangeA != scorecardChangeB || scoreBuf == 100){
+
+        //if scorecard was selected in some wat
+		if(rollsCheck() == 255){
+            //prevent more rolling this turn
 			rollsLeft = 0;
-			rollsEnabled = 0;
-            playView(backgroundMap);
+            //switch back to play view
+            play(backgroundMap);
 			//turnRollDisplay();
 		}
 	}

@@ -5,10 +5,11 @@
 
 extern void initDi(struct DiceStruct * diSprite, unsigned int spot);
 extern void moveDiceStruct(struct DiceStruct * diSprite, unsigned int x, unsigned int y);
-extern void setDiFace(struct DiceStruct * diSprite);
+extern void diFaceSet(struct DiceStruct * diSprite);
 extern void setDiceValues();
-extern void diceToRoll();
-extern void rollDi();
-extern void toggleDi();
+extern void rollDice();
+extern void diFaceChange();
+extern void diToggle();
+extern void sortDice();
 
 #endif

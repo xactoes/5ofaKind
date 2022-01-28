@@ -27,5 +27,5 @@ void initDi(struct DiceStruct * diSprite, unsigned int spot){
     moveDiceStruct(diSprite, diSprite->x, diSprite->y);
 
     //calls function to setup face of di
-    setDiFace(diSprite);
+    diFaceSet(diSprite);
 }

@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 //global variables
-#include "../func/global_variables.h"
+#include "../func/glob_vars.h"
 
 //backgrounds
 #include "../res/maps.h"

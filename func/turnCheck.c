@@ -1,7 +1,51 @@
 #include "../func/glob_vars.h"
-#include "../func/newTurn.h"
+#include "../func/logicScore.h"
 
-void rollTracker(){
+
+unsigned int turnCheck(){
+    //turn (less bonus tally) is not greater than the amount of options marked
+    if(turn - bonusTally <= scorecardMarked()){
+        //if scorecard has been changed
+       if(scorecardChangeA != scorecardChangeB){
+           //and the current turn is not yet 13
+           if(turn < 13){
+               //time for a new turn
+               turn++;
+            }
+            //otherwise if the turn is at the minimum turn 13
+            else if(turn = 13){
+                //if bonus had been selected even once
+                if(bonusTally > 0){
+                    //a new turn is allowed
+                    turn++;
+                }
+            }
+        }
+        //if scorecard hasn't changed, don't change the turn
+        else{
+            turn = turn;
+        }
+    }
+    return turn;
+}
+
+
+
+
+
+
+/*
+
+
+
+
+
+
+
+
+
+
+
 	turnsPassed = 0;
 	if(rollsLeft == 0){
 		//tally that counts how many scores have been set to compare with turns later
@@ -59,3 +103,4 @@ void rollTracker(){
 	}
 	turnsPassed = 0;
 }
+*/

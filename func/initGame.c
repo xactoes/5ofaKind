@@ -2,7 +2,7 @@
 
 #include "../func/dice_tools.h"
 #include "../func/glob_vars.h"
-#include "../func/scoreDisplay.h"
+#include "../func/logicScore.h"
 #include "../func/spriteFlip.h"
 #include "../func/turnRollDisplay.h"
 
@@ -13,10 +13,17 @@
 #include "../sram/save_vars.h"
 
 void initGame(){
-    set_sprite_data(0, 7, Sprites);
-	set_sprite_tile(cursorLeft, 5);
+    //hide screen while setting up
+    HIDE_BKG;
+    HIDE_SPRITES;
+    //setup 2-screen background
 	set_bkg_data(0, 128, backgroundData);
     set_bkg_tiles(0, 0, 20, 32, backgroundMap);
+
+
+    //eneable ram to grab player name
+    ENABLE_RAM_MBC1;
+    SWITCH_RAM_MBC1(0);
 
     //sets player name on screen
     for(i = 7; i != -1; i--){
@@ -24,27 +31,37 @@ void initGame(){
         set_bkg_tile_xy(i + 2, 2, currentName[i]);
     }
 
-    viewMode = 0;
-
     SHOW_BKG;
 
+    //initialie dice sprites (0-19)
     initDi(&Di1, 1);
     initDi(&Di2, 2);
     initDi(&Di3, 3);
     initDi(&Di4, 4);
     initDi(&Di5, 5);
+
+    //flip sprites to make proper metasprites
     spriteFlip();
 
+    //setup cursor (20)
+	set_sprite_tile(cursorLeft, 5);
+    set_sprite_data(0, 7, Sprites);
 
-	cursorIndex = 0;
+    //set cursor position
+	indexCursor = 0;
 	cursorPosition[0] = 16;
 	cursorPosition[1] = 144;
 	move_sprite(cursorLeft, cursorPosition[0], cursorPosition[1]);
 
-	scoreDisplay();
+    SHOW_SPRITES;
 
-	rollsLeft = cheatRolls;
+    //set rollsLeft
+	rollsLeft = initRolls;
+
+    //setTurn
 	turn = 1;
 
+    //display turn, rolls, and score
     turnRollDisplay();
+    scoreDisplay();
 }

@@ -20,6 +20,7 @@ void options(){
     //setup background
     set_bkg_data(0, 128, backgroundData);
     set_bkg_tiles(0, 0, 20, 18, optionsMap);
+
     //display background
     SHOW_BKG;
 
