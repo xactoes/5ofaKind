@@ -1,5 +1,4 @@
 #include </opt/gbdk/include/gb/gb.h>
-#include <stdio.h>
 
 //global variables
 #include "../func/glob_vars.h"
@@ -9,7 +8,6 @@
 #include "../func/logicGame.h"
 #include "../func/logicScore.h"
 #include "../func/dice_tools.h"
-#include "../func/turnRollDisplay.h"
 
 //backgrounds
 #include "../res/maps.h"
@@ -131,23 +129,23 @@ void logicLower(){
 				for(i = 0; i != 5; i++){
 					scoreBuf += diceValues[i];
 				}
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[3] = scoreBuf;
 			}
 			else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3]){
 				for(i = 0; i != 5; i++){
 					scoreBuf += diceValues[i];
 				}
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[3] = scoreBuf;
 			}
 			else if(diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
 				for(i = 0; i != 5; i++){
 					scoreBuf += diceValues[i];
 				}
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[3] = scoreBuf;
 			}
 			else{
 				scoreBuf = 0;
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[3] = scoreBuf;
 			}
 			break;
 		//4 of a Kind
@@ -156,17 +154,17 @@ void logicLower(){
 				for(i = 0; i != 5; i++){
 					scoreBuf += diceValues[i];
 				}
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[4] = scoreBuf;
 			}
 			else if(diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
 				for(i = 0; i != 5; i++){
 					scoreBuf += diceValues[i];
 				}
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[4] = scoreBuf;
 			}
 			else{
 				scoreBuf = 0;
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[4] = scoreBuf;
 			}
 			break;
 		//full house;
@@ -175,33 +173,33 @@ void logicLower(){
 				if(diceValues[2] != diceValues[3] && diceValues[3] == diceValues[4]){
 					scoreBuf = 25;
 					//printf("%u", scoreBuf);
-					scorecard[indexCursor - 8] = scoreBuf;
+					scorecard[5] = scoreBuf;
 					//printf("SCL: %u\n", scorecard[12]);
 					set_bkg_tile_xy(8, 30, 0x12); // 2
 					set_bkg_tile_xy(9, 30, 0x15); // 5
 				}
 				else{
 				scoreBuf = 0;
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[5] = scoreBuf;
 			}
 			}
 			else if(diceValues[0] == diceValues[1]){
 				if(diceValues[1] != diceValues[2] && diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]){
 					scoreBuf = 25;
 					//printf("%u", scoreBuf);
-					scorecard[indexCursor - 8] = scoreBuf;
+					scorecard[5] = scoreBuf;
 					//printf("SCL: %u\n", scorecard[12]);
 					set_bkg_tile_xy(8, 30, 0x12); // 2
 					set_bkg_tile_xy(9, 30, 0x15); // 5
 				}
 				else{
 				scoreBuf = 0;
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[5] = scoreBuf;
 			}
 			}
 			else{
 				scoreBuf = 0;
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[5] = scoreBuf;
 			}
 			break;
 		//smStraight
@@ -218,7 +216,7 @@ void logicLower(){
 			}
 			else{
 				scoreBuf = 0;
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[11] = scoreBuf;
 			}
 			break;
 			//lgStraight
@@ -226,21 +224,21 @@ void logicLower(){
 			if(diceValues[0] == (diceValues[1] - 1) && diceValues[1] == (diceValues[2] - 1) && diceValues[2] == (diceValues[3] - 1) && diceValues[3] == (diceValues[4] - 1)){
 				scoreBuf = 40;
 				//printf("%u", scoreBuf);
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[12] = scoreBuf;
 				//printf("SCL: %u\n", scorecard[12]);
 				set_bkg_tile_xy(17, 29, 0x14); // 4
 				set_bkg_tile_xy(18, 29, 0x10); // 0
 			}
 			else{
 				scoreBuf = 0;
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[12] = scoreBuf;
 			}
 			break;
 		//chance
 		case 21:
 			for(i = 0; i < 5; i++){
 				scoreBuf += diceValues[i];
-				scorecard[indexCursor - 8] = scoreBuf;
+				scorecard[13] = scoreBuf;
 			}
 			break;
 		//5-of-a-Kind
@@ -377,13 +375,14 @@ void logicScorecard(){
 		setScoreLower();
 		scoreDisplay();
 
-        //if scorecard was selected in some wat
+        //if scorecard was selected in some way
 		if(rollsCheck() == 255){
             //prevent more rolling this turn
 			rollsLeft = 0;
             //switch back to play view
-            play(backgroundMap);
-			//turnRollDisplay();
+            viewPlay = 1;
+            viewCard = 0;
+            viewSwitch = 1;
 		}
 	}
 }

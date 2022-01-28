@@ -13,7 +13,7 @@ void endScreen(){
 
         set_bkg_data(0, 128, backgroundData);
 
-        scroll_bkg(0, 112);
+        //scroll_bkg(0, 112);
 
         set_bkg_tiles(0, 0, 20, 18, endScreenMap);
         /*

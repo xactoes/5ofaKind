@@ -9,6 +9,7 @@ extern void linkTransfer();
 extern void options();
 
 //game() screens
+extern void endScreen();
 
 //highScores() screens
 

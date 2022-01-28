@@ -9,7 +9,7 @@
 
 
 void card(unsigned char map[]){
-    if(viewSwitch == 1){
+    if(viewSwitch){
         //hide sprites (dice and cursor) while setting up
         HIDE_SPRITES;
         for(i = 0; i != 36; i++){
@@ -38,7 +38,7 @@ void card(unsigned char map[]){
         //now actually show all the sprites
         SHOW_SPRITES;
 
-        //upperRegion = 1;     //this does nothing as far as I'm aware
+        upperRegion = 1;     //this is really important
 
         //turn quickSwitch off again
         quickSwitch = 0;

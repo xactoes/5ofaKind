@@ -15,6 +15,9 @@ extern unsigned char viewCard;
 extern unsigned char viewSwitch;
 extern unsigned char viewEnd;
 
+
+extern unsigned char upperRegion;
+
 //variables for sprites
 //0 - 19 are used by diceStruct for the dice
 extern const unsigned int cursorLeft;
@@ -76,7 +79,6 @@ extern unsigned char quickSwitch;
 extern unsigned char scorecardChangeA;
 extern unsigned char scorecardChangeB;
 extern unsigned char titleView;
-extern unsigned char upperRegion;
 extern unsigned char viewMode;
 
 extern const unsigned int diSpacing;

@@ -3,26 +3,31 @@
 #include "../func/logicGame.h"
 #include "../func/cursorGame.h"
 #include "../res/maps.h"
+#include "../func/screens.h"
+
+#include <stdio.h>
 
 void game(){
     initGame();
     viewPlay = 1;
     viewCard = 0;
-    viewSwitch = 1;
-    if(viewGame){
+    while(viewGame){
         while(viewPlay){
-            play(backgroundMap);
             if(turnCheck()){
                 initTurn();
             }
+            play(backgroundMap);
             cursorPlay();
-            turnRollDisplay();
         }
         while(viewCard){
             card(backgroundMap);
-            //select option
-            //switch view
+            cursorCard();
+        }
+        if(viewEnd){
+            break;
         }
     }
-    else if(viewEnd){}
+    while(viewEnd){
+        endScreen();
+    }
 }

@@ -6,12 +6,11 @@
 
 //functions
 #include "../func/betterDelay.h"
-//#include "../func/logicScore.h"
-#include "../func/turnRollDisplay.h"
+#include "../func/logicGame.h"
 
 
 void play(unsigned char map[]){
-    if(viewSwitch == 2){
+    if(viewSwitch){
         //hide sprites (dice and cursor) while setting up
         HIDE_SPRITES;
 

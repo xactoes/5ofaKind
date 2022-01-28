@@ -68,13 +68,17 @@ void cursorCardA(){
 }
 
 void cursorCardB(){
-	play(backgroundMap);
+    viewCard = 0;
+	viewPlay = 1;
+    viewSwitch = 1;
 }
 
 
 void cursorCardSelect(){
 	quickSwitch = 1;
-	play(backgroundMap);
+    viewCard = 0;
+    viewPlay = 1;
+    viewSwitch = 1;
 }
 
 

@@ -1,9 +1,7 @@
-
 #include "../func/glob_vars.h"
-
 #include "../func/dice_tools.h"
 
-#include "../func/turnRollDisplay.h"
+#include <stdio.h>
 
 void initTurn(){
     rollsLeft = initRolls;

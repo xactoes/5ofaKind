@@ -17,6 +17,7 @@ unsigned char viewEnd       = 0;
 
 //non-screen toggle variables
 unsigned char bonus5;
+unsigned char upperRegion;
 
 
 //variables for sprites
@@ -113,5 +114,3 @@ unsigned int smStraightContinue;
 unsigned int titlePosL[2];
 unsigned int titlePosR[2];
 unsigned int trackUpperBonusAdd;
-
-unsigned char upperRegion;

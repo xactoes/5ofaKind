@@ -1,13 +1,10 @@
 #include <gb/gb.h>
 
-#include "../func/logicTurnRoll.h"
 #include "../func/glob_vars.h"
 #include "../func/dice_tools.h"
 #include "../func/logicGame.h"
 
 #include "../res/maps.h"
-//#include "../func/diceStruct.h"
-//#include "../func/turnRollDisplay.h"
 
 
 void cursorPlayLeft(){
@@ -37,25 +34,18 @@ void cursorPlayRight(){
 
 
 void cursorPlayA(){
-    if(viewGame == 0){
-        return;
-    }
 	if(indexCursor == 0){
         //if rolls are enabled
         if(rollsEnabled()){
             //then roll dice, duh
             rollDice();
+            turnRollDisplay();
         }
         //if rolls are not enabled
         else{
             //switch to card when rolls are disabled
             card(backgroundMap);
         }
-        /*
-		rollTracker();
-		rollCheck();
-		turnRollDisplay();
-		*/
 	}
 	else if(indexCursor == 1){
         //if max rolls remain, and the scorecard has been changed, don't allow holding
@@ -93,8 +83,8 @@ void cursorPlayB(){
 
 void cursorPlaySelect(){
 	quickSwitch = 1;
-    if(rollsLeft == initRolls || scorecardChangeA != scorecardChangeB) return;
-	else if(rollsLeft < initRolls && scorecardChangeA == scorecardChangeB){
+    if(rollsCheck() == initRolls ||rollsCheck() == 255) return;
+	else if(rollsCheck() < initRolls){
 		viewPlay = 0;
         viewCard = 1;
         viewSwitch = 1;
