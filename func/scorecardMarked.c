@@ -4,8 +4,9 @@ unsigned int scorecardMarked(){
     unsigned int marked = 0;
     //tally that counts how many scores have been set to compare with turns later
     for(i = 0; i != 14; i++){
+        //ignore 5 of a kind (uses bonusTally)
         //ignore bonus 5 of a Kind
-        if(i == 7){
+        if(i == 6 || i == 7){
             marked = marked;
         }
         //tally everything else except bonusUpper

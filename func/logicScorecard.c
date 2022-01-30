@@ -287,7 +287,7 @@ void logicLower(){
                 //play error sound
                 return;
             }
-			else if(match5 != 4 && scorecard[6] == 50 && turn >13){
+			else if(match5 != 4 && scorecard[6] == 50 && turn > 13){
                 scorecard[7] = 0;
                 viewEnd = 1;
             }

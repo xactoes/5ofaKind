@@ -1,5 +1,6 @@
 #include "../func/glob_vars.h"
 #include "../func/logicScore.h"
+#include "../func/logicGame.h"
 
 
 unsigned int turnCheck(){
@@ -18,7 +19,7 @@ unsigned int turnCheck(){
             //otherwise if the turn is at the minimum turn 13
             else if(turn >= 13){
                 //if bonus had been selected even once
-                if((turn - ( (scorecard[7]/100) - (bonusTally - 1) ) ) == turn){
+                if((turn - bonusTally) == scorecardMarked()){
                     //a new turn is allowed
                     turn++;
                     return 1;
