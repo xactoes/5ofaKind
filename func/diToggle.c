@@ -1,3 +1,4 @@
+#include <gb/gb.h>
 #include "../func/dice_tools.h"
 #include "../func/glob_vars.h"
 
@@ -54,4 +55,5 @@ void diToggle(){
 			}
 			break;
 	}
+	SHOW_SPRITES;
 }

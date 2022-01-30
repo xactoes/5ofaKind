@@ -3,8 +3,6 @@
 #include "../func/logicGame.h"
 #include "../res/maps.h"
 
-#include <stdio.h>
-
 //this function did something, idk what
 //i have repurposed it to return the amount of rolls left
 unsigned int rollsCheck(){
@@ -15,8 +13,8 @@ unsigned int rollsCheck(){
     //else if game is still going
     else if(viewGame == 1 && viewEnd == 0){
         //if scorecard has changed or the scoreBuf indicates that a bonus was chosen
-        if(scorecardChangeA != scorecardChangeB || scoreBuf == 100){
-            scoreBuf = 0;
+        if(scorecardChangeA != scorecardChangeB || (turn - ( (scorecard[7]/100) - (bonusTally - 1) ) ) == turn){
+            scoreBuf == 0;
             //report that scorecard has been selected so the turn and rolls needs to be reset
             return 255;
         }
@@ -25,5 +23,8 @@ unsigned int rollsCheck(){
             //report rolls left
             return rollsLeft;
         }
+    }
+    else{
+        return 0;
     }
 }

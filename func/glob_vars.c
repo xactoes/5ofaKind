@@ -39,7 +39,7 @@ unsigned int bonusTally     = 0;
 unsigned int turn;
 
 //decrementing variables
-unsigned int initRolls      = 3;   //DO NOT SET TO 255 OR HIGHER
+unsigned int initRolls      = 30;   //DO NOT SET TO 255 OR HIGHER
 
 //misc variables
 unsigned int i;

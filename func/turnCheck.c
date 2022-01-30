@@ -16,14 +16,14 @@ unsigned int turnCheck(){
                 return 1;
             }
             //otherwise if the turn is at the minimum turn 13
-            else if(turn == 13){
+            else if(turn >= 13){
                 //if bonus had been selected even once
-                if(bonusTally > 0){
+                if((turn - ( (scorecard[7]/100) - (bonusTally - 1) ) ) == turn){
                     //a new turn is allowed
                     turn++;
                     return 1;
                 }
-                else{
+                else if(bonusTally == 0){
                     viewGame = 0;
                     viewPlay = 0;
                     viewCard = 0;
@@ -35,6 +35,7 @@ unsigned int turnCheck(){
                 return 0;
             }
         }
+        else return 0;
     }
     else return 0;
 }

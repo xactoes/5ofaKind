@@ -253,6 +253,7 @@ void logicLower(){
 			if(turn <= 13 && match5 == 4){
 				scoreBuf = 50;
 				scorecard[6] = scoreBuf;
+                bonusTally += 1;
 				set_bkg_tile_xy(17, 31, 0x15); // 5
 				set_bkg_tile_xy(18, 31, 0x10); // 0
 			}

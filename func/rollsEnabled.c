@@ -1,5 +1,6 @@
 #include "../func/glob_vars.h"
 #include "../func/logicGame.h"
+#include <stdio.h>
 
 unsigned int rollsEnabled(){
     //if less than or equal to minimum turns in a game (not counting turns spent on bonus 5ofaKind)

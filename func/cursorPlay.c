@@ -1,5 +1,7 @@
 #include <gb/gb.h>
 
+#include <stdio.h>
+
 #include "../func/glob_vars.h"
 #include "../func/dice_tools.h"
 #include "../func/logicGame.h"
@@ -48,7 +50,7 @@ void cursorPlayA(){
         }
 	}
 	else if(indexCursor == 1){
-        //if max rolls remain, and the scorecard has been changed, don't allow holding
+        //if max rolls remain, or the scorecard has been changed, don't allow holding
 		if(rollsCheck() == initRolls || rollsCheck() == 255) return;
         //otherwise if less than 3 rolls are left (incl. 0) and scorecard hasn't been changed, allow holding
 		else if(rollsCheck() < initRolls){
