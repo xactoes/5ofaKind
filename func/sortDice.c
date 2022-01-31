@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 //global variables
-#include "../func/global_variables.h"
+#include "../func/glob_vars.h"
 
 // C program to sort the array in an
 // ascending order using selection sort

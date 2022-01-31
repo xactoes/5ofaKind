@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 //global variables
-#include "../func/global_variables.h"
+#include "../func/glob_vars.h"
 
 //backgrounds
 #include "../res/maps.h"
@@ -50,7 +50,6 @@ void turnDisplay(){
 	set_bkg_tile_xy(5, 5, 0x4E); // n
 	set_bkg_tile_xy(6, 5, 0x1A); // :
 	set_bkg_tile_xy(7, 5, 0x00); // blank
-	//set_bkg_tile_xy(8, 5, 0x00); // blank
 }
 
 

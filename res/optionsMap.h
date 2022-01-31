@@ -1,6 +1,6 @@
 /*
 
- NAMEINPUTMAP.H
+ OPTIONSMAP.H
 
  Map Include File.
 
@@ -18,10 +18,10 @@
 
 */
 
-#define nameInputMapWidth 20
-#define nameInputMapHeight 18
-#define nameInputMapBank 0
+#define optionsMapWidth 20
+#define optionsMapHeight 18
+#define optionsMapBank 0
 
-extern unsigned char nameInputMap[];
+extern unsigned char optionsMap[];
 
-/* End of NAMEINPUTMAP.H */
+/* End of OPTIONSMAP.H */
