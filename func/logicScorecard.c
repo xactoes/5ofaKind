@@ -12,6 +12,7 @@
 //backgrounds
 #include "../res/maps.h"
 
+#include <stdio.h>
 
 void logicUpper(){
 	unsigned int valueToCheck = 0;
@@ -247,7 +248,6 @@ void logicLower(){
 			for(i = 0; i < 4; i++){
 				if(diceValues[i] == diceValues[i + 1]){
 					match5++;
-					//printf("%u ", match5);
 				}
 			}
 			if(turn <= 13 && match5 == 4){
@@ -267,7 +267,6 @@ void logicLower(){
 			for(i = 0; i < 4; i++){
 				if(diceValues[i] == diceValues[i + 1]){
 					match5++;
-					//printf("%u ", match5);
 				}
 			}
 			if(match5 == 4 && scorecard[6] == 50 && scorecard[7] != 0){
@@ -280,16 +279,19 @@ void logicLower(){
 					else{
 						scorecard[7] += scoreBuf;
 					}
-					//printf("%u\n", scorecard[7]);
 				}
 			}
 			else if(match5 == 4 && scorecard[6] == 50 && scorecard[7] == 0){
                 //play error sound
                 return;
             }
-			else if(match5 != 4 && scorecard[6] == 50 && turn > 13){
+			else if(match5 != 4 && scorecard[6] == 50 && scorecard[7] == 255 && turn > 13){
                 scorecard[7] = 0;
+                printf("test15\n");
+                betterDelay(1000);
                 viewEnd = 1;
+                viewGame = 0;
+                return;
             }
             else if(match5 == 4 && scorecard[6] != 50){
                 //play error sound

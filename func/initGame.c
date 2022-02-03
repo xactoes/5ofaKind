@@ -4,7 +4,7 @@
 #include "../func/glob_vars.h"
 #include "../func/logicScore.h"
 #include "../func/spriteFlip.h"
-#include "../func/turnRollDisplay.h"
+#include "../func/logicGame.h"
 
 #include "../res/Sprites.h"
 #include "../res/backgroundData.h"

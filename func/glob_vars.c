@@ -18,6 +18,8 @@ unsigned char viewEnd       = 0;
 //non-screen toggle variables
 unsigned char bonus5;
 unsigned char upperRegion;
+unsigned char rollRequest;
+unsigned char turnRequest;
 
 
 //variables for sprites

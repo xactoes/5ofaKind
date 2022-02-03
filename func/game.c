@@ -6,6 +6,7 @@
 #include "../func/screens.h"
 
 #include <stdio.h>
+#include "../func/betterDelay.h"
 
 void game(){
     initGame();
@@ -16,15 +17,21 @@ void game(){
             if(turnCheck()){
                 initTurn();
             }
+            if(viewEnd){
+                break;
+            }
             play(backgroundMap);
             cursorPlay();
+//             if(viewEnd){
+//                 break;
+//             }
         }
         while(viewCard){
             card(backgroundMap);
             cursorCard();
-        }
-        if(viewEnd){
-            break;
+            if(viewEnd){
+                break;
+            }
         }
     }
     while(viewEnd){

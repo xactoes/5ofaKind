@@ -17,6 +17,8 @@ extern unsigned char viewEnd;
 
 
 extern unsigned char upperRegion;
+extern unsigned char rollRequest;
+extern unsigned char turnRequest;
 
 //variables for sprites
 //0 - 19 are used by diceStruct for the dice
