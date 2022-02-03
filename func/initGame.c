@@ -31,6 +31,23 @@ void initGame(){
         set_bkg_tile_xy(i + 2, 2, currentName[i]);
     }
 
+    //reset scorecard to null values
+    for(i = 0; i != 15; i++){
+        scorecard[i] = 255;
+        scorecardSummed[i] = 511;
+    }
+
+    BCD upperScoreBCD = MAKE_BCD(00000000);
+    BCD upperScoreBuf = MAKE_BCD(00000000);
+    BCD lowerScoreBCD = MAKE_BCD(00000000);
+    BCD lowerScoreBuf = MAKE_BCD(00000000);
+    BCD totalScoreBCD = MAKE_BCD(00000000);
+    BCD totalScoreAdd = MAKE_BCD(00000000);
+    BCD compareBCD = MAKE_BCD(00000000);
+    BCD numOptBCD = MAKE_BCD(00000000);
+    BCD turnBCD = MAKE_BCD(00000000);
+    BCD rollBCD = MAKE_BCD(00000000);
+
     SHOW_BKG;
 
     //initialie dice sprites (0-19)

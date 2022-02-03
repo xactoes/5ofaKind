@@ -3,4 +3,4 @@
 unsigned char currentName[8];
 unsigned char saveInitialized;
 
-BCD hiScore[5];
+BCD hiScore;
