@@ -23,6 +23,7 @@ unsigned int rollsEnabled(){
             //disable rolls
             return 0;
         }
+        else return 0;
     }
     else{
         if(!rollsCheck()){

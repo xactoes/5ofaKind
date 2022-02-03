@@ -22,9 +22,6 @@ void game(){
             }
             play(backgroundMap);
             cursorPlay();
-//             if(viewEnd){
-//                 break;
-//             }
         }
         while(viewCard){
             card(backgroundMap);
