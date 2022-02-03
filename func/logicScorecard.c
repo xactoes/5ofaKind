@@ -287,10 +287,10 @@ void logicLower(){
             }
 			else if(match5 != 4 && scorecard[6] == 50 && scorecard[7] == 255 && turn > 13){
                 scorecard[7] = 0;
-                printf("test15\n");
-                betterDelay(1000);
-                viewEnd = 1;
-                viewGame = 0;
+//                 printf("test15\n");
+//                 betterDelay(1000);
+//                 viewEnd = 1;
+//                 viewGame = 0;
                 return;
             }
             else if(match5 == 4 && scorecard[6] != 50){
@@ -378,12 +378,14 @@ void logicScorecard(){
 		setScoreLower();
 		scoreDisplay();
 
+        scoreCheckRequest = 1;
         //if scorecard was selected in some way
 		if(rollsCheck() == 255){
             //prevent more rolling this turn
 			rollsLeft = 0;
             //switch back to play view
             viewPlay = 1;
+            turnRequest = 1;
             viewCard = 0;
             viewSwitch = 1;
 		}

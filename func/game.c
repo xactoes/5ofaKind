@@ -17,18 +17,12 @@ void game(){
             if(turnCheck()){
                 initTurn();
             }
-            if(viewEnd){
-                break;
-            }
             play(backgroundMap);
             cursorPlay();
         }
         while(viewCard){
             card(backgroundMap);
             cursorCard();
-            if(viewEnd){
-                break;
-            }
         }
     }
     while(viewEnd){

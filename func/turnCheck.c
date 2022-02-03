@@ -6,8 +6,7 @@
 #include "../func/betterDelay.h"
 
 unsigned int turnCheck(){
-    turnRequest = 1;
-    if(rollsCheck() == 255){
+    if(rollsCheck() == 250){
         //turn (less bonus tally) is not greater than the amount of options marked
         if(turn - bonusTally <= 12){
             if(turn < 13){
@@ -25,12 +24,11 @@ unsigned int turnCheck(){
                     betterDelay(1000);
                     return 0;
                 }
-                else{
-    //                     printf("test2\n");
-    //                     betterDelay(1000);
+                else if(bonusTally == turn - scorecardMarked()){
                     turn++;
                     return 1;
                 }
+                else return 0;
             }
             //otherwise if the turn is at the minimum turn 13
             else if(turn > 13){
@@ -46,7 +44,7 @@ unsigned int turnCheck(){
                 }
                 //if bonus or five of a kind had been selected even once
                 else if(bonusTally > 0){
-                    if((turn - bonusTally) <= 12){
+                    if((turn - bonusTally) <= scorecardMarked()){
                         //a new turn is allowed
                         turn++;
                         return 1;
@@ -82,8 +80,6 @@ unsigned int turnCheck(){
             }
         }
         else if(turn - bonusTally > 12 ){
-            printf("test4\n");
-            betterDelay(1000);
             viewGame = 0;
             viewPlay = 0;
             viewCard = 0;

@@ -54,12 +54,13 @@ void turnDisplay(){
 	set_bkg_tile_xy(4, 5, 0x52); // r
 	set_bkg_tile_xy(5, 5, 0x4E); // n
 	set_bkg_tile_xy(6, 5, 0x1A); // :
+    /*
     if(turn < 100){
         set_bkg_tile_xy(7, 5, 0x00); // blank
     }
     if(turn < 10){
         set_bkg_tile_xy(8, 5, 0x00); // blank
-    }
+    }*/
 }
 
 

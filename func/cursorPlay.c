@@ -37,6 +37,7 @@ void cursorPlayRight(){
 
 void cursorPlayA(){
 	if(indexCursor == 0){
+        rollRequest = 1;
         //if rolls are enabled
         if(rollsEnabled()){
             //then roll dice, duh

@@ -4,7 +4,6 @@
 #include <stdio.h>
 
 unsigned int rollsEnabled(){
-    rollRequest = 1;
     if(turn > 13){
         //if less than or equal to minimum turns in a game (not counting turns spent on bonus 5ofaKind)
         if((turn - 1) - bonusTally <= 12){

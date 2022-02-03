@@ -20,6 +20,7 @@ unsigned char bonus5;
 unsigned char upperRegion;
 unsigned char rollRequest;
 unsigned char turnRequest;
+unsigned char scoreCheckRequest;
 
 
 //variables for sprites
