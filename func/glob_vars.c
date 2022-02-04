@@ -21,6 +21,7 @@ unsigned char upperRegion;
 unsigned char rollRequest;
 unsigned char turnRequest;
 unsigned char scoreCheckRequest;
+unsigned char scoreSaved;
 
 
 //variables for sprites

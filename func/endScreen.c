@@ -5,12 +5,12 @@
 #include "../func/glob_vars.h"
 #include "../sram/save_vars.h"
 
+#include "../func/logicScore.h"
+
 //backgrounds
 #include "../res/backgroundData.h"
 #include "../res/maps.h"
 
-
-unsigned char scoreSaved;
 
 void endScreen(){
     if(scoreSaved != 1){
@@ -47,11 +47,7 @@ void endScreen(){
 
 
     if(scoreSaved == 0){
-        BCD hiScore = MAKE_BCD(00000000);
-        bcd_add(&hiScore, &totalScoreBCD);
-        len = bcd2text(&hiScore, 0x10, buf);
-        set_bkg_tiles(5, 10, len, 1, buf);
-        scoreSaved = 1;
+        saveScore();
     }
 
 

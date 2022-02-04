@@ -81,6 +81,8 @@ void title(){
                         waitpadup();
                         break;
                     case 1:
+                        viewTitle = 0;
+                        viewScores = 1;
                         waitpadup();
                         break;
                         waitpadup();

@@ -28,17 +28,12 @@ void initGame(){
     ENABLE_RAM_MBC1;
     SWITCH_RAM_MBC1(0);
 
-    ENABLE_RAM_MBC1;
-    SWITCH_RAM_MBC1(0);
-
     //display player name
     for(i = 7; i != -1; i--){
         // i + 2 aligns it to the right by going from 7+2= 9 first, then back to 8, 7, and so on
         set_bkg_tile_xy(i + 2, 2, currentName[i]);
     }
-/*
-    printf("%u", saveInitialized);
-    betterDelay(100);*/
+
     DISABLE_RAM_MBC1;
 
     //reset scorecard to null values

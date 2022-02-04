@@ -20,6 +20,7 @@ extern unsigned char upperRegion;
 extern unsigned char rollRequest;
 extern unsigned char turnRequest;
 extern unsigned char scoreCheckRequest;
+extern unsigned char scoreSaved;
 
 //variables for sprites
 //0 - 19 are used by diceStruct for the dice
