@@ -90,7 +90,7 @@ extern const unsigned int cursor;
 extern const unsigned int rollPosY;
 extern const unsigned int heldPosY;
 
-extern const unsigned char inputArray[80];
+extern const unsigned char inputArray[120];
 
 extern BCD upperScoreBCD;
 extern BCD upperScoreBuf;
