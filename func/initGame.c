@@ -4,13 +4,16 @@
 #include "../func/glob_vars.h"
 #include "../func/logicScore.h"
 #include "../func/spriteFlip.h"
-#include "../func/turnRollDisplay.h"
+#include "../func/logicGame.h"
 
 #include "../res/Sprites.h"
 #include "../res/backgroundData.h"
 #include "../res/maps.h"
 
 #include "../sram/save_vars.h"
+
+#include "../func/betterDelay.h"
+#include <stdio.h>
 
 void initGame(){
     //hide screen while setting up
@@ -25,11 +28,35 @@ void initGame(){
     ENABLE_RAM_MBC1;
     SWITCH_RAM_MBC1(0);
 
-    //sets player name on screen
+    ENABLE_RAM_MBC1;
+    SWITCH_RAM_MBC1(0);
+
+    //display player name
     for(i = 7; i != -1; i--){
         // i + 2 aligns it to the right by going from 7+2= 9 first, then back to 8, 7, and so on
         set_bkg_tile_xy(i + 2, 2, currentName[i]);
     }
+/*
+    printf("%u", saveInitialized);
+    betterDelay(100);*/
+    DISABLE_RAM_MBC1;
+
+    //reset scorecard to null values
+    for(i = 0; i != 15; i++){
+        scorecard[i] = 255;
+        scorecardSummed[i] = 511;
+    }
+
+    BCD upperScoreBCD = MAKE_BCD(00000000);
+    BCD upperScoreBuf = MAKE_BCD(00000000);
+    BCD lowerScoreBCD = MAKE_BCD(00000000);
+    BCD lowerScoreBuf = MAKE_BCD(00000000);
+    BCD totalScoreBCD = MAKE_BCD(00000000);
+    BCD totalScoreAdd = MAKE_BCD(00000000);
+    BCD compareBCD = MAKE_BCD(00000000);
+    BCD numOptBCD = MAKE_BCD(00000000);
+    BCD turnBCD = MAKE_BCD(00000000);
+    BCD rollBCD = MAKE_BCD(00000000);
 
     SHOW_BKG;
 

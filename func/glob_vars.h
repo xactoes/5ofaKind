@@ -17,6 +17,9 @@ extern unsigned char viewEnd;
 
 
 extern unsigned char upperRegion;
+extern unsigned char rollRequest;
+extern unsigned char turnRequest;
+extern unsigned char scoreCheckRequest;
 
 //variables for sprites
 //0 - 19 are used by diceStruct for the dice
@@ -87,7 +90,7 @@ extern const unsigned int cursor;
 extern const unsigned int rollPosY;
 extern const unsigned int heldPosY;
 
-extern const unsigned char inputArray[80];
+extern const unsigned char inputArray[120];
 
 extern BCD upperScoreBCD;
 extern BCD upperScoreBuf;

@@ -27,8 +27,13 @@ void rollDisplay(){
 		set_bkg_tile_xy(13, 5, 0x46); // f
 		set_bkg_tile_xy(14, 5, 0x54); // t
 		set_bkg_tile_xy(15, 5, 0x1A); // :
-		set_bkg_tile_xy(16, 5, 0x00); // blank
-		set_bkg_tile_xy(17, 5, 0x00); // blank
+
+        if(rollsLeft < 100){
+            set_bkg_tile_xy(16, 5, 0x00); // blank
+        }
+        if(rollsLeft < 10){
+            set_bkg_tile_xy(17, 5, 0x00); // blank
+        }
 	}
 }
 
@@ -49,7 +54,13 @@ void turnDisplay(){
 	set_bkg_tile_xy(4, 5, 0x52); // r
 	set_bkg_tile_xy(5, 5, 0x4E); // n
 	set_bkg_tile_xy(6, 5, 0x1A); // :
-	set_bkg_tile_xy(7, 5, 0x00); // blank
+    /*
+    if(turn < 100){
+        set_bkg_tile_xy(7, 5, 0x00); // blank
+    }
+    if(turn < 10){
+        set_bkg_tile_xy(8, 5, 0x00); // blank
+    }*/
 }
 
 

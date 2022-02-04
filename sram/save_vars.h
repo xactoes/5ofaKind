@@ -6,6 +6,6 @@
 extern unsigned char currentName[8];
 extern unsigned char saveInitialized;
 
-extern BCD hiScore[5];
+extern BCD hiScore;
 
 #endif

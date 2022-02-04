@@ -6,6 +6,7 @@
 #include "../func/screens.h"
 
 #include <stdio.h>
+#include "../func/betterDelay.h"
 
 void game(){
     initGame();
@@ -22,9 +23,6 @@ void game(){
         while(viewCard){
             card(backgroundMap);
             cursorCard();
-        }
-        if(viewEnd){
-            break;
         }
     }
     while(viewEnd){

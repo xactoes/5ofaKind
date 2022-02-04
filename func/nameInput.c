@@ -171,7 +171,7 @@ void nameInput(){
                 setY = 6;
                 setCol = 0;
                 setRow = 0;
-                if(inputMode < 1){
+                if(inputMode < 2){
                     inputMode++;
                 }
                 else{
@@ -224,4 +224,5 @@ void nameInput(){
         }
 
     }
+    DISABLE_RAM_MBC1;
 }
