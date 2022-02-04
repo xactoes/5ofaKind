@@ -13,7 +13,8 @@ extern unsigned int scorecardMarked();
 //does the logic for the scorecard
 extern void logicScorecard();
 
-extern void saveScore();
+extern void endScore();
+extern void sortScore();
 extern void scoreSetup();
 
 #endif

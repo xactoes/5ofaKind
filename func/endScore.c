@@ -1,17 +1,24 @@
 #include <gb/gb.h>
 #include </opt/gbdk/include/gbdk/bcd.h>
+#include <string.h>
 
 //global variables
 #include "../func/glob_vars.h"
 #include "../sram/save_vars.h"
 #include "../func/logicScore.h"
 
-void saveScore(){
+void endScore(){
     unsigned int startX = 6;
     hiScoreBuf = MAKE_BCD(00000000);
     bcd_add(&hiScoreBuf, &totalScoreBCD);
     len = bcd2text(&hiScoreBuf, 0x10, buf);
     scoreSaved = 1;
+
+    //copies currentName into tempName
+    for(i = 0; i != 8; i++){
+        namesArray[24][i] = currentName[i];
+    }
+
 
     hiScores[24] = 0;
     for(i = 0; i != 15; i++){

@@ -47,7 +47,8 @@ void endScreen(){
 
 
     if(scoreSaved == 0){
-        saveScore();
+        endScore();
+        sortScore();
     }
 
 
