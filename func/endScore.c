@@ -19,8 +19,11 @@ void endScore(){
         namesArray[24][i] = currentName[i];
     }
 
+    ENABLE_RAM_MBC1;
+    SWITCH_RAM_MBC1(0);
 
     hiScores[24] = 0;
+
     for(i = 0; i != 15; i++){
         if(scorecard[i] != 255){
             hiScores[24] += (uint32_t)scorecard[i];

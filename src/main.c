@@ -10,7 +10,8 @@ void main(){
 
     //checks for name save data and loads it in
     checkName();
-    scoreSetup();
+    checkScore();
+    //scoreSetup();
 
 
     viewTitle = 1;

@@ -1,16 +1,8 @@
-#include <stdio.h>
+#include <gb/gb.h>
 
 //global variables
 #include "../func/glob_vars.h"
 #include "../sram/save_vars.h"
-
-
-//I need to make my own sorting that sorts the scores, and moves themAND the names around as needed
-
-
-
-
-
 
 // C program to sort the array in an
 // ascending order using selection sort
@@ -23,28 +15,33 @@ void swapScores(unsigned int* xp, unsigned int* yp){
 }
 
 // Function to perform Selection Sort
-void choiceSort(unsigned int arr[], unsigned int n){
+void selectedScoreSort(unsigned int arr[], unsigned int n){
 	unsigned int minScore;
 
 	// One by one move boundary of unsorted subarray
-	for (i = 0; i < n - 1; i++) {
+	for (i = n; i != 0; i--) {
 		// Find the minimum di in unsorted array
 		minScore = i;
-		for (j = i + 1; j < n; j++)
-			if (arr[j] < arr[minScore])
+		for (j = i - 1; j != -1; j--){
+			if (arr[j] < arr[minScore]){
 				minScore = j;
-
-			// Swap the found minimum element
-			// with the first element
-			swapScores(&arr[minScore], &arr[i]);
+                // Swap the found minimum element
+                // with the first element
+                swapScores(&arr[minScore], &arr[i]);
+            }
+            else return;
+        }
 	}
 }
 
 // Driver code
-void sortScore(){
+void sortScores(){
+    ENABLE_RAM_MBC1;
+    SWITCH_RAM_MBC1(0);
+
 	unsigned int n = sizeof(hiScores) / sizeof(hiScores[0]);
 
-	choiceSort(diceValues, n);
+	selectedScoreSort(hiScores, n);
 }
 
 //end copied sorting algorithm
