@@ -30,23 +30,19 @@ void selectionSort(unsigned int arr[], unsigned int n){
 			swapDice(&arr[minDi], &arr[i]);
 	}
 }
-
+/*
 // Function to print an array
 void printArray(unsigned int arr[], unsigned int size){
 	for (i = 0; i < size; i++)
 		printf("%d ", arr[i]);
 	printf("\n");
-}
+}*/
 
 // Driver code
 void sortDice(){
 	unsigned int n = sizeof(diceValues) / sizeof(diceValues[0]);
-	//printf("Original array: \n");
-	//printArray(diceValues, n);
 
 	selectionSort(diceValues, n);
-	//printf("\nSorted array in Ascending order: \n");
-	//printArray(diceValues, n);
 }
 
 //end copied sorting algorithm

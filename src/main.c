@@ -10,6 +10,8 @@ void main(){
 
     //checks for name save data and loads it in
     checkName();
+    checkScore();
+    //scoreSetup();
 
 
     viewTitle = 1;
@@ -27,7 +29,7 @@ void main(){
 
         //high score menu
         if(viewScores){
-            //highScores();
+            highScores();
         }
 
         //transfer data screen
@@ -40,45 +42,4 @@ void main(){
             options();
         }
     }
-
-
-
-
-
-
-
-
-
-    /*
-
-
-    titleScreen();
-
-    fadeToBlack(4);
-
-    initGame();
-
-    fadeFromBlack(4);
-
-
-    SHOW_SPRITES;
-
-	while(endGame == 0){
-        while(gameOn == 1){
-            if(viewMode == 0 && gameOn == 1){
-                playCursor();
-            }
-            else if(viewMode == 1 && gameOn == 1){
-                cardCursor();
-            }
-            else if(gameOn == 0){
-                break;
-            }
-        }
-    }
-    while(endGame == 1){
-        endScreen();
-		saveScore();
-	}
-	*/
 }
