@@ -1,12 +1,13 @@
 #include </opt/gbdk/include/gb/gb.h>
 #include </opt/gbdk/include/gbdk/bcd.h>
-#include <stdio.h>
+
 
 //global variables
 #include "../func/glob_vars.h"
 
 
 void setScoreUpper(){
+    unsigned int scorecardBuf = 0;
 	len = 0;
 	uint2bcd(63, &compareBCD);
 	//resets upper buffer to zero
@@ -103,25 +104,41 @@ void setScoreUpper(){
 			}
 		}
 	}
-	//add upperScoreBuf INTO upperScoreBCD
-	bcd_add(&upperScoreBCD, &upperScoreBuf);
+
+	scorecardBuf = 0;
 
 	//returns funky numbers that are indeed 16 bits in binary but i don't
-	//know the conversion for this particular bcd scheme
-	//made another BCD pointer to just make comparisons not need to be translated
-	//printf("%u ", &upperScoreBCD);
+    //know the conversion for this particular bcd scheme
+    //made another BCD pointer to just make comparisons not need to be translated
+    //printf("%u ", &upperScoreBCD);
+    for(i = 0; i != 11; i++){
+        if(i < 2 || i > 7 && i < 11){
+            if(scorecard[i] != 255){
+                scorecardBuf += scorecard[i];
+                if(i == 2){
+                    i = 7;
+                }
+            }
+        }
 
-	if(&upperScoreBCD >= &compareBCD){
-        if(scorecard[14] == 255){
+    }
+
+    if(scorecardBuf >= 63){
+        //bcd_sub(&upperScoreBuf, &upperScoreBuf);
+        if(scorecard[14] == 255 || scorecard[14] == 35){
             scorecard[14] = 35;
             scorecardSummed[14] = scorecard[14];
-            uint2bcd(scorecardSummed[14], &upperScoreBuf);
+            uint2bcd(scorecardSummed[14], &upperScoreBonus);
             if(trackUpperBonusAdd == 0){
-                bcd_add(&upperScoreBCD, &upperScoreBuf);
+                bcd_add(&upperScoreBCD, &upperScoreBonus);
                 trackUpperBonusAdd = 1;
             }
         }
-	}
+    }
+
+	//add upperScoreBuf INTO upperScoreBCD
+	bcd_add(&upperScoreBCD, &upperScoreBuf);
+
 }
 
 void setScoreLower(){
@@ -228,7 +245,8 @@ void setScoreTotal(){
 	bcd_add(&totalScoreAdd, &lowerScoreBCD);
 	if(&totalScoreBCD == &totalScoreAdd) return;
 	else if(&totalScoreBCD > &totalScoreAdd){
-		printf("Scoring Error");
+		//printf("Scoring Error");
+        return;
 	}
 	else{
 		bcd_sub(&totalScoreBCD, &totalScoreBCD);
@@ -241,6 +259,8 @@ void setScoreTotal(){
 void scoreDisplay(){
 	//card view score
 	if(viewCard){
+
+
 		//returns length in characters (always 8)
 		//0x10 is where 0 is in the tile viewer
 		//sets Total Upper score display

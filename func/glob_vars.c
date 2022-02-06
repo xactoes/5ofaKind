@@ -43,7 +43,7 @@ unsigned int bonusTally     = 0;
 unsigned int turn;
 
 //decrementing variables
-unsigned int initRolls      = 3;   //DO NOT SET TO 255 OR HIGHER
+unsigned int initRolls      = 105;   //DO NOT SET TO 255 OR HIGHER
 
 //misc variables
 unsigned int i;
@@ -96,6 +96,7 @@ const unsigned char inputArray[120] = {
 };
 
 //BCD variables
+BCD upperScoreBonus = MAKE_BCD(00000000);
 BCD upperScoreBCD = MAKE_BCD(00000000);
 BCD upperScoreBuf = MAKE_BCD(00000000);
 BCD lowerScoreBCD = MAKE_BCD(00000000);
