@@ -93,6 +93,7 @@ extern const unsigned int heldPosY;
 
 extern const unsigned char inputArray[120];
 
+extern BCD upperScoreBonus;
 extern BCD upperScoreBCD;
 extern BCD upperScoreBuf;
 extern BCD lowerScoreBCD;
