@@ -14,7 +14,6 @@
 unsigned int scoreIndex;
 
 void drawScores(unsigned int index){
-    //assignScoreBCD();
     switch(index){
         case 0:
             len = bcd2text(&hiScore01, 0x10, buf);
@@ -89,6 +88,7 @@ void highScores(){
     HIDE_BKG;
     HIDE_SPRITES;
 
+
     set_bkg_data(0, 128, backgroundData);
     set_bkg_tiles(0, 0, 20, 18, scoreMap1);
 
@@ -109,27 +109,21 @@ void highScores(){
                 scoreTrue[i] = 0;
                 hiScores[i] = 0;
             }
-            else return;
         }
    }
 
     //sort the scores
     sortScores();
 
+
     //score array assignment
     assignScoreBCD();
-
-//     hiScoreBuf = MAKE_BCD(00000000);
-//     bcd_sub(&hiScoreBuf, &hiScoreBuf);
-//     bcd_add(&hiScoreBuf, &totalScoreBCD);
-//     len = bcd2text(&hiScoreBuf, 0x10, buf);
-
-
-    SHOW_BKG;
 
     scoreIndex = 0;
 
     drawScores(scoreIndex);
+
+    SHOW_BKG;
 
     while(viewScores){
         switch(joypad()){

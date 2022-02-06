@@ -9,8 +9,6 @@
 //backgrounds
 #include "../res/maps.h"
 
-/* add in a made by text in bottom of screen */
-
 void title(){
 
     //hide screen while setting up
@@ -85,7 +83,6 @@ void title(){
                         viewScores = 1;
                         waitpadup();
                         break;
-                        waitpadup();
                     case 2:
                         waitpadup();
                         break;
