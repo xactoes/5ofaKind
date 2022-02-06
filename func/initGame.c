@@ -1,4 +1,5 @@
 #include <gb/gb.h>
+#include </opt/gbdk/include/gbdk/bcd.h>
 
 #include "../func/dice_tools.h"
 #include "../func/glob_vars.h"
@@ -42,16 +43,20 @@ void initGame(){
         scorecardSummed[i] = 511;
     }
 
-    BCD upperScoreBCD = MAKE_BCD(00000000);
-    BCD upperScoreBuf = MAKE_BCD(00000000);
-    BCD lowerScoreBCD = MAKE_BCD(00000000);
-    BCD lowerScoreBuf = MAKE_BCD(00000000);
-    BCD totalScoreBCD = MAKE_BCD(00000000);
-    BCD totalScoreAdd = MAKE_BCD(00000000);
-    BCD compareBCD = MAKE_BCD(00000000);
-    BCD numOptBCD = MAKE_BCD(00000000);
-    BCD turnBCD = MAKE_BCD(00000000);
-    BCD rollBCD = MAKE_BCD(00000000);
+
+    bcd_sub(&upperScoreBCD, &upperScoreBCD);
+    bcd_sub(&upperScoreBuf, &upperScoreBuf);
+    bcd_sub(&lowerScoreBCD, &lowerScoreBCD);
+    bcd_sub(&lowerScoreBuf, &lowerScoreBuf);
+    bcd_sub(&totalScoreBCD, &totalScoreBCD);
+    bcd_sub(&totalScoreAdd, &totalScoreAdd);
+    bcd_sub(&compareBCD, &compareBCD);
+    bcd_sub(&numOptBCD, &numOptBCD);
+    bcd_sub(&turnBCD, &turnBCD);
+    bcd_sub(&rollBCD, &rollBCD);
+
+    scorecardChangeA = 0;
+    scorecardChangeB = 0;
 
     SHOW_BKG;
 

@@ -14,6 +14,7 @@
 unsigned int scoreIndex;
 
 void drawScores(unsigned int index){
+    //assignScoreBCD();
     switch(index){
         case 0:
             len = bcd2text(&hiScore01, 0x10, buf);
@@ -26,7 +27,7 @@ void drawScores(unsigned int index){
             set_bkg_tiles(11, 10, len, 1, buf);
             len = bcd2text(&hiScore05, 0x10, buf);
             set_bkg_tiles(11, 12, len, 1, buf);
-            len = bcd2text(&hiScore06, 0x10, buf);
+            len = bcd2text(&hiScoreBuf, 0x10, buf);
             set_bkg_tiles(11, 14, len, 1, buf);
             break;
         case 1:
@@ -91,8 +92,6 @@ void highScores(){
     set_bkg_data(0, 128, backgroundData);
     set_bkg_tiles(0, 0, 20, 18, scoreMap1);
 
-    //sort the scores
-    sortScores();
 
     for(i = 0; i != 25; i++){
         if(scoreTrue[i] != 1){
@@ -112,38 +111,18 @@ void highScores(){
             }
             else return;
         }
-    }
+   }
 
+    //sort the scores
+    sortScores();
 
     //score array assignment
-    uint2bcd(hiScores[0], &hiScore01);
-    uint2bcd(hiScores[1], &hiScore02);
-    uint2bcd(hiScores[2], &hiScore03);
-    uint2bcd(hiScores[3], &hiScore04);
-    uint2bcd(hiScores[4], &hiScore05);
-    uint2bcd(hiScores[5], &hiScore06);
-    uint2bcd(hiScores[6], &hiScore07);
-    uint2bcd(hiScores[7], &hiScore08);
-    uint2bcd(hiScores[8], &hiScore09);
-    uint2bcd(hiScores[9], &hiScore10);
-    uint2bcd(hiScores[10], &hiScore11);
-    uint2bcd(hiScores[11], &hiScore12);
-    uint2bcd(hiScores[12], &hiScore13);
-    uint2bcd(hiScores[13], &hiScore14);
-    uint2bcd(hiScores[14], &hiScore15);
-    uint2bcd(hiScores[15], &hiScore16);
-    uint2bcd(hiScores[16], &hiScore17);
-    uint2bcd(hiScores[17], &hiScore18);
-    uint2bcd(hiScores[18], &hiScore19);
-    uint2bcd(hiScores[19], &hiScore20);
-    uint2bcd(hiScores[20], &hiScore21);
-    uint2bcd(hiScores[21], &hiScore22);
-    uint2bcd(hiScores[22], &hiScore23);
-    uint2bcd(hiScores[23], &hiScore24);
+    assignScoreBCD();
 
-    hiScoreBuf = MAKE_BCD(00000000);
-    bcd_add(&hiScoreBuf, &totalScoreBCD);
-    len = bcd2text(&hiScoreBuf, 0x10, buf);
+//     hiScoreBuf = MAKE_BCD(00000000);
+//     bcd_sub(&hiScoreBuf, &hiScoreBuf);
+//     bcd_add(&hiScoreBuf, &totalScoreBCD);
+//     len = bcd2text(&hiScoreBuf, 0x10, buf);
 
 
     SHOW_BKG;
@@ -168,7 +147,6 @@ void highScores(){
                     scoreIndex -= 1;
                     drawScores(scoreIndex);
                     SHOW_BKG;
-
                 }
                 else if(scoreIndex == 3){
                     HIDE_BKG;
@@ -193,7 +171,6 @@ void highScores(){
                     scoreIndex += 1;
                     drawScores(scoreIndex);
                     SHOW_BKG;
-
                 }
                 else if(scoreIndex == 2){
                     HIDE_BKG;

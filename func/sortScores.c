@@ -1,4 +1,5 @@
 #include <gb/gb.h>
+#include <string.h>
 
 //global variables
 #include "../func/glob_vars.h"
@@ -16,20 +17,21 @@ void swapScores(unsigned int* xp, unsigned int* yp){
 
 // Function to perform Selection Sort
 void selectedScoreSort(unsigned int arr[], unsigned int n){
-	unsigned int minScore;
+	unsigned int maxScore;
 
 	// One by one move boundary of unsorted subarray
-	for (i = n; i != 0; i--) {
+	for (i = 0; i != n - 1; i++) {
 		// Find the minimum di in unsorted array
-		minScore = i;
-		for (j = i - 1; j != -1; j--){
-			if (arr[j] < arr[minScore]){
-				minScore = j;
+		maxScore = i;
+		for (j = i + 1; j < n; j++){
+			if (arr[j] > arr[maxScore]){
+				maxScore = j;
                 // Swap the found minimum element
                 // with the first element
-                swapScores(&arr[minScore], &arr[i]);
+                swapScores(&arr[maxScore], &arr[i]);
             }
-            else return;
+            //doesn't sort if it returns and breaks for loop of sorting
+            //else return;
         }
 	}
 }

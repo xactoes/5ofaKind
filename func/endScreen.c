@@ -16,6 +16,7 @@ void endScreen(){
     if(scoreSaved != 1){
         scoreSaved = 0;
     }
+
     while(endScreenScrolled != 1){
         HIDE_BKG;
 
@@ -61,6 +62,8 @@ void endScreen(){
             break;
         case J_A:
             viewEnd = 0;
+            viewGame = 0;
+            viewGame = 1;
             waitpadup();
             break;
         case J_B:
