@@ -17,4 +17,6 @@ extern void endScore();
 extern void sortScores();
 extern void scoreSetup();
 
+extern void assignScoreBCD();
+
 #endif
