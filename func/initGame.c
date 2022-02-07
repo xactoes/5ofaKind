@@ -60,6 +60,7 @@ void initGame(){
     endScreenScrolled = 0;
     scoreSaved = 0;
     bonusTally = 0;
+    turnRequest = 0;
 
     SHOW_BKG;
 

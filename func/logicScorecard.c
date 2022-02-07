@@ -399,10 +399,12 @@ void logicScorecard(){
             viewSwitch = 1;
 		}
 		else{
-            return;
+            printf("test1");
+            betterDelay(30);
         }
 	}
 	else{
-        printf("FAIL");
+        printf("test2");
+        betterDelay(30);
     }
 }
