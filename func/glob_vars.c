@@ -22,6 +22,7 @@ unsigned char rollRequest;
 unsigned char turnRequest;
 unsigned char scoreCheckRequest;
 unsigned char scoreSaved;
+unsigned char bonusFail;
 
 
 //variables for sprites
@@ -43,7 +44,7 @@ unsigned int bonusTally     = 0;
 unsigned int turn;
 
 //decrementing variables
-unsigned int initRolls      = 3;   //DO NOT SET TO 255 OR HIGHER
+unsigned int initRolls      = 100;   //DO NOT SET TO 255 OR HIGHER
 
 //misc variables
 unsigned int i;

@@ -24,17 +24,24 @@ unsigned int rollsCheck(){
                 turnRequest = 0;
                 return 250;
             }
-            if(scoreCheckRequest == 1){
+            else if(scoreCheckRequest == 1){
                 scoreCheckRequest = 0;
                 turnRequest = 1;
                 //report that scorecard has been selected so the turn and rolls needs to be reset
                 return 255;
             }
-            if(rollRequest == 1){
+            else if(rollRequest == 1){
                 rollRequest = 0;
                 return rollsLeft;
             }
             else return 0;
+        }
+        else if(scorecardChangeA == scorecardChangeB && bonusFail == 1){
+
+//             printf("testF\n");
+//             betterDelay(1000);
+            //disable rolls
+            return 240;
         }
         //otherwise if scorecard hasn't changed AND
         //bonus has been selected AND

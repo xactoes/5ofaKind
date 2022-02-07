@@ -43,7 +43,6 @@ void initGame(){
         scorecardSummed[i] = 511;
     }
 
-
     bcd_sub(&upperScoreBCD, &upperScoreBCD);
     bcd_sub(&upperScoreBuf, &upperScoreBuf);
     bcd_sub(&lowerScoreBCD, &lowerScoreBCD);
@@ -57,6 +56,10 @@ void initGame(){
 
     scorecardChangeA = 0;
     scorecardChangeB = 0;
+    bonusFail = 0;
+    endScreenScrolled = 0;
+    scoreSaved = 0;
+    bonusTally = 0;
 
     SHOW_BKG;
 

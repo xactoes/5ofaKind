@@ -56,13 +56,11 @@ void endScreen(){
     switch(joypad()){
         case J_START:
             viewEnd = 0;
-            viewGame = 0;
             viewGame = 1;
             waitpadup();
             break;
         case J_A:
             viewEnd = 0;
-            viewGame = 0;
             viewGame = 1;
             waitpadup();
             break;

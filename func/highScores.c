@@ -26,7 +26,7 @@ void drawScores(unsigned int index){
             set_bkg_tiles(11, 10, len, 1, buf);
             len = bcd2text(&hiScore05, 0x10, buf);
             set_bkg_tiles(11, 12, len, 1, buf);
-            len = bcd2text(&hiScoreBuf, 0x10, buf);
+            len = bcd2text(&hiScore06, 0x10, buf);
             set_bkg_tiles(11, 14, len, 1, buf);
             break;
         case 1:
