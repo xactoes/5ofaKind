@@ -2,8 +2,8 @@
 #include "../func/logicScore.h"
 #include "../func/logicGame.h"
 
-#include <stdio.h>
-#include "../func/betterDelay.h"
+// #include <stdio.h>
+// #include "../func/betterDelay.h"
 
 unsigned int turnCheck(){
     if(rollsCheck() == 250){
@@ -15,15 +15,18 @@ unsigned int turnCheck(){
                 return 1;
             }
             else if(turn == 13){
+                //checks if 5 of a kind was obtained
+                //if it wasnt, the game ends
                 if(bonusTally == 0){
+//                     printf("test1\n");
+//                     betterDelay(1000);
                     viewGame = 0;
                     viewPlay = 0;
                     viewCard = 0;
                     viewEnd = 1;
-                    printf("test1\n");
-                    betterDelay(1000);
                     return 0;
                 }
+                //executes it was obtained and increments the turn
                 else if(bonusTally == turn - scorecardMarked()){
                     turn++;
                     return 1;
@@ -34,8 +37,8 @@ unsigned int turnCheck(){
             else if(turn > 13){
                 //if five of a kind is 0 by the end of minimal turns
                 if(bonusTally == 0){
-                    printf("test13\n");
-                    betterDelay(1000);
+//                     printf("test13\n");
+//                     betterDelay(1000);
                     viewGame = 0;
                     viewPlay = 0;
                     viewCard = 0;
@@ -45,13 +48,15 @@ unsigned int turnCheck(){
                 //if bonus or five of a kind had been selected even once
                 else if(bonusTally > 0){
                     if((turn - bonusTally) <= scorecardMarked()){
+//                         printf("testA\n");
+//                         betterDelay(1000);
                         //a new turn is allowed
                         turn++;
                         return 1;
                     }
                     else{
-                        printf("test10\n");
-                        betterDelay(1000);
+//                         printf("test10\n");
+//                         betterDelay(1000);
                         viewGame = 0;
                         viewPlay = 0;
                         viewCard = 0;
@@ -60,8 +65,8 @@ unsigned int turnCheck(){
                     }
                 }
                 else{
-                    printf("test11\n");
-                    betterDelay(1000);
+//                     printf("test11\n");
+//                     betterDelay(1000);
                     viewGame = 0;
                     viewPlay = 0;
                     viewCard = 0;
@@ -70,8 +75,8 @@ unsigned int turnCheck(){
                 }
             }
             else{
-                printf("test12\n");
-                betterDelay(1000);
+//                 printf("test12\n");
+//                 betterDelay(1000);
                 viewGame = 0;
                 viewPlay = 0;
                 viewCard = 0;
@@ -80,6 +85,8 @@ unsigned int turnCheck(){
             }
         }
         else if(turn - bonusTally > 12 ){
+//             printf("testC\n");
+//             betterDelay(1000);
             viewGame = 0;
             viewPlay = 0;
             viewCard = 0;
@@ -87,14 +94,23 @@ unsigned int turnCheck(){
             return 0;
         }
         else{
-            printf("test5\n");
-            betterDelay(1000);
+//             printf("test5\n");
+//             betterDelay(1000);
             viewGame = 0;
             viewPlay = 0;
             viewCard = 0;
             viewEnd = 1;
             return 0;
         }
+    }
+    else if(rollsCheck() == 240){
+//         printf("testG\n");
+//         betterDelay(1000);
+        viewGame = 0;
+        viewPlay = 0;
+        viewCard = 0;
+        viewEnd = 1;
+        return 0;
     }
     else return 0;
 }

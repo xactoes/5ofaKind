@@ -12,6 +12,8 @@
 //backgrounds
 #include "../res/maps.h"
 
+#include <stdio.h>
+
 
 void logicUpper(){
 	unsigned int valueToCheck = 0;
@@ -269,37 +271,35 @@ void logicLower(){
 					match5++;
 				}
 			}
-			if(match5 == 4 && scorecard[6] == 50 && scorecard[7] != 0){
-				if(scorecard[7] < 1000){
-					scoreBuf = 100;
-                    bonusTally += 1;
-					if(scorecard[7] == 255){
-						scorecard[7] = scoreBuf;
-					}
-					else{
-						scorecard[7] += scoreBuf;
-					}
-				}
-			}
-			else if(match5 == 4 && scorecard[6] == 50 && scorecard[7] == 0){
-                //play error sound
-                return;
+			if(scorecard[6] == 50){
+                if(match5 == 4){
+                    if(bonusTally < 11){
+                        scoreBuf = 100;
+                        bonusTally += 1;
+                        if(scorecard[7] == 255){
+                            scorecard[7] = scoreBuf;
+                        }
+                        else{
+                            scorecard[7] += scoreBuf;
+                        }
+                    }
+                    else{
+                        return;
+                    }
+                }
+                else{
+                    if(turn - bonusTally >= 13){
+                        bonusFail = 1;
+                    }
+                    else{
+                        return;
+                    }
+                }
             }
-			else if(match5 != 4 && scorecard[6] == 50 && scorecard[7] == 255 && turn > 13){
-                scorecard[7] = 0;
-//                 rollsLeft = 0;
-                //switch back to play view
-                viewPlay = 1;
-                turnRequest = 0;
-                viewCard = 0;
-                viewSwitch = 1;
-                viewGame = 0;
-                viewEnd = 1;
-                return;
-            }
-            else if(match5 == 4 && scorecard[6] != 50){
-                //play error sound
-                return;
+			else{
+                if(turn >= 14){
+                    bonusFail = 1;
+                }
             }
 			break;
 	}
@@ -381,10 +381,15 @@ void logicScorecard(){
 		setScoreUpper();
 		setScoreLower();
 		scoreDisplay();
+/*
+        printf("A %u", scorecardChangeA);
+        printf("B %u", scorecardChangeB);
+        betterDelay(60);
+        */
 
         scoreCheckRequest = 1;
         //if scorecard was selected in some way
-		if(rollsCheck() == 255){
+		if(rollsCheck() == 255 || rollsCheck() == 240){
             //prevent more rolling this turn
 			rollsLeft = 0;
             //switch back to play view
@@ -393,5 +398,11 @@ void logicScorecard(){
             viewCard = 0;
             viewSwitch = 1;
 		}
+		else{
+            return;
+        }
 	}
+	else{
+        printf("FAIL");
+    }
 }
