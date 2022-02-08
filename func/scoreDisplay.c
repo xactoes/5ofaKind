@@ -5,6 +5,8 @@
 //global variables
 #include "../func/glob_vars.h"
 
+#include "../func/betterDelay.h"
+
 
 void setScoreUpper(){
     unsigned int scorecardBuf = 0;
@@ -184,7 +186,7 @@ void setScoreLower(){
 
 				//for display score on the card individually for each option
 				bcd_sub(&numOptBCD, &numOptBCD);
-				uint2bcd(scorecard[indexCursor - 8], &numOptBCD);
+				uint2bcd(scorecardSummed[indexCursor - 8], &numOptBCD);
 				len = bcd2text(&numOptBCD, 0x10, buf);
 				switch(indexCursor){
                     //3 of a Kind
@@ -210,13 +212,10 @@ void setScoreLower(){
                     //5 of a Kind Bonus
                     case 15:
                         set_bkg_tiles(11, 32, len, 1, buf);
-                        set_bkg_tile_xy(9, 32, 0x22); // B
-						set_bkg_tile_xy(10, 32, 0x4F); // o
 						set_bkg_tile_xy(11, 32, 0x4E); // n
 						set_bkg_tile_xy(12, 32, 0x55); // u
 						set_bkg_tile_xy(13, 32, 0x53); // s
 						set_bkg_tile_xy(14, 32, 0x1A); // :
-                        break;
                     //Chance
                     case 21:
 						set_bkg_tiles(11, 30, len, 1, buf);
@@ -260,7 +259,6 @@ void scoreDisplay(){
 	//card view score
 	if(viewCard){
 
-
 		//returns length in characters (always 8)
 		//0x10 is where 0 is in the tile viewer
 		//sets Total Upper score display
@@ -286,6 +284,52 @@ void scoreDisplay(){
 		set_bkg_tile_xy(11, 34, 0x4C); // l
 		set_bkg_tile_xy(12, 34, 0x1A); // :
 		set_bkg_tile_xy(13, 34, 0x00); // blank
+
+        if(bonusTally <= 11){
+            switch(bonusTally){
+                case 2:
+                    set_bkg_tile_xy(15, 32, 0x10);
+                    set_bkg_tile_xy(16, 32, 0x11);
+                    break;
+                case 3:
+                    set_bkg_tile_xy(15, 32, 0x10);
+                    set_bkg_tile_xy(16, 32, 0x12);
+                    break;
+                case 4:
+                    set_bkg_tile_xy(15, 32, 0x10);
+                    set_bkg_tile_xy(16, 32, 0x13);
+                    break;
+                case 5:
+                    set_bkg_tile_xy(15, 32, 0x10);
+                    set_bkg_tile_xy(16, 32, 0x14);
+                    break;
+                case 6:
+                    set_bkg_tile_xy(15, 32, 0x10);
+                    set_bkg_tile_xy(16, 32, 0x15);
+                    break;
+                case 7:
+                    set_bkg_tile_xy(15, 32, 0x10);
+                    set_bkg_tile_xy(16, 32, 0x16);
+                    break;
+                case 8:
+                    set_bkg_tile_xy(15, 32, 0x10);
+                    set_bkg_tile_xy(16, 32, 0x17);
+                    break;
+                case 9:
+                    set_bkg_tile_xy(15, 32, 0x10);
+                    set_bkg_tile_xy(16, 32, 0x18);
+                    break;
+                case 10:
+                    set_bkg_tile_xy(15, 32, 0x10);
+                    set_bkg_tile_xy(16, 32, 0x19);
+                    break;
+                case 11:
+                    set_bkg_tile_xy(15, 32, 0x10);
+                    set_bkg_tile_xy(16, 32, 0x1A);
+                    break;
+            }
+        }
+        betterDelay(60);
 	}
 	//play view score
 	else if(viewPlay){

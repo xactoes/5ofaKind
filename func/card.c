@@ -46,7 +46,7 @@ void card(unsigned char map[]){
         //tell outer while loops that the view no longer needs to be switched
         viewSwitch = 0;
 
-        //show_score
+        //set scores on screen
         scoreDisplay();
     }
     else return;
