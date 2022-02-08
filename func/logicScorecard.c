@@ -276,6 +276,15 @@ void logicLower(){
                     if(bonusTally < 11){
                         scoreBuf = 100;
                         bonusTally += 1;
+                        set_bkg_tiles(11, 32, len, 1, buf);
+						set_bkg_tile_xy(11, 32, 0x4E); // n
+						set_bkg_tile_xy(12, 32, 0x55); // u
+						set_bkg_tile_xy(13, 32, 0x53); // s
+						set_bkg_tile_xy(14, 32, 0x1A); // :
+
+                        set_bkg_tile_xy(17, 32, 0x10); // 0
+                        set_bkg_tile_xy(18, 32, 0x10); // 0
+//                         betterDelay(1000);
                         if(scorecard[7] == 255){
                             scorecard[7] = scoreBuf;
                         }
@@ -380,6 +389,7 @@ void logicScorecard(){
         //set scores on screen
 		setScoreUpper();
 		setScoreLower();
+        betterDelay(15);
 		scoreDisplay();
 /*
         printf("A %u", scorecardChangeA);
@@ -403,6 +413,6 @@ void logicScorecard(){
         }
 	}
 	else{
-        printf("FAIL");
+        return;
     }
 }

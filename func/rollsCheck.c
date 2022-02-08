@@ -43,6 +43,16 @@ unsigned int rollsCheck(){
             //disable rolls
             return 240;
         }
+        else if(scorecardChangeA == scorecardChangeB && scorecard[7] != 255 && (turn - scorecard[7]/100) <= 13 && scoreBuf == 100 && scoreCheckRequest == 1){
+            scoreCheckRequest = 0;
+            turnRequest = 1;
+            //report that scorecard has been selected so the turn and rolls needs to be reset
+            return 255;
+        }
+        else if(scorecardChangeA == scorecardChangeB && scorecard[7] != 255 && (turn - scorecard[7]/100) <= 13 && scoreBuf == 100 && turnRequest == 1){
+            turnRequest = 0;
+                return 250;
+        }
         //otherwise if scorecard hasn't changed AND
         //bonus has been selected AND
         //turns - bonus are greater than minimal turn count
