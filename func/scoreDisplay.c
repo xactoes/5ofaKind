@@ -329,7 +329,7 @@ void scoreDisplay(){
                     break;
             }
         }
-        betterDelay(60);
+//         betterDelay(60);
 	}
 	//play view score
 	else if(viewPlay){
