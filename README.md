@@ -17,7 +17,7 @@ MISSING FEATURES:
 * audio to play when dice cannot be rolled or hold and card are inaccessible
 * a start menu with info on how to play the game
 * a quit option in the start menu
-* saving of high scores
+* ~~saving of high scores~~
 * background music
 * ~~player name entry up to 8 characters~~
 * potential other features that are implemented but borked and I haven't realized yet
