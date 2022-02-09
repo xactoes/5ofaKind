@@ -6,6 +6,7 @@
 #include "../func/glob_vars.h"
 
 #include "../func/betterDelay.h"
+#include "../func/logicScore.h"
 
 
 void setScoreUpper(){
@@ -165,21 +166,22 @@ void setScoreLower(){
 					//printf("%u\n", scorecardSummed[11]);
 					//printf("%u\n", scorecard[11]);
 					uint2bcd(scorecardSummed[indexCursor - 8], &lowerScoreBuf);
-				//bonus 5-of-a-kind
 				}
-				else if(indexCursor == 15){
+				//bonus 5-of-a-kind
+				else if(indexCursor == 15 && (turn - bonusTally == scorecardMarked())){
 					if(scorecard[7] < 1000){
 						scorecardSummed[7] = 100;
 						uint2bcd(scorecardSummed[7], &lowerScoreBuf);
 					}
 					else if(scorecard[7] == 1000 && bonus5 == 0){
-						scorecardSummed[7] = 100;
+						scorecardSummed[7] = 1000;
 						uint2bcd(scorecardSummed[7], &lowerScoreBuf);
 						bonus5 = 1;
 					}
 					//printf("sum: %u\n", scorecardSummed[i]);
 					//printf("card: %u\n", scorecard[i]);
 				}
+				//reset the value for displaying properly on the non collected score
 				if(bonus5 == 1){
 					scorecardSummed[7] == scorecard[7];
 				}

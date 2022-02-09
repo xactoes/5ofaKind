@@ -18,7 +18,7 @@ unsigned int rollsCheck(){
     else if(viewGame == 1 && viewEnd == 0){
         //if scorecard has changed OR
         //bonus has been selectd and (turns - bonus) are less than or equal to the minimal turn count (13)
-        if(scorecardChangeA != scorecardChangeB || (scorecard[7] != 255 && (turn - scorecard[7]/100) <= 12)){
+        if(scorecardChangeA != scorecardChangeB || (scorecard[7] != 255 && scoreBuf == 100 && (turn - scorecard[7]/100) <= 12)){
             if(turnRequest == 1){
                 //scoreBuf = 0;
                 turnRequest = 0;
@@ -36,12 +36,11 @@ unsigned int rollsCheck(){
             }
             else return 0;
         }
-        else if(scorecardChangeA == scorecardChangeB && bonusFail == 1){
-
-//             printf("testF\n");
-//             betterDelay(1000);
-            //disable rolls
+        else if(scorecardChangeA != scorecardChangeB){
+            //checks if when the card hasn't changed, but there is a bonusFail AND that bonus fail happened this last turn
+            if(bonusFail == 1 && (turn == scorecardMarked() + bonusTally + bonusFail)){
             return 240;
+            }
         }
         else if(scorecardChangeA == scorecardChangeB && scorecard[7] != 255 && (turn - scorecard[7]/100) <= 13 && scoreBuf == 100 && scoreCheckRequest == 1){
             scoreCheckRequest = 0;
