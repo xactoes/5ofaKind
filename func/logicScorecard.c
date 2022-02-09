@@ -276,12 +276,17 @@ void logicLower(){
                     if(bonusTally < 11){
                         scoreBuf = 100;
                         bonusTally += 1;
+                        bcd_sub(&numOptBCD, &numOptBCD);
+                        uint2bcd(scorecard[7], &numOptBCD);
+                        len = bcd2text(&numOptBCD, 0x10, buf);
                         set_bkg_tiles(11, 32, len, 1, buf);
 						set_bkg_tile_xy(11, 32, 0x4E); // n
 						set_bkg_tile_xy(12, 32, 0x55); // u
 						set_bkg_tile_xy(13, 32, 0x53); // s
 						set_bkg_tile_xy(14, 32, 0x1A); // :
-
+                        if(bonusTally < 1000){
+                            set_bkg_tile_xy(15, 32, 0x00);  //blank
+                        }
                         set_bkg_tile_xy(17, 32, 0x10); // 0
                         set_bkg_tile_xy(18, 32, 0x10); // 0
 //                         betterDelay(1000);
@@ -296,16 +301,28 @@ void logicLower(){
                         return;
                     }
                 }
+                //scorecard[6] is true, but bonus is not applicable this turn
                 else{
-                    if(turn - bonusTally >= 13){
-                        bonusFail = 1;
+                    if(turn - bonusTally <= 13){
+                        //don't allow dumping bad turn int an unfinished scorecard's bonus 5 of a kind listing
+                        if(scorecardMarked() != 12){
+                            return;
+                        }
+                        //if scorecard is full, then yes, allow dumping because a 5 of a kind has already been selected
+                        else{
+                            bonusFail = 1;
+                        }
                     }
+                    //a safety catch (although this should NEVER be true)
                     else{
                         return;
                     }
                 }
             }
+            //5 of a kind was not selected
 			else{
+                //if somehow it hits turn 14, don't allow selecting bonus
+                //selecting will lead to end game (fixing a bug that might not exists
                 if(turn >= 14){
                     bonusFail = 1;
                 }
@@ -334,6 +351,7 @@ void bonusCheck(){
 
 
 void logicScorecard(){
+    scoreBuf = 0;
 	//if scorecard hasn't changed this turn
 	if(scorecardChangeA == scorecardChangeB){
         //set the change tracking variables to 0 (still equal but now a known value)
@@ -408,7 +426,18 @@ void logicScorecard(){
             viewCard = 0;
             viewSwitch = 1;
 		}
-		else{
+		else if(bonusFail == 1 && scorecardMarked() == 12){
+            //prevent more rolling this turn
+			rollsLeft = 0;
+            //switch back to play view
+            viewPlay = 1;
+            turnRequest = 0;
+            viewCard = 0;
+            viewSwitch = 1;
+            viewGame = 0;
+            viewEnd = 1;
+        }
+        else{
             return;
         }
 	}
