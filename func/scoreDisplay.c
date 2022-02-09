@@ -40,7 +40,7 @@ void setScoreUpper(){
 				//for displaying the scores totals next to their option individually
 				//resets number option buffer to zero
 				bcd_sub(&numOptBCD, &numOptBCD);
-				uint2bcd(scorecard[indexCursor - 8], &numOptBCD);
+                uint2bcd(scorecard[indexCursor - 8], &numOptBCD);
 				len = bcd2text(&numOptBCD, 0x10, buf);
 				switch(indexCursor){
 					//1's
@@ -172,10 +172,34 @@ void setScoreLower(){
 					if(scorecard[7] < 1000){
 						scorecardSummed[7] = 100;
 						uint2bcd(scorecardSummed[7], &lowerScoreBuf);
+
+                        bcd_sub(&numOptBCD, &numOptBCD);
+                        uint2bcd(scorecard[7], &numOptBCD);
+                        len = bcd2text(&numOptBCD, 0x10, buf);
+                        set_bkg_tiles(11, 32, len, 1, buf);
+						set_bkg_tile_xy(11, 32, 0x4E); // n
+						set_bkg_tile_xy(12, 32, 0x55); // u
+						set_bkg_tile_xy(13, 32, 0x53); // s
+						set_bkg_tile_xy(14, 32, 0x1A); // :
+                        set_bkg_tile_xy(15, 32, 0x00);  //blank
+                        set_bkg_tile_xy(17, 32, 0x10); // 0
+                        set_bkg_tile_xy(18, 32, 0x10); // 0
 					}
 					else if(scorecard[7] == 1000 && bonus5 == 0){
 						scorecardSummed[7] = 1000;
 						uint2bcd(scorecardSummed[7], &lowerScoreBuf);
+
+                        bcd_sub(&numOptBCD, &numOptBCD);
+                        uint2bcd(scorecardSummed[7], &numOptBCD);
+                        len = bcd2text(&numOptBCD, 0x10, buf);
+                        set_bkg_tiles(11, 32, len, 1, buf);
+						set_bkg_tile_xy(11, 32, 0x4E); // n
+						set_bkg_tile_xy(12, 32, 0x55); // u
+						set_bkg_tile_xy(13, 32, 0x53); // s
+						set_bkg_tile_xy(14, 32, 0x1A); // :
+                        set_bkg_tile_xy(15, 32, 0x11);  //blank
+                        set_bkg_tile_xy(17, 32, 0x10); // 0
+                        set_bkg_tile_xy(18, 32, 0x10); // 0
 						bonus5 = 1;
 					}
 					//printf("sum: %u\n", scorecardSummed[i]);
