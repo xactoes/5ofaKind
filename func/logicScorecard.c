@@ -397,7 +397,8 @@ void logicScorecard(){
 		setScoreLower();
         betterDelay(15);
 		scoreDisplay();
-/*
+
+        /*
         printf("A %u", scorecardChangeA);
         printf("B %u", scorecardChangeB);
         betterDelay(60);
