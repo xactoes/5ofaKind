@@ -18,6 +18,7 @@ That said, if you do test it, feel free to contact me about bugs and I'll try to
 ![5-of-a-Kind-0 90 00-220210-113258](https://user-images.githubusercontent.com/97451908/153441777-b1935b11-33ce-4622-bbf3-f6335090afec.png)
 ![5-of-a-Kind-0 90 00-220210-113419](https://user-images.githubusercontent.com/97451908/153441790-b24aeaba-dc22-48f1-86ee-7a47fdb962a7.png)
 ![5-of-a-Kind-0 90 00-220210-113421](https://user-images.githubusercontent.com/97451908/153441791-8e826bde-22d6-4a98-9d00-4067d2f79fd4.png)
+
 KNOWN BUGS:
 * if the last turn ended with bonus 5 of a kind and that the bonus 5 of a kind wasn't determined to be eligible for scoring,the end screen doesn't show correctly, and it doesn't transition into a new game properly
 * link transfer on title freezes the game
