@@ -5,18 +5,33 @@
 #include "../func/glob_vars.h"
 #include "../sram/save_vars.h"
 
+#include "../func/betterDelay.h"
+#include <stdio.h>
+
+
+
 // C program to sort the array in an
 // ascending order using selection sort
 // obtained from https://www.geeksforgeeks.org/c-program-to-sort-an-array-in-ascending-order/
 
 void swapScores(unsigned int* xp, unsigned int* yp){
-	unsigned int temp = *xp;
+	unsigned int sTemp = *xp;
 	*xp = *yp;
-	*yp = temp;
+	*yp = sTemp;
+}
+
+void swapNames(unsigned char nIndex1, unsigned char nIndex2){
+	unsigned char nTemp[1][8];
+
+    for(k = 0; k < 8; k++){
+        nTemp[0][k] = namesArray[nIndex1][k];
+        namesArray[nIndex1][k] = namesArray[nIndex2][k];
+        namesArray[nIndex2][k] = nTemp[0][k];
+    }
 }
 
 // Function to perform Selection Sort
-void selectedScoreSort(unsigned int arr[], unsigned int n){
+void selectedNameScoreSort(unsigned int sArr[], unsigned int n){
 	unsigned int maxScore;
 
 	// One by one move boundary of unsorted subarray
@@ -24,11 +39,14 @@ void selectedScoreSort(unsigned int arr[], unsigned int n){
 		// Find the minimum di in unsorted array
 		maxScore = i;
 		for (j = i + 1; j < n; j++){
-			if (arr[j] > arr[maxScore]){
+			if (sArr[j] > sArr[maxScore]){
 				maxScore = j;
                 // Swap the found minimum element
                 // with the first element
-                swapScores(&arr[maxScore], &arr[i]);
+                swapScores(&sArr[maxScore], &sArr[i]);
+                swapNames(maxScore, i);
+                betterDelay(100);
+                printf("namedislayed");
             }
             //doesn't sort if it returns and breaks for loop of sorting
             //else return;
@@ -37,13 +55,14 @@ void selectedScoreSort(unsigned int arr[], unsigned int n){
 }
 
 // Driver code
-void sortScores(){
+void sortNameScores(){
     ENABLE_RAM_MBC1;
     SWITCH_RAM_MBC1(0);
 
 	unsigned int n = sizeof(hiScores) / sizeof(hiScores[0]);
+    //unsigned int m = sizeof(namesArray) / sizeof(namesArray[0][8]);
 
-	selectedScoreSort(hiScores, n);
+	selectedNameScoreSort(hiScores, n);
 }
 
 //end copied sorting algorithm

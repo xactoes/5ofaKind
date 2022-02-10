@@ -49,7 +49,7 @@ unsigned int initRolls      = 3;   //DO NOT SET TO 240 OR HIGHER
 //misc variables
 unsigned int i;
 unsigned int j;
-//unsigned int k;
+unsigned int k;
 
 //initialized arrays with self-chosen NULL values
 //255 used as a NULL value

@@ -11,11 +11,19 @@
 #include "../res/backgroundData.h"
 #include "../res/maps.h"
 
-unsigned int scoreIndex;
+
+#include "../func/betterDelay.h"
+#include <stdio.h>
+
+
+unsigned int scoreIndex, nameIndex;
 
 void drawScores(unsigned int index){
+    nameIndex = 0;
+    sortNameScores();
     switch(index){
         case 0:
+            //score drawing
             len = bcd2text(&hiScore01, 0x10, buf);
             set_bkg_tiles(11, 4, len, 1, buf);
             len = bcd2text(&hiScore02, 0x10, buf);
@@ -28,6 +36,11 @@ void drawScores(unsigned int index){
             set_bkg_tiles(11, 12, len, 1, buf);
             len = bcd2text(&hiScore06, 0x10, buf);
             set_bkg_tiles(11, 14, len, 1, buf);
+            for(i = 7; i != -1; i--){
+                for(j = 0; j < 6; j++){
+                    set_bkg_tile_xy(i + 3, (j + 2) * 2, namesArray[j][i]);
+                }
+            }
             break;
         case 1:
             len = bcd2text(&hiScore07, 0x10, buf);
@@ -42,6 +55,11 @@ void drawScores(unsigned int index){
             set_bkg_tiles(11, 12, len, 1, buf);
             len = bcd2text(&hiScore12, 0x10, buf);
             set_bkg_tiles(11, 14, len, 1, buf);
+            for(i = 7; i != -1; i--){
+                for(j = 6; j < 12; j++){
+                    set_bkg_tile_xy(i + 3, (j + 2) * 2, namesArray[j][i]);
+                }
+            }
             break;
         case 2:
             len = bcd2text(&hiScore13, 0x10, buf);
@@ -56,6 +74,11 @@ void drawScores(unsigned int index){
             set_bkg_tiles(11, 12, len, 1, buf);
             len = bcd2text(&hiScore18, 0x10, buf);
             set_bkg_tiles(11, 14, len, 1, buf);
+            for(i = 7; i != -1; i--){
+                for(j = 12; j < 18; j++){
+                    set_bkg_tile_xy(i + 3, (j + 2) * 2, namesArray[j][i]);
+                }
+            }
             break;
         case 3:
             len = bcd2text(&hiScore19, 0x10, buf);
@@ -70,6 +93,11 @@ void drawScores(unsigned int index){
             set_bkg_tiles(11, 12, len, 1, buf);
             len = bcd2text(&hiScore24, 0x10, buf);
             set_bkg_tiles(11, 14, len, 1, buf);
+            for(i = 7; i != -1; i--){
+                for(j = 18; j < 24; j++){
+                    set_bkg_tile_xy(i + 3, (j + 2) * 2, namesArray[j][i]);
+                }
+            }
             break;
     }
     for(i = 11; i != 14; i++){
@@ -113,7 +141,7 @@ void highScores(){
    }
 
     //sort the scores
-    sortScores();
+    sortNameScores();
 
 
     //score array assignment
