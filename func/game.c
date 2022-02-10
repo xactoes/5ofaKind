@@ -11,6 +11,7 @@
 void game(){
     initGame();
     viewPlay = 1;
+    scoreDisplay();
     viewCard = 0;
     while(viewGame){
         while(viewPlay){

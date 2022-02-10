@@ -57,7 +57,7 @@ void drawScores(unsigned int index){
             set_bkg_tiles(11, 14, len, 1, buf);
             for(i = 7; i != -1; i--){
                 for(j = 6; j < 12; j++){
-                    set_bkg_tile_xy(i + 3, (j + 2) * 2, namesArray[j][i]);
+                    set_bkg_tile_xy(i + 3, (j - 6 + 2) * 2, namesArray[j][i]);
                 }
             }
             break;
@@ -76,7 +76,7 @@ void drawScores(unsigned int index){
             set_bkg_tiles(11, 14, len, 1, buf);
             for(i = 7; i != -1; i--){
                 for(j = 12; j < 18; j++){
-                    set_bkg_tile_xy(i + 3, (j + 2) * 2, namesArray[j][i]);
+                    set_bkg_tile_xy(i + 3, (j - 12 + 2) * 2, namesArray[j][i]);
                 }
             }
             break;
@@ -95,7 +95,7 @@ void drawScores(unsigned int index){
             set_bkg_tiles(11, 14, len, 1, buf);
             for(i = 7; i != -1; i--){
                 for(j = 18; j < 24; j++){
-                    set_bkg_tile_xy(i + 3, (j + 2) * 2, namesArray[j][i]);
+                    set_bkg_tile_xy(i + 3, (j - 18 + 2) * 2, namesArray[j][i]);
                 }
             }
             break;
@@ -129,7 +129,6 @@ void highScores(){
             else{
                 scoreTrue[i] = 0;
                 hiScores[i] = 0;
-
             }
         }
         else{

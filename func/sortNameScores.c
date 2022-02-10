@@ -5,11 +5,6 @@
 #include "../func/glob_vars.h"
 #include "../sram/save_vars.h"
 
-#include "../func/betterDelay.h"
-#include <stdio.h>
-
-
-
 // C program to sort the array in an
 // ascending order using selection sort
 // obtained from https://www.geeksforgeeks.org/c-program-to-sort-an-array-in-ascending-order/
@@ -45,8 +40,6 @@ void selectedNameScoreSort(unsigned int sArr[], unsigned int n){
                 // with the first element
                 swapScores(&sArr[maxScore], &sArr[i]);
                 swapNames(maxScore, i);
-                betterDelay(100);
-                printf("namedislayed");
             }
             //doesn't sort if it returns and breaks for loop of sorting
             //else return;
