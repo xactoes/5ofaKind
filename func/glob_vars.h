@@ -46,7 +46,7 @@ extern unsigned int initRolls;
 //misc variables
 extern unsigned int i;
 extern unsigned int j;
-//extern unsigned int k;
+extern unsigned int k;
 
 
 

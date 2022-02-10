@@ -42,14 +42,15 @@ void endScreen(){
     SWITCH_RAM_MBC1(0);
 
     for(i = 7; i != -1; i--){
+        namesArray[24][i] = currentName[i];
         // i + 2 aligns it to the right by going from 7+2= 9 first, then back to 8, 7, and so on
-        set_bkg_tile_xy(i + 5, 6, currentName[i]);
+        set_bkg_tile_xy(i + 5, 6, namesArray[24][i]);
     }
 
 
     if(scoreSaved == 0){
         endScore();
-        sortScores();
+        sortNameScores();
     }
 
 
