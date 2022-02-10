@@ -10,6 +10,15 @@ You can alternatively build it with the makefile if you so choose. I don't know 
 
 That said, if you do test it, feel free to contact me about bugs and I'll try to fix them.
 
+![5-of-a-Kind-0 90 00-220210-112929](https://user-images.githubusercontent.com/97451908/153441723-9ea8c3f8-b52f-4178-9a71-521e3ada924c.png)
+![5-of-a-Kind-0 90 00-220210-112950](https://user-images.githubusercontent.com/97451908/153441751-7ec6640f-1856-415f-800c-9dc5b77d8c10.png)
+![5-of-a-Kind-0 90 00-220210-112955](https://user-images.githubusercontent.com/97451908/153441754-a6427cda-97a2-4683-94e6-242cc19db0cc.png)
+![5-of-a-Kind-0 90 00-220210-113115](https://user-images.githubusercontent.com/97451908/153441770-bccd0bf8-4a00-4a07-9b43-17529904c87b.png)
+![5-of-a-Kind-0 90 00-220210-113249](https://user-images.githubusercontent.com/97451908/153441775-4c1e5aa1-1564-4f1e-aa70-484a6205230f.png)
+![5-of-a-Kind-0 90 00-220210-113258](https://user-images.githubusercontent.com/97451908/153441777-b1935b11-33ce-4622-bbf3-f6335090afec.png)
+![5-of-a-Kind-0 90 00-220210-113419](https://user-images.githubusercontent.com/97451908/153441790-b24aeaba-dc22-48f1-86ee-7a47fdb962a7.png)
+![5-of-a-Kind-0 90 00-220210-113421](https://user-images.githubusercontent.com/97451908/153441791-8e826bde-22d6-4a98-9d00-4067d2f79fd4.png)
+
 MISSING FEATURES:
 * ~~splash screen (no splash will be done, title screen is good enough for what the splash was meant to accomplish)~~
 * ~~title screen~~
@@ -21,12 +30,3 @@ MISSING FEATURES:
 * background music
 * ~~player name entry up to 8 characters~~
 * potential other features that are implemented but borked and I haven't realized yet
-
-![5-of-a-Kind-0 90 00-220210-112929](https://user-images.githubusercontent.com/97451908/153441723-9ea8c3f8-b52f-4178-9a71-521e3ada924c.png)
-![5-of-a-Kind-0 90 00-220210-112950](https://user-images.githubusercontent.com/97451908/153441751-7ec6640f-1856-415f-800c-9dc5b77d8c10.png)
-![5-of-a-Kind-0 90 00-220210-112955](https://user-images.githubusercontent.com/97451908/153441754-a6427cda-97a2-4683-94e6-242cc19db0cc.png)
-![5-of-a-Kind-0 90 00-220210-113115](https://user-images.githubusercontent.com/97451908/153441770-bccd0bf8-4a00-4a07-9b43-17529904c87b.png)
-![5-of-a-Kind-0 90 00-220210-113249](https://user-images.githubusercontent.com/97451908/153441775-4c1e5aa1-1564-4f1e-aa70-484a6205230f.png)
-![5-of-a-Kind-0 90 00-220210-113258](https://user-images.githubusercontent.com/97451908/153441777-b1935b11-33ce-4622-bbf3-f6335090afec.png)
-![5-of-a-Kind-0 90 00-220210-113419](https://user-images.githubusercontent.com/97451908/153441790-b24aeaba-dc22-48f1-86ee-7a47fdb962a7.png)
-![5-of-a-Kind-0 90 00-220210-113421](https://user-images.githubusercontent.com/97451908/153441791-8e826bde-22d6-4a98-9d00-4067d2f79fd4.png)
