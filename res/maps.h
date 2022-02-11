@@ -12,6 +12,7 @@ extern const unsigned char scoreMap2[];
 extern const unsigned char scoreMap3[];
 extern const unsigned char scoreMap4[];
 
+extern const unsigned char linkTransferErrorMap[];
 
 extern const unsigned char optionsMap[];
 extern const unsigned char nameInputMap[];
