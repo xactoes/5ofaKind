@@ -7,6 +7,8 @@
 //functions
 #include "../func/betterDelay.h"
 #include "../func/logicGame.h"
+#include "../func/dice_tools.h"
+#include "../func/logicScore.h"
 
 #include <stdio.h>
 
@@ -18,12 +20,14 @@ void play(unsigned char map[]){
 
         //setup background
         for(i = 0; i != 36; i++){
-            if(quickSwitch == 0){
+            if(bonusFail == 0){
+                if(quickSwitch == 0){
                 betterDelay(1);
-            }
-            scroll_bkg(0, -4);
-            if(i == 10){
-                set_bkg_submap(0, 0, 20, 4, map, 20);
+                }
+                scroll_bkg(0, -4);
+                if(i == 10){
+                    set_bkg_submap(0, 0, 20, 4, map, 20);
+                }
             }
         }
 
@@ -36,14 +40,17 @@ void play(unsigned char map[]){
             set_bkg_tile_xy(i + 2, 2, currentName[i]);
         }
 
-//         printf("%u", saveInitialized);
-//         betterDelay(100);
         DISABLE_RAM_MBC1;
 
         //BEGIN SPRITE SETUP
-        //move dice onto screen again
-        for(i = 0; i != 20; i++){
-            scroll_sprite(i, 0, 88);
+        if(bonusFail == 0){
+            //move dice onto screen again
+            for(i = 0; i != 20; i++){
+                scroll_sprite(i, 0, 88);
+            }
+        }
+        else{
+            bonusFail = 0;
         }
 
         //setup cursor position

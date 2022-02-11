@@ -41,7 +41,6 @@ void logicUpper(){
 	for(i = 0; i != 5; i++){
 		if(diceValues[i] == valueToCheck){
 			scoreBuf += diceValues[i];
-			//scoreBuf = 63;
 		}
 	}
 	scorecard[indexCursor - 8] = scoreBuf;
@@ -340,6 +339,7 @@ void bonusCheck(){
 
 void logicScorecard(){
     scoreBuf = 0;
+
 	//if scorecard hasn't changed this turn
 	if(scorecardChangeA == scorecardChangeB){
         //set the change tracking variables to 0 (still equal but now a known value)
@@ -419,11 +419,12 @@ void logicScorecard(){
             //prevent more rolling this turn
 			rollsLeft = 0;
             //switch back to play view
-            viewPlay = 1;
-            turnRequest = 1;
+            viewPlay = 0;
+            turnRequest = 0;
             viewCard = 0;
             viewSwitch = 1;
             viewGame = 0;
+            viewEnd = 1;
         }
         else{
             return;

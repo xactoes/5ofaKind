@@ -54,9 +54,11 @@ void initGame(){
     bcd_sub(&turnBCD, &turnBCD);
     bcd_sub(&rollBCD, &rollBCD);
 
+
+
     scorecardChangeA = 0;
     scorecardChangeB = 0;
-    bonusFail = 0;
+    //bonusFail = 0;
     endScreenScrolled = 0;
     scoreSaved = 0;
     bonusTally = 0;
@@ -64,7 +66,7 @@ void initGame(){
 
     SHOW_BKG;
 
-    //initialie dice sprites (0-19)
+    //initialize dice sprites (0-19)
     initDi(&Di1, 1);
     initDi(&Di2, 2);
     initDi(&Di3, 3);

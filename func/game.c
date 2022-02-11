@@ -1,6 +1,9 @@
+#include <gb/gb.h>
+
 #include "../func/initGame.h"
 #include "../func/glob_vars.h"
 #include "../func/logicGame.h"
+#include "../func/logicScore.h"
 #include "../func/cursorGame.h"
 #include "../res/maps.h"
 #include "../func/screens.h"
