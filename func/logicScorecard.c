@@ -419,11 +419,12 @@ void logicScorecard(){
             //prevent more rolling this turn
 			rollsLeft = 0;
             //switch back to play view
-            viewPlay = 1;
-            turnRequest = 1;
+            viewPlay = 0;
+            turnRequest = 0;
             viewCard = 0;
             viewSwitch = 1;
             viewGame = 0;
+            viewEnd = 1;
         }
         else{
             return;
