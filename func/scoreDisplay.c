@@ -287,7 +287,42 @@ void scoreDisplay(){
 	//card view score
 	if(viewCard){
 
-
+        //3ofakind cleanup
+        if(scorecard[3] == 0){
+            set_bkg_tile_xy(8, 28, 0x10); // blank
+            set_bkg_tile_xy(9, 28, 0x10); // blank
+        }
+        //4ofakind cleanup
+        if(scorecard[5] == 0){
+            set_bkg_tile_xy(8, 29, 0x10); // blank
+            set_bkg_tile_xy(9, 29, 0x10); // blank
+        }
+        //fullhouse cleanup
+        if(scorecard[5] == 0){
+            set_bkg_tile_xy(8, 30, 0x10); // blank
+            set_bkg_tile_xy(9, 30, 0x10); // blank
+        }
+        //smstrt cleanup
+        if(scorecard[11] == 0){
+            set_bkg_tile_xy(17, 28, 0x10); // 0
+            set_bkg_tile_xy(18, 28, 0x10); // 0
+        }
+        //lgstrt cleanup
+        if(scorecard[12] == 0){
+            set_bkg_tile_xy(17, 29, 0x10); // 0
+            set_bkg_tile_xy(18, 29, 0x10); // 0
+        }
+        //chance cleanup
+        if(scorecard[13] == 0){
+            set_bkg_tile_xy(17, 30, 0x10); // 0
+            set_bkg_tile_xy(18, 30, 0x10); // 0
+        }
+        //5 of a kind cleanup
+        if(scorecard[6] == 0){
+            set_bkg_tile_xy(17, 31, 0x10); // 0
+            set_bkg_tile_xy(18, 31, 0x10); // 0
+        }
+        //bonus cleanup
         if(bonusTally > 1){
             set_bkg_tile_xy(17, 32, 0x10); // 0
             set_bkg_tile_xy(18, 32, 0x10); // 0

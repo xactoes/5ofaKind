@@ -14,26 +14,23 @@ void rollDisplay(){
 	for(i = 0; i != 10; i++){
 		buf[i] = 0;
 	}
-	if(rollsLeft == 3 && turn != 1) return;
-	else{
-		uint2bcd(rollsLeft, &rollBCD);
-		len = bcd2text(&rollBCD, 0x10, buf);
-		set_bkg_tiles(11, 5, len, 1, buf);
+    uint2bcd(rollsLeft, &rollBCD);
+    len = bcd2text(&rollBCD, 0x10, buf);
+    set_bkg_tiles(11, 5, len, 1, buf);
 
-		//cleanup excess zeroes
-		set_bkg_tile_xy(11, 5, 0x2C); // L
-		set_bkg_tile_xy(12, 5, 0x45); // e
-		set_bkg_tile_xy(13, 5, 0x46); // f
-		set_bkg_tile_xy(14, 5, 0x54); // t
-		set_bkg_tile_xy(15, 5, 0x1A); // :
+    //cleanup excess zeroes
+    set_bkg_tile_xy(11, 5, 0x2C); // L
+    set_bkg_tile_xy(12, 5, 0x45); // e
+    set_bkg_tile_xy(13, 5, 0x46); // f
+    set_bkg_tile_xy(14, 5, 0x54); // t
+    set_bkg_tile_xy(15, 5, 0x1A); // :
 
-        if(rollsLeft < 100){
-            set_bkg_tile_xy(16, 5, 0x00); // blank
-        }
-        if(rollsLeft < 10){
-            set_bkg_tile_xy(17, 5, 0x00); // blank
-        }
-	}
+    if(rollsLeft < 100){
+        set_bkg_tile_xy(16, 5, 0x00); // blank
+    }
+    if(rollsLeft < 10){
+        set_bkg_tile_xy(17, 5, 0x00); // blank
+    }
 }
 
 

@@ -1,3 +1,5 @@
+#include <gb/gb.h>
+#include "../func/diFaces.h"
 #include "../func/dice_tools.h"
 #include "../func/diceStruct.h"
 #include "../func/glob_vars.h"
@@ -26,6 +28,10 @@ void initDi(struct DiceStruct * diSprite, unsigned int spot){
 	//moves di to screen
     moveDiceStruct(diSprite, diSprite->x, diSprite->y);
 
-    //calls function to setup face of di
-    diFaceSet(diSprite);
+
+	for(i = 0; i != 4; i++){
+		set_sprite_tile(diSprite->spriteID[i], diFace1[i]);
+	}
+	diSprite->face = diFaceBuf;
+	setDiceValues();
 }
