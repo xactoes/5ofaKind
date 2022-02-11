@@ -41,7 +41,6 @@ void logicUpper(){
 	for(i = 0; i != 5; i++){
 		if(diceValues[i] == valueToCheck){
 			scoreBuf += diceValues[i];
-			//scoreBuf = 63;
 		}
 	}
 	scorecard[indexCursor - 8] = scoreBuf;
@@ -340,6 +339,7 @@ void bonusCheck(){
 
 void logicScorecard(){
     scoreBuf = 0;
+
 	//if scorecard hasn't changed this turn
 	if(scorecardChangeA == scorecardChangeB){
         //set the change tracking variables to 0 (still equal but now a known value)

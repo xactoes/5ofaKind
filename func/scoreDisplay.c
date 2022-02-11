@@ -8,6 +8,8 @@
 #include "../func/betterDelay.h"
 #include "../func/logicScore.h"
 
+#include <stdio.h>
+
 
 void setScoreUpper(){
     unsigned int scorecardBuf = 0;
@@ -20,7 +22,7 @@ void setScoreUpper(){
 	}
 	if(indexCursor >= 8 && indexCursor <= 10 || indexCursor >= 16 && indexCursor <= 18){
 		if(scorecardSummed[indexCursor - 8] != scorecard[indexCursor - 8]){
-			if(scorecard[indexCursor - 8] != 255 && scorecard[indexCursor - 8] != 0){
+			if(scorecard[indexCursor - 8] != 255 /*&& scorecard[indexCursor - 8] != 0*/){
 				//ones twos threes
 				if(indexCursor <= 11){
 					//printf("upper check: %u\n", scorecard[i]);
@@ -52,7 +54,7 @@ void setScoreUpper(){
 						set_bkg_tile_xy(5, 22, 0x1A); // :
 						set_bkg_tile_xy(6, 22, 0x00); // blank
 						set_bkg_tile_xy(7, 22, 0x00); // blank
-						break;
+                        break;
 					//2's
 					case 9:
 						set_bkg_tiles(2, 23, len, 1, buf);
@@ -123,7 +125,6 @@ void setScoreUpper(){
                 }
             }
         }
-
     }
 
     if(scorecardBuf >= 63){
@@ -152,7 +153,7 @@ void setScoreLower(){
 	}
 	if(indexCursor <= 21){
 		if(scorecardSummed[indexCursor - 8] != scorecard[indexCursor - 8]){
-			if(scorecard[indexCursor - 8] != 255 && scorecard[indexCursor - 8] != 0){
+			if(scorecard[indexCursor - 8] != 255 /*&& scorecard[indexCursor - 8] != 0*/){
 				//3kind 4kind fhouse 5kind
 				if(indexCursor >= 11 && indexCursor <= 14){
 					//printf("upper check: %u\n", scorecard[i]);
@@ -242,6 +243,7 @@ void setScoreLower(){
 						set_bkg_tile_xy(12, 32, 0x55); // u
 						set_bkg_tile_xy(13, 32, 0x53); // s
 						set_bkg_tile_xy(14, 32, 0x1A); // :
+                        break;
                     //Chance
                     case 21:
 						set_bkg_tiles(11, 30, len, 1, buf);
@@ -284,6 +286,12 @@ void setScoreTotal(){
 void scoreDisplay(){
 	//card view score
 	if(viewCard){
+
+
+        if(bonusTally > 1){
+            set_bkg_tile_xy(17, 32, 0x10); // 0
+            set_bkg_tile_xy(18, 32, 0x10); // 0
+        }
 
 		//returns length in characters (always 8)
 		//0x10 is where 0 is in the tile viewer
