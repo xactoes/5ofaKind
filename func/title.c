@@ -84,6 +84,8 @@ void title(){
                         waitpadup();
                         break;
                     case 2:
+                        viewTitle = 0;
+                        viewLink = 1;
                         waitpadup();
                         break;
                     case 3:

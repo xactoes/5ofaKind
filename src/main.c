@@ -33,7 +33,7 @@ void main(){
 
         //transfer data screen
         if(viewLink){
-            //linkTransfer();
+            linkTransfer();
         }
 
         //options screen

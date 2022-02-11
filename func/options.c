@@ -8,6 +8,7 @@
 #include "../res/Sprites.h"
 #include "../res/backgroundData.h"
 #include "../res/maps.h"
+#include "../sram/eraseSaveData.h"
 
 void options(){
     //set cursor positions
@@ -74,6 +75,7 @@ void options(){
                         break;
                     case 2:
                         //resetDataPrompt();
+                        eraseSaveData();
                         waitpadup();
                         break;
                 }
