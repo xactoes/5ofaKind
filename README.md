@@ -20,13 +20,13 @@ That said, if you do test it, feel free to contact me about bugs and I'll try to
 ![5-of-a-Kind-0 90 00-220210-113421](https://user-images.githubusercontent.com/97451908/153441791-8e826bde-22d6-4a98-9d00-4067d2f79fd4.png)
 
 KNOWN BUGS:
-* if the last turn ended with bonus 5 of a kind and that the bonus 5 of a kind wasn't determined to be eligible for scoring,the end screen doesn't show correctly, and it doesn't transition into a new game properly
+* ~~if the last turn ended with bonus 5 of a kind and that the bonus 5 of a kind wasn't determined to be eligible for scoring,the end screen doesn't show correctly, and it doesn't transition into a new game properly~~
 * link transfer on title freezes the game
 MISSING FEATURES:
 * ~~splash screen (no splash will be done, title screen is good enough for what the splash was meant to accomplish)~~
 * ~~title screen~~
 * audio settings under options
-* reset savegame under options
+* ~~reset savegame under options~~
 * a screen saying link transfer isn't implemented yet if link transfer is selected
 * audio to play when dice are rolling
 * audio to play when dice cannot be rolled or hold and card are inaccessible
