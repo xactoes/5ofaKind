@@ -1,4 +1,4 @@
-# 5ofaKind
+# 5 of a Kind
 
 This is a gameboy clone of the game of yahtzee. It is not finished. It does play though but be aware there are missing features listed below the rest of this text.
 
