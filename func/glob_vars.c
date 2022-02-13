@@ -76,7 +76,7 @@ unsigned int scoreBuf;
 const unsigned int diSpacing = 24;
 const unsigned int diStartPosition[2] = {48, 72};
 const unsigned int rollPosY = 72;
-const unsigned int heldPosY = 88;
+const unsigned int heldPosY = 104;
 
 const unsigned char inputArray[120] = {
     //page 0

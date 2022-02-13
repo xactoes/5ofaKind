@@ -6,6 +6,7 @@
 
 
 void main(){
+
     DISPLAY_ON;
 
     //checks for name save data and loads it in
