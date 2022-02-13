@@ -24,13 +24,13 @@ That said, if you do test it, feel free to contact me about bugs and I'll try to
 
 KNOWN BUGS:
 * ~~if the last turn ended with bonus 5 of a kind and that the bonus 5 of a kind wasn't determined to be eligible for scoring,the end screen doesn't show correctly, and it doesn't transition into a new game properly~~
-* link transfer on title freezes the game
+* ~~link transfer on title freezes the game~~
 MISSING FEATURES:
 * ~~splash screen (no splash will be done, title screen is good enough for what the splash was meant to accomplish)~~
 * ~~title screen~~
 * audio settings under options
 * ~~reset savegame under options~~
-* a screen saying link transfer isn't implemented yet if link transfer is selected
+* ~~a screen saying link transfer isn't implemented yet if link transfer is selected~~
 * audio to play when dice are rolling
 * audio to play when dice cannot be rolled or hold and card are inaccessible
 * a start menu with info on how to play the game
