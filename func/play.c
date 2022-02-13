@@ -46,7 +46,7 @@ void play(unsigned char map[]){
         if(bonusFail == 0){
             //move dice onto screen again
             for(i = 0; i != 20; i++){
-                scroll_sprite(i, 0, 88);
+                scroll_sprite(i, 0, heldPosY);
             }
         }
         else{
