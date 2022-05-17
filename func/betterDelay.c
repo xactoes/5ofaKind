@@ -1,4 +1,4 @@
-#include </opt/gbdk/include/gb/gb.h>
+#include <gb/gb.h>
 
 void betterDelay(unsigned int loops){
 	unsigned int ii;
@@ -6,4 +6,3 @@ void betterDelay(unsigned int loops){
 		wait_vbl_done();
 	}
 }
-

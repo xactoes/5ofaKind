@@ -1,7 +1,6 @@
 #include "../func/glob_vars.h"
 #include "../func/logicScore.h"
 #include "../func/logicGame.h"
-#include <stdio.h>
 
 unsigned int rollsEnabled(){
     if(turn > 13){

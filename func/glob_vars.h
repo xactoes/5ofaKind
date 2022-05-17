@@ -1,7 +1,7 @@
 #ifndef GLOB_VARS_H
 #define GLOB_VARS_H
 
-#include </opt/gbdk/include/gbdk/bcd.h>
+#include <gbdk/bcd.h>
 
 //variables used to switch between screens
 extern unsigned char viewTitle;

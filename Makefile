@@ -1,14 +1,18 @@
 #
-# A Makefile that compiles all .c and .s files in "src" and "res" 
+# A Makefile that compiles all .c and .s files in "src" and "res"
 # subdirectories and places the output in a "obj" subdirectory
 #
 
-# If you move this project you can change the directory 
+# If you move this project you can change the directory
 # to match your GBDK root directory (ex: GBDK_HOME = "C:/GBDK/"
 
-GBDK_HOME = /opt/gbdk/
+GBDK_HOME = ../../gbdk/
 
-LCC = $(GBDK_HOME)bin/lcc 
+LCC = $(GBDK_HOME)bin/lcc
+
+EMU = ../../Emulicious/emulicious
+
+ROM_USAGE = ../../romusage
 
 # You can set flags for LCC here
 # For example, you can uncomment the line below to turn on debug output
@@ -25,7 +29,7 @@ LCC = $(GBDK_HOME)bin/lcc
 # -ya4 = Tells the linker we are using 4 RAM banks X 8K --- 32K of nv RAM
 # -yc means GBC compatible (not using that)
 
-LCCFLAGS = -Wl-m -Wl-yt0x1B -Wl-yo4 -Wl-ya4 -Wl-j
+LCCFLAGS = -Wl-m -Wl-yt0x1B -Wl-yo4 -Wl-ya4 -Wl-j -autobank -Wb-ext=.rel -Wb-v
 # -Wl-yc
 # -W[pfablim]arg  pass `arg' to the preprocessor, compiler, assembler, bankpack, linker, ihxcheck, or makebin
 # -Wa = pass assempler as an argument
@@ -49,7 +53,8 @@ ASMSOURCES  = $(foreach dir,$(SRCDIR), $(notdir $(wildcard $(dir)/*.s)))
 OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o) $(ASMSOURCES:%.s=$(OBJDIR)/%.o)
 
 all:	prepare $(BINS)
-	@emulicious $(BINS)
+	@$(ROM_USAGE) $(BINS)
+	@$(EMU) $(BINS)
 
 # needs Makefile
 compile.bat: Makefile
@@ -102,4 +107,3 @@ clean:
 # this is only if an above rule has a failure
 #	rm -f  *.gb *.ihx *.cdb *.adb *.noi *.map
 	rm -f  $(OBJDIR)/*.*
-

@@ -1,5 +1,5 @@
-#include </opt/gbdk/include/gb/gb.h>
-#include </opt/gbdk/include/rand.h>
+#include <gb/gb.h>
+#include <rand.h>
 
 //my random number generator for 0 - 255
 unsigned char myRandom(unsigned char maxNumber){

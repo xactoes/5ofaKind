@@ -4,7 +4,6 @@
 #include "../func/logicScore.h"
 #include "../res/maps.h"
 
-#include <stdio.h>
 #include "../func/betterDelay.h"
 
 //this function did something, idk what
