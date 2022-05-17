@@ -1,5 +1,5 @@
 #include <gb/gb.h>
-#include </opt/gbdk/include/gbdk/bcd.h>
+#include <gbdk/bcd.h>
 #include <string.h>
 
 //global variables

@@ -1,7 +1,5 @@
 #include <gb/gb.h>
 
-#include <stdio.h>
-
 #include "../func/glob_vars.h"
 #include "../func/dice_tools.h"
 #include "../func/logicGame.h"

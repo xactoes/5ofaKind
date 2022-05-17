@@ -1,5 +1,5 @@
-#include </opt/gbdk/include/gb/gb.h>
-#include </opt/gbdk/include/gbdk/bcd.h>
+#include <gb/gb.h>
+#include <gbdk/bcd.h>
 
 
 //global variables
@@ -7,9 +7,6 @@
 
 #include "../func/betterDelay.h"
 #include "../func/logicScore.h"
-
-#include <stdio.h>
-
 
 void setScoreUpper(){
     unsigned int scorecardBuf = 0;

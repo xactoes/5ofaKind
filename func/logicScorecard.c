@@ -1,4 +1,4 @@
-#include </opt/gbdk/include/gb/gb.h>
+#include <gb/gb.h>
 
 //global variables
 #include "../func/glob_vars.h"

@@ -1,4 +1,4 @@
-#include </opt/gbdk/include/gbdk/bcd.h>
+#include <gbdk/bcd.h>
 #include "../sram/save_vars.h"
 #include "../func/glob_vars.h"
 

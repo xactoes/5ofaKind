@@ -1,4 +1,4 @@
-#include </opt/gbdk/include/gbdk/bcd.h>
+#include <gbdk/bcd.h>
 
 #include "../func/diceStruct.h"
 
