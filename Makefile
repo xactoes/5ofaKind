@@ -41,16 +41,23 @@ SAVFLAGS = -Wf-ba0
 # You can set the name of the .gb ROM file here
 PROJECTNAME    = 5-of-a-Kind
 
-SRCDIR      = src
-FUNCDIR	    = func
-SRAMDIR	    = sram
-OBJDIR      = obj
-RESDIR      = res
-ROMDIR      = rom
-BINS	    = $(ROMDIR)/$(PROJECTNAME).gb
-CSOURCES    = $(foreach dir,$(SRCDIR), $(notdir $(wildcard $(dir)/*.c))) $(foreach dir, $(RESDIR), $(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(FUNCDIR), $(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SRAMDIR), $(notdir $(wildcard $(dir)/*.c)))
-ASMSOURCES  = $(foreach dir,$(SRCDIR), $(notdir $(wildcard $(dir)/*.s)))
-OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o) $(ASMSOURCES:%.s=$(OBJDIR)/%.o)
+DIR_SRC      = src
+
+DIR_BANK_0	= $(DIR_SRC)/bank_0
+DIR_BANK_1	= $(DIR_SRC)/bank_1
+DIR_BANK_2	= $(DIR_SRC)/bank_2
+DIR_BANK_3	= $(DIR_SRC)/bank_3
+
+DIR_SRAM	= sram
+
+DIR_BUILD   = .build
+DIR_ROM     = rom
+
+BINS	    = $(DIR_ROM)/$(PROJECTNAME).gb
+CSOURCES    = $(foreach dir,$(DIR_SRC), $(notdir $(wildcard $(dir)/*.c))) $(foreach dir, $(DIR_BANK_0), $(notdir $(wildcard $(dir)/*.c))) $(foreach dir, $(DIR_BANK_1), $(notdir $(wildcard $(dir)/*.c))) $(foreach dir, $(DIR_BANK_2), $(notdir $(wildcard $(dir)/*.c))) $(foreach dir, $(DIR_BANK_3), $(notdir $(wildcard $(dir)/*.c))) $(foreach dir, $(DIR_SRAM), $(notdir $(wildcard $(dir)/*.c)))
+
+ASMSOURCES  = $(foreach dir,$(DIR_SRC), $(notdir $(wildcard $(dir)/*.s)))
+OBJS       = $(CSOURCES:%.c=$(DIR_BUILD)/%.o) $(ASMSOURCES:%.s=$(DIR_BUILD)/%.o)
 
 all:	prepare $(BINS)
 	@$(ROM_USAGE) $(BINS)
@@ -67,28 +74,36 @@ compile.bat: Makefile
 
 # $@ means multiple targets are being passed
 # Compile .c files in "src/" to .o object files
-$(OBJDIR)/%.o:	$(SRCDIR)/%.c
+$(DIR_BUILD)/%.o:	$(DIR_SRC)/%.c
 	$(LCC) $(LCCFLAGS) -c -o $@ $<
 
 # Compile .c files in "res/" to .o object files
-$(OBJDIR)/%.o:	$(RESDIR)/%.c
+$(DIR_BUILD)/%.o:	$(DIR_BANK_0)/%.c
 	$(LCC) $(LCCFLAGS) -c -o $@ $<
 
 # Compile .c files in func/ to .o object files
-$(OBJDIR)/%.o:	$(FUNCDIR)/%.c
+$(DIR_BUILD)/%.o:	$(DIR_BANK_1)/%.c
+	$(LCC) $(LCCFLAGS) -c -o $@ $<
+
+# Compile .c files in func/ to .o object files
+$(DIR_BUILD)/%.o:	$(DIR_BANK_2)/%.c
+	$(LCC) $(LCCFLAGS) -c -o $@ $<
+
+# Compile .c files in func/ to .o object files
+$(DIR_BUILD)/%.o:	$(DIR_BANK_3)/%.c
 	$(LCC) $(LCCFLAGS) -c -o $@ $<
 
 # Compile .c files in "sram/" to .o object files
-$(OBJDIR)/%.o:	$(SRAMDIR)/%.c
+$(DIR_BUILD)/%.o:	$(DIR_SRAM)/%.c
 	$(LCC) $(SAVFLAGS) -c -o $@ $<
 
 # Compile .s assembly files in "src/" to .o object files
-$(OBJDIR)/%.o:	$(SRCDIR)/%.s
+$(DIR_BUILD)/%.o:	$(DIR_SRC)/%.s
 	$(LCC) $(LCCFLAGS) -c -o $@ $<
 
 # If needed, compile .c files in "src/" to .s assembly files
 # (not required if .c is compiled directly to .o)
-$(OBJDIR)/%.s:	$(SRCDIR)/%.c
+$(DIR_BUILD)/%.s:	$(DIR_SRC)/%.c
 	$(LCC) $(LCCFLAGS) -S -o $@ $<
 
 # Link the compiled object files into a .gb ROM file
@@ -97,8 +112,8 @@ $(BINS):	$(OBJS)
 
 prepare:
 #makes directory for storing .gbm
-	mkdir -p $(OBJDIR)
-	mkdir -p $(ROMDIR)
+	mkdir -p $(DIR_BUILD)
+	mkdir -p $(DIR_ROM)
 
 
 
@@ -106,4 +121,4 @@ clean:
 # removes all files made in order to make .gb
 # this is only if an above rule has a failure
 #	rm -f  *.gb *.ihx *.cdb *.adb *.noi *.map
-	rm -f  $(OBJDIR)/*.*
+	rm -f  $(DIR_BUILD)/*.*

@@ -1,1 +1,1 @@
-extern void eraseSaveData();
+// extern void eraseSaveData();
