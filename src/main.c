@@ -1,15 +1,17 @@
 #include <gb/gb.h>
 #include <stdio.h>
-//
-// #include "../func/screens.h"
-// #include "../func/save_tools.h"
-// #include "../func/glob_vars.h"
+
+#include "./bank_0/global_defines.h"
+#include "./bank_1/dice.h"
 
 
 void main(){
     DISPLAY_ON;
+    SHOW_BKG;
+    SHOW_SPRITES;
 
-    // SETUP DICE
+    printf("%u\n", dice[0].face);
+    printf("%u\n", dice[0].screenCoordinates.x);
 }
 
     // //checks for name save data and loads it in

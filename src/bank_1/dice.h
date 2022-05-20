@@ -8,12 +8,12 @@
 #include "../bank_1/struct_Sprite.h"
 #include "../bank_1/struct_Coordinates.h"
 
-struct Di
+extern struct Di
 {
     uint8   face;
     uint8   isHeld;
-    Sprite  sprite[4];
-    Coordinates screenCoordinates;
+    struct Sprite  sprite[4];
+    struct Coordinates screenCoordinates;
 } Di;
 
 extern struct Di dice[5];

@@ -2,13 +2,12 @@
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 4.1.6 #12539 (MINGW32)
 ;--------------------------------------------------------
-	.module move_cursor
+	.module initializeDiSprites
 	.optsdcc -mgbz80
 	
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
-	.globl _moveCursor
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -40,13 +39,6 @@
 ; code
 ;--------------------------------------------------------
 	.area _CODE
-;src/bank_0/move_cursor.c:3: void moveCursor(){
-;	---------------------------------
-; Function moveCursor
-; ---------------------------------
-_moveCursor::
-;src/bank_0/move_cursor.c:5: }
-	ret
 	.area _CODE
 	.area _INITIALIZER
 	.area _CABS (ABS)
