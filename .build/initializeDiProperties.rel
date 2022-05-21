@@ -1,8 +1,16 @@
 XL3
-H 9 areas 1 global symbols
+H A areas B global symbols
 M initializeDiProperties
 O -mgbz80
+S _assignDiFace Ref000000
+S b_initializeDiSprites Ref000000
+S b_initializeDiProperties Def000001
 S .__.ABS. Def000000
+S b_assignDiFace Ref000000
+S ___bank_initializeDiProperties Def000001
+S _initializeDiSprites Ref000000
+S ___sdcc_bcall_ehl Ref000000
+S _dice Ref000000
 A _CODE size 0 flags 0 addr 0
 A _DATA size 0 flags 0 addr 0
 A _INITIALIZED size 0 flags 0 addr 0
@@ -10,5 +18,22 @@ A _DABS size 0 flags 8 addr 0
 A _HOME size 0 flags 0 addr 0
 A _GSINIT size 0 flags 0 addr 0
 A _GSFINAL size 0 flags 0 addr 0
+A _CODE_1 size 32 flags 0 addr 0
+S _initializeDiProperties Def000000
+S ___func_initializeDiProperties Def000000
 A _INITIALIZER size 0 flags 0 addr 0
 A _CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 07 00
+T 00 00 00
+R 00 00 07 00
+T 00 00 00 F8 06 7E F5 33 1E 00 00 00 21 00 00 CD
+R 00 00 07 00 0B 09 01 00 02 0D 06 00
+T 0B 00 00 00 00 33 F8 06 7E F5 33 1E 00 00 00 21
+R 00 00 07 00 02 03 07 00 0B 0C 04 00
+T 16 00 00 00 00 CD 00 00 33 F8 06 4E 06 00 69 60
+R 00 00 07 00 02 03 00 00 02 06 07 00
+T 23 00 00 29 09 29 09 29 09 29 01 00 00 09 23 36
+R 00 00 07 00 02 0B 08 00
+T 30 00 00 00 C9
+R 00 00 07 00

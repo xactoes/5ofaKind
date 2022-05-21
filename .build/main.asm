@@ -9,6 +9,8 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _main
+	.globl b_initializeDiProperties
+	.globl _initializeDiProperties
 	.globl _printf
 ;--------------------------------------------------------
 ; special function registers
@@ -41,41 +43,63 @@
 ; code
 ;--------------------------------------------------------
 	.area _CODE
-;src/main.c:8: void main(){
+;src/main.c:11: void main(){
 ;	---------------------------------
 ; Function main
 ; ---------------------------------
 _main::
-;src/main.c:9: DISPLAY_ON;
+;src/main.c:12: DISPLAY_ON;
 	ldh	a, (_LCDC_REG + 0)
 	or	a, #0x80
 	ldh	(_LCDC_REG + 0), a
-;src/main.c:10: SHOW_BKG;
+;src/main.c:13: SHOW_BKG;
 	ldh	a, (_LCDC_REG + 0)
 	or	a, #0x01
 	ldh	(_LCDC_REG + 0), a
-;src/main.c:11: SHOW_SPRITES;
+;src/main.c:14: SHOW_SPRITES;
 	ldh	a, (_LCDC_REG + 0)
 	or	a, #0x02
 	ldh	(_LCDC_REG + 0), a
-;src/main.c:13: printf("%u\n", dice[0].face);
-	ld	a, (#_dice + 0)
-	ld	c, a
+;src/main.c:22: initializeDiProperties(0);
+	xor	a, a
+	push	af
+	inc	sp
+	ld	e, #b_initializeDiProperties
+	ld	hl, #_initializeDiProperties
+	call	___sdcc_bcall_ehl
+	inc	sp
+;src/main.c:24: for(uint8 i = 0; i != DICE_COUNT; i++)
+	ld	c, #0x00
+00103$:
+	ld	a, c
+	sub	a, #0x05
+	ret	Z
+;src/main.c:26: printf("%u\n", dice[i].face);
 	ld	b, #0x00
+	ld	l, c
+	ld	h, b
+	add	hl, hl
+	add	hl, bc
+	add	hl, hl
+	add	hl, bc
+	add	hl, hl
+	add	hl, bc
+	add	hl, hl
+	ld	de, #_dice
+	add	hl, de
+	ld	e, (hl)
+	ld	d, #0x00
 	push	bc
-	ld	de, #___str_0
-	push	de
-	call	_printf
-	add	sp, #4
-;src/main.c:14: printf("%u\n", dice[0].sprite);
-	ld	de, #(_dice + 2)
 	push	de
 	ld	de, #___str_0
 	push	de
 	call	_printf
 	add	sp, #4
-;src/main.c:15: }
-	ret
+	pop	bc
+;src/main.c:24: for(uint8 i = 0; i != DICE_COUNT; i++)
+	inc	c
+;src/main.c:30: }
+	jr	00103$
 ___str_0:
 	.ascii "%u"
 	.db 0x0a

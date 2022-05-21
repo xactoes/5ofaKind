@@ -7,7 +7,19 @@ Symbol Table
     .__.ABS.                                                    =  000000 G
     .__.CPU.                                                    =  000000 L
     .__.H$L.                                                    =  000000 L
+    ___bank_Coordinates                                         =  000001 G
+    ___bank_Di                                                  =  000001 G
+    ___bank_Sprite                                              =  000001 G
+    ___bank_dice                                                =  000001 G
+  7 ___func_Coordinates                                            000000 GR
+  7 ___func_Di                                                     000000 GR
+  7 ___func_Sprite                                                 000000 GR
+  7 ___func_dice                                                   000000 GR
   1 _dice                                                          000000 GR
+    b___func_Coordinates                                        =  000001 L
+    b___func_Di                                                 =  000001 L
+    b___func_Sprite                                             =  000001 L
+    b___func_dice                                               =  000001 L
 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
@@ -22,6 +34,7 @@ Area Table
    4 _HOME                                      size      0   flags    0
    5 _GSINIT                                    size      0   flags    0
    6 _GSFINAL                                   size      0   flags    0
-   7 _INITIALIZER                               size      0   flags    0
-   8 _CABS                                      size      0   flags    8
+   7 _CODE_1                                    size      0   flags    0
+   8 _INITIALIZER                               size      0   flags    0
+   9 _CABS                                      size      0   flags    8
 

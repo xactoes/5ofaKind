@@ -10,12 +10,23 @@
 
 extern struct Di
 {
-    uint8   face;
-    uint8   isHeld;
-    struct Sprite  sprite[4];
-    struct Coordinates screenCoordinates;
+    uint8               face;
+    uint8               isHeld;
+    struct Sprite       sprite[4];
+    struct Coordinates  screenCoordinates;
 } Di;
 
 extern struct Di dice[5];
+BANKREF_EXTERN(dice)
+
+extern void initializeDiProperties(uint8) BANKED;
+BANKREF_EXTERN(initializeDiProperties)
+
+extern void initializeDiSprites(uint8) BANKED;
+BANKREF_EXTERN(initializeDiSprites)
+
+extern void assignDiFace(uint8) BANKED;
+BANKREF_EXTERN(assignDiFace)
+
 
 #endif

@@ -8,17 +8,20 @@ Symbol Table
     .__.CPU.                                                    =  000000 L
     .__.H$L.                                                    =  000000 L
     _LCDC_REG                                                      ****** GX
-  0 ___str_0                                                       000030 R
+    ___sdcc_bcall_ehl                                              ****** GX
+  0 ___str_0                                                       000045 R
     _dice                                                          ****** GX
+    _initializeDiProperties                                        ****** GX
   0 _main                                                          000000 GR
     _printf                                                        ****** GX
+    b_initializeDiProperties                                       ****** GX
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
 Hexadecimal [24-Bits]
 
 Area Table
 
-   0 _CODE                                      size     34   flags    0
+   0 _CODE                                      size     49   flags    0
    1 _DATA                                      size      0   flags    0
    2 _INITIALIZED                               size      0   flags    0
    3 _DABS                                      size      0   flags    8

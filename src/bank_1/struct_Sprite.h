@@ -13,5 +13,6 @@ extern struct Sprite
     uint8   isVisible;
     struct Coordinates screenCoordinates;
 };
+BANKREF_EXTERN(Sprite)
 
 #endif

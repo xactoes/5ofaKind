@@ -10,5 +10,6 @@ extern struct Coordinates
     uint16 x;
     uint16 y;
 };
+BANKREF_EXTERN(Coordinates)
 
 #endif
