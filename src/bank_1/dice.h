@@ -14,7 +14,7 @@ extern struct Di
     uint8               isHeld;
     struct Sprite       sprite[4];
     struct Coordinates  screenCoordinates;
-} Di;
+};
 
 extern struct Di dice[5];
 BANKREF_EXTERN(dice)
@@ -28,5 +28,7 @@ BANKREF_EXTERN(initializeDiSprites)
 extern void assignDiFace(uint8) BANKED;
 BANKREF_EXTERN(assignDiFace)
 
+extern void diSpriteFlip() BANKED;
+BANKREF_EXTERN(diSpriteFlip)
 
 #endif

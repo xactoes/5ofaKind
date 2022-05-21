@@ -7,9 +7,11 @@
 BANKREF(initializeDiProperties)
 void initializeDiProperties(uint8 diPosition) BANKED
 {
-    initializeDiSprites(diPosition);
-
     assignDiFace(diPosition);
 
     dice[diPosition].isHeld = 0;
+
+    initializeDiSprites(diPosition);
+
+    diSpriteFlip();
 }

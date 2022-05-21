@@ -15,5 +15,7 @@ typedef long long       int64;
 #define DI_SPRITE_COUNT     4
 #define DI_X				20
 #define DI_Y				20
+#define DI_SPRITE_OFFSET	8
+#define DI_SPACE			32
 
 #endif

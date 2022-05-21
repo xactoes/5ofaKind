@@ -7,7 +7,6 @@
 
 #include "./bank_1/dice.h"
 
-
 void main(){
     DISPLAY_ON;
     SHOW_BKG;
@@ -19,47 +18,15 @@ void main(){
     //     vblDelay(10);
     // }
 
-    initializeDiProperties(0);
-
     for(uint8 i = 0; i != DICE_COUNT; i++)
     {
-        printf("%u\n", dice[i].face);
+        initializeDiProperties(i);
+
+        for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
+        {
+            printf("%u ", dice[i].sprite[j].screenCoordinates.x);
+            printf("%u\n", dice[i].sprite[j].screenCoordinates.y);
+            vblDelay(30);
+        }
     }
-
-    //printf("%u\n", dice[0].screenCoordinates.x);
 }
-
-    // //checks for name save data and loads it in
-    // checkName();
-    // checkScore();
-    //
-    //
-    // viewTitle = 1;
-    //
-    // while(1){
-    //     //title screen
-    //     if(viewTitle){
-    //         title();
-    //     }
-    //
-    //     //game being played
-    //     if(viewGame){
-    //         game();
-    //     }
-    //
-    //     //high score menu
-    //     if(viewScores){
-    //         highScores();
-    //     }
-    //
-    //     //transfer data screen
-    //     if(viewLink){
-    //         linkTransfer();
-    //     }
-    //
-    //     //options screen
-    //     if(viewOptions){
-    //         options();
-    //     }
-    // }
-// }
