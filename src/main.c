@@ -4,6 +4,7 @@
 #include "./bank_0/global_defines.h"
 #include "./bank_0/randomRange.h"
 #include "./bank_0/vblDelay.h"
+#include "./bank_0/loadSprites.h"
 
 #include "./bank_1/dice.h"
 
@@ -14,27 +15,26 @@ void main(){
     SHOW_BKG;
     SHOW_SPRITES;
 
-    // while(1)
-    // {
-    //     printf("%u\n", randomRange(1, 5));
-    //     vblDelay(10);
-    // }
+    loadSprites();
 
-    // for(uint8 i = 0; i != DICE_COUNT; i++)
-    // {
-    //     initializeDiProperties(i);
-    //
-    //     for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
-    //     {
-    //         printf("%u ", dice[i].sprite[j].screenCoordinates.x);
-    //         printf("%u\n", dice[i].sprite[j].screenCoordinates.y);
-    //         vblDelay(30);
-    //     }
-    // }
+    for(uint8 i = 0; i != DICE_COUNT; i++)
+    {
+        initializeDiProperties(i);
+
+        assignDiSprites(i);
+
+        // for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
+        // {
+        //     printf("%u ", dice[i].sprite[j].screen.x);
+        //     printf("%u\n", dice[i].sprite[j].screen.y);
+        //     vblDelay(30);
+        // }
+    }
 
     // drawBackground(SCREEN_TITLE);
-    drawBackground(SCREEN_PLAY);
-    vblDelay(60);
-    drawBackground(SCREEN_CARD);
-    vblDelay(60);
+    // vblDelay(60);
+    // drawBackground(SCREEN_PLAY);
+    // vblDelay(60);
+    // drawBackground(SCREEN_CARD);
+    // vblDelay(60);
 }

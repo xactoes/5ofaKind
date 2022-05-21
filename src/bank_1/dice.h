@@ -13,11 +13,13 @@ extern struct Di
     uint8               face;
     uint8               isHeld;
     struct Sprite       sprite[4];
-    struct Coordinates  screenCoordinates;
+    struct Coordinates  screen;
 };
 
 extern struct Di dice[5];
 BANKREF_EXTERN(dice)
+
+// FUNCTIONS
 
 extern void initializeDiProperties(uint8) BANKED;
 BANKREF_EXTERN(initializeDiProperties)
@@ -30,5 +32,22 @@ BANKREF_EXTERN(assignDiFace)
 
 extern void diSpriteFlip() BANKED;
 BANKREF_EXTERN(diSpriteFlip)
+
+extern void assignDiSprites(uint8) BANKED;
+BANKREF_EXTERN(assignDiSprites)
+
+// DI FACE MAPS
+extern const uint8 diFace1[];
+BANKREF_EXTERN(diFace1)
+extern const uint8 diFace2[];
+BANKREF_EXTERN(diFace2)
+extern const uint8 diFace3[];
+BANKREF_EXTERN(diFace3)
+extern const uint8 diFace4[];
+BANKREF_EXTERN(diFace4)
+extern const uint8 diFace5[];
+BANKREF_EXTERN(diFace5)
+extern const uint8 diFace6[];
+BANKREF_EXTERN(diFace6)
 
 #endif

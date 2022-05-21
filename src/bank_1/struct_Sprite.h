@@ -11,7 +11,7 @@ extern struct Sprite
 {
     uint8   address;
     uint8   isVisible;
-    struct Coordinates screenCoordinates;
+    struct Coordinates screen;
 };
 BANKREF_EXTERN(Sprite)
 

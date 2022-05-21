@@ -27,20 +27,20 @@ void initializeDiSprites(uint8 diPosition) BANKED
 		switch(i)
 		{
 			case 0:
-				dice[diPosition].sprite[i].screenCoordinates.x = dix;
-				dice[diPosition].sprite[i].screenCoordinates.y = diy;
+				dice[diPosition].sprite[i].screen.x = dix;
+				dice[diPosition].sprite[i].screen.y = diy;
 				break;
 			case 1:
-				dice[diPosition].sprite[i].screenCoordinates.x = dix + DI_SPRITE_OFFSET;
-				dice[diPosition].sprite[i].screenCoordinates.y = diy;
+				dice[diPosition].sprite[i].screen.x = dix + DI_SPRITE_OFFSET;
+				dice[diPosition].sprite[i].screen.y = diy;
 				break;
 			case 2:
-				dice[diPosition].sprite[i].screenCoordinates.x = dix;
-				dice[diPosition].sprite[i].screenCoordinates.y = diy + DI_SPRITE_OFFSET;
+				dice[diPosition].sprite[i].screen.x = dix;
+				dice[diPosition].sprite[i].screen.y = diy + DI_SPRITE_OFFSET;
 				break;
 			case 3:
-				dice[diPosition].sprite[i].screenCoordinates.x = dix + DI_SPRITE_OFFSET;
-				dice[diPosition].sprite[i].screenCoordinates.y = diy + DI_SPRITE_OFFSET;
+				dice[diPosition].sprite[i].screen.x = dix + DI_SPRITE_OFFSET;
+				dice[diPosition].sprite[i].screen.y = diy + DI_SPRITE_OFFSET;
 				break;
 		}
     }

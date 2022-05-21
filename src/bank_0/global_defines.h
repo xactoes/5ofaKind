@@ -19,6 +19,8 @@ typedef long long       int64;
 #define DI_SPRITE_OFFSET	8
 #define DI_SPACE			32
 
+#define SPRITES_SIZE	8
+
 #define SCREEN_SPLASH		0
 #define SCREEN_TITLE		10
 #define SCREEN_PLAY			20
