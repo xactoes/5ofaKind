@@ -13,7 +13,6 @@ extern struct Di
     uint8               face;
     uint8               isHeld;
     struct Sprite       sprite[4];
-    struct Coordinates  screen;
 };
 
 extern struct Di dice[5];

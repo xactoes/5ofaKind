@@ -5,6 +5,9 @@
 #include "./bank_0/randomRange.h"
 #include "./bank_0/vblDelay.h"
 #include "./bank_0/loadSprites.h"
+#include "./bank_0/drawDi.h"
+#include "./bank_0/hideDi.h"
+#include "./bank_0/showDi.h"
 
 #include "./bank_1/dice.h"
 
@@ -17,11 +20,13 @@ void main(){
 
     loadSprites();
 
+
     for(uint8 i = 0; i != DICE_COUNT; i++)
     {
         initializeDiProperties(i);
 
         assignDiSprites(i);
+
 
         // for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
         // {
@@ -31,9 +36,30 @@ void main(){
         // }
     }
 
+    hideDi(3);
+    vblDelay(30);
+
+    drawDi(0);
+    vblDelay(30);
+    drawDi(1);
+    vblDelay(30);
+    drawDi(2);
+    vblDelay(30);
+    drawDi(3);
+    vblDelay(30);
+    drawDi(4);
+    vblDelay(30);
+
+    showDi(3);
+    vblDelay(30);
+    drawDi(3);
+    vblDelay(30);
+
+
+
     // drawBackground(SCREEN_TITLE);
     // vblDelay(60);
-    // drawBackground(SCREEN_PLAY);
+    drawBackground(SCREEN_PLAY);
     // vblDelay(60);
     // drawBackground(SCREEN_CARD);
     // vblDelay(60);

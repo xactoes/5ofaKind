@@ -14,12 +14,12 @@ typedef long long       int64;
 
 #define DICE_COUNT          5
 #define DI_SPRITE_COUNT     4
-#define DI_X				20
-#define DI_Y				20
+#define DI_X				48
+#define DI_Y				72
 #define DI_SPRITE_OFFSET	8
-#define DI_SPACE			32
+#define DI_SPACE			24
 
-#define SPRITES_SIZE	8
+#define SPRITES_SIZE		8
 
 #define SCREEN_SPLASH		0
 #define SCREEN_TITLE		10
