@@ -7,9 +7,7 @@
 #include "./bank_0/randomRange.h"
 #include "./bank_0/vblDelay.h"
 #include "./bank_0/loadSprites.h"
-#include "./bank_0/drawDi.h"
-#include "./bank_0/hideDi.h"
-#include "./bank_0/showDi.h"
+#include "./bank_0/dice_b0.h"
 
 #include "./bank_1/cursor.h"
 #include "./bank_1/dice.h"
@@ -38,15 +36,17 @@ void main(){
     {
         while(screen == SCREEN_TITLE)
         {
-            //
+            //drawBackground(SCREEN_TITLE);
         }
         while(screen == SCREEN_PLAY)
         {
+            drawBackground(SCREEN_PLAY);
             refreshDicePosition();
             moveCursorGame();
         }
         while(screen == SCREEN_CARD)
         {
+            drawBackground(SCREEN_CARD);
             moveCursorCard();
         }
     }

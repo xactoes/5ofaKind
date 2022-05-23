@@ -1,7 +1,7 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
-#include "../bank_0/hideDi.h"
+#include "../bank_0/dice_b0.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/dice.h"
 #include "../bank_2/drawBackground.h"
@@ -13,10 +13,7 @@ void moveCursorGameA() BANKED
 {
 	if(cursorGameY == ROW_SELECT){
 		if(cursorGameX == X_ROLL){
-			for(uint8 position = 0; position != DICE_COUNT; position++){
-				// ROLL DICE
-				//diceRoll(position);
-			}
+			rollDice();
 		}
 		else if(cursorGameX == X_HOLD){
 			// MOVE TO DI ROW
@@ -25,13 +22,7 @@ void moveCursorGameA() BANKED
 			drawCursor(SCREEN_PLAY);
 		}
 		else if(cursorGameX == X_CARD){
-			// SWITCH TO CARD VIEW
-			hideDiAll();
-			drawBackground(SCREEN_CARD);
-			move_sprite(ARROW_RIGHT, 0, 0);
-			move_sprite(ARROW_LEFT, 0, 0);
-			move_sprite(ARROW_UP, 0, 0);
-			HIDE_SPRITES;
+			moveCursorGameSelect();
 		}
 	}
 	else if(cursorGameY == ROW_DI){

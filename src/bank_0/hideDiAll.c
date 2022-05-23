@@ -1,6 +1,6 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
-#include "../bank_0/hideDi.h"
+#include "../bank_0/dice_b0.h"
 
 #pragma bank 0
 

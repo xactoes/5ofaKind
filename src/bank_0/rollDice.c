@@ -4,11 +4,11 @@
 
 #pragma bank 0
 
-BANKREF(showDiAll)
-void showDiAll() BANKED
+BANKREF(rollDice)
+void rollDice() BANKED
 {
 	for(uint8 position = 0; position != DICE_COUNT; position++)
 	{
-		showDi(position);
+		rollDi(position);
 	}
 }

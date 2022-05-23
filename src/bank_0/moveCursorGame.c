@@ -1,7 +1,7 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
-#include "../bank_0/hideDi.h"
+#include "../bank_0/dice_b0.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/dice.h"
 #include "../bank_2/drawBackground.h"
@@ -43,7 +43,6 @@ void moveCursorGame() BANKED
             // SWITCH TO CARD VIEW
             hideDiAll();
             screen = SCREEN_CARD;
-            drawBackground(SCREEN_CARD);
             move_sprite(ARROW_RIGHT, 0, 0);
             move_sprite(ARROW_LEFT, 0, 0);
             move_sprite(ARROW_UP, 0, 0);
