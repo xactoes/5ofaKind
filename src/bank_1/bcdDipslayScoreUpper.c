@@ -27,7 +27,6 @@ void bcdDisplayScoreUpper(uint8 index) BANKED{
 
 			len = bcd2text(&upperScoreBuf, 0x10, buf);
 
-			HIDE_BKG;
             switch(index){
         		//1's
         		case 0:
@@ -54,7 +53,6 @@ void bcdDisplayScoreUpper(uint8 index) BANKED{
         			set_bkg_tiles(17, 6, len-6, 1, buf+6);
         			break;
         	}
-			SHOW_BKG;
 		}
 	}
 }

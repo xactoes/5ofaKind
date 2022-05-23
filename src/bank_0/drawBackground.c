@@ -21,6 +21,7 @@ void drawBackground(uint8 screen) BANKED
 			break;
 		case SCREEN_CARD:
 			drawScreenCard();
+			SHOW_BKG;
 			if(!bcdCleaned)
 			{
 				bcdDisplayScoreUpper(cursorIndex);
