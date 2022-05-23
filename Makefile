@@ -29,7 +29,7 @@ ROM_USAGE = ../../romusage
 # -ya4 = Tells the linker we are using 4 RAM banks X 8K --- 32K of nv RAM
 # -yc means GBC compatible (not using that)
 
-LCCFLAGS = -Wl-m -Wl-yt0x1B -Wl-yo4 -Wl-ya4 -Wl-j -autobank -Wb-ext=.rel -Wb-v
+LCCFLAGS = -Wl-m -Wl-yt0x1B -Wl-yo2 -Wl-ya4 -Wl-j -autobank -Wb-ext=.rel -Wb-v
 # -Wl-yc
 # -W[pfablim]arg  pass `arg' to the preprocessor, compiler, assembler, bankpack, linker, ihxcheck, or makebin
 # -Wa = pass assempler as an argument

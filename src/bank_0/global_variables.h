@@ -11,6 +11,7 @@ extern uint8 scorecardInitialized;
 extern uint8 gameInitialized;
 extern uint8 turnInitialized;
 extern uint8 diceInitialized;
+extern uint8 bkgDrawn;
 
 // CURSOR POSITION
 extern uint8 cursorGameX;

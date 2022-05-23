@@ -10,6 +10,7 @@ void moveCursorCardBSelect() BANKED
 {
 	// SWITCH TO PLAY VIEW
 	screen = SCREEN_PLAY;
+	bkgDrawn = 0;
 	move_sprite(ARROW_RIGHT, 0, 0);
 	move_sprite(ARROW_LEFT, 0, 0);
 	move_sprite(ARROW_UP, 0, 0);

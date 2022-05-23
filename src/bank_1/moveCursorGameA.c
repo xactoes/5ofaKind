@@ -2,9 +2,9 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_0/dice_b0.h"
+#include "../bank_0/drawBackground.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/dice.h"
-#include "../bank_2/drawBackground.h"
 
 #pragma bank 1
 

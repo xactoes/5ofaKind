@@ -8,6 +8,7 @@ uint8 scorecardInitialized	= 0;
 uint8 gameInitialized		= 0;
 uint8 turnInitialized		= 0;
 uint8 diceInitialized 		= 0;
+uint8 bkgDrawn				= 0;
 
 // CURSOR POSITION
 uint8 cursorGameX			= 16;

@@ -8,11 +8,13 @@
 BANKREF(scoreUpper)
 void scoreUpper(uint8 index) BANKED{
     // CHECKS IF IT IS A VALID RANGE OF CHOICES ON SCORECARD
-    if(index >= 0 && index <= 5){
-        if(scorecard[index] == 255){
+    if(index >= 0 && index <= 5)
+    {
+        if(scorecard[index] == 255)
+        {
             scorecard[index] = (uint16) scoreUpperCalc(index + 1);
             // UPDATE LOCAL SCORE
-            bcdDisplayScoreUpper(index);
+            //bcdDisplayScoreUpper();
         }
     }
 

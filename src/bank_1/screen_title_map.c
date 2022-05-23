@@ -2,7 +2,7 @@
 
 #include "../bank_0/global_defines.h"
 
-#pragma bank 2
+#pragma bank 1
 
 BANKREF(titleMap)
 const uint8 titleMap[] = {

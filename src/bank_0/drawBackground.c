@@ -1,8 +1,8 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
-#include "../bank_2/drawScreens.h"
+#include "../bank_1/drawScreens.h"
 
-#pragma bank 2
+#pragma bank 0
 
 BANKREF(drawBackground)
 void drawBackground(uint8 screen) BANKED

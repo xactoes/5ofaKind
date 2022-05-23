@@ -1,7 +1,7 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 
-#pragma bank 2
+#pragma bank 1
 
 BANKREF(playMap)
 const uint8 playMap[] =
