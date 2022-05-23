@@ -5,10 +5,10 @@
 #pragma bank 0
 
 BANKREF(showDi)
-void showDi(uint8 diPosition) BANKED
+void showDi(uint8 position) BANKED
 {
 	for(uint8 num; num != DI_SPRITE_COUNT; num++)
 	{
-		dice[diPosition].sprite[num].isVisible = 1;
+		dice[position].sprite[num].isVisible = 1;
 	}
 }

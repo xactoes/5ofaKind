@@ -19,7 +19,6 @@ extern struct Di dice[5];
 BANKREF_EXTERN(dice)
 
 // FUNCTIONS
-
 extern void initializeDiProperties(uint8) BANKED;
 BANKREF_EXTERN(initializeDiProperties)
 
@@ -34,6 +33,9 @@ BANKREF_EXTERN(diSpriteFlip)
 
 extern void assignDiSprites(uint8) BANKED;
 BANKREF_EXTERN(assignDiSprites)
+
+extern void toggleDi(uint8, uint8) BANKED;
+BANKREF_EXTERN(toggleDi)
 
 // DI FACE MAPS
 extern const uint8 diFace1[];

@@ -15,51 +15,27 @@
 
 void main(){
     DISPLAY_ON;
-    SHOW_BKG;
-    SHOW_SPRITES;
 
     loadSprites();
 
+    drawBackground(SCREEN_PLAY);
 
-    for(uint8 i = 0; i != DICE_COUNT; i++)
+    for(uint8 di = 0; di != DICE_COUNT; di++)
     {
-        initializeDiProperties(i);
-
-        assignDiSprites(i);
-
-
-        // for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
-        // {
-        //     printf("%u ", dice[i].sprite[j].screen.x);
-        //     printf("%u\n", dice[i].sprite[j].screen.y);
-        //     vblDelay(30);
-        // }
+        initializeDiProperties(di);
+        drawDi(di);
     }
 
-    hideDi(3);
-    vblDelay(30);
-
-    drawDi(0);
-    vblDelay(30);
-    drawDi(1);
-    vblDelay(30);
-    drawDi(2);
-    vblDelay(30);
-    drawDi(3);
-    vblDelay(30);
-    drawDi(4);
-    vblDelay(30);
-
-    showDi(3);
-    vblDelay(30);
-    drawDi(3);
-    vblDelay(30);
-
-
+    SHOW_BKG;
+    SHOW_SPRITES;
+    
+    // vblDelay(60);
+    // toggleDi(1, 1);
+    // vblDelay(60);
+    // toggleDi(1, 0);
 
     // drawBackground(SCREEN_TITLE);
     // vblDelay(60);
-    drawBackground(SCREEN_PLAY);
     // vblDelay(60);
     // drawBackground(SCREEN_CARD);
     // vblDelay(60);

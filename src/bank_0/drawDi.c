@@ -5,17 +5,17 @@
 #pragma bank 0
 
 BANKREF(drawDi)
-void drawDi(uint8 diPosition) BANKED
+void drawDi(uint8 position) BANKED
 {
 	for(uint8 num; num != DI_SPRITE_COUNT; num++)
 	{
-		if(dice[diPosition].sprite[num].isVisible)
+		if(dice[position].sprite[num].isVisible)
 		{
-			move_sprite(dice[diPosition].sprite[num].address, dice[diPosition].sprite[num].screen.x, dice[diPosition].sprite[num].screen.y);
+			move_sprite(dice[position].sprite[num].address, dice[position].sprite[num].screen.x, dice[position].sprite[num].screen.y);
 		}
 		else
 		{
-			move_sprite(dice[diPosition].sprite[num].address, 0, 0);
+			move_sprite(dice[position].sprite[num].address, 0, 0);
 		}
 	}
 }

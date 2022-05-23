@@ -9,15 +9,15 @@
 #pragma bank 1
 
 BANKREF(assignDiFace)
-void assignDiFace(uint8 diPosition) BANKED
+void assignDiFace(uint8 position) BANKED
 {
     if(!diceInitialized)
     {
-        dice[diPosition].face = 1;
+        dice[position].face = 1;
     }
 
     else
     {
-        dice[diPosition].face = randomRange(1, 6);
+        dice[position].face = randomRange(1, 6);
     }
 }

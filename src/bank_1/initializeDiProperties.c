@@ -5,13 +5,14 @@
 #pragma bank 1
 
 BANKREF(initializeDiProperties)
-void initializeDiProperties(uint8 diPosition) BANKED
+void initializeDiProperties(uint8 position) BANKED
 {
-    assignDiFace(diPosition);
+    assignDiFace(position);
+    assignDiSprites(position);
 
-    dice[diPosition].isHeld = 0;
+    dice[position].isHeld = 0;
 
-    initializeDiSprites(diPosition);
+    initializeDiSprites(position);
 
     diSpriteFlip();
 }

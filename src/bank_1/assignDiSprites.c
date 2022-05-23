@@ -6,16 +6,16 @@
 #pragma bank 1
 
 BANKREF(assignDiSprites)
-void assignDiSprites(uint8 diPosition) BANKED
+void assignDiSprites(uint8 position) BANKED
 {
-	switch(dice[diPosition].face)
+	switch(dice[position].face)
 	{
 		case 1:
 			for(uint8 i = 0; i != DI_SPRITE_COUNT; i++)
 			{
 				for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
 				{
-					set_sprite_tile(dice[diPosition].sprite[j].address, diFace1[j]);
+					set_sprite_tile(dice[position].sprite[j].address, diFace1[j]);
 				}
 			}
 			break;
@@ -25,7 +25,7 @@ void assignDiSprites(uint8 diPosition) BANKED
 			{
 				for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
 				{
-					set_sprite_tile(dice[diPosition].sprite[j].address, diFace2[j]);
+					set_sprite_tile(dice[position].sprite[j].address, diFace2[j]);
 				}
 			}
 			break;
@@ -35,7 +35,7 @@ void assignDiSprites(uint8 diPosition) BANKED
 			{
 				for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
 				{
-					set_sprite_tile(dice[diPosition].sprite[j].address, diFace3[j]);
+					set_sprite_tile(dice[position].sprite[j].address, diFace3[j]);
 				}
 			}
 			break;
@@ -45,7 +45,7 @@ void assignDiSprites(uint8 diPosition) BANKED
 			{
 				for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
 				{
-					set_sprite_tile(dice[diPosition].sprite[j].address, diFace4[j]);
+					set_sprite_tile(dice[position].sprite[j].address, diFace4[j]);
 				}
 			}
 			break;
@@ -55,7 +55,7 @@ void assignDiSprites(uint8 diPosition) BANKED
 			{
 				for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
 				{
-					set_sprite_tile(dice[diPosition].sprite[j].address, diFace5[j]);
+					set_sprite_tile(dice[position].sprite[j].address, diFace5[j]);
 				}
 			}
 			break;
@@ -65,7 +65,7 @@ void assignDiSprites(uint8 diPosition) BANKED
 			{
 				for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
 				{
-					set_sprite_tile(dice[diPosition].sprite[j].address, diFace6[j]);
+					set_sprite_tile(dice[position].sprite[j].address, diFace6[j]);
 				}
 			}
 			break;

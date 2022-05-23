@@ -2,7 +2,7 @@
 //
 // #include "../bank_1/dice.h"
 //
-// uint8 determineDiFace(diPosition)
+// uint8 determineDiFace(position)
 // {
 //
 // }

@@ -7,4 +7,7 @@
 extern void hideDi(uint8) BANKED;
 BANKREF_EXTERN(hideDi)
 
+extern void hideDiAll() BANKED;
+BANKREF_EXTERN(hideDiAll)
+
 #endif
