@@ -15,6 +15,7 @@ void drawScreenCard() BANKED
 	{
 		set_bkg_tiles(0, 0, 20, 18, cardMap);
 		bkgDrawn = 1;
+		bcdCleaned = 0;
 	}
 	screen = SCREEN_CARD;
 }

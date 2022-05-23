@@ -26,12 +26,12 @@ uint8 cursorIndex			= 0;
 // SCORE
 uint16 scorecard[15];
 uint16 scorecardCompare[15];
+uint8 buf[10];
 
 // BCD
-
+BCD upperScore			= MAKE_BCD(00000000);
 BCD upperScoreBuf 		= MAKE_BCD(00000000);
 // BCD upperScoreBonus	= MAKE_BCD(00000000);
-// BCD upperScore		= MAKE_BCD(00000000);
 // BCD lowerScoreBCD 	= MAKE_BCD(00000000);
 // BCD lowerScoreBuf 	= MAKE_BCD(00000000);
 // BCD totalScoreBCD 	= MAKE_BCD(00000000);

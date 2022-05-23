@@ -4,27 +4,20 @@
 #include "../bank_0/global_variables.h"
 #include "../bank_1/score.h"
 
-
-#include <stdio.h>
-#include "../bank_0/vblDelay.h"
-
 #pragma bank 1
 
 BANKREF(bcdDisplayScoreUpper)
 void bcdDisplayScoreUpper(uint8 index) BANKED{
 	uint8 len = 0;
-    uint8 buf[10];
 
-    for(uint8 i = 0; i != 10; i++){
-        buf[i] = 0;
-    }
+	bufferClear();
 
-	for(uint8 index = 0; index != 6; index++){
-		if(scorecard[index] != 255){
+	for(uint8 index = 0; index != 6; index++)
+	{
+		if(scorecard[index] != 255)
+		{
 			scorecardCompare[index] = scorecard[index];
-
 			uint2bcd(scorecardCompare[index], &upperScoreBuf);
-
 			len = bcd2text(&upperScoreBuf, 0x10, buf);
 
             switch(index){
@@ -55,4 +48,5 @@ void bcdDisplayScoreUpper(uint8 index) BANKED{
         	}
 		}
 	}
+	bcdDisplayScoreUpperTotal();
 }

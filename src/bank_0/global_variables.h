@@ -29,8 +29,10 @@ extern uint8 cursorIndex;
 // SCORE
 extern uint16 scorecard[];
 extern uint16 scorecardCompare[];
+extern uint8 buf[];
 
 // BCD
+extern BCD upperScore;
 extern BCD upperScoreBuf;
 
 #endif
