@@ -18,7 +18,7 @@ void initializeDiSprites(uint8 position) BANKED
     {
 		// SETS OAM ADDRESS
 		spriteNumber = (4 * position) + i;
-        dice[position].sprite[i].address 		= spriteNumber;
+        dice[position].sprite[i].address = spriteNumber;
 
 		// MARKS WHETHER TO SHOW SPRITE
 		dice[position].sprite[i].isVisible	= 1;

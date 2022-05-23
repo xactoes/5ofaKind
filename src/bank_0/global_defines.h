@@ -24,9 +24,9 @@ typedef long long       int64;
 #define SPRITES_SIZE		8
 
 // CURSOR
-#define ARROW_RIGHT			5
-#define ARROW_LEFT			6
-#define ARROW_UP			7
+#define ARROW_RIGHT			20
+#define ARROW_LEFT			21
+#define ARROW_UP			22
 
 // SCREENS
 #define SCREEN_SPLASH		0

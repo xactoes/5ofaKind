@@ -6,20 +6,23 @@
 
 // Y
 #define ROW_SELECT 		144
-#define ROW_DI      	138
+#define ROW_DI      	136
 
 // X
 #define X_ROLL        	16
 #define X_HOLD        	64
 #define X_CARD        	112
-#define X_DI_ONE      	56
-#define X_DI_TWO      	80
-#define X_DI_THREE    	104
-#define X_DI_FOUR     	128
-#define X_DI_FIVE     	152
+#define X_DI_ONE      	48
+#define X_DI_TWO      	72
+#define X_DI_THREE    	96
+#define X_DI_FOUR     	120
+#define X_DI_FIVE     	144
 
 #define GAP_SELECT		48
 #define GAP_DI			24
+
+extern void initializeCursorSprites() BANKED;
+BANKREF_EXTERN(initializeCursorSprites)
 
 extern void drawCursor(uint8) BANKED;
 BANKREF_EXTERN(drawCursor)

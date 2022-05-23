@@ -26,7 +26,7 @@ void moveCursorGameA() BANKED
 		else if(cursorGameX == X_CARD){
 			// SWITCH TO CARD VIEW
 			hideDiAll();
-			screen = SCREEN_CARD;
+			//screen = SCREEN_CARD;
 			//spritesBkgLoad(SCREEN_CARD);
 			move_sprite(ARROW_RIGHT, 0, 0);
 			move_sprite(ARROW_LEFT, 0, 0);
@@ -37,23 +37,58 @@ void moveCursorGameA() BANKED
 	else if(cursorGameY == ROW_DI){
 		if(cursorGameX == X_DI_ONE){
 			// TOGGLE DI ONE
-			toggleDi(0, 1);
+			if(dice[0].isHeld == 0)
+			{
+				toggleDi(0, 1);
+			}
+			else
+			{
+				toggleDi(0, 0);
+			}
 		}
 		if(cursorGameX == X_DI_TWO){
 			// TOGGLE DI TWO
-			toggleDi(1, 1);
+			if(dice[1].isHeld == 0)
+			{
+				toggleDi(1, 1);
+			}
+			else
+			{
+				toggleDi(1, 0);
+			}
 		}
 		if(cursorGameX == X_DI_THREE){
 			// TOGGLE DI THREE
-			toggleDi(2, 1);
+			if(dice[2].isHeld == 0)
+			{
+				toggleDi(2, 1);
+			}
+			else
+			{
+				toggleDi(2, 0);
+			}
 		}
 		if(cursorGameX == X_DI_FOUR){
 			// TOGGLE DI FOUR
-			toggleDi(3, 1);
+			if(dice[3].isHeld == 0)
+			{
+				toggleDi(3, 1);
+			}
+			else
+			{
+				toggleDi(3, 0);
+			}
 		}
 		if(cursorGameX == X_DI_FIVE){
 			// TOGGLE DI FIVE
-			toggleDi(4, 1);
+			if(dice[4].isHeld == 0)
+			{
+				toggleDi(4, 1);
+			}
+			else
+			{
+				toggleDi(4, 0);
+			}
 		}
 	}
 }

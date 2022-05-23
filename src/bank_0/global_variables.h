@@ -6,6 +6,10 @@
 extern uint8 diceInitialized;
 extern uint8 cursorGameX;
 extern uint8 cursorGameY;
-extern uint8 screen;
+extern uint8 cursorCardX;
+extern uint8 cursorCardY;
+extern uint8 cursorTitleX;
+extern uint8 cursorTitleY;
+// extern uint8 screen;
 
 #endif

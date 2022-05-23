@@ -9,6 +9,7 @@
 #include "./bank_0/hideDi.h"
 #include "./bank_0/showDi.h"
 
+#include "./bank_1/cursor.h"
 #include "./bank_1/dice.h"
 
 #include "./bank_2/drawBackground.h"
@@ -18,25 +19,19 @@ void main(){
 
     loadSprites();
 
+    initializeCursorSprites();
+
     drawBackground(SCREEN_PLAY);
 
-    for(uint8 di = 0; di != DICE_COUNT; di++)
+    for(uint8 position = 0; position != DICE_COUNT; position++)
     {
-        initializeDiProperties(di);
-        drawDi(di);
+        initializeDiProperties(position);
+        drawDi(position);
     }
-
     SHOW_BKG;
     SHOW_SPRITES;
-    
-    // vblDelay(60);
-    // toggleDi(1, 1);
-    // vblDelay(60);
-    // toggleDi(1, 0);
 
-    // drawBackground(SCREEN_TITLE);
-    // vblDelay(60);
-    // vblDelay(60);
-    // drawBackground(SCREEN_CARD);
-    // vblDelay(60);
+    while(1){
+        moveCursorGame();
+    }
 }
