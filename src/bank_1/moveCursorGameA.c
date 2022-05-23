@@ -4,6 +4,7 @@
 #include "../bank_0/hideDi.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/dice.h"
+#include "../bank_2/drawBackground.h"
 
 #pragma bank 1
 
@@ -26,8 +27,7 @@ void moveCursorGameA() BANKED
 		else if(cursorGameX == X_CARD){
 			// SWITCH TO CARD VIEW
 			hideDiAll();
-			//screen = SCREEN_CARD;
-			//spritesBkgLoad(SCREEN_CARD);
+			drawBackground(SCREEN_CARD);
 			move_sprite(ARROW_RIGHT, 0, 0);
 			move_sprite(ARROW_LEFT, 0, 0);
 			move_sprite(ARROW_UP, 0, 0);

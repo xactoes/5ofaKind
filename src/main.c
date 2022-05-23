@@ -2,6 +2,8 @@
 #include <stdio.h>
 
 #include "./bank_0/global_defines.h"
+#include "./bank_0/global_variables.h"
+
 #include "./bank_0/randomRange.h"
 #include "./bank_0/vblDelay.h"
 #include "./bank_0/loadSprites.h"
@@ -31,7 +33,21 @@ void main(){
     SHOW_BKG;
     SHOW_SPRITES;
 
-    while(1){
-        moveCursorGame();
+    screen = SCREEN_PLAY;
+    while(1)
+    {
+        while(screen == SCREEN_TITLE)
+        {
+            //
+        }
+        while(screen == SCREEN_PLAY)
+        {
+            refreshDicePosition();
+            moveCursorGame();
+        }
+        while(screen == SCREEN_CARD)
+        {
+            moveCursorCard();
+        }
     }
 }

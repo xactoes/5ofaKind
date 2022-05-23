@@ -7,4 +7,7 @@
 extern void showDi(uint8) BANKED;
 BANKREF_EXTERN(showDi)
 
+extern void showDiAll() BANKED;
+BANKREF_EXTERN(showDiAll)
+
 #endif

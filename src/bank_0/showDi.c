@@ -10,5 +10,6 @@ void showDi(uint8 position) BANKED
 	for(uint8 num; num != DI_SPRITE_COUNT; num++)
 	{
 		dice[position].sprite[num].isVisible = 1;
+		move_sprite(dice[position].sprite[num].address, dice[position].sprite[num].screen.x, dice[position].sprite[num].screen.y);
 	}
 }

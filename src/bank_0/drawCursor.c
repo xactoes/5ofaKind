@@ -9,23 +9,18 @@ BANKREF(drawCursor)
 void drawCursor(uint8 screen) BANKED
 {
 	uint8 cursor1, cursor2, cursor3;
+	cursor1 = ARROW_RIGHT;
+	cursor2 = ARROW_LEFT;
+	cursor3 = ARROW_UP;
 
     switch(screen){
         // TITLE SCREEN
         case SCREEN_TITLE:
-            cursor1 = ARROW_RIGHT;
             move_sprite(cursor1, cursorTitleX, cursorTitleY);
             break;
 
         // GAME PLAY SCREEN
         case SCREEN_PLAY:
-            // PLAY OPTION SELECT
-            cursor1 = ARROW_RIGHT;
-            cursor2 = ARROW_LEFT;
-
-            // DI TOGGLE SELECT
-            cursor3 = ARROW_UP;
-
             // IF PLAY OPTION SELECTED
             if(cursorGameY == ROW_SELECT){
                 // HIDE ARROW UP
@@ -48,9 +43,6 @@ void drawCursor(uint8 screen) BANKED
 
         // SCORECARD SCREEN
         case SCREEN_CARD:
-            // SCORE OPTION SELECT
-            cursor1 = ARROW_RIGHT;
-
             // HIDE LEFT AND UP ARROWS
             move_sprite(cursor2, 0, 0);
             move_sprite(cursor3, 0, 0);
@@ -61,7 +53,6 @@ void drawCursor(uint8 screen) BANKED
 
         // FALLBACK TO TITLE SCREEN
         default:
-            cursor1 = ARROW_RIGHT;
             move_sprite(cursor1, cursorTitleX, cursorTitleY);
             break;
     }

@@ -1,5 +1,7 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
+#include "../bank_0/global_variables.h"
+#include "../bank_0/hideDi.h"
 #include "../bank_2/screens.h"
 
 #pragma bank 2
@@ -7,6 +9,8 @@
 BANKREF(drawScreenCard)
 void drawScreenCard() BANKED
 {
+	hideDiAll();
 	set_bkg_data(0, TILE_COUNT_GAME, gameData);
 	set_bkg_tiles(0, 0, 20, 18, cardMap);
+	screen = SCREEN_CARD;
 }

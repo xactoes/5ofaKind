@@ -2,9 +2,7 @@
 #define STRUCT_DI
 
 #include <gb/gb.h>
-
 #include "../bank_0/global_defines.h"
-
 #include "../bank_1/struct_Sprite.h"
 #include "../bank_1/struct_Coordinates.h"
 
@@ -36,6 +34,9 @@ BANKREF_EXTERN(assignDiSprites)
 
 extern void toggleDi(uint8, uint8) BANKED;
 BANKREF_EXTERN(toggleDi)
+
+extern void refreshDicePosition() BANKED;
+BANKREF_EXTERN(refreshDicePosition)
 
 // DI FACE MAPS
 extern const uint8 diFace1[];
