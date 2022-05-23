@@ -1,46 +1,53 @@
 #include <gb/gb.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 #include "./bank_0/global_defines.h"
 #include "./bank_0/global_variables.h"
 
-#include "./bank_0/randomRange.h"
-#include "./bank_0/vblDelay.h"
 #include "./bank_0/loadSprites.h"
+#include "./bank_0/init_b0.h"
 #include "./bank_0/dice_b0.h"
 
 #include "./bank_1/cursor.h"
 #include "./bank_1/dice.h"
-
 #include "./bank_2/drawBackground.h"
 
+#include "./bank_0/vblDelay.h"
+
 void main(){
-    DISPLAY_ON;
 
-    loadSprites();
-
-    initializeCursorSprites();
-
-    drawBackground(SCREEN_PLAY);
-
-    for(uint8 position = 0; position != DICE_COUNT; position++)
+    if(!bootInitialized)
     {
-        initializeDiProperties(position);
-        drawDi(position);
+        screen = SCREEN_TITLE;
+        loadSprites();
+        initializeCursorSprites();
+        bootInitialized = 1;
     }
-    SHOW_BKG;
+
+    DISPLAY_ON;
     SHOW_SPRITES;
 
-    screen = SCREEN_PLAY;
-    while(1)
+    while(bootInitialized)
     {
         while(screen == SCREEN_TITLE)
         {
-            //drawBackground(SCREEN_TITLE);
+            if(!titleInitialized)
+            {
+                initializeTitle();
+            }
+            drawBackground(SCREEN_TITLE);
+            moveCursorTitle();
+            SHOW_BKG;
         }
         while(screen == SCREEN_PLAY)
         {
+            if(!diceInitialized)
+            {
+                initializeDice();
+            }
             drawBackground(SCREEN_PLAY);
+            SHOW_BKG;
+
             refreshDicePosition();
             moveCursorGame();
         }

@@ -6,14 +6,14 @@
 #pragma bank 0
 
 BANKREF(drawCursor)
-void drawCursor(uint8 screen) BANKED
+void drawCursor(uint8 screenLocal) BANKED
 {
 	uint8 cursor1, cursor2, cursor3;
 	cursor1 = ARROW_RIGHT;
 	cursor2 = ARROW_LEFT;
 	cursor3 = ARROW_UP;
 
-    switch(screen){
+    switch(screenLocal){
         // TITLE SCREEN
         case SCREEN_TITLE:
             move_sprite(cursor1, cursorTitleX, cursorTitleY);

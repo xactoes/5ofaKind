@@ -3,6 +3,8 @@
 
 #include "../bank_0/global_defines.h"
 
+extern uint8 bootInitialized;
+extern uint8 titleInitialized;
 extern uint8 gameInitialized;
 extern uint8 turnInitialized;
 extern uint8 diceInitialized;

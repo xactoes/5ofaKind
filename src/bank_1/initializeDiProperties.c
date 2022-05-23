@@ -1,5 +1,4 @@
 #include <gb/gb.h>
-#include "../bank_0/global_variables.h"
 #include "../bank_1/dice.h"
 
 #pragma bank 1
@@ -15,6 +14,4 @@ void initializeDiProperties(uint8 position) BANKED
     initializeDiSprites(position);
 
     diSpriteFlip();
-
-    diceInitialized = 1;
 }

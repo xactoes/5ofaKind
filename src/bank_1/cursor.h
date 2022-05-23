@@ -4,6 +4,18 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 
+// Y - TITLE
+#define Y_PLAY			96
+#define Y_SCORES		104
+#define Y_LINK			112
+#define Y_OPTIONS		120
+
+// X - TITLE
+#define X_TITLE			48
+
+// GAP - TITLE
+#define GAP_Y_TITLE		8
+
 // Y - PLAY
 #define ROW_SELECT 		144
 #define ROW_DI      	136
@@ -59,6 +71,10 @@ BANKREF_EXTERN(initializeCursorSprites)
 
 extern void drawCursor(uint8) BANKED;
 BANKREF_EXTERN(drawCursor)
+
+// TITLE
+extern void moveCursorTitle() BANKED;
+BANKREF_EXTERN(moveCursorTitle)
 
 // PLAY
 extern void moveCursorGame() BANKED;
