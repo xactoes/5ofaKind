@@ -35,5 +35,7 @@ extern uint8 diceSorted[];
 // BCD
 extern BCD upperScore;
 extern BCD upperScoreBuf;
+extern BCD lowerScore;
+extern BCD lowerScoreBuf;
 
 #endif

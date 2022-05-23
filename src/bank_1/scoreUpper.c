@@ -15,17 +15,4 @@ void scoreUpper(uint8 index) BANKED{
             bcdDisplayScoreUpper();
         }
     }
-
-    // BEEP
-
-
-
-    // DRAW BONUS UPPER
-
-    // DRAW TOTAL UPPER
-
-    // DRAW GRAND TOTAL
-
-    // CLEAN UP BCD (REDRAW NECESSARY TEXT)
-    //displayCleanUpBCD(SCREEN_GAME_SCORECARD);
 }

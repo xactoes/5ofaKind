@@ -25,10 +25,11 @@ void drawBackground(uint8 screen) BANKED
 			if(!bcdCleaned)
 			{
 				bcdDisplayScoreUpper();
+				bcdDisplayScoreLower();
 				bcdCleaned = 1;
 				SHOW_BKG;
 			}
-			bcdCleanup();
+			//bcdCleanup();
 			break;
 		case SCREEN_END:
 			break;

@@ -7,6 +7,7 @@ BANKREF(scoreUpperCalc)
 uint8 scoreUpperCalc(uint8 index) BANKED
 {
     uint8 tempScore;
+    
     for(uint8 position = 0; position != 5; position++){
         if(dice[position].face == index){
             tempScore += dice[position].face;

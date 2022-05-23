@@ -16,6 +16,7 @@ uint8 scoreLowerCalc(uint8 index) BANKED
 			break;
 		// 4 of a Kind
 		case 7:
+			tempScore = fourOfaKind();
 			break;
 		// Full House
 		case 8:
@@ -31,6 +32,7 @@ uint8 scoreLowerCalc(uint8 index) BANKED
 			break;
 		// 5 of a Kind
 		case 12:
+			tempScore = fiveOfaKind();
 			break;
 		// 5 of a Kind Bonus
 		case 13:

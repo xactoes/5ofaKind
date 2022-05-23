@@ -27,8 +27,16 @@ void bcdDisplayScoreLower() BANKED
 				case 6:
 					set_bkg_tiles(8, 10, len-6, 1, buf+6);
 					break;
+				// 4 of a Kind
+				case 7:
+					set_bkg_tiles(8, 11, len-6, 1, buf+6);
+					break;
+				// 5 of a Kind
+				case 12:
+					set_bkg_tiles(17, 13, len-6, 1, buf+6);
+					break;
 			}
 		}
-		//bcdDisplayScoreLowerTotal();
+		bcdDisplayScoreLowerTotal();
 	}
 }
