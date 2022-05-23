@@ -17,10 +17,14 @@ BANKREF_EXTERN(scoreLowerCalc)
 extern uint8 threeOfaKind() BANKED;
 BANKREF_EXTERN(threeOfaKind)
 
-extern void bcdDisplayScoreUpper(uint8) BANKED;
+extern void bcdDisplayScoreUpper() BANKED;
 BANKREF_EXTERN(bcdDisplayScoreUpper)
 extern void bcdDisplayScoreUpperTotal() BANKED;
 BANKREF_EXTERN(bcdDisplayScoreUpperTotal)
+
+extern void bcdDisplayScoreLower() BANKED;
+BANKREF_EXTERN(bcdDisplayScoreLower)
+
 extern void bcdCleanup() BANKED;
 BANKREF_EXTERN(bcdCleanup)
 extern void bufferClear() BANKED;

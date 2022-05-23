@@ -7,7 +7,8 @@
 #pragma bank 1
 
 BANKREF(bcdDisplayScoreUpper)
-void bcdDisplayScoreUpper(uint8 index) BANKED{
+void bcdDisplayScoreUpper() BANKED
+{
 	uint8 len = 0;
 
 	bufferClear();
@@ -20,10 +21,11 @@ void bcdDisplayScoreUpper(uint8 index) BANKED{
 			uint2bcd(scorecardCompare[index], &upperScoreBuf);
 			len = bcd2text(&upperScoreBuf, 0x10, buf);
 
-            switch(index){
+            switch(index)
+			{
         		//1's
         		case 0:
-        			set_bkg_tiles(8, 4, len - 6, 1, buf+6);
+        			set_bkg_tiles(8, 4, len-6, 1, buf+6);
         			break;
         		//2's
         		case 1:

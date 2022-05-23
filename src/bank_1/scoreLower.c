@@ -12,7 +12,7 @@ void scoreLower(uint8 index) BANKED{
         if(scorecard[index] == 255){
             scorecard[index] = (uint16) scoreLowerCalc(index);
             // UPDATE LOCAL SCORE
-            //bcdDisplayScoreLower(index);
+            bcdDisplayScoreLower();
         }
     }
 }

@@ -16,7 +16,7 @@ void bcdDisplayScoreUpperTotal() BANKED
 
 	bcd_sub(&upperScore, &upperScore);
 
-	for(uint8 index = 0; index != 15; index++)
+	for(uint8 index = 0; index != 6; index++)
 	{
 		if(scorecard[index] != 255)
 		{
