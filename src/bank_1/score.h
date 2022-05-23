@@ -13,7 +13,7 @@ BANKREF_EXTERN(scoreUpperCalc)
 extern void bcdDisplayScoreUpper() BANKED;
 BANKREF_EXTERN(bcdDisplayScoreUpper)
 
-extern void bcdCleanup() BANKED;
-BANKREF_EXTERN(bcdCleanup)
+extern void bcdDrawScore(uint8, uint8, uint8) BANKED;
+BANKREF_EXTERN(bcdDrawScore)
 
 #endif
