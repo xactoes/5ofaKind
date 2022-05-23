@@ -36,4 +36,8 @@ typedef long long       int64;
 #define SCREEN_END			40
 #define SCREEN_CREDITS		50
 
+// SCORE
+#define SCORE_NULL			255
+#define SCORE_NULL_COMPARE	511
+
 #endif

@@ -101,7 +101,7 @@ extern void moveCursorCardUp() BANKED;
 BANKREF_EXTERN(moveCursorCardUp)
 extern void moveCursorCardDown() BANKED;
 BANKREF_EXTERN(moveCursorCardDown)
-extern void moveCursorCardA() BANKED;
+extern void moveCursorCardA(uint8) BANKED;
 BANKREF_EXTERN(moveCursorCardA)
 extern void moveCursorCardBSelect() BANKED;
 BANKREF_EXTERN(moveCursorCardBSelect)

@@ -21,6 +21,7 @@ void main(){
         screen = SCREEN_TITLE;
         loadSprites();
         initializeCursorSprites();
+        initializeScorecard();  // MOVE TO GAME INITIALIZE LATER
         bootInitialized = 1;
     }
 

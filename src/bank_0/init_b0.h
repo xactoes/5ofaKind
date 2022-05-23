@@ -9,4 +9,7 @@ BANKREF_EXTERN(initializeTitle)
 extern void initializeDice() BANKED;
 BANKREF_EXTERN(initializeDice)
 
+extern void initializeScorecard() BANKED;
+BANKREF_EXTERN(initializeScorecard)
+
 #endif

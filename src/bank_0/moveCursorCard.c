@@ -42,7 +42,7 @@ void moveCursorCard() BANKED
 			break;
 
         case J_A:
-			moveCursorCardA();
+			moveCursorCardA(cursorIndex);
 			waitpadup();
             break;
 
