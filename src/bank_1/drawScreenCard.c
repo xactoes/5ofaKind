@@ -19,6 +19,9 @@ void drawScreenCard() BANKED
 	bcdDisplayScoreUpper();
 =======
 	set_bkg_tiles(0, 0, 20, 18, cardMap);
+<<<<<<< HEAD:src/bank_1/drawScreenCard.c
+>>>>>>> parent of e3770f2 (bcd is started):src/bank_2/drawScreenCard.c
+=======
 >>>>>>> parent of e3770f2 (bcd is started):src/bank_2/drawScreenCard.c
 	screen = SCREEN_CARD;
 }

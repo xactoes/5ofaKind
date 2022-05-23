@@ -16,6 +16,7 @@ void bcdDisplayScoreUpper() BANKED{
 =======
 void bcdDisplayScoreUpper(uint8 index) BANKED{
     uint16 scorecardBuf = 0;
+<<<<<<< HEAD
 >>>>>>> parent of e3770f2 (bcd is started)
 	uint8 len = 0;
 
@@ -24,6 +25,13 @@ void bcdDisplayScoreUpper(uint8 index) BANKED{
 	{
         buf[i] = 0;
     }
+=======
+	uint8 len = 0;
+
+	// GIVES BCD(63) TO COMPARE WITH scorecardCompare[14]
+	BCD bonusCompare = MAKE_BCD(00000000);
+	uint2bcd(63, &bonusCompare);
+>>>>>>> parent of e3770f2 (bcd is started)
 
 	for(uint8 index = 0; index != 15; index++)
 	{
