@@ -38,6 +38,9 @@ BANKREF_EXTERN(toggleDi)
 extern void refreshDicePosition() BANKED;
 BANKREF_EXTERN(refreshDicePosition)
 
+extern void diceSort() BANKED;
+BANKREF_EXTERN(diceSort)
+
 // DI FACE MAPS
 extern const uint8 diFace1[];
 BANKREF_EXTERN(diFace1)

@@ -30,6 +30,7 @@ extern uint8 cursorIndex;
 extern uint16 scorecard[];
 extern uint16 scorecardCompare[];
 extern uint8 buf[];
+extern uint8 diceSorted[];
 
 // BCD
 extern BCD upperScore;

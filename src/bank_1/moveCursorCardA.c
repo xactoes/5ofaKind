@@ -10,4 +10,5 @@ BANKREF(moveCursorCardA)
 void moveCursorCardA(uint8 index) BANKED
 {
 	scoreUpper(index);
+	scoreLower(index);
 }

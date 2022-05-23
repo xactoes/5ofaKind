@@ -27,6 +27,7 @@ uint8 cursorIndex			= 0;
 uint16 scorecard[15];
 uint16 scorecardCompare[15];
 uint8 buf[10];
+uint8 diceSorted[5];
 
 // BCD
 BCD upperScore			= MAKE_BCD(00000000);
