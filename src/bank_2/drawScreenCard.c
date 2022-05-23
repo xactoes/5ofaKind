@@ -12,5 +12,6 @@ void drawScreenCard() BANKED
 	hideDiAll();
 	set_bkg_data(0, TILE_COUNT_GAME, gameData);
 	set_bkg_tiles(0, 0, 20, 18, cardMap);
+	//bcdCleanup();
 	screen = SCREEN_CARD;
 }

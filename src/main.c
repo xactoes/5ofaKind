@@ -1,5 +1,4 @@
 #include <gb/gb.h>
-//#include <stdio.h>
 
 #include "./bank_0/global_defines.h"
 #include "./bank_0/global_variables.h"
@@ -12,6 +11,8 @@
 #include "./bank_1/dice.h"
 #include "./bank_2/drawBackground.h"
 
+
+#include <stdio.h>
 #include "./bank_0/vblDelay.h"
 
 void main(){
