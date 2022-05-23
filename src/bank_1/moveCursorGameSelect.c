@@ -11,6 +11,7 @@ void moveCursorGameSelect() BANKED
 	// SWITCH TO CARD VIEW
 	hideDiAll();
 	screen = SCREEN_CARD;
+	bkgDrawn = 0;
 	move_sprite(ARROW_RIGHT, 0, 0);
 	move_sprite(ARROW_LEFT, 0, 0);
 	move_sprite(ARROW_UP, 0, 0);

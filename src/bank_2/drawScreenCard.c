@@ -11,7 +11,10 @@ void drawScreenCard() BANKED
 {
 	hideDiAll();
 	set_bkg_data(0, TILE_COUNT_GAME, gameData);
-	set_bkg_tiles(0, 0, 20, 18, cardMap);
-	//bcdCleanup();
+	if(!bkgDrawn)
+	{
+		set_bkg_tiles(0, 0, 20, 18, cardMap);
+		bkgDrawn = 1;
+	}
 	screen = SCREEN_CARD;
 }

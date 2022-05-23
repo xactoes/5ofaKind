@@ -1,8 +1,10 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
+#include "../bank_0/global_variables.h"
+#include "../bank_1/score.h"
 #include "../bank_2/drawScreens.h"
 
-#pragma bank 2
+#pragma bank 0
 
 BANKREF(drawBackground)
 void drawBackground(uint8 screen) BANKED
@@ -19,6 +21,12 @@ void drawBackground(uint8 screen) BANKED
 			break;
 		case SCREEN_CARD:
 			drawScreenCard();
+			if(!bcdCleaned)
+			{
+				bcdDisplayScoreUpper(cursorIndex);
+				bcdCleanup();
+				bcdCleaned = 1;
+			}
 			break;
 		case SCREEN_END:
 			break;

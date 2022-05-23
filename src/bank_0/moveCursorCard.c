@@ -2,9 +2,9 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_0/dice_b0.h"
+#include "../bank_0/drawBackground.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/dice.h"
-#include "../bank_2/drawBackground.h"
 
 #pragma bank 0
 
@@ -20,29 +20,34 @@ void moveCursorCard() BANKED
         case J_LEFT:
             moveCursorCardLeft();
             drawCursor(SCREEN_CARD);
+			bcdCleaned = 0;
             waitpadup();
             break;
 
         case J_RIGHT:
             moveCursorCardRight();
             drawCursor(SCREEN_CARD);
+			bcdCleaned = 0;
             waitpadup();
             break;
 
 		case J_UP:
             moveCursorCardUp();
             drawCursor(SCREEN_CARD);
+			bcdCleaned = 0;
             waitpadup();
             break;
 
 		case J_DOWN:
 			moveCursorCardDown();
 			drawCursor(SCREEN_CARD);
+			bcdCleaned = 0;
 			waitpadup();
 			break;
 
         case J_A:
 			moveCursorCardA(cursorIndex);
+			bcdCleaned = 0;
 			waitpadup();
             break;
 
