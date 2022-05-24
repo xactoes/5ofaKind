@@ -20,9 +20,16 @@ uint16 currentTurn() BANKED
 	if(scorecard[12] == 50 && scorecard[13] != 255)
 	{
 		uint16 bonusTally;
-		bonusTally = (scorecard[13] / 100);
+		if(scorecard[13] != 255)
+		{
+			bonusTally = (scorecard[13] / 100);
+		}
+		else
+		{
+			bonusTally = 0;
+		}
 
-		if(bonusTally == 0)
+		if(bonusTally == 0 && scorecard[13] > 0)
 		{
 			newTurn += 1;
 		}

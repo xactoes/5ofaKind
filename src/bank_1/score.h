@@ -35,6 +35,8 @@ extern uint8 fiveOfaKind() BANKED;
 BANKREF_EXTERN(fiveOfaKind)
 extern uint8 fiveOfaKindBonus() BANKED;
 BANKREF_EXTERN(fiveOfaKindBonus)
+extern uint8 fiveOfaKindBonusIsLegal() BANKED;
+BANKREF_EXTERN(fiveOfaKindBonusIsLegal)
 
 extern void bcdDisplayScoreUpper() BANKED;
 BANKREF_EXTERN(bcdDisplayScoreUpper)

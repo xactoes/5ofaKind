@@ -11,7 +11,7 @@ typedef long            int32;
 typedef long long       int64;
 
 #define MAX_SPRITE_COUNT    40
-#define MAX_ROLLS			3
+#define MAX_ROLLS			300
 
 // DICE
 #define DICE_COUNT          5

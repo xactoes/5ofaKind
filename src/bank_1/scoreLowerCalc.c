@@ -1,5 +1,6 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
+#include "../bank_1/score.h"
 #include "../bank_1/dice.h"
 
 #pragma bank 1
@@ -40,7 +41,10 @@ uint8 scoreLowerCalc(uint8 index) BANKED
 			break;
 		// 5 of a Kind Bonus
 		case 13:
-			tempScore = fiveOfaKindBonus();
+			if(fiveOfaKindBonusIsLegal)
+			{
+				tempScore = fiveOfaKindBonus();
+			}
 			break;
 	}
 

@@ -8,26 +8,7 @@
 BANKREF(fiveOfaKindBonus)
 uint8 fiveOfaKindBonus() BANKED
 {
-	uint8 tempScore;
+	uint8 tempScore = 100;
 
-	switch(scorecard[13])
-	{
-		case 0:
-			tempScore = 0;
-			break;
-		default:
-			if(scorecard[12] == 50)
-			{
-				if(diceSorted[0] == diceSorted[1] && diceSorted[1] == diceSorted[2] && diceSorted[2] == diceSorted[3] && diceSorted[3] == diceSorted[4])
-				{
-					tempScore = 50;
-				}
-				else
-				{
-					tempScore = 0;
-				}
-			}
-			break;
-	}
 	return tempScore;
 }
