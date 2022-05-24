@@ -40,6 +40,7 @@ uint8 scoreLowerCalc(uint8 index) BANKED
 			break;
 		// 5 of a Kind Bonus
 		case 13:
+			tempScore = fiveOfaKindBonus();
 			break;
 	}
 
