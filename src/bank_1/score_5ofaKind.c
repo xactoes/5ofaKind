@@ -10,6 +10,8 @@ uint8 fiveOfaKind() BANKED
 {
 	uint8 tempScore;
 
+	diceSort();
+
 	if(diceSorted[0] == diceSorted[1] && diceSorted[1] == diceSorted[2] && diceSorted[2] == diceSorted[3] && diceSorted[3] == diceSorted[4])
 	{
 		tempScore = 50;

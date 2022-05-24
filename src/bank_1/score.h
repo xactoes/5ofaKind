@@ -48,6 +48,9 @@ BANKREF_EXTERN(bcdDisplayScoreLower)
 extern void bcdDisplayScoreLowerTotal() BANKED;
 BANKREF_EXTERN(bcdDisplayScoreLowerTotal)
 
+extern void bcdDisplayScoreTotal() BANKED;
+BANKREF_EXTERN(bcdDisplayScoreTotal)
+
 extern void bcdCleanup() BANKED;
 BANKREF_EXTERN(bcdCleanup)
 extern void bufferClear() BANKED;

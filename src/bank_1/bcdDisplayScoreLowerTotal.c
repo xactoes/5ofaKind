@@ -9,7 +9,7 @@
 BANKREF(bcdDisplayScoreLowerTotal)
 void bcdDisplayScoreLowerTotal() BANKED
 {
-	uint8 scorecardBuf;
+	uint16 scorecardBuf;
 	uint8 len;
 
 	bufferClear();

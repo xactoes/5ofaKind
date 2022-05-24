@@ -51,6 +51,9 @@ void bcdDisplayScoreLower() BANKED
 				case 12:
 					set_bkg_tiles(17, 13, len-6, 1, buf+6);
 					break;
+				case 13:
+					set_bkg_tiles(15, 14, len-4, 1, buf+4);
+					break;
 			}
 		}
 		bcdDisplayScoreLowerTotal();

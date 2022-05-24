@@ -12,6 +12,7 @@
 BANKREF(drawBackground)
 void drawBackground(uint8 screen) BANKED
 {
+	bcdCleaned = 0;
 	switch(screen)
 	{
 		case SCREEN_SPLASH:
@@ -25,6 +26,7 @@ void drawBackground(uint8 screen) BANKED
 			{
 				bcdDisplayTurn();
 				bcdDisplayRolls();
+				bcdDisplayScoreTotal();
 				bcdCleaned = 1;
 				SHOW_BKG;
 			}
@@ -35,6 +37,7 @@ void drawBackground(uint8 screen) BANKED
 			{
 				bcdDisplayScoreUpper();
 				bcdDisplayScoreLower();
+				bcdDisplayScoreTotal();
 				bcdCleaned = 1;
 				SHOW_BKG;
 			}

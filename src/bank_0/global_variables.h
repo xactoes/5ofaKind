@@ -40,5 +40,6 @@ extern BCD upperScoreBuf;
 extern BCD lowerScore;
 extern BCD lowerScoreBuf;
 extern BCD turnBCD;
+extern BCD totalScore;
 
 #endif

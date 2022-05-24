@@ -37,3 +37,4 @@ BCD upperScoreBuf 		= MAKE_BCD(00000000);
 BCD lowerScore			= MAKE_BCD(00000000);
 BCD lowerScoreBuf		= MAKE_BCD(00000000);
 BCD turnBCD				= MAKE_BCD(00000000);
+BCD totalScore			= MAKE_BCD(00000000);

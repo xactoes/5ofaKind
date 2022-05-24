@@ -42,7 +42,7 @@ uint16 currentTurn() BANKED
 	if(newTurn > turn)
 	{
 		turn = newTurn;
-		rolls = 3;
+		rolls = MAX_ROLLS;
 	}
 
 	return turn;

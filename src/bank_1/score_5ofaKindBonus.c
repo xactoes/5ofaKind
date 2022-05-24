@@ -9,6 +9,5 @@ BANKREF(fiveOfaKindBonus)
 uint8 fiveOfaKindBonus() BANKED
 {
 	uint8 tempScore = 100;
-
 	return tempScore;
 }
