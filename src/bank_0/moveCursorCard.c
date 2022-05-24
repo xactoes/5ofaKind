@@ -5,6 +5,7 @@
 #include "../bank_0/drawBackground.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/dice.h"
+#include "../bank_1/info.h"
 
 #pragma bank 0
 
@@ -46,7 +47,10 @@ void moveCursorCard() BANKED
 			break;
 
         case J_A:
-			moveCursorCardA(cursorIndex);
+			if(selectionIsLegal())
+			{
+				moveCursorCardA(cursorIndex);
+			}
 			bcdCleaned = 0;
 			waitpadup();
             break;

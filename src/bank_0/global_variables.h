@@ -25,6 +25,8 @@ extern uint8 cursorTitleY;
 // IDENTIFIERS
 extern uint8 screen;
 extern uint8 cursorIndex;
+extern uint16 rolls;
+extern uint16 turn;
 
 // SCORE
 extern uint16 scorecard[];
@@ -37,5 +39,6 @@ extern BCD upperScore;
 extern BCD upperScoreBuf;
 extern BCD lowerScore;
 extern BCD lowerScoreBuf;
+extern BCD turnBCD;
 
 #endif

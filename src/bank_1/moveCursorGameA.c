@@ -4,6 +4,7 @@
 #include "../bank_0/dice_b0.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/dice.h"
+#include "../bank_1/info.h"
 
 #pragma bank 1
 
@@ -12,7 +13,11 @@ void moveCursorGameA() BANKED
 {
 	if(cursorGameY == ROW_SELECT){
 		if(cursorGameX == X_ROLL){
-			rollDice();
+			if(rolls)
+			{
+				rollDice();
+				rollDecrement();
+			}
 		}
 		else if(cursorGameX == X_HOLD){
 			// MOVE TO DI ROW
@@ -21,7 +26,10 @@ void moveCursorGameA() BANKED
 			drawCursor(SCREEN_PLAY);
 		}
 		else if(cursorGameX == X_CARD){
-			moveCursorGameSelect();
+			if(selectionIsLegal)
+			{
+				moveCursorGameSelect();
+			}
 		}
 	}
 	else if(cursorGameY == ROW_DI){

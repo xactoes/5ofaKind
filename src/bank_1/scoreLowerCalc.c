@@ -28,9 +28,11 @@ uint8 scoreLowerCalc(uint8 index) BANKED
 			break;
 		// Large Straight
 		case 10:
+			tempScore = largeStraight();
 			break;
 		// Chance
 		case 11:
+			tempScore = chance();
 			break;
 		// 5 of a Kind
 		case 12:

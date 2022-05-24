@@ -24,4 +24,5 @@ void refreshDicePosition() BANKED
 			}
 		}
 	}
+	SHOW_SPRITES;
 }

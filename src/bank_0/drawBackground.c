@@ -1,8 +1,11 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
+#include "../bank_1/info.h"
 #include "../bank_1/score.h"
 #include "../bank_2/drawScreens.h"
+
+#include "../bank_0/vblDelay.h"
 
 #pragma bank 0
 
@@ -18,10 +21,16 @@ void drawBackground(uint8 screen) BANKED
 			break;
 		case SCREEN_PLAY:
 			drawScreenPlay();
+			if(!bcdCleaned)
+			{
+				bcdDisplayTurn();
+				bcdDisplayRolls();
+				bcdCleaned = 1;
+				SHOW_BKG;
+			}
 			break;
 		case SCREEN_CARD:
 			drawScreenCard();
-			// SHOW_BKG;
 			if(!bcdCleaned)
 			{
 				bcdDisplayScoreUpper();
@@ -29,7 +38,6 @@ void drawBackground(uint8 screen) BANKED
 				bcdCleaned = 1;
 				SHOW_BKG;
 			}
-			//bcdCleanup();
 			break;
 		case SCREEN_END:
 			break;

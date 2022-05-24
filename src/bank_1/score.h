@@ -27,6 +27,10 @@ extern uint8 smStraightLogicB() BANKED;
 BANKREF_EXTERN(smStraightLogicB)
 extern uint8 smallStraight() BANKED;
 BANKREF_EXTERN(smallStraight)
+extern uint8 largeStraight() BANKED;
+BANKREF_EXTERN(largeStraight)
+extern uint8 chance() BANKED;
+BANKREF_EXTERN(chance)
 extern uint8 fiveOfaKind() BANKED;
 BANKREF_EXTERN(fiveOfaKind)
 

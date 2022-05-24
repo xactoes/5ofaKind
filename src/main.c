@@ -48,8 +48,6 @@ void main(){
                 initializeDice();
             }
             drawBackground(SCREEN_PLAY);
-            SHOW_BKG;
-
             refreshDicePosition();
             moveCursorGame();
         }

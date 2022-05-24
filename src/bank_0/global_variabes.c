@@ -22,6 +22,8 @@ uint8 cursorTitleY			= 96;
 // IDENTIFIERS
 uint8 screen				= 0;
 uint8 cursorIndex			= 0;
+uint16 rolls				= MAX_ROLLS;
+uint16 turn 				= 1;
 
 // SCORE
 uint16 scorecard[15];
@@ -34,3 +36,4 @@ BCD upperScore			= MAKE_BCD(00000000);
 BCD upperScoreBuf 		= MAKE_BCD(00000000);
 BCD lowerScore			= MAKE_BCD(00000000);
 BCD lowerScoreBuf		= MAKE_BCD(00000000);
+BCD turnBCD				= MAKE_BCD(00000000);
