@@ -20,9 +20,11 @@ uint8 scoreLowerCalc(uint8 index) BANKED
 			break;
 		// Full House
 		case 8:
+			tempScore = fullHouse();
 			break;
 		// Small Straight
 		case 9:
+			tempScore = smallStraight();
 			break;
 		// Large Straight
 		case 10:

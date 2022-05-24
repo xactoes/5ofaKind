@@ -31,6 +31,22 @@ void bcdDisplayScoreLower() BANKED
 				case 7:
 					set_bkg_tiles(8, 11, len-6, 1, buf+6);
 					break;
+				// Full House
+				case 8:
+					set_bkg_tiles(8, 12, len-6, 1, buf+6);
+					break;
+				// Small Straight
+				case 9:
+					set_bkg_tiles(17, 10, len-6, 1, buf+6);
+					break;
+				// Large Straight
+				case 10:
+					set_bkg_tiles(17, 11, len-6, 1, buf+6);
+					break;
+				// Chance
+				case 11:
+					set_bkg_tiles(17, 12, len-6, 1, buf+6);
+					break;
 				// 5 of a Kind
 				case 12:
 					set_bkg_tiles(17, 13, len-6, 1, buf+6);

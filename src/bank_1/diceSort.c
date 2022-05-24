@@ -18,11 +18,13 @@ void diceSort() BANKED
 
 	for(uint8 currDi = 0; currDi != 4; currDi++)
 	{
+		leastDi = currDi;
 		for(uint8 nextDi = currDi + 1; nextDi != 5; nextDi++)
 		{
 			if(diceSorted[nextDi] < diceSorted[leastDi])
 			{
 				leastDi = nextDi;
+
 				temp = diceSorted[leastDi];
 				diceSorted[leastDi] = diceSorted[currDi];
 				diceSorted[currDi] = temp;
