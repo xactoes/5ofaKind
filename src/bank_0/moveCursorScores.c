@@ -16,6 +16,7 @@ void moveCursorScores() BANKED
 			if(screen > HIGH_SCORE_0)
 			{
 				screen--;
+				bkgDrawn = 0;
 			}
 			waitpadup();
 			break;
@@ -23,6 +24,7 @@ void moveCursorScores() BANKED
 			if(screen < HIGH_SCORE_3)
 			{
 				screen++;
+				bkgDrawn = 0;
 			}
 			waitpadup();
 			break;

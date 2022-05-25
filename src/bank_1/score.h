@@ -6,6 +6,8 @@
 
 extern uint8 bonusTally() BANKED;
 BANKREF_EXTERN(bonusTally)
+extern uint8 offsetScore(uint16*, uint8) BANKED;
+BANKREF_EXTERN(offsetScore)
 
 extern void scoreUpper(uint8) BANKED;
 BANKREF_EXTERN(scoreUpper)

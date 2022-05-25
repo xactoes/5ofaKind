@@ -44,6 +44,6 @@ extern BCD lowerScore;
 extern BCD lowerScoreBuf;
 extern BCD turnBCD;
 extern BCD totalScore;
-extern BCD highScoreBCD[];
+extern BCD highScoreBCD;
 
 #endif

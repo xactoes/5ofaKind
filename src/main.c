@@ -11,7 +11,6 @@
 #include "./bank_1/cursor.h"
 #include "./bank_1/dice.h"
 #include "./bank_1/info.h"
-#include "./bank_1/init_b1.h"
 
 #include <stdio.h>
 #include "./bank_0/vblDelay.h"
@@ -42,7 +41,7 @@ void main(){
             {
                 initializeCursorSprites();
                 initializeTitle();
-                initializeBCDscores();
+                //initializeBCDscores();
                 SHOW_SPRITES;
             }
             drawBackground(SCREEN_TITLE);

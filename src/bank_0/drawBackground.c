@@ -27,20 +27,40 @@ void drawBackground(uint8 screen) BANKED
 			SHOW_BKG;
 			break;
 		case HIGH_SCORE_0:
-			drawScreenHighScore();
-			highScoreDisplay(HIGH_SCORE_0);
+			if(!bkgDrawn)
+			{
+				drawScreenHighScore();
+				highScoreDisplay(HIGH_SCORE_0);
+				bkgDrawn = 1;
+				SHOW_BKG;
+			}
 			break;
 		case HIGH_SCORE_1:
-			drawScreenHighScore();
-			highScoreDisplay(HIGH_SCORE_1);
+			if(!bkgDrawn)
+			{
+				drawScreenHighScore();
+				highScoreDisplay(HIGH_SCORE_1);
+				bkgDrawn = 1;
+				SHOW_BKG;
+			}
 			break;
 		case HIGH_SCORE_2:
-			drawScreenHighScore();
-			highScoreDisplay(HIGH_SCORE_2);
+			if(!bkgDrawn)
+			{
+				drawScreenHighScore();
+				highScoreDisplay(HIGH_SCORE_2);
+				bkgDrawn = 1;
+				SHOW_BKG;
+			}
 			break;
 		case HIGH_SCORE_3:
-			drawScreenHighScore();
-			highScoreDisplay(HIGH_SCORE_3);
+			if(!bkgDrawn)
+			{
+				drawScreenHighScore();
+				highScoreDisplay(HIGH_SCORE_3);
+				bkgDrawn = 1;
+				SHOW_BKG;
+			}
 			break;
 		case SCREEN_PLAY:
 			drawScreenPlay();
