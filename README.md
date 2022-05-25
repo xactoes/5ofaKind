@@ -12,13 +12,13 @@ That said, if you do test it, feel free to contact me about bugs and I'll try to
 
 KNOWN BUGS:
 * bonus 5 of a kind is not selectable if rest of the scorecard is marked
+
 MISSING FEATURES:
 * splash screen
 * ~~title screen~~
 * options menu
 * audio settings under options
 * reset savegame under options
-* a screen saying link transfer isn't implemented yet if link transfer is selected
 * audio to play when dice are rolling
 * audio to play when dice cannot be rolled or hold and card are inaccessible
 * a start menu with info on how to play the game
@@ -26,3 +26,7 @@ MISSING FEATURES:
 * saving of high scores
 * background music
 * player name entry up to 8 characters
+
+OTHER CHANGES TO BE MADE:
+* Font change (maybe)
+* better title screen
