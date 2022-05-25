@@ -108,5 +108,9 @@ BANKREF_EXTERN(moveCursorCardBSelect)
 extern void moveCursorCardStart() BANKED;
 BANKREF_EXTERN(moveCursorCardStart)
 
+// END
+extern void moveCursorEnd() BANKED;
+BANKREF_EXTERN(moveCursorEnd)
+
 
 #endif

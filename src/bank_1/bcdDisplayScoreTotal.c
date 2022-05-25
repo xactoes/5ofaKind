@@ -7,7 +7,7 @@
 #pragma bank 1
 
 BANKREF(bcdDisplayScoreTotal)
-void bcdDisplayScoreTotal() BANKED
+void bcdDisplayScoreTotal(uint8 currentScreen) BANKED
 {
 	uint16 scorecardBuf;
 	uint8 len;
@@ -16,7 +16,7 @@ void bcdDisplayScoreTotal() BANKED
 
 	bcd_sub(&totalScore, &totalScore);
 
-	for(uint8 index = 0; index != 14; index++)
+	for(uint8 index = 0; index != 15; index++)
 	{
 		if(scorecard[index] != 255)
 		{
@@ -25,9 +25,9 @@ void bcdDisplayScoreTotal() BANKED
 	}
 
 	uint2bcd(scorecardBuf, &totalScore);
-	len = bcd2text(&lowerScore, 0x10, buf);
+	len = bcd2text(&totalScore, 0x10, buf);
 
-	switch(screen)
+	switch(currentScreen)
 	{
 		case SCREEN_PLAY:
 			if(scorecardBuf < 10)
@@ -63,6 +63,24 @@ void bcdDisplayScoreTotal() BANKED
 			else if(scorecardBuf < 10000)
 			{
 				set_bkg_tiles(15, 16, len-4, 1, buf+4);
+			}
+			break;
+		case SCREEN_END:
+			if(scorecardBuf < 10)
+			{
+				set_bkg_tiles(10, 10, len-7, 1, buf+7);
+			}
+			else if(scorecardBuf < 100)
+			{
+				set_bkg_tiles(9, 10, len-6, 1, buf+6);
+			}
+			else if(scorecardBuf < 1000)
+			{
+				set_bkg_tiles(8, 10, len-5, 1, buf+5);
+			}
+			else if(scorecardBuf < 10000)
+			{
+				set_bkg_tiles(7, 10, len-4, 1, buf+4);
 			}
 			break;
 	}

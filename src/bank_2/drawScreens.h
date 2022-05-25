@@ -13,4 +13,7 @@ BANKREF_EXTERN(drawScreenPlay)
 extern void drawScreenCard() BANKED;
 BANKREF_EXTERN(drawScreenCard)
 
+extern void drawScreenEnd() BANKED;
+BANKREF_EXTERN(drawScreenEnd)
+
 #endif

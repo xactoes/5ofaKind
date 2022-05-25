@@ -19,6 +19,7 @@ void drawBackground(uint8 screen) BANKED
 			break;
 		case SCREEN_TITLE:
 			drawScreenTitle();
+			SHOW_BKG;
 			break;
 		case SCREEN_PLAY:
 			drawScreenPlay();
@@ -26,7 +27,10 @@ void drawBackground(uint8 screen) BANKED
 			{
 				bcdDisplayTurn();
 				bcdDisplayRolls();
-				bcdDisplayScoreTotal();
+				if(rolls < 10){
+					set_bkg_tile_xy(17, 5, 0x00);
+				}
+				bcdDisplayScoreTotal(SCREEN_PLAY);
 				bcdCleaned = 1;
 				SHOW_BKG;
 			}
@@ -37,12 +41,15 @@ void drawBackground(uint8 screen) BANKED
 			{
 				bcdDisplayScoreUpper();
 				bcdDisplayScoreLower();
-				bcdDisplayScoreTotal();
+				bcdDisplayScoreTotal(SCREEN_CARD);
 				bcdCleaned = 1;
 				SHOW_BKG;
 			}
 			break;
 		case SCREEN_END:
+			drawScreenEnd();
+			bcdDisplayScoreTotal(SCREEN_END);
+			SHOW_BKG;
 			break;
 		case SCREEN_CREDITS:
 			break;

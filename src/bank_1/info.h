@@ -10,6 +10,8 @@ extern uint16 rollDecrement() BANKED;
 BANKREF_EXTERN(rollDecrement)
 extern uint16 selectionIsLegal() BANKED;
 BANKREF_EXTERN(selectionIsLegal)
+extern uint8 gameActive() BANKED;
+BANKREF_EXTERN(gameActive)
 
 extern void bcdDisplayTurn() BANKED;
 BANKREF_EXTERN(bcdDisplayTurn)

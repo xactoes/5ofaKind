@@ -2,6 +2,7 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_1/info.h"
+#include "../bank_1/score.h"
 
 #pragma bank 1
 
@@ -14,10 +15,32 @@ uint16 selectionIsLegal() BANKED
 	{
 		legal = 0;
 	}
+	// CHECK IF A SELECTION NEEDS TO BE MADE THIS TURN
 	else
 	{
-		legal = 1;
+		uint8 turnsPassed = 0;
+		for(uint8 marked; marked != 14; marked++)
+		{
+			if(scorecard[marked] != 255)
+			{
+				turnsPassed++;
+			}
+		}
+		// IF EVERYTHING HAS BEEN SELECTED
+		if(turnsPassed == 14)
+		{
+			// printf("%u\n", fiveOfaKindBonusIsLegal());
+			// AND BONUS 5K IS ILLEGAL
+			if(!fiveOfaKindBonusIsLegal())
+			{
+				legal = 0;
+				//screen = SCREEN_END;
+			}
+		}
+		else
+		{
+			legal = 1;
+		}
 	}
-
 	return legal;
 }

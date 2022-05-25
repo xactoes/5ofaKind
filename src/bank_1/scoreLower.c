@@ -19,13 +19,18 @@ void scoreLower(uint8 index) BANKED{
         }
         if(index == 13)
         {
-            if(scorecard[index] == 255)
+            if(fiveOfaKindBonusIsLegal())
             {
-                scorecard[index] = (uint16) scoreLowerCalc(index);
-            }
-            else if(scorecard[index] > 0 && scorecard[index] < 1000)
-            {
-                scorecard[index] += (uint16) scoreLowerCalc(index);
+                // NOT SELECTED BEFORE
+                if(scorecard[index] == 255)
+                {
+                    scorecard[index] = (uint16) scoreLowerCalc(index);
+                }
+                // SELECTED BEFORE
+                else if(scorecard[index] > 0 && scorecard[index] < 1000)
+                {
+                    scorecard[index] += (uint16) scoreLowerCalc(index);
+                }
             }
         }
     }

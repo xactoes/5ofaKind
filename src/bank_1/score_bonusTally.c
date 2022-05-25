@@ -6,9 +6,17 @@
 
 #pragma bank 1
 
-BANKREF(fiveOfaKindBonus)
-uint8 fiveOfaKindBonus() BANKED
+BANKREF(bonusTally)
+uint8 bonusTally() BANKED
 {
-	uint8 tempScore = 100;
-	return tempScore;
+	uint16 tally;
+	if(scorecard[13] != 255)
+	{
+		tally = (scorecard[13] / 100);
+	}
+	else
+	{
+		tally = 0;
+	}
+	return tally;
 }

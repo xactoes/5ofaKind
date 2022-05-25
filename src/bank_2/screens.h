@@ -19,4 +19,7 @@ BANKREF_EXTERN(playMap)
 extern const uint8 cardMap[];
 BANKREF_EXTERN(cardMap)
 
+extern const uint8 endMap[];
+BANKREF_EXTERN(endMap)
+
 #endif

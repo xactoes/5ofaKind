@@ -2,52 +2,42 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_1/dice.h"
+#include "../bank_1/score.h"
 
 #pragma bank 1
 
 BANKREF(currentTurn)
 uint16 currentTurn() BANKED
 {
-	uint16 newTurn = 1;
+	uint16 turnsPassed = 0;
 
 	for(uint8 marked; marked != 13; marked++)
 	{
 		if(scorecard[marked] != 255)
 		{
-			newTurn++;
+			turnsPassed++;
 		}
 	}
 
 	if(scorecard[12] == 50 && scorecard[13] != 255)
 	{
-		uint16 bonusTally;
-		if(scorecard[13] != 255)
+		if(bonusTally() == 0 && scorecard[13] == 50)
 		{
-			bonusTally = (scorecard[13] / 100);
+			turnsPassed += 1;
 		}
 		else
 		{
-			bonusTally = 0;
-		}
-
-		if(bonusTally == 0 && scorecard[13] > 0)
-		{
-			newTurn += 1;
-		}
-		else
-		{
-			newTurn += bonusTally;
+			turnsPassed += bonusTally();
 		}
 	}
 
-	if(newTurn > turn)
+	if(turnsPassed == turn)
 	{
-		turn = newTurn;
+		turn = turnsPassed + 1;
 		rolls = MAX_ROLLS;
 		diceInitialized = 0;
 		cursorGameX	= 16;
 		cursorGameY	= 144;
 	}
-
 	return turn;
 }

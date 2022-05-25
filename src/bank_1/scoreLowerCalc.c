@@ -41,11 +41,7 @@ uint8 scoreLowerCalc(uint8 index) BANKED
 			break;
 		// 5 of a Kind Bonus
 		case 13:
-			if(fiveOfaKindBonusIsLegal())
-			{
-				//printf("%u\n", fiveOfaKindBonusIsLegal);
-				tempScore = fiveOfaKindBonus();
-			}
+			tempScore = fiveOfaKindBonus();
 			break;
 	}
 

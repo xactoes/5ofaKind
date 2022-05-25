@@ -4,6 +4,9 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 
+extern uint8 bonusTally() BANKED;
+BANKREF_EXTERN(bonusTally)
+
 extern void scoreUpper(uint8) BANKED;
 BANKREF_EXTERN(scoreUpper)
 extern uint8 scoreUpperCalc(uint8) BANKED;
@@ -48,7 +51,7 @@ BANKREF_EXTERN(bcdDisplayScoreLower)
 extern void bcdDisplayScoreLowerTotal() BANKED;
 BANKREF_EXTERN(bcdDisplayScoreLowerTotal)
 
-extern void bcdDisplayScoreTotal() BANKED;
+extern void bcdDisplayScoreTotal(uint8) BANKED;
 BANKREF_EXTERN(bcdDisplayScoreTotal)
 
 extern void bcdCleanup() BANKED;

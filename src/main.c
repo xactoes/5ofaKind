@@ -10,10 +10,10 @@
 
 #include "./bank_1/cursor.h"
 #include "./bank_1/dice.h"
+#include "./bank_1/info.h"
 
-
-#include <stdio.h>
-#include "./bank_0/vblDelay.h"
+// #include <stdio.h>
+// #include "./bank_0/vblDelay.h"
 
 void main(){
 
@@ -29,6 +29,11 @@ void main(){
     DISPLAY_ON;
     SHOW_SPRITES;
 
+    while(screen == SCREEN_SPLASH)
+    {
+        //
+    }
+
     while(bootInitialized)
     {
         while(screen == SCREEN_TITLE)
@@ -41,20 +46,32 @@ void main(){
             moveCursorTitle();
             SHOW_BKG;
         }
-        while(screen == SCREEN_PLAY)
+        while(gameActive())
         {
-            if(!diceInitialized)
+            while(screen == SCREEN_PLAY)
             {
-                initializeDice();
+                if(!diceInitialized)
+                {
+                    initializeDice();
+                }
+                drawBackground(SCREEN_PLAY);
+                refreshDicePosition();
+                moveCursorGame();
             }
-            drawBackground(SCREEN_PLAY);
-            refreshDicePosition();
-            moveCursorGame();
+            while(screen == SCREEN_CARD)
+            {
+                drawBackground(SCREEN_CARD);
+                moveCursorCard();
+            }
         }
-        while(screen == SCREEN_CARD)
+        while(screen == SCREEN_END)
         {
-            drawBackground(SCREEN_CARD);
-            moveCursorCard();
+            drawBackground(SCREEN_END);
+            moveCursorEnd();
+        }
+        while(screen == SCREEN_CREDITS)
+        {
+            //
         }
     }
 }
