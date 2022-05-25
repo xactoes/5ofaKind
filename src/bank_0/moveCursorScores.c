@@ -1,28 +1,28 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
+#include "../bank_0/drawBackground.h"
 #include "../bank_1/cursor.h"
+#include "../bank_1/misc.h"
 
 #pragma bank 0
 
 BANKREF(moveCursorScores)
 void moveCursorScores() BANKED
 {
-	uint8 screenTracker = screen;
-
 	switch(joypad())
 	{
 		case J_LEFT:
-			if(screenTracker > HIGH_SCORE_0)
+			if(screen > HIGH_SCORE_0)
 			{
-				screenTracker--;
+				screen--;
 			}
 			waitpadup();
 			break;
 		case J_RIGHT:
-			if(screenTracker < HIGH_SCORE_3)
+			if(screen < HIGH_SCORE_3)
 			{
-				screenTracker++;
+				screen++;
 			}
 			waitpadup();
 			break;
@@ -31,6 +31,4 @@ void moveCursorScores() BANKED
 			waitpadup();
 			break;
 	}
-
-	screen = screenTracker;
 }

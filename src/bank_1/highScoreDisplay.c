@@ -19,25 +19,28 @@ void highScoreDisplay(uint8 currentScreen) BANKED
 			for(uint8 i = 0; i != 6; i++)
 			{
 				len = bcd2text(&highScoreBCD[i], 0x10, buf);
-				set_bkg_tiles(5, 5, len, 1, buf);
+				set_bkg_tiles(11, 4+(2*i), len, 1, buf);
 			}
 			break;
 		case HIGH_SCORE_1:
 			for(uint8 i = 6; i != 12; i++)
 			{
-				//
+				len = bcd2text(&highScoreBCD[i], 0x10, buf);
+				set_bkg_tiles(11, 4+(2*(i-6)), len, 1, buf);
 			}
 			break;
 		case HIGH_SCORE_2:
 			for(uint8 i = 12; i != 18; i++)
 			{
-				//
+				len = bcd2text(&highScoreBCD[i], 0x10, buf);
+				set_bkg_tiles(11, 4+(2*(i-12)), len, 1, buf);
 			}
 			break;
 		case HIGH_SCORE_3:
 			for(uint8 i = 18; i != 24; i++)
 			{
-				//
+				len = bcd2text(&highScoreBCD[i], 0x10, buf);
+				set_bkg_tiles(11, 4+(2*(i-18)), len, 1, buf);
 			}
 			break;
 	}

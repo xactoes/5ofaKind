@@ -86,7 +86,7 @@ BANKREF_EXTERN(drawCursor)
 // TITLE
 extern void moveCursorTitle() BANKED;
 BANKREF_EXTERN(moveCursorTitle)
-void moveCursorOptions() BANKED;
+extern void moveCursorOptions() BANKED;
 BANKREF_EXTERN(moveCursorOptions)
 extern void moveCursorScores() BANKED;
 BANKREF_EXTERN(moveCursorScores)
