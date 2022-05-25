@@ -24,7 +24,6 @@ unsigned char scoreCheckRequest;
 unsigned char scoreSaved;
 unsigned char bonusFail;
 
-
 //variables for sprites
 //0 - 19 are used by diceStruct for the dice
 const unsigned int cursorLeft   = 20;

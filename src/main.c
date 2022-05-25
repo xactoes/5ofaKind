@@ -1,45 +1,78 @@
 #include <gb/gb.h>
 
-#include "../func/screens.h"
-#include "../func/save_tools.h"
-#include "../func/glob_vars.h"
+#include "./bank_0/global_defines.h"
+#include "./bank_0/global_variables.h"
 
+#include "./bank_0/loadSprites.h"
+#include "./bank_0/init_b0.h"
+#include "./bank_0/dice_b0.h"
+#include "./bank_0/drawBackground.h"
+
+#include "./bank_1/cursor.h"
+#include "./bank_1/dice.h"
+#include "./bank_1/info.h"
+
+#include <stdio.h>
+#include "./bank_0/vblDelay.h"
 
 void main(){
 
+    if(!bootInitialized)
+    {
+        screen = SCREEN_TITLE;
+        loadSprites();
+        //initializeScorecard();  // MOVE TO GAME INITIALIZE LATER
+        bootInitialized = 1;
+    }
+
     DISPLAY_ON;
+    SHOW_SPRITES;
 
-    //checks for name save data and loads it in
-    checkName();
-    checkScore();
+    while(screen == SCREEN_SPLASH)
+    {
+        //
+    }
 
-
-    viewTitle = 1;
-
-    while(1){
-        //title screen
-        if(viewTitle){
-            title();
+    while(bootInitialized)
+    {
+        while(screen == SCREEN_TITLE)
+        {
+            if(!titleInitialized)
+            {
+                initializeCursorSprites();
+                initializeTitle();
+                SHOW_SPRITES;
+            }
+            drawBackground(SCREEN_TITLE);
+            moveCursorTitle();
+            SHOW_BKG;
         }
-
-        //game being played
-        if(viewGame){
-            game();
+        while(gameActive())
+        {
+            while(screen == SCREEN_PLAY)
+            {
+                if(!diceInitialized)
+                {
+                    initializeDice();
+                }
+                drawBackground(SCREEN_PLAY);
+                refreshDicePosition();
+                moveCursorGame();
+            }
+            while(screen == SCREEN_CARD)
+            {
+                drawBackground(SCREEN_CARD);
+                moveCursorCard();
+            }
         }
-
-        //high score menu
-        if(viewScores){
-            highScores();
+        while(screen == SCREEN_END)
+        {
+            drawBackground(SCREEN_END);
+            moveCursorEnd();
         }
-
-        //transfer data screen
-        if(viewLink){
-            linkTransfer();
-        }
-
-        //options screen
-        if(viewOptions){
-            options();
+        while(screen == SCREEN_CREDITS)
+        {
+            //
         }
     }
 }
