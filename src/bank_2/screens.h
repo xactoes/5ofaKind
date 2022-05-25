@@ -10,6 +10,10 @@ extern const uint8 titleData[];
 BANKREF_EXTERN(titleData)
 extern const uint8 titleMap[];
 BANKREF_EXTERN(titleMap)
+extern const uint8 optionsMap[];
+BANKREF_EXTERN(optionsMap)
+extern const uint8 highScoreMap[];
+BANKREF_EXTERN(highScoreMap)
 
 extern const uint8 gameData[];
 BANKREF_EXTERN(gameData)

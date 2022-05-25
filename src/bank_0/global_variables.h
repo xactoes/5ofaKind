@@ -21,6 +21,8 @@ extern uint8 cursorCardX;
 extern uint8 cursorCardY;
 extern uint8 cursorTitleX;
 extern uint8 cursorTitleY;
+extern uint8 cursorOptionsX;
+extern uint8 cursorOptionsY;
 
 // IDENTIFIERS
 extern uint8 screen;
@@ -33,6 +35,7 @@ extern uint16 scorecard[];
 extern uint16 scorecardCompare[];
 extern uint8 buf[];
 extern uint8 diceSorted[];
+extern uint16 highScore[];
 
 // BCD
 extern BCD upperScore;
@@ -41,5 +44,6 @@ extern BCD lowerScore;
 extern BCD lowerScoreBuf;
 extern BCD turnBCD;
 extern BCD totalScore;
+extern BCD highScoreBCD[];
 
 #endif

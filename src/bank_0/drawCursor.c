@@ -19,6 +19,11 @@ void drawCursor(uint8 screenLocal) BANKED
             move_sprite(cursor1, cursorTitleX, cursorTitleY);
             break;
 
+		// OPTIONS SCREEN
+		case SCREEN_OPTIONS:
+			move_sprite(cursor1, cursorOptionsX, cursorOptionsY);
+			break;
+
         // GAME PLAY SCREEN
         case SCREEN_PLAY:
             // IF PLAY OPTION SELECTED
@@ -56,4 +61,5 @@ void drawCursor(uint8 screenLocal) BANKED
             move_sprite(cursor1, cursorTitleX, cursorTitleY);
             break;
     }
+	SHOW_SPRITES;
 }

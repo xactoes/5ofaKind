@@ -11,6 +11,7 @@
 #include "./bank_1/cursor.h"
 #include "./bank_1/dice.h"
 #include "./bank_1/info.h"
+#include "./bank_1/init_b1.h"
 
 #include <stdio.h>
 #include "./bank_0/vblDelay.h"
@@ -41,12 +42,30 @@ void main(){
             {
                 initializeCursorSprites();
                 initializeTitle();
+                initializeBCDscores();
                 SHOW_SPRITES;
             }
             drawBackground(SCREEN_TITLE);
             moveCursorTitle();
             SHOW_BKG;
         }
+
+        while(screen == SCREEN_OPTIONS)
+        {
+            drawBackground(SCREEN_OPTIONS);
+            moveCursorOptions();
+            SHOW_SPRITES;
+            SHOW_BKG;
+        }
+
+        while(screen == HIGH_SCORE_0 || screen == HIGH_SCORE_1 || screen == HIGH_SCORE_2 || screen == HIGH_SCORE_3)
+        {
+            drawBackground(screen);
+            moveCursorScores();
+            SHOW_SPRITES;
+            SHOW_BKG;
+        }
+
         while(gameActive())
         {
             while(screen == SCREEN_PLAY)
@@ -65,6 +84,7 @@ void main(){
                 moveCursorCard();
             }
         }
+
         while(screen == SCREEN_END)
         {
             drawBackground(SCREEN_END);

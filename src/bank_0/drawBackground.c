@@ -5,6 +5,7 @@
 #include "../bank_1/score.h"
 #include "../bank_2/drawScreens.h"
 
+#include <stdio.h>
 #include "../bank_0/vblDelay.h"
 
 #pragma bank 0
@@ -20,6 +21,26 @@ void drawBackground(uint8 screen) BANKED
 		case SCREEN_TITLE:
 			drawScreenTitle();
 			SHOW_BKG;
+			break;
+		case SCREEN_OPTIONS:
+			drawScreenOptions();
+			SHOW_BKG;
+			break;
+		case HIGH_SCORE_0:
+			drawScreenHighScore();
+			highScoreDisplay(HIGH_SCORE_0);
+			break;
+		case HIGH_SCORE_1:
+			drawScreenHighScore();
+			highScoreDisplay(HIGH_SCORE_1);
+			break;
+		case HIGH_SCORE_2:
+			drawScreenHighScore();
+			highScoreDisplay(HIGH_SCORE_2);
+			break;
+		case HIGH_SCORE_3:
+			drawScreenHighScore();
+			highScoreDisplay(HIGH_SCORE_3);
 			break;
 		case SCREEN_PLAY:
 			drawScreenPlay();
