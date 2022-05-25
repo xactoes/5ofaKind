@@ -12,8 +12,8 @@
 #include "./bank_1/dice.h"
 #include "./bank_1/info.h"
 
-// #include <stdio.h>
-// #include "./bank_0/vblDelay.h"
+#include <stdio.h>
+#include "./bank_0/vblDelay.h"
 
 void main(){
 
@@ -21,8 +21,7 @@ void main(){
     {
         screen = SCREEN_TITLE;
         loadSprites();
-        initializeCursorSprites();
-        initializeScorecard();  // MOVE TO GAME INITIALIZE LATER
+        //initializeScorecard();  // MOVE TO GAME INITIALIZE LATER
         bootInitialized = 1;
     }
 
@@ -40,7 +39,9 @@ void main(){
         {
             if(!titleInitialized)
             {
+                initializeCursorSprites();
                 initializeTitle();
+                SHOW_SPRITES;
             }
             drawBackground(SCREEN_TITLE);
             moveCursorTitle();

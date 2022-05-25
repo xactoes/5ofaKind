@@ -13,7 +13,7 @@ void moveCursorEnd() BANKED
 	switch(joypad())
 	{
 		case J_B:
-			//loadMenu();
+			loadMenu();
 			waitpadup();
 			break;
 		case J_A:

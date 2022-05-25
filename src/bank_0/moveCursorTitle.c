@@ -2,6 +2,7 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_1/cursor.h"
+#include "../bank_1/misc.h"
 
 #include <stdio.h>
 #include "../bank_0/vblDelay.h"
@@ -36,6 +37,7 @@ void moveCursorTitle() BANKED
 				move_sprite(ARROW_RIGHT, 0, 0);
 				move_sprite(ARROW_LEFT, 0, 0);
 				move_sprite(ARROW_UP, 0, 0);
+				newGame();
 				HIDE_SPRITES;
 				HIDE_BKG;
 			}
