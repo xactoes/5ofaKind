@@ -18,4 +18,7 @@ BANKREF_EXTERN(bcdDisplayTurn)
 extern void bcdDisplayRolls() BANKED;
 BANKREF_EXTERN(bcdDisplayRolls)
 
+extern void highScoreDisplay(uint8) BANKED;
+BANKREF_EXTERN(highScoreDisplay)
+
 #endif

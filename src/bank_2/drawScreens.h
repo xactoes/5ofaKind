@@ -7,6 +7,15 @@
 extern void drawScreenTitle() BANKED;
 BANKREF_EXTERN(drawScreenTitle)
 
+extern void drawScreenOptions() BANKED;
+BANKREF_EXTERN(drawScreenOptions)
+
+extern void drawScreenHighScore() BANKED;
+BANKREF_EXTERN(drawScreenHighScore)
+
+extern void drawScreenNameInput() BANKED;
+BANKREF_EXTERN(drawScreenNameInput)
+
 extern void drawScreenPlay() BANKED;
 BANKREF_EXTERN(drawScreenPlay)
 

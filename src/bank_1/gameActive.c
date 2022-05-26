@@ -11,20 +11,23 @@ uint8 gameActive() BANKED
 {
 	uint8 active = 0;
 
-	if(currentTurn() < 14)
+	if(screen == SCREEN_PLAY || screen == SCREEN_CARD)
 	{
-		active = 1;
-	}
-	else
-	{
-		if(currentTurn() - bonusTally() == 14)
+		if(currentTurn() < 14)
 		{
-			active = 0;
-			screen = SCREEN_END;
+			active = 1;
 		}
 		else
 		{
-			active = 1;
+			if(currentTurn() - bonusTally() == 14)
+			{
+				active = 0;
+				screen = SCREEN_END;
+			}
+			else
+			{
+				active = 1;
+			}
 		}
 	}
 

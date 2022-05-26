@@ -48,7 +48,7 @@ DIR_BANK_1	= $(DIR_SRC)/bank_1
 DIR_BANK_2	= $(DIR_SRC)/bank_2
 DIR_BANK_3	= $(DIR_SRC)/bank_3
 
-DIR_SRAM	= sram
+DIR_SRAM	= $(DIR_SRC)/sram
 
 DIR_BUILD   = .build
 DIR_ROM     = rom
@@ -122,3 +122,4 @@ clean:
 # this is only if an above rule has a failure
 #	rm -f  *.gb *.ihx *.cdb *.adb *.noi *.map
 	rm -f  $(DIR_BUILD)/*.*
+	rm -f  $(DIR_ROM)/*.*

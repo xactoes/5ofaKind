@@ -50,5 +50,15 @@ void bcdDisplayScoreUpper() BANKED
         	}
 		}
 	}
+
+	if(scorecard[14] != 255)
+	{
+		scorecardCompare[14] = scorecard[14];
+		uint2bcd(scorecardCompare[14], &upperScoreBuf);
+		len = bcd2text(&upperScoreBuf, 0x10, buf);
+
+		set_bkg_tiles(17, 7, len-6, 1, buf+6);
+	}
+
 	bcdDisplayScoreUpperTotal();
 }

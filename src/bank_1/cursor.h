@@ -16,6 +16,29 @@
 // GAP - TITLE
 #define GAP_Y_TITLE		8
 
+// Y - OPTIONS
+#define Y_NAME_INPUT	48
+#define Y_AUDIO			64
+#define Y_RESET			80
+
+// X - options
+#define X_OPTIONS		24
+
+// GAP - OPTIONS
+#define GAP_Y_OPTIONS	16
+
+// Y - NAME INPUT
+#define Y_TOP_NAME		72
+#define Y_BOTTOM_NAME	120
+
+// X - NAME INPUT
+#define X_LEFT_NAME		12
+#define X_RIGHT_NAME	156
+
+// GAP - NAME INPUT
+#define GAP_X_NAME		16
+#define GAP_Y_NAME		16
+
 // Y - PLAY
 #define ROW_SELECT 		144
 #define ROW_DI      	136
@@ -75,6 +98,12 @@ BANKREF_EXTERN(drawCursor)
 // TITLE
 extern void moveCursorTitle() BANKED;
 BANKREF_EXTERN(moveCursorTitle)
+extern void moveCursorOptions() BANKED;
+BANKREF_EXTERN(moveCursorOptions)
+extern void moveCursorScores() BANKED;
+BANKREF_EXTERN(moveCursorScores)
+extern void  moveCursorNameInput() BANKED;
+BANKREF_EXTERN(moveCursorNameInput)
 
 // PLAY
 extern void moveCursorGame() BANKED;

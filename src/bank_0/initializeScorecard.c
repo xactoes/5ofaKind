@@ -1,6 +1,8 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
+#include "../bank_0/displayUpdates.h"
+#include "../sram/save_variables.h"
 
 #pragma bank 0
 

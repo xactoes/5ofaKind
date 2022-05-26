@@ -1,7 +1,5 @@
 #include <gb/gb.h>
-
 #include "../bank_0/global_defines.h"
-
 #include "../bank_2/screens.h"
 
 #pragma bank 2
