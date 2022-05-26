@@ -14,6 +14,7 @@ void newGame() BANKED
 	diceInitialized 		= 0;
 	bkgDrawn				= 0;
 	bcdCleaned				= 0;
+	scoreSaved				= 0;
 
 	//RESET ALL VARIABLES
 	cursorGameX			= 16;

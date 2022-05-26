@@ -23,9 +23,13 @@ void bcdDisplayScoreUpperTotal() BANKED
 			scorecardBuf += scorecard[index];
 		}
 	}
+
+	if(scorecard[14] != 255)
+	{
+		scorecardBuf += scorecard[14];
+	}
+
 	uint2bcd(scorecardBuf, &upperScore);
-
 	len = bcd2text(&upperScore, 0x10, buf);
-
 	set_bkg_tiles(16, 8, len-5, 1, buf+5);
 }

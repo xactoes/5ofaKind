@@ -7,4 +7,7 @@
 extern void nameInputDisplay(uint8, uint8*) BANKED;
 BANKREF_EXTERN(nameInputDisplay)
 
+extern void sortNamesAndScores() BANKED;
+BANKREF_EXTERN(sortNamesAndScores)
+
 #endif

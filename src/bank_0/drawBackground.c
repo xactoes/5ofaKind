@@ -9,6 +9,8 @@
 #include "../bank_2/screens.h"
 #include "../sram/save_variables.h"
 
+#include <stdio.h>
+#include "../bank_0/vblDelay.h"
 #pragma bank 0
 
 BANKREF(drawBackground)

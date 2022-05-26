@@ -14,6 +14,7 @@ extern uint8 diceInitialized;
 extern uint8 bkgDrawn;
 extern uint8 bcdCleaned;
 extern uint8 backgroundScrolled;
+extern uint8 scoreSaved;
 
 // CURSOR POSITION
 extern uint8 cursorGameX;

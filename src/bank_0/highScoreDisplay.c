@@ -2,6 +2,7 @@
 #include <gbdk/bcd.h>
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
+#include "../bank_0/displayUpdates.h"
 #include "../bank_1/score.h"
 #include "../sram/save_variables.h"
 
@@ -13,6 +14,8 @@ void highScoreDisplay(uint8 currentScreen) BANKED
 	uint8 len, offset;
 
 	bufferClear();
+
+	sortNamesAndScores();
 
 	switch(currentScreen)
 	{

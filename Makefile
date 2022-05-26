@@ -122,3 +122,4 @@ clean:
 # this is only if an above rule has a failure
 #	rm -f  *.gb *.ihx *.cdb *.adb *.noi *.map
 	rm -f  $(DIR_BUILD)/*.*
+	rm -f  $(DIR_ROM)/*.*

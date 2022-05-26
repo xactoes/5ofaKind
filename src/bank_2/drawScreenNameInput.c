@@ -8,7 +8,6 @@
 BANKREF(drawScreenNameInput)
 void drawScreenNameInput() BANKED
 {
-	//HIDE_SPRITES;
 	set_bkg_data(0, TILE_COUNT_GAME, gameData);
 	set_bkg_tiles(0, 0, 20, 18, nameInputMap);
 	SHOW_BKG;

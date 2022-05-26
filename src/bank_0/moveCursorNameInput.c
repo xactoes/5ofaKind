@@ -2,6 +2,8 @@
 #include <string.h>
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
+#include "../bank_0/drawBackground.h"
+#include "../bank_0/vblDelay.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/misc.h"
 #include "../sram/save_variables.h"
@@ -21,12 +23,15 @@ void moveCursorNameInput() BANKED
 	//copies currentName into tempName
 	memcpy(tempName, currentName, 8);
 
+	vblDelay(60);
 
 	while(viewNameInput)
 	{
+		// DRAW PLAYER NAME
 		for(uint8 i = 0; i != 8; i++){
 			set_bkg_tile_xy(i + 6, 3, tempName[i]);
 		}
+
 		switch(joypad())
 		{
 			// UPDATE NAME INPUT
@@ -101,6 +106,7 @@ void moveCursorNameInput() BANKED
 					cursorNameX2 -= 80;
 					bkgDrawn = 0;
 				}
+
 				waitpadup();
 				break;
 
@@ -136,6 +142,7 @@ void moveCursorNameInput() BANKED
 		}
 		// UPDATE CURSOR POSITION ON SCREEN
 		drawCursor(screen);
+		drawBackground(screen);
 	}
     DISABLE_RAM_MBC1;
 }

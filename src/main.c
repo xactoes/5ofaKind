@@ -12,6 +12,8 @@
 #include "./bank_1/dice.h"
 #include "./bank_1/info.h"
 
+#include "./sram/save_variables.h"
+
 #include <stdio.h>
 #include "./bank_0/vblDelay.h"
 
@@ -21,9 +23,28 @@ void main(){
     {
         screen = SCREEN_TITLE;
         loadSprites();
-        //initializeScorecard();  // MOVE TO GAME INITIALIZE LATER
         bootInitialized = 1;
     }
+
+    ENABLE_RAM_MBC1;
+	SWITCH_RAM_MBC1(0);
+    if(saveInitialized != 1)
+    {
+        for(uint8 i = 0; i != 25; i++)
+        {
+            // SET SCORES TO 0
+            if(highScore[i] != 0)
+            {
+                highScore[i] = 0;
+            }
+
+            currentName[i] = 0x00;
+        }
+        sortNamesAndScores();
+        saveInitialized = 1;
+    }
+    DISABLE_RAM_MBC1;
+
 
     DISPLAY_ON;
     SHOW_SPRITES;
@@ -68,6 +89,8 @@ void main(){
         while(screen == SCREEN_NAME_INPUT_0 || screen == SCREEN_NAME_INPUT_1 || screen == SCREEN_NAME_INPUT_2)
         {
             drawBackground(screen);
+            // printf("%u\n", screen);
+            // vblDelay(20);
             if(!backgroundScrolled)
             {
                 scroll_bkg(-4, 0);

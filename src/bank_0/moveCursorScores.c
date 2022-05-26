@@ -29,6 +29,7 @@ void moveCursorScores() BANKED
 			waitpadup();
 			break;
 		case J_B:
+			bkgDrawn = 0;
 			loadMenu();
 			waitpadup();
 			break;
