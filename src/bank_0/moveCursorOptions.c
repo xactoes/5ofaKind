@@ -1,6 +1,7 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
+#include "../bank_0/resetData.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/misc.h"
 
@@ -35,7 +36,6 @@ void moveCursorOptions() BANKED
 				move_sprite(ARROW_UP, 0, 0);
 				drawCursor(SCREEN_NAME_INPUT_0);
 				screen = SCREEN_NAME_INPUT_0;
-				//drawBackground(SCREEN_NAME_INPUT_0);
 			}
 			else if(cursorOptionsY == Y_AUDIO)
 			{
@@ -43,7 +43,10 @@ void moveCursorOptions() BANKED
 			}
 			else if(cursorOptionsY == Y_RESET)
 			{
-				//
+				ENABLE_RAM_MBC1;
+				SWITCH_RAM_MBC1(0);
+				resetData();
+				DISABLE_RAM_MBC1;
 			}
 			break;
 		case J_B:

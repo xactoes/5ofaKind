@@ -7,6 +7,7 @@
 #include "./bank_0/init_b0.h"
 #include "./bank_0/dice_b0.h"
 #include "./bank_0/drawBackground.h"
+#include "./bank_0/resetData.h"
 
 #include "./bank_1/cursor.h"
 #include "./bank_1/dice.h"
@@ -30,17 +31,7 @@ void main(){
 	SWITCH_RAM_MBC1(0);
     if(saveInitialized != 1)
     {
-        for(uint8 i = 0; i != 25; i++)
-        {
-            // SET SCORES TO 0
-            if(highScore[i] != 0)
-            {
-                highScore[i] = 0;
-            }
-
-            currentName[i] = 0x00;
-        }
-        sortNamesAndScores();
+        resetData();
         saveInitialized = 1;
     }
     DISABLE_RAM_MBC1;
