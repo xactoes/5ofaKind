@@ -11,33 +11,23 @@ That said, if you do test it, feel free to contact me about bugs and I'll try to
 [IMAGES PENDING]
 
 KNOWN BUGS:
+* scoring is broken for sm and lg straights
 * bonus 5 of a kind is not selectable if rest of the scorecard is marked
 
-MISSING FEATURES:
-* splash screen
-* ~~title screen~~
-* ~~options menu~~
-* audio settings under options
-* reset savegame under options
-* audio to play when dice are rolling
-* audio to play when dice cannot be rolled or hold and card are inaccessible
-* a start menu with info on how to play the game
-* a quit option in the start menu
-* ~~saving of high scores~~
-* background music
-* ~~player name entry up to 8 characters~~
-
 OTHER CHANGES TO BE MADE:
-* Font change (maybe)
-* better title screen
+* SPLASH SCREEN
+* FONT CHANGE (maybe)
+* BETTER TITLE SCREEN
+* A START MENU
+* A QUIT OPTION IN START MENU
 * CHANGE ROLLS TO THREE
-* DO NOT ALLOW HOLDING OF DICE ON ROLLS LEFT: 3
 * ADD DICE ROLLING ANIMATION
 * CREDITS SCREEN
 * LINK TRANSFER INOPERABLE SCREEN
-* RESET DATA SETTING
 * INFO SCREEN (START ON CARD)
 * AUDIO
+  * SETTINGS UNDER OPTIONS
+  * BACKGROUND MUSIC
   * SOUND FOR EACH DI BEING ROLLED
   * SOUND FOR LEGAL SCORE SELECTION
   * SOUND FOR ILLEGAL SCORE SELECTION

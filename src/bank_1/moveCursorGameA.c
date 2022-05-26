@@ -11,21 +11,28 @@
 BANKREF(moveCursorGameA)
 void moveCursorGameA() BANKED
 {
-	if(cursorGameY == ROW_SELECT){
-		if(cursorGameX == X_ROLL){
+	if(cursorGameY == ROW_SELECT)
+	{
+		if(cursorGameX == X_ROLL)
+		{
 			if(rolls)
 			{
 				rollDice();
 				rollDecrement();
 			}
 		}
-		else if(cursorGameX == X_HOLD){
+		else if(cursorGameX == X_HOLD)
+		{
 			// MOVE TO DI ROW
-			cursorGameX = X_DI_ONE;
-			cursorGameY = ROW_DI;
-			drawCursor(SCREEN_PLAY);
+			if(rolls != MAX_ROLLS)
+			{
+				cursorGameX = X_DI_ONE;
+				cursorGameY = ROW_DI;
+				drawCursor(SCREEN_PLAY);
+			}
 		}
-		else if(cursorGameX == X_CARD){
+		else if(cursorGameX == X_CARD)
+		{
 			if(selectionIsLegal)
 			{
 				moveCursorGameSelect();
