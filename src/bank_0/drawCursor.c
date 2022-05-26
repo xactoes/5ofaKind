@@ -27,14 +27,20 @@ void drawCursor(uint8 screenLocal) BANKED
 		// NAME INPUT SCREENS
 		case SCREEN_NAME_INPUT_0:
 			move_sprite(cursor3, cursorNameX, cursorNameY);
+			move_sprite(cursor1, cursorNameX1, cursorNameY1);
+			move_sprite(cursor2, cursorNameX2, cursorNameY2);
 			break;
 		case SCREEN_NAME_INPUT_1:
 			move_sprite(cursor3, cursorNameX, cursorNameY);
+			move_sprite(cursor1, cursorNameX1, cursorNameY1);
+			move_sprite(cursor2, cursorNameX2, cursorNameY2);
 			break;
 		case SCREEN_NAME_INPUT_2:
 			move_sprite(cursor3, cursorNameX, cursorNameY);
+			move_sprite(cursor1, cursorNameX1, cursorNameY1);
+			move_sprite(cursor2, cursorNameX2, cursorNameY2);
 			break;
-			
+
         // GAME PLAY SCREEN
         case SCREEN_PLAY:
             // IF PLAY OPTION SELECTED

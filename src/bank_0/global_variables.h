@@ -26,6 +26,10 @@ extern uint8 cursorOptionsX;
 extern uint8 cursorOptionsY;
 extern uint8 cursorNameX;
 extern uint8 cursorNameY;
+extern uint8 cursorNameX1;
+extern uint8 cursorNameY1;
+extern uint8 cursorNameX2;
+extern uint8 cursorNameY2;
 
 // IDENTIFIERS
 extern uint8 screen;

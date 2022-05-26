@@ -23,6 +23,11 @@ uint8 cursorOptionsX		= 24;
 uint8 cursorOptionsY		= 48;
 uint8 cursorNameX			= 12;
 uint8 cursorNameY			= 72;
+uint8 cursorNameX1			= 44;
+uint8 cursorNameY1			= 128;
+uint8 cursorNameX2			= 76;
+uint8 cursorNameY2			= 128;
+
 
 // IDENTIFIERS
 uint8 screen				= 0;
