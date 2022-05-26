@@ -25,27 +25,62 @@ void bcdDisplayScoreUpper() BANKED
 			{
         		//1's
         		case 0:
-        			set_bkg_tiles(8, 4, len-6, 1, buf+6);
+        			set_bkg_tiles(9, 4, len-7, 1, buf+7);
         			break;
         		//2's
         		case 1:
-        			set_bkg_tiles(8, 5, len-6, 1, buf+6);
+					if(scorecard[index] < 10)
+					{
+						set_bkg_tiles(9, 5, len-7, 1, buf+7);
+					}
+					else
+					{
+						set_bkg_tiles(8, 5, len-6, 1, buf+6);
+					}
         			break;
         		//3's
         		case 2:
-        			set_bkg_tiles(8, 6, len-6, 1, buf+6);
+					if(scorecard[index] < 10)
+					{
+						set_bkg_tiles(9, 6, len-7, 1, buf+7);
+					}
+					else
+					{
+						set_bkg_tiles(8, 6, len-6, 1, buf+6);
+					}
         			break;
         		//4's
         		case 3:
-        			set_bkg_tiles(17, 4, len-6, 1, buf+6);
+					if(scorecard[index] < 10)
+					{
+						set_bkg_tiles(18, 4, len-7, 1, buf+7);
+					}
+					else
+					{
+						set_bkg_tiles(17, 4, len-6, 1, buf+6);
+					}
         			break;
         		//5's
         		case 4:
-        			set_bkg_tiles(17, 5, len-6, 1, buf+6);
+					if(scorecard[index] < 10)
+					{
+						set_bkg_tiles(18, 5, len-7, 1, buf+7);
+					}
+					else
+					{
+						set_bkg_tiles(17, 5, len-6, 1, buf+6);
+					}
         			break;
         		//6's
         		case 5:
-        			set_bkg_tiles(17, 6, len-6, 1, buf+6);
+					if(scorecard[index] < 10)
+					{
+						set_bkg_tiles(18, 6, len-7, 1, buf+7);
+					}
+					else
+					{
+						set_bkg_tiles(17, 6, len-6, 1, buf+6);
+					}
         			break;
         	}
 		}
@@ -57,8 +92,14 @@ void bcdDisplayScoreUpper() BANKED
 		uint2bcd(scorecardCompare[14], &upperScoreBuf);
 		len = bcd2text(&upperScoreBuf, 0x10, buf);
 
-		set_bkg_tiles(17, 7, len-6, 1, buf+6);
+		if(scorecard[14] < 10)
+		{
+			set_bkg_tiles(18, 7, len-7, 1, buf+7);
+		}
+		else
+		{
+			set_bkg_tiles(17, 7, len-6, 1, buf+6);
+		}
 	}
-
 	bcdDisplayScoreUpperTotal();
 }
