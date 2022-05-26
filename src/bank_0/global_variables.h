@@ -13,6 +13,7 @@ extern uint8 turnInitialized;
 extern uint8 diceInitialized;
 extern uint8 bkgDrawn;
 extern uint8 bcdCleaned;
+extern uint8 backgroundScrolled;
 
 // CURSOR POSITION
 extern uint8 cursorGameX;
@@ -35,7 +36,10 @@ extern uint16 scorecard[];
 extern uint16 scorecardCompare[];
 extern uint8 buf[];
 extern uint8 diceSorted[];
-extern uint16 highScore[];
+//extern uint16 highScore[];
+
+// NAME
+extern uint8 tempName[];
 
 // BCD
 extern BCD upperScore;

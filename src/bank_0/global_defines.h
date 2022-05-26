@@ -37,6 +37,9 @@ typedef long long       int64;
 #define HIGH_SCORE_1		13
 #define HIGH_SCORE_2		14
 #define HIGH_SCORE_3		15
+#define SCREEN_NAME_INPUT_0	16
+#define SCREEN_NAME_INPUT_1 17
+#define SCREEN_NAME_INPUT_2 18
 #define SCREEN_PLAY			20
 #define SCREEN_CARD			30
 #define SCREEN_END			40

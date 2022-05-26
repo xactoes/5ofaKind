@@ -10,6 +10,7 @@ uint8 turnInitialized		= 0;
 uint8 diceInitialized 		= 0;
 uint8 bkgDrawn				= 0;
 uint8 bcdCleaned			= 0;
+uint8 backgroundScrolled	= 0;
 
 // CURSOR POSITION
 uint8 cursorGameX			= 16;
@@ -32,12 +33,17 @@ uint16 scorecard[15];
 uint16 scorecardCompare[15];
 uint8 buf[10];
 uint8 diceSorted[5];
+/*
 uint16 highScore[25] = {
 	1, 10, 100, 1000, 10000, 2,
 	20, 200, 2000, 20000, 3, 30,
 	300, 3000, 30000, 4, 40, 400,
 	4000, 40000, 5, 50, 500, 0, 0
 };
+*/
+
+// NAME
+uint8 tempName[8];
 
 // BCD
 BCD upperScore			= MAKE_BCD(00000000);

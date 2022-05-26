@@ -1,12 +1,14 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
+#include "../bank_0/displayUpdates.h"
 #include "../bank_1/info.h"
 #include "../bank_1/score.h"
 #include "../bank_2/drawScreens.h"
+#include "../sram/save_variables.h"
 
-#include <stdio.h>
-#include "../bank_0/vblDelay.h"
+// #include <stdio.h>
+// #include "../bank_0/vblDelay.h"
 
 #pragma bank 0
 
@@ -62,15 +64,36 @@ void drawBackground(uint8 screen) BANKED
 				SHOW_BKG;
 			}
 			break;
+		case SCREEN_NAME_INPUT_0:
+			if(!bkgDrawn)
+			{
+				drawScreenNameInput();
+				nameInputDisplay(SCREEN_NAME_INPUT_0);
+				bkgDrawn = 1;
+			}
+			//nameInputDisplay(SCREEN_NAME_INPUT_0);
+			break;
 		case SCREEN_PLAY:
 			drawScreenPlay();
 			if(!bcdCleaned)
 			{
+				// DISPLAY PLAYER NAME
+				ENABLE_RAM_MBC1;
+			    SWITCH_RAM_MBC1(0);
+			    for(int8 i = 7; i != -1; i--){
+			        // i + 2 aligns it to the right by going from 7+2= 9 first, then back to 8, 7, and so on
+			        set_bkg_tile_xy(i + 2, 2, currentName[i]);
+			    }
+			    DISABLE_RAM_MBC1;
+
+				// DISPLAY TURN AND ROLLS
 				bcdDisplayTurn();
 				bcdDisplayRolls();
 				if(rolls < 10){
 					set_bkg_tile_xy(17, 5, 0x00);
 				}
+
+				// DISPLAY SCORE
 				bcdDisplayScoreTotal(SCREEN_PLAY);
 				bcdCleaned = 1;
 				SHOW_BKG;

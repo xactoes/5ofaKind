@@ -3,8 +3,9 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_1/score.h"
+#include "../sram/save_variables.h"
 
-#pragma bank 1
+#pragma bank 0
 
 BANKREF(highScoreDisplay)
 void highScoreDisplay(uint8 currentScreen) BANKED
@@ -12,7 +13,6 @@ void highScoreDisplay(uint8 currentScreen) BANKED
 	uint8 len, offset;
 
 	bufferClear();
-
 
 	switch(currentScreen)
 	{
@@ -40,6 +40,14 @@ void highScoreDisplay(uint8 currentScreen) BANKED
 
 				set_bkg_tiles(11 + offset, 4+(2*i), len-offset, 1, buf+offset);
 			}
+
+			// PRINTS NAMES
+			for(int8 i = 7; i != -1; i--){
+                for(uint8 j = 0; j != 6; j++){
+                    set_bkg_tile_xy(i + 3, (j + 2) * 2, namesArray[j][i]);
+                }
+            }
+
 			break;
 
 		case HIGH_SCORE_1:
@@ -69,6 +77,13 @@ void highScoreDisplay(uint8 currentScreen) BANKED
 
 				set_bkg_tiles(11 + offset, 4+(2*(i-6)), len - offset, 1, buf + offset);
 			}
+
+			// PRINTS NAMES
+			for(int8 i = 7; i != -1; i--){
+                for(uint8 j = 6; j < 12; j++){
+                    set_bkg_tile_xy(i + 3, (j - 6 + 2) * 2, namesArray[j][i]);
+                }
+            }
 
 			set_bkg_tile_xy(1, 16, 0x7D);
 			set_bkg_tile_xy(3, 16, 0x11);
@@ -108,6 +123,13 @@ void highScoreDisplay(uint8 currentScreen) BANKED
 				set_bkg_tiles(11 + offset, 4+(2*(i-12)), len - offset, 1, buf + offset);
 			}
 
+			// PRINTS NAMES
+			for(int8 i = 7; i != -1; i--){
+                for(uint8 j = 12; j < 18; j++){
+                    set_bkg_tile_xy(i + 3, (j - 12 + 2) * 2, namesArray[j][i]);
+                }
+            }
+
 			set_bkg_tile_xy(1, 16, 0x7D);
 			set_bkg_tile_xy(3, 16, 0x12);
 
@@ -145,6 +167,13 @@ void highScoreDisplay(uint8 currentScreen) BANKED
 
 				set_bkg_tiles(11 + offset, 4+(2*(i-18)), len - offset, 1, buf + offset);
 			}
+
+			// PRINTS NAMES
+			for(int8 i = 7; i != -1; i--){
+                for(uint8 j = 18; j < 24; j++){
+                    set_bkg_tile_xy(i + 3, (j - 18 + 2) * 2, namesArray[j][i]);
+                }
+            }
 
 			set_bkg_tile_xy(1, 16, 0x7D);
 			set_bkg_tile_xy(3, 16, 0x13);

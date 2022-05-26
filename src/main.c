@@ -65,6 +65,19 @@ void main(){
             SHOW_BKG;
         }
 
+        while(screen == SCREEN_NAME_INPUT_0 || screen == SCREEN_NAME_INPUT_1 || screen == SCREEN_NAME_INPUT_2)
+        {
+            drawBackground(screen);
+            if(!backgroundScrolled)
+            {
+                scroll_bkg(-4, 0);
+                backgroundScrolled = 1;
+            }
+            //moveCursorNameInput();
+            SHOW_SPRITES;
+            SHOW_BKG;
+        }
+
         while(gameActive())
         {
             while(screen == SCREEN_PLAY)

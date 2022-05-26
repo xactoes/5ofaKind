@@ -30,7 +30,8 @@ void moveCursorOptions() BANKED
 		case J_A:
 			if(cursorOptionsY == Y_NAME_INPUT)
 			{
-				//
+				screen = SCREEN_NAME_INPUT_0;
+				//drawBackground(SCREEN_NAME_INPUT_0);
 			}
 			else if(cursorOptionsY == Y_AUDIO)
 			{
