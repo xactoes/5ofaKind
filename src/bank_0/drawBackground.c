@@ -68,8 +68,6 @@ void drawBackground(uint8 screen) BANKED
 			{
 				drawScreenNameInput();
 				nameInputDisplay(SCREEN_NAME_INPUT_0, nameInputCharArray);
-				//copies currentName into tempName
-				memcpy(tempName, currentName, 8);
 				bkgDrawn = 1;
 			}
 			break;
