@@ -31,5 +31,17 @@ void bcdDisplayScoreUpperTotal() BANKED
 
 	uint2bcd(scorecardBuf, &upperScore);
 	len = bcd2text(&upperScore, 0x10, buf);
-	set_bkg_tiles(16, 8, len-5, 1, buf+5);
+
+	if(scorecardBuf < 10)
+	{
+		set_bkg_tiles(18, 8, len-7, 1, buf+7);
+	}
+	else if(scorecardBuf < 100)
+	{
+		set_bkg_tiles(17, 8, len-6, 1, buf+6);
+	}
+	else
+	{
+		set_bkg_tiles(16, 8, len-5, 1, buf+5);
+	}
 }
