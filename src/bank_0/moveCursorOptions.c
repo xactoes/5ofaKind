@@ -30,6 +30,10 @@ void moveCursorOptions() BANKED
 		case J_A:
 			if(cursorOptionsY == Y_NAME_INPUT)
 			{
+				move_sprite(ARROW_RIGHT, 0, 0);
+				move_sprite(ARROW_LEFT, 0, 0);
+				move_sprite(ARROW_UP, 0, 0);
+				drawCursor(SCREEN_NAME_INPUT_0);
 				screen = SCREEN_NAME_INPUT_0;
 				//drawBackground(SCREEN_NAME_INPUT_0);
 			}

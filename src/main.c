@@ -73,7 +73,7 @@ void main(){
                 scroll_bkg(-4, 0);
                 backgroundScrolled = 1;
             }
-            //moveCursorNameInput();
+            moveCursorNameInput();
             SHOW_SPRITES;
             SHOW_BKG;
         }

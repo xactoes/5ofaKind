@@ -21,6 +21,8 @@ uint8 cursorTitleX			= 48;
 uint8 cursorTitleY			= 96;
 uint8 cursorOptionsX		= 24;
 uint8 cursorOptionsY		= 48;
+uint8 cursorNameX			= 12;
+uint8 cursorNameY			= 72;
 
 // IDENTIFIERS
 uint8 screen				= 0;

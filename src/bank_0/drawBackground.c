@@ -5,6 +5,7 @@
 #include "../bank_1/info.h"
 #include "../bank_1/score.h"
 #include "../bank_2/drawScreens.h"
+#include "../bank_2/screens.h"
 #include "../sram/save_variables.h"
 
 // #include <stdio.h>
@@ -68,10 +69,25 @@ void drawBackground(uint8 screen) BANKED
 			if(!bkgDrawn)
 			{
 				drawScreenNameInput();
-				nameInputDisplay(SCREEN_NAME_INPUT_0);
+				nameInputDisplay(SCREEN_NAME_INPUT_0, nameInputCharArray);
 				bkgDrawn = 1;
 			}
-			//nameInputDisplay(SCREEN_NAME_INPUT_0);
+			break;
+		case SCREEN_NAME_INPUT_1:
+			if(!bkgDrawn)
+			{
+				drawScreenNameInput();
+				nameInputDisplay(SCREEN_NAME_INPUT_1, nameInputCharArray);
+				bkgDrawn = 1;
+			}
+			break;
+		case SCREEN_NAME_INPUT_2:
+			if(!bkgDrawn)
+			{
+				drawScreenNameInput();
+				nameInputDisplay(SCREEN_NAME_INPUT_2, nameInputCharArray);
+				bkgDrawn = 1;
+			}
 			break;
 		case SCREEN_PLAY:
 			drawScreenPlay();

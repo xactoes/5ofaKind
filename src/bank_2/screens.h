@@ -17,7 +17,7 @@ extern const uint8 highScoreMap[];
 BANKREF_EXTERN(highScoreMap)
 extern const uint8 nameInputMap[];
 BANKREF_EXTERN(nameInputMap)
-extern const uint8 nameInputCharArray[];
+extern uint8 nameInputCharArray[];
 BANKREF_EXTERN(nameInputCharArray)
 
 extern const uint8 gameData[];
