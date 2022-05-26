@@ -25,7 +25,7 @@ IMAGES:
 ![5-of-a-Kind-14](https://user-images.githubusercontent.com/97451908/170585061-1f27774a-5b04-4251-9f39-3c275a1698af.png)
 
 KNOWN BUGS:
-* scoring is broken for sm and lg straights
+* ~~scoring is broken for sm and lg straights~~
 * bonus 5 of a kind is not selectable if rest of the scorecard is marked
 
 OTHER CHANGES TO BE MADE:
