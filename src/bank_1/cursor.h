@@ -98,6 +98,8 @@ BANKREF_EXTERN(drawCursor)
 // TITLE
 extern void moveCursorTitle() BANKED;
 BANKREF_EXTERN(moveCursorTitle)
+extern void moveCursorLink() BANKED;
+BANKREF_EXTERN(moveCursorLink)
 extern void moveCursorOptions() BANKED;
 BANKREF_EXTERN(moveCursorOptions)
 extern void moveCursorScores() BANKED;
@@ -118,6 +120,10 @@ extern void moveCursorGameB() BANKED;
 BANKREF_EXTERN(moveCursorGameB)
 extern void moveCursorGameSelect() BANKED;
 BANKREF_EXTERN(moveCursorGameSelect)
+
+// START MENU
+extern void moveCursorStart() BANKED;
+BANKREF_EXTERN(moveCursorStart)
 
 // CARD
 extern void moveCursorCard() BANKED;

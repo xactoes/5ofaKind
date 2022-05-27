@@ -9,8 +9,6 @@
 #include "../bank_2/screens.h"
 #include "../sram/save_variables.h"
 
-#include <stdio.h>
-#include "../bank_0/vblDelay.h"
 #pragma bank 0
 
 BANKREF(drawBackground)
@@ -89,6 +87,14 @@ void drawBackground(uint8 screen) BANKED
 				bkgDrawn = 1;
 			}
 			break;
+		case SCREEN_LINK:
+			if(!bkgDrawn)
+			{
+				drawScreenLink();
+				bkgDrawn = 1;
+				SHOW_BKG;
+			}
+			break;
 		case SCREEN_PLAY:
 			drawScreenPlay();
 			if(!bcdCleaned)
@@ -125,6 +131,10 @@ void drawBackground(uint8 screen) BANKED
 				bcdCleaned = 1;
 				SHOW_BKG;
 			}
+			break;
+		case SCREEN_START:
+			drawScreenStartMenu();
+			SHOW_BKG;
 			break;
 		case SCREEN_END:
 			drawScreenEnd();
