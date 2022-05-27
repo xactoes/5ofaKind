@@ -26,9 +26,11 @@ IMAGES:
 
 KNOWN BUGS:
 * ~~scoring is broken for sm and lg straights~~
+* cursor doesn't reset when exiting and re-entering name input
 
 OTHER CHANGES TO BE MADE:
 * SPLASH SCREEN
+* CENTER NAME ON END SCREEN
 * FONT CHANGE (maybe)
 * BETTER TITLE SCREEN (maybe)
 * ADD DICE ROLLING ANIMATION

@@ -47,7 +47,7 @@ void highScoreDisplay(uint8 currentScreen) BANKED
 			// PRINTS NAMES
 			for(int8 i = 7; i != -1; i--){
                 for(uint8 j = 0; j != 6; j++){
-                    set_bkg_tile_xy(i + 3, (j + 2) * 2, namesArray[j][i]);
+                    set_bkg_tile_xy(i + 4, (j + 2) * 2, namesArray[j][i]);
                 }
             }
 
@@ -84,7 +84,7 @@ void highScoreDisplay(uint8 currentScreen) BANKED
 			// PRINTS NAMES
 			for(int8 i = 7; i != -1; i--){
                 for(uint8 j = 6; j < 12; j++){
-                    set_bkg_tile_xy(i + 3, (j - 6 + 2) * 2, namesArray[j][i]);
+                    set_bkg_tile_xy(i + 4, (j - 6 + 2) * 2, namesArray[j][i]);
                 }
             }
 
@@ -129,7 +129,7 @@ void highScoreDisplay(uint8 currentScreen) BANKED
 			// PRINTS NAMES
 			for(int8 i = 7; i != -1; i--){
                 for(uint8 j = 12; j < 18; j++){
-                    set_bkg_tile_xy(i + 3, (j - 12 + 2) * 2, namesArray[j][i]);
+                    set_bkg_tile_xy(i + 4, (j - 12 + 2) * 2, namesArray[j][i]);
                 }
             }
 
@@ -174,7 +174,7 @@ void highScoreDisplay(uint8 currentScreen) BANKED
 			// PRINTS NAMES
 			for(int8 i = 7; i != -1; i--){
                 for(uint8 j = 18; j < 24; j++){
-                    set_bkg_tile_xy(i + 3, (j - 18 + 2) * 2, namesArray[j][i]);
+                    set_bkg_tile_xy(i + 4, (j - 18 + 2) * 2, namesArray[j][i]);
                 }
             }
 
