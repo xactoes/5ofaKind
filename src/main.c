@@ -15,8 +15,8 @@
 
 #include "./sram/save_variables.h"
 
-#include <stdio.h>
-#include "./bank_0/vblDelay.h"
+// #include <stdio.h>
+// #include "./bank_0/vblDelay.h"
 
 void main(){
 
@@ -35,7 +35,6 @@ void main(){
         saveInitialized = 1;
     }
     DISABLE_RAM_MBC1;
-
 
     DISPLAY_ON;
     SHOW_SPRITES;
@@ -80,14 +79,20 @@ void main(){
         while(screen == SCREEN_NAME_INPUT_0 || screen == SCREEN_NAME_INPUT_1 || screen == SCREEN_NAME_INPUT_2)
         {
             drawBackground(screen);
-            // printf("%u\n", screen);
-            // vblDelay(20);
             if(!backgroundScrolled)
             {
                 scroll_bkg(-4, 0);
                 backgroundScrolled = 1;
             }
             moveCursorNameInput();
+            SHOW_SPRITES;
+            SHOW_BKG;
+        }
+
+        while(screen == SCREEN_LINK)
+        {
+            drawBackground(screen);
+            moveCursorLink();
             SHOW_SPRITES;
             SHOW_BKG;
         }
@@ -108,6 +113,10 @@ void main(){
             {
                 drawBackground(SCREEN_CARD);
                 moveCursorCard();
+            }
+            while(screen == SCREEN_START)
+            {
+                moveCursorStart();
             }
         }
 

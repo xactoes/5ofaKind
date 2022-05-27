@@ -40,7 +40,9 @@ typedef long long       int64;
 #define SCREEN_NAME_INPUT_0	16
 #define SCREEN_NAME_INPUT_1 17
 #define SCREEN_NAME_INPUT_2 18
+#define SCREEN_LINK			19
 #define SCREEN_PLAY			20
+#define SCREEN_START		25
 #define SCREEN_CARD			30
 #define SCREEN_END			40
 #define SCREEN_CREDITS		50

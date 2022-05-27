@@ -11,7 +11,7 @@ uint8 gameActive() BANKED
 {
 	uint8 active = 0;
 
-	if(screen == SCREEN_PLAY || screen == SCREEN_CARD)
+	if(screen == SCREEN_PLAY || screen == SCREEN_CARD || screen == SCREEN_START)
 	{
 		if(currentTurn() < 14)
 		{

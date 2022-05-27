@@ -11,6 +11,8 @@ BANKREF_EXTERN(titleData)
 extern const uint8 titleMap[];
 BANKREF_EXTERN(titleMap)
 
+extern const uint8 linkErrorMap[];
+BANKREF_EXTERN(linkErrorMap)
 extern const uint8 optionsMap[];
 BANKREF_EXTERN(optionsMap)
 extern const uint8 highScoreMap[];
@@ -27,6 +29,8 @@ extern const uint8 playMap[];
 BANKREF_EXTERN(playMap)
 extern const uint8 cardMap[];
 BANKREF_EXTERN(cardMap)
+extern const uint8 startMap[];
+BANKREF_EXTERN(startMap)
 
 extern const uint8 endMap[];
 BANKREF_EXTERN(endMap)

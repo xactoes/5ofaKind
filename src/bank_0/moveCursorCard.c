@@ -60,6 +60,12 @@ void moveCursorCard() BANKED
             waitpadup();
             break;
 
+        case J_START:
+            // SHOW START MENU
+            moveCursorStart();
+            waitpadup();
+            break;
+
         case J_SELECT:
 			moveCursorCardBSelect();
             waitpadup();

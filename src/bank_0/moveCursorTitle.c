@@ -41,6 +41,15 @@ void moveCursorTitle() BANKED
 				HIDE_SPRITES;
 				HIDE_BKG;
 			}
+			else if(cursorTitleY == Y_LINK)
+			{
+				screen = SCREEN_LINK;
+				move_sprite(ARROW_RIGHT, 0, 0);
+				move_sprite(ARROW_LEFT, 0, 0);
+				move_sprite(ARROW_UP, 0, 0);
+				HIDE_SPRITES;
+				HIDE_BKG;
+			}
 			else if(cursorTitleY == Y_OPTIONS)
 			{
 				screen = SCREEN_OPTIONS;
