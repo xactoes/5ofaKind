@@ -25,8 +25,7 @@ IMAGES:
 ![5-of-a-Kind-14](https://user-images.githubusercontent.com/97451908/170585061-1f27774a-5b04-4251-9f39-3c275a1698af.png)
 
 KNOWN BUGS:
-* ~~scoring is broken for sm and lg straights~~
-* cursor doesn't reset when exiting and re-entering name input
+* currently no known bugs; please let me know if any are found
 
 OTHER CHANGES TO BE MADE:
 * SPLASH SCREEN
@@ -36,11 +35,8 @@ OTHER CHANGES TO BE MADE:
 * CREDITS SCREEN
 * AUDIO
   * SETTINGS UNDER OPTIONS
-  * BACKGROUND MUSIC
-  * SOUND FOR EACH DI BEING ROLLED
-  * SOUND FOR LEGAL SCORE SELECTION
-  * SOUND FOR ILLEGAL SCORE SELECTION
-  * SOUND FOR LEGAL AND 0
-  * SOUND FOR LEGAL AND MAX VALUE
-  * BACKGROUND AUDIO
-  * END GAME JINGLE
+  * MIGHT ADD
+    * SOUND FOR EACH DI BEING ROLLED
+    * SOUND FOR LEGAL AND 0
+    * SOUND FOR LEGAL AND MAX VALUE
+    * END GAME JINGLE

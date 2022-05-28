@@ -19,8 +19,6 @@ void main(){
     NR50_REG = MAX_VOLUME;
     NR51_REG = CHANNEL_ON_ALL;
 
-    soundCursorMove();
-
     if(!bootInitialized)
     {
         screen = SCREEN_TITLE;

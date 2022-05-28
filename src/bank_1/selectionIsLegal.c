@@ -3,6 +3,7 @@
 #include "../bank_0/global_variables.h"
 #include "../bank_1/info.h"
 #include "../bank_1/score.h"
+#include "../bank_1/soundEffects.h"
 
 #pragma bank 1
 
@@ -29,18 +30,21 @@ uint16 selectionIsLegal() BANKED
 		// IF EVERYTHING HAS BEEN SELECTED
 		if(turnsPassed == 14)
 		{
-			// printf("%u\n", fiveOfaKindBonusIsLegal());
 			// AND BONUS 5K IS ILLEGAL
 			if(!fiveOfaKindBonusIsLegal())
 			{
 				legal = 0;
-				//screen = SCREEN_END;
 			}
 		}
 		else
 		{
 			legal = 1;
 		}
+	}
+
+	if(legal == 0)
+	{
+		soundInvalid();
 	}
 	return legal;
 }

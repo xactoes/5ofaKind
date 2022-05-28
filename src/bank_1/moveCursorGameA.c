@@ -20,10 +20,11 @@ void moveCursorGameA() BANKED
 			{
 				rollDice();
 				rollDecrement();
+				soundCursorMove();
 			}
 			else
 			{
-				//soundInvalid();
+				soundInvalid();
 			}
 		}
 		else if(cursorGameX == X_HOLD)
