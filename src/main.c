@@ -1,24 +1,25 @@
 #include <gb/gb.h>
-
 #include "./bank_0/global_defines.h"
 #include "./bank_0/global_variables.h"
-
 #include "./bank_0/loadSprites.h"
 #include "./bank_0/init_b0.h"
 #include "./bank_0/dice_b0.h"
 #include "./bank_0/drawBackground.h"
 #include "./bank_0/resetData.h"
-
 #include "./bank_1/cursor.h"
 #include "./bank_1/dice.h"
 #include "./bank_1/info.h"
-
+#include "./bank_1/soundEffects.h"
 #include "./sram/save_variables.h"
 
-// #include <stdio.h>
-// #include "./bank_0/vblDelay.h"
 
 void main(){
+
+    NR52_REG = AUDIO_ON;
+    NR50_REG = MAX_VOLUME;
+    NR51_REG = CHANNEL_ON_ALL;
+
+    soundCursorMove();
 
     if(!bootInitialized)
     {

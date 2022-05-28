@@ -2,6 +2,7 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_1/cursor.h"
+#include "../bank_1/soundEffects.h"
 
 #pragma bank 1
 
@@ -13,6 +14,7 @@ void moveCursorCardLeft() BANKED
         if(cursorCardX > SIDE_LEFT){
             cursorIndex -= 3;
             cursorCardX -= GAP_X;
+            soundCursorMove();
         }
     }
     // IF CURSOR IS IN THE BOTTOM
@@ -22,6 +24,7 @@ void moveCursorCardLeft() BANKED
             if(cursorCardX > SIDE_LEFT){
                 cursorIndex -= 3;
                 cursorCardX -= GAP_X;
+                soundCursorMove();
             }
         }
     }
