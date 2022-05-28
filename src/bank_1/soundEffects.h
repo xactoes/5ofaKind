@@ -6,4 +6,7 @@
 extern void soundCursorMove() BANKED;
 BANKREF_EXTERN(soundCursorMove)
 
+extern void soundInvalid() BANKED;
+BANKREF_EXTERN(soundInvalid)
+
 #endif

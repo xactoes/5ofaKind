@@ -11,3 +11,9 @@ void soundCursorMove() BANKED
 	NR13_REG = 0xE2;
 	NR14_REG = 0x86;
 }
+
+BANKREF(soundInvalid)
+void soundInvalid() BANKED
+{
+	//
+}
