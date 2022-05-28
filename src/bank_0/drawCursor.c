@@ -26,6 +26,10 @@ void drawCursor(uint8 screenLocal) BANKED
 
 		// NAME INPUT SCREENS
 		case SCREEN_NAME_INPUT_0:
+			cursorNameX1 = 44;
+			cursorNameY1 = 128;
+			cursorNameX2 = 76;
+			cursorNameY2 = 128;
 			move_sprite(cursor3, cursorNameX, cursorNameY);
 			move_sprite(cursor1, cursorNameX1, cursorNameY1);
 			move_sprite(cursor2, cursorNameX2, cursorNameY2);

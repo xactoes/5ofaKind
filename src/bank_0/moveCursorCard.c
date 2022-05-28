@@ -6,6 +6,7 @@
 #include "../bank_1/cursor.h"
 #include "../bank_1/dice.h"
 #include "../bank_1/info.h"
+#include "../bank_1/soundEffects.h"
 
 #pragma bank 0
 
@@ -49,7 +50,19 @@ void moveCursorCard() BANKED
         case J_A:
 			if(selectionIsLegal())
 			{
+				if(scorecard[cursorIndex] != 255)
+				{
+					soundInvalid();
+				}
+				else
+				{
+					soundCursorMove();
+				}
 				moveCursorCardA(cursorIndex);
+			}
+			else
+			{
+				soundInvalid();
 			}
 			bcdCleaned = 0;
 			waitpadup();

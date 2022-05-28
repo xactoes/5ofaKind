@@ -2,6 +2,7 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_1/cursor.h"
+#include "../bank_1/soundEffects.h"
 
 #pragma bank 1
 
@@ -14,12 +15,14 @@ void moveCursorCardDown() BANKED
         if(cursorCardY > FLOOR_LOWER_MIDDLE){
             cursorIndex += 1;
             cursorCardY += GAP_Y_SMALL;
+            soundCursorMove();
         }
         // AT 5 KIND
         else if(cursorCardY == Y_KIND_FIVE){
             cursorIndex == 13;
             cursorCardX == SIDE_LEFT;
             cursorCardY += GAP_Y_SMALL;
+            soundCursorMove();
         }
         // AT FHOUSE/CHANCE
         else if(cursorCardY == FLOOR_LOWER_MIDDLE){
@@ -27,12 +30,14 @@ void moveCursorCardDown() BANKED
             if(cursorCardX == SIDE_LEFT){
                 cursorIndex += 4;
                 cursorCardY += GAP_Y_SMALL;
+                soundCursorMove();
             }
             // CHANCE
             else {
                 cursorIndex += 1;
                 cursorCardX = SIDE_LEFT;
                 cursorCardY += GAP_Y_SMALL;
+                soundCursorMove();
             }
 
         }
@@ -40,16 +45,19 @@ void moveCursorCardDown() BANKED
         else if(cursorCardY < FLOOR_LOWER_MIDDLE && cursorCardY >= CEILING_LOWER){
             cursorIndex += 1;
             cursorCardY += GAP_Y_SMALL;
+            soundCursorMove();
         }
         // AT BOTTOM OF TOP
         else if(cursorCardY == FLOOR_UPPER){
             cursorIndex += 4;
             cursorCardY += GAP_Y_BIG;
+            soundCursorMove();
         }
         // IN TOP TWO ROWS
         else{
             cursorIndex += 1;
             cursorCardY += GAP_Y_SMALL;
+            soundCursorMove();
         }
     }
 }

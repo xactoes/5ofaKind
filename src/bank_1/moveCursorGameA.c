@@ -5,6 +5,7 @@
 #include "../bank_1/cursor.h"
 #include "../bank_1/dice.h"
 #include "../bank_1/info.h"
+#include "../bank_1/soundEffects.h"
 
 #pragma bank 1
 
@@ -19,6 +20,11 @@ void moveCursorGameA() BANKED
 			{
 				rollDice();
 				rollDecrement();
+				soundCursorMove();
+			}
+			else
+			{
+				soundInvalid();
 			}
 		}
 		else if(cursorGameX == X_HOLD)
@@ -29,6 +35,7 @@ void moveCursorGameA() BANKED
 				cursorGameX = X_DI_ONE;
 				cursorGameY = ROW_DI;
 				drawCursor(SCREEN_PLAY);
+				soundCursorMove();
 			}
 		}
 		else if(cursorGameX == X_CARD)
@@ -36,6 +43,7 @@ void moveCursorGameA() BANKED
 			if(selectionIsLegal)
 			{
 				moveCursorGameSelect();
+				soundCursorMove();
 			}
 		}
 	}
