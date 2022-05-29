@@ -9,7 +9,7 @@ void initializeDice()
 	for(uint8 position = 0; position != DICE_COUNT; position++)
     {
         initializeDiProperties(position);
-        drawDi(position);
+		drawDi(position);
     }
 
     diceInitialized = 1;

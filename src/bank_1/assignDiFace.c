@@ -13,7 +13,7 @@ void assignDiFace(uint8 position) BANKED
 {
     if(!diceInitialized)
     {
-        dice[position].face = 1;
+        dice[position].face = 0;
     }
 
     else

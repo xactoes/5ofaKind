@@ -12,6 +12,7 @@
 #include "./bank_1/soundEffects.h"
 #include "./sram/save_variables.h"
 
+#include <stdio.h>
 
 void main(){
 
@@ -51,7 +52,6 @@ void main(){
             {
                 initializeCursorSprites();
                 initializeTitle();
-                //initializeBCDscores();
                 SHOW_SPRITES;
             }
             drawBackground(SCREEN_TITLE);
