@@ -1,9 +1,5 @@
-#include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 
-#pragma bank 0
-
-BANKREF(sprites)
 const uint8 sprites[] =
 {
   0x00,0x00,0x00,0x7F,0x3F,0x40,0x3F,0x40,

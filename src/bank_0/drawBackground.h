@@ -4,7 +4,6 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 
-extern void drawBackground(uint8) BANKED;
-BANKREF_EXTERN(drawBackground)
+extern void drawBackground(uint8);
 
 #endif

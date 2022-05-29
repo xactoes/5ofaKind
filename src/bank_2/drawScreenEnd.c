@@ -2,6 +2,7 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_0/dice_b0.h"
+#include "../bank_0/displayUpdates.h"
 #include "../bank_2/screens.h"
 #include "../sram/save_variables.h"
 
@@ -15,7 +16,7 @@ void drawScreenEnd() BANKED
 
 	hideDiAll();
 
-	//eneable ram to grab player name and save score
+	//enable ram to grab player name and save score
 	ENABLE_RAM_MBC1;
 	SWITCH_RAM_MBC1(0);
 

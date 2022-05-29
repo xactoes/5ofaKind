@@ -4,7 +4,6 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 
-extern void loadSprites() BANKED;
-BANKREF_EXTERN(loadSprites)
+extern void loadSprites();
 
 #endif

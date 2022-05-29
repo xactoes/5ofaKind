@@ -4,10 +4,7 @@
 #include "../bank_0/displayUpdates.h"
 #include "../sram/save_variables.h"
 
-#pragma bank 0
-
-BANKREF(initializeScorecard)
-void initializeScorecard() BANKED
+void initializeScorecard()
 {
 	for(uint8 index = 0; index != 15; index++)
 	{

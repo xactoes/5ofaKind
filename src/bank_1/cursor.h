@@ -92,24 +92,18 @@
 extern void initializeCursorSprites() BANKED;
 BANKREF_EXTERN(initializeCursorSprites)
 
-extern void drawCursor(uint8) BANKED;
-BANKREF_EXTERN(drawCursor)
+extern void drawCursor(uint8);
 
 // TITLE
-extern void moveCursorTitle() BANKED;
-BANKREF_EXTERN(moveCursorTitle)
+extern void moveCursorTitle();
 extern void moveCursorLink() BANKED;
 BANKREF_EXTERN(moveCursorLink)
-extern void moveCursorOptions() BANKED;
-BANKREF_EXTERN(moveCursorOptions)
-extern void moveCursorScores() BANKED;
-BANKREF_EXTERN(moveCursorScores)
-extern void  moveCursorNameInput() BANKED;
-BANKREF_EXTERN(moveCursorNameInput)
+extern void moveCursorOptions();
+extern void moveCursorScores();
+extern void  moveCursorNameInput();
 
 // PLAY
-extern void moveCursorGame() BANKED;
-BANKREF_EXTERN(moveCursorGame)
+extern void moveCursorGame();
 extern void moveCursorGameLeft() BANKED;
 BANKREF_EXTERN(moveCursorGameLeft)
 extern void moveCursorGameRight() BANKED;
@@ -126,8 +120,7 @@ extern void moveCursorStart() BANKED;
 BANKREF_EXTERN(moveCursorStart)
 
 // CARD
-extern void moveCursorCard() BANKED;
-BANKREF_EXTERN(moveCursorCard)
+extern void moveCursorCard();
 extern void moveCursorCardLeft() BANKED;
 BANKREF_EXTERN(moveCursorCardLeft)
 extern void moveCursorCardRight() BANKED;
@@ -144,8 +137,7 @@ extern void moveCursorCardStart() BANKED;
 BANKREF_EXTERN(moveCursorCardStart)
 
 // END
-extern void moveCursorEnd() BANKED;
-BANKREF_EXTERN(moveCursorEnd)
+extern void moveCursorEnd();
 
 
 #endif

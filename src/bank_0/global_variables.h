@@ -43,7 +43,6 @@ extern uint16 scorecard[];
 extern uint16 scorecardCompare[];
 extern uint8 buf[];
 extern uint8 diceSorted[];
-//extern uint16 highScore[];
 
 // NAME
 extern uint8 tempName[];

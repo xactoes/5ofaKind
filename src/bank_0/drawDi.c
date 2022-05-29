@@ -2,12 +2,9 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_1/dice.h"
 
-#pragma bank 0
-
-BANKREF(drawDi)
-void drawDi(uint8 position) BANKED
+void drawDi(uint8 position)
 {
-	for(uint8 num; num != DI_SPRITE_COUNT; num++)
+	for(uint8 num = 0; num != DI_SPRITE_COUNT; num++)
 	{
 		if(dice[position].sprite[num].isVisible)
 		{

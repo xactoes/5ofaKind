@@ -11,7 +11,7 @@ uint16 currentTurn() BANKED
 {
 	uint16 turnsPassed = 0;
 
-	for(uint8 marked; marked != 13; marked++)
+	for(uint8 marked = 0; marked != 13; marked++)
 	{
 		if(scorecard[marked] != 255)
 		{

@@ -10,7 +10,7 @@
 BANKREF(bcdDisplayRolls)
 void bcdDisplayRolls() BANKED
 {
-	uint8 len;
+	uint8 len = 0;
 	BCD rollsBCD = MAKE_BCD(00000000);
 
 	bufferClear();

@@ -10,7 +10,7 @@
 BANKREF(bcdDisplayTurn)
 void bcdDisplayTurn() BANKED
 {
-	uint8 len;
+	uint8 len = 0;
 
 	bufferClear();
 

@@ -5,10 +5,7 @@
 #include "../bank_1/cursor.h"
 #include "../bank_1/misc.h"
 
-#pragma bank 0
-
-BANKREF(moveCursorOptions)
-void moveCursorOptions() BANKED
+void moveCursorOptions()
 {
 	switch(joypad())
 	{

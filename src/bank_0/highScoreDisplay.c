@@ -6,10 +6,7 @@
 #include "../bank_1/score.h"
 #include "../sram/save_variables.h"
 
-#pragma bank 0
-
-BANKREF(highScoreDisplay)
-void highScoreDisplay(uint8 currentScreen) BANKED
+void highScoreDisplay(uint8 currentScreen)
 {
 	uint8 len, offset;
 

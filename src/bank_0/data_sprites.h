@@ -5,6 +5,5 @@
 #include "../bank_0/global_defines.h"
 
 extern const uint8 sprites[];
-BANKREF_EXTERN(sprites)
 
 #endif

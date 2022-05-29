@@ -3,7 +3,6 @@
 
 #include <gb/gb.h>
 
-extern void vblDelay(uint16) BANKED;
-BANKREF_EXTERN(vblDelay)
+extern void vblDelay(uint16);
 
 #endif

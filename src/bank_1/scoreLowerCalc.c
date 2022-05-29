@@ -7,7 +7,7 @@
 BANKREF(scoreLowerCalc)
 uint8 scoreLowerCalc(uint8 index) BANKED
 {
-	uint8 tempScore;
+	uint8 tempScore = 0;
 
 	switch(index)
 	{
