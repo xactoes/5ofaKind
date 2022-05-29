@@ -3,14 +3,17 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_1/score.h"
+//
+// #include <stdio.h>
+// #include "../bank_0/vblDelay.h"
 
 #pragma bank 1
 
 BANKREF(bcdDisplayScoreTotal)
 void bcdDisplayScoreTotal(uint8 currentScreen) BANKED
 {
-	uint16 scorecardBuf;
-	uint8 len;
+	uint16 scorecardBuf = 0;
+	uint8 len = 0;
 
 	bufferClear();
 
@@ -21,6 +24,10 @@ void bcdDisplayScoreTotal(uint8 currentScreen) BANKED
 		if(scorecard[index] != 255)
 		{
 			scorecardBuf += scorecard[index];
+		}
+		else
+		{
+			scorecardBuf += 0;
 		}
 	}
 
@@ -46,6 +53,10 @@ void bcdDisplayScoreTotal(uint8 currentScreen) BANKED
 			{
 				set_bkg_tiles(15, 2, len-4, 1, buf+4);
 			}
+			else
+			{
+				return;
+			}
 			break;
 		case SCREEN_CARD:
 			if(scorecardBuf < 10)
@@ -63,6 +74,10 @@ void bcdDisplayScoreTotal(uint8 currentScreen) BANKED
 			else if(scorecardBuf < 10000)
 			{
 				set_bkg_tiles(15, 16, len-4, 1, buf+4);
+			}
+			else
+			{
+				return;
 			}
 			break;
 		case SCREEN_END:
@@ -82,6 +97,12 @@ void bcdDisplayScoreTotal(uint8 currentScreen) BANKED
 			{
 				set_bkg_tiles(7, 10, len-4, 1, buf+4);
 			}
+			else
+			{
+				return;
+			}
 			break;
+		default:
+			return;
 	}
 }

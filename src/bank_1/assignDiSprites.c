@@ -10,6 +10,15 @@ void assignDiSprites(uint8 position) BANKED
 {
 	switch(dice[position].face)
 	{
+		case 0:
+			for(uint8 i = 0; i != DI_SPRITE_COUNT; i++)
+			{
+				for(uint8 j = 0; j != DI_SPRITE_COUNT; j++)
+				{
+					set_sprite_tile(dice[position].sprite[j].address, diFace0[j]);
+				}
+			}
+			break;
 		case 1:
 			for(uint8 i = 0; i != DI_SPRITE_COUNT; i++)
 			{

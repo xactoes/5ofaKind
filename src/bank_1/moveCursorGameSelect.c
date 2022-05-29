@@ -2,6 +2,7 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_1/cursor.h"
+#include "../bank_0/dice_b0.h"
 
 #pragma bank 1
 

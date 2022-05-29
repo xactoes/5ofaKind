@@ -12,7 +12,7 @@ BANKREF(scoreBonusUpperCalc)
 uint8 scoreBonusUpperCalc() BANKED
 {
 	uint8 bonusCheck = 0;
-	uint8 bonusValue;
+	uint8 bonusValue = 0;
 
 	if(scorecard[14] != 35)
 	{

@@ -8,10 +8,7 @@
 #include "../bank_1/info.h"
 #include "../bank_1/soundEffects.h"
 
-#pragma bank 0
-
-BANKREF(moveCursorCard)
-void moveCursorCard() BANKED
+void moveCursorCard()
 {
 	hideDiAll();
     drawCursor(SCREEN_CARD);

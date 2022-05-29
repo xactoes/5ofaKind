@@ -6,7 +6,7 @@
 #pragma bank 1
 
 BANKREF(rollDecrement)
-uint16 rollDecrement() BANKED
+void rollDecrement() BANKED
 {
 	if(!rolls)
 	{

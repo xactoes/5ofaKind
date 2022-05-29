@@ -5,7 +5,6 @@
 
 #pragma bank 0
 
-extern void resetData() BANKED;
-BANKREF_EXTERN(resetData)
+extern void resetData();
 
 #endif

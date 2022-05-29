@@ -3,10 +3,7 @@
 #include "../bank_0/global_variables.h"
 #include "../bank_1/misc.h"
 
-#pragma bank 0
-
-BANKREF(moveCursorEnd)
-void moveCursorEnd() BANKED
+void moveCursorEnd()
 {
 	//writeScore();
 

@@ -3,10 +3,7 @@
 #include "../bank_0/global_variables.h"
 #include "../bank_1/cursor.h"
 
-#pragma bank 0
-
-BANKREF(drawCursor)
-void drawCursor(uint8 screenLocal) BANKED
+void drawCursor(uint8 screenLocal)
 {
 	uint8 cursor1, cursor2, cursor3;
 	cursor1 = ARROW_RIGHT;

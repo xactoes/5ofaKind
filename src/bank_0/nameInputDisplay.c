@@ -4,10 +4,7 @@
 #include "../bank_2/screens.h"
 #include "../sram/save_variables.h"
 
-#pragma bank 0
-
-BANKREF(nameInputDisplay)
-void nameInputDisplay(uint8 currentScreen, uint8* array) BANKED
+void nameInputDisplay(uint8 currentScreen, uint8* array)
 {
 	uint8 tileIndex = 0;
 

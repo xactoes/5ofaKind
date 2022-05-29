@@ -2,10 +2,7 @@
 #include "../bank_0/global_variables.h"
 #include "../bank_1/cursor.h"
 
-#pragma bank 0
-
-BANKREF(initializeTitle)
-void initializeTitle() BANKED
+void initializeTitle()
 {
 	drawCursor(SCREEN_TITLE);
 	titleInitialized = 1;

@@ -3,10 +3,7 @@
 #include "../bank_0/global_variables.h"
 #include "../sram/save_variables.h"
 
-#pragma bank 0
-
-BANKREF(sortNamesAndScores)
-void sortNamesAndScores() BANKED
+void sortNamesAndScores()
 {
 	uint8 index1, index2;
 	uint16 sTemp, maxScore;

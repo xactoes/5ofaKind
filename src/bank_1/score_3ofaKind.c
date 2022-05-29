@@ -8,7 +8,7 @@
 BANKREF(threeOfaKind)
 uint8 threeOfaKind() BANKED
 {
-	uint8 tempScore;
+	uint8 tempScore = 0;
 
 	diceSort();
 

@@ -9,10 +9,7 @@
 #include "../bank_2/screens.h"
 #include "../sram/save_variables.h"
 
-#pragma bank 0
-
-BANKREF(drawBackground)
-void drawBackground(uint8 screen) BANKED
+void drawBackground(uint8 screen)
 {
 	bcdCleaned = 0;
 	switch(screen)

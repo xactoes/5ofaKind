@@ -6,10 +6,7 @@
 #include "../bank_1/cursor.h"
 #include "../bank_1/dice.h"
 
-#pragma bank 0
-
-BANKREF(moveCursorGame)
-void moveCursorGame() BANKED
+void moveCursorGame()
 {
     drawCursor(SCREEN_PLAY);
 

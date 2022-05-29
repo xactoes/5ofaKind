@@ -20,7 +20,7 @@ uint16 selectionIsLegal() BANKED
 	else
 	{
 		uint8 turnsPassed = 0;
-		for(uint8 marked; marked != 14; marked++)
+		for(uint8 marked = 0; marked != 14; marked++)
 		{
 			if(scorecard[marked] != 255)
 			{

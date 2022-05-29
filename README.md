@@ -25,7 +25,7 @@ IMAGES:
 ![5-of-a-Kind-14](https://user-images.githubusercontent.com/97451908/170585061-1f27774a-5b04-4251-9f39-3c275a1698af.png)
 
 KNOWN BUGS:
-* currently no known bugs; please let me know if any are found
+* If exiting a game with Start + Select, the Name entry display doesn't load until Select (char map change) is pressed again.
 
 OTHER CHANGES TO BE MADE:
 * SPLASH SCREEN

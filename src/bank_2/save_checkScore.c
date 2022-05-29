@@ -18,5 +18,8 @@ void checkScore() BANKED
             scoreLogged[i] = 0x00;
         }
     }
-    else return;
+    else
+    {
+        return;
+    }
 }

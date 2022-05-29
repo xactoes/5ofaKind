@@ -4,10 +4,7 @@
 #include "../bank_0/displayUpdates.h"
 #include "../sram/save_variables.h"
 
-#pragma bank 0
-
-BANKREF(resetData)
-void resetData() BANKED
+void resetData()
 {
 	for(uint8 i = 0; i != 25; i++)
 	{

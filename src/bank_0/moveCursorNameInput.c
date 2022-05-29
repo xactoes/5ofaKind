@@ -8,10 +8,7 @@
 #include "../bank_1/misc.h"
 #include "../sram/save_variables.h"
 
-#pragma bank 0
-
-BANKREF(moveCursorNameInput)
-void moveCursorNameInput() BANKED
+void moveCursorNameInput()
 {
 	uint8 tileX, tileY;
 	uint8 viewNameInput = 1;

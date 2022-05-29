@@ -4,13 +4,7 @@
 #include "../bank_1/cursor.h"
 #include "../bank_1/misc.h"
 
-#include <stdio.h>
-#include "../bank_0/vblDelay.h"
-
-#pragma bank 0
-
-BANKREF(moveCursorTitle)
-void moveCursorTitle() BANKED
+void moveCursorTitle()
 {
 	switch(joypad())
 	{

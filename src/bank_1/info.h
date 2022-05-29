@@ -6,7 +6,7 @@
 
 extern uint16 currentTurn() BANKED;
 BANKREF_EXTERN(currentTurn)
-extern uint16 rollDecrement() BANKED;
+extern void rollDecrement() BANKED;
 BANKREF_EXTERN(rollDecrement)
 extern uint16 selectionIsLegal() BANKED;
 BANKREF_EXTERN(selectionIsLegal)
@@ -17,8 +17,5 @@ extern void bcdDisplayTurn() BANKED;
 BANKREF_EXTERN(bcdDisplayTurn)
 extern void bcdDisplayRolls() BANKED;
 BANKREF_EXTERN(bcdDisplayRolls)
-
-extern void highScoreDisplay(uint8) BANKED;
-BANKREF_EXTERN(highScoreDisplay)
 
 #endif

@@ -3,13 +3,10 @@
 
 #include <gb/gb.h>
 
-extern void initializeTitle() BANKED;
-BANKREF_EXTERN(initializeTitle)
+extern void initializeTitle();
 
-extern void initializeDice() BANKED;
-BANKREF_EXTERN(initializeDice)
+extern void initializeDice();
 
-extern void initializeScorecard() BANKED;
-BANKREF_EXTERN(initializeScorecard)
+extern void initializeScorecard();
 
 #endif

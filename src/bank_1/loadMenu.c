@@ -8,6 +8,7 @@
 BANKREF(loadMenu)
 void loadMenu() BANKED
 {
+	bkgDrawn = 0;
 	titleInitialized = 0;
 	cursorTitleX = 48;
 	cursorTitleY = 96;
