@@ -139,6 +139,7 @@ void drawBackground(uint8 screen)
 			SHOW_BKG;
 			break;
 		case SCREEN_CREDITS:
+			drawScreenCredits();
 			break;
 	}
 }
