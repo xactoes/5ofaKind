@@ -31,4 +31,7 @@ BANKREF_EXTERN(drawScreenStartMenu)
 extern void drawScreenEnd() BANKED;
 BANKREF_EXTERN(drawScreenEnd)
 
+extern void drawScreenCredits() BANKED;
+BANKREF_EXTERN(drawScreenCredits)
+
 #endif

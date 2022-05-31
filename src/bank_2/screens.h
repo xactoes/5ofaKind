@@ -6,6 +6,9 @@
 
 #include "../bank_0/global_defines.h"
 
+extern const uint8 creditsMap[];
+BANKREF_EXTERN(creditsMap)
+
 extern const uint8 titleData[];
 BANKREF_EXTERN(titleData)
 extern const uint8 titleMap[];

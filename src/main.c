@@ -1,6 +1,7 @@
 #include <gb/gb.h>
 #include "./bank_0/global_defines.h"
 #include "./bank_0/global_variables.h"
+#include "./bank_0/vblDelay.h"
 #include "./bank_0/loadSprites.h"
 #include "./bank_0/init_b0.h"
 #include "./bank_0/dice_b0.h"
@@ -22,6 +23,7 @@ void main(){
 
     if(!bootInitialized)
     {
+        // CHANGE TO SCREEN_CREDITS
         screen = SCREEN_TITLE;
         loadSprites();
         bootInitialized = 1;
@@ -42,6 +44,11 @@ void main(){
     while(screen == SCREEN_SPLASH)
     {
         //
+    }
+
+    while(screen == SCREEN_CREDITS)
+    {
+        drawBackground(SCREEN_CREDITS);
     }
 
     while(bootInitialized)
@@ -123,10 +130,6 @@ void main(){
         {
             drawBackground(SCREEN_END);
             moveCursorEnd();
-        }
-        while(screen == SCREEN_CREDITS)
-        {
-            //
         }
     }
 }
