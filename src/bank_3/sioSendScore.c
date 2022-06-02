@@ -9,38 +9,22 @@
 BANKREF(sioSendScore)
 void sioSendScore(uint16 varScore) BANKED
 {
+    linkWaiting();
+
     scoreSplit[0] = (uint8) (varScore >> 8);
     scoreSplit[1] = (uint8) varScore;
 
-    // WAITING
-    _io_out = WAITING;
-
-    // SEND 
-    send_byte();
-    while(_io_status == IO_SENDING);
-
-    // RECEIVE
-    receive_byte();
-
-    if(_io_in == CONNECTED)
+    for(int8 i = 0; i < 2; i++)
     {
-        for(int8 i = 0; i < 2; i++)
-        {
-            _io_out = scoreSplit[i];
+        _io_out = scoreSplit[i];
 
-            // send _io_out
-            send_byte(); 
+        // send _io_out
+        send_byte(); 
 
-            // Wait for Send
-            while(_io_status == IO_SENDING);
-
-            // CHECK FOR CONFIRMATION OF RECEIPT
-            receive_byte();
-            while(_io_status == IO_RECEIVING);
-            if(_io_in == FINISHED)
-            {
-                vblDelay(30);
-            }
-        }
+        // Wait for Send
+        linkConnected();
+        while(_io_status == IO_SENDING);
+        
+        linkWaiting();
     }
 }

@@ -37,6 +37,8 @@ void sioConnect(uint8 linkOption) BANKED
                 sioReceiveScore();
                 sioReceiveName();
 
+                linkSyncing();
+
                 // SYNC
                 sortNamesAndScores();
 
@@ -49,6 +51,8 @@ void sioConnect(uint8 linkOption) BANKED
                 // RECEIVE SCORE AND NAME
                 sioReceiveScore();
                 sioReceiveName();
+                
+                linkSyncing();
                 
                 // SYNC
                 sortNamesAndScores();

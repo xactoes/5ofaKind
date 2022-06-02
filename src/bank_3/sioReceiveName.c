@@ -10,32 +10,17 @@
 BANKREF(sioReceiveName)
 void sioReceiveName() BANKED
 {
-    // WAITING
-    receive_byte();
-    while(_io_status == IO_RECEIVING)
-    {
-        linkWaiting();
-    }
-
-    // REPLY BACK
-    if(_io_in == WAITING)
-    {
-        _io_out = CONNECTED;
-        send_byte();
-        while(_io_status == IO_SENDING);
-    }
+    linkWaiting();
 
     // BEGIN TRANSFER
     for(int8 i = 0; i < 8; i++)
     {
-        // UPDATE SCREEN WHEN CONNECTED
-        linkConnected();
-
         // receive _io_in
         receive_byte(); 
 
         // Wait for Receive
         while(_io_status == IO_RECEIVING);
+        linkConnected();
 
         // If RECEIVED
         if(_io_status == IO_IDLE)
@@ -46,12 +31,6 @@ void sioReceiveName() BANKED
 	        namesArray[24][i] = scoreName[i];
         }
 
-        // REPLY THAT IT HAS BEEN RECEIVED
-        _io_out = FINISHED;
-        send_byte();
-        while(_io_status == IO_SENDING)
-        {
-            linkWaiting();
-        }
+        linkWaiting();
     }
 }
