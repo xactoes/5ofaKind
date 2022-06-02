@@ -20,6 +20,6 @@ void sioSendName(uint8* varName) BANKED
         while(_io_status == IO_SENDING);
 
         // GIVE RECEIVING END TIME TO PROCESS
-        vblDelay(120);
+        vblDelay(300);
     }
 }

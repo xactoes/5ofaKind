@@ -16,4 +16,7 @@ BANKREF_EXTERN(linkBlank)
 extern void linkConnected() BANKED;
 BANKREF_EXTERN(linkConnected)
 
+extern void linkSyncing() BANKED;
+BANKREF_EXTERN(linkSyncing)
+
 #endif

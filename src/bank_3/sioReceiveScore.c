@@ -40,14 +40,6 @@ void sioReceiveScore() BANKED
                     break;
             }
         }
-        // Else print error
-        else
-        {
-            // Start over
-            i = -1;
-        }
     }
     highScore[24] = scorePaired;
-    printf("%u\n", scorePaired);
-    vblDelay(30);
 }

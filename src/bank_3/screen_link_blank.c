@@ -6,8 +6,8 @@
 BANKREF(linkBlank)
 void linkBlank() BANKED
 {
-    for(uint8 i = 10; i < 19; i++)
+    for(uint8 i = 9; i < 19; i++)
     {
-        set_bkg_tile_xy(i, 16, 0x00);
+        set_bkg_tile_xy(i, 14, 0x00);
     }
 }

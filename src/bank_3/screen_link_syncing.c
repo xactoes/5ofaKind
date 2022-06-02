@@ -4,8 +4,8 @@
 
 #pragma bank 3
 
-BANKREF(linkConnected)
-void linkConnected() BANKED
+BANKREF(linkSyncing)
+void linkSyncing() BANKED
 {
     linkBlank();
 

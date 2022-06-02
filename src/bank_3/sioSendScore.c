@@ -23,6 +23,6 @@ void sioSendScore(uint16 varScore) BANKED
         while(_io_status == IO_SENDING);
 
         // GIVE RECEIVING END TIME TO PROCESS
-        vblDelay(120);
+        vblDelay(30);
     }
 }

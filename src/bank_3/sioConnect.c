@@ -26,8 +26,6 @@ void sioConnect(uint8 linkOption) BANKED
                 sioScore = highScore[i];
                 sioSendScore(sioScore);
 
-                linkConnected();
-
                 // SEND NAME
                 for(uint8 j = 0; j != 8; j++)
                 {
@@ -35,12 +33,8 @@ void sioConnect(uint8 linkOption) BANKED
                 }
                 sioSendName(sioName);
 
-                linkBlank();
-
                 // RECEIVE SCORE
                 sioReceiveScore();
-
-                linkConnected();
 
                 // RECEIVE NAME
                 sioReceiveName();
@@ -50,7 +44,6 @@ void sioConnect(uint8 linkOption) BANKED
                 // SORT
                 sortNamesAndScores();
 
-                linkConnected();
             }
             break;
 
@@ -60,23 +53,17 @@ void sioConnect(uint8 linkOption) BANKED
                 // RECEIVE SCORE
                 sioReceiveScore();
 
-                linkConnected();
-
                 // RECEIVE NAME
                 sioReceiveName();
 
                 linkBlank();
-
+                
                 // SORT
                 sortNamesAndScores();
-
-                linkConnected();
 
                 // SEND SCORE
                 sioScore = highScore[i];
                 sioSendScore(sioScore);
-
-                linkBlank();
 
                 // SEND NAME
                 for(uint8 j = 0; j != 8; j++)
@@ -85,7 +72,6 @@ void sioConnect(uint8 linkOption) BANKED
                 }
                 sioSendName(sioName);
 
-                linkConnected();
             }
             break;
     }
