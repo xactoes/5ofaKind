@@ -11,3 +11,6 @@ uint16 scorePaired;
 
 BANKREF(scoreName)
 uint8 scoreName[8];
+
+BANKREF(handshake)
+uint8 handshake = 0;

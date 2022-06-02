@@ -7,6 +7,11 @@
 #define SCORE_LEFT  0
 #define SCORE_RIGHT 1
 
+#define WAITING     10
+#define CONNECTED   11
+#define SYNCING     12
+#define FINISHED    13
+
 extern uint8 scoreSplit[];
 BANKREF_EXTERN(scoreSplit)
 
@@ -15,6 +20,9 @@ BANKREF_EXTERN(scorePaired)
 
 extern uint8 scoreName[];
 BANKREF_EXTERN(scoreName)
+
+extern uint8 handshake;
+BANKREF_EXTERN(handshake)
 
 
 extern void sioTest() BANKED;

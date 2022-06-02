@@ -33,15 +33,11 @@ void sioConnect(uint8 linkOption) BANKED
                 }
                 sioSendName(sioName);
 
-                // RECEIVE SCORE
+                // RECEIVE SCORE AND NAME
                 sioReceiveScore();
-
-                // RECEIVE NAME
                 sioReceiveName();
 
-                linkBlank();
-
-                // SORT
+                // SYNC
                 sortNamesAndScores();
 
             }
@@ -50,15 +46,11 @@ void sioConnect(uint8 linkOption) BANKED
         case X_JOIN:
             for(uint8 i = 0; i != 25; i++)
             {
-                // RECEIVE SCORE
+                // RECEIVE SCORE AND NAME
                 sioReceiveScore();
-
-                // RECEIVE NAME
                 sioReceiveName();
-
-                linkBlank();
                 
-                // SORT
+                // SYNC
                 sortNamesAndScores();
 
                 // SEND SCORE
@@ -71,7 +63,6 @@ void sioConnect(uint8 linkOption) BANKED
                     sioName[j] = namesArray[i][j];
                 }
                 sioSendName(sioName);
-
             }
             break;
     }

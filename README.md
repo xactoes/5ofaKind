@@ -25,17 +25,20 @@ IMAGES:
 ![5-of-a-Kind-14](https://user-images.githubusercontent.com/97451908/170585061-1f27774a-5b04-4251-9f39-3c275a1698af.png)
 
 KNOWN BUGS:
-* If exiting a game with Start + Select, the Name entry display doesn't load until Select (char map change) is pressed again.
+* Transfer does not work yet
 
 OTHER CHANGES TO BE MADE:
 * SPLASH SCREEN
-* FONT CHANGE (maybe)
+* NAME PROMPT ON FIRST STARTUP (skippable)
+* FINISH SETTING UP TRANSFER
 * BETTER TITLE SCREEN (maybe)
 * ADD DICE ROLLING ANIMATION
 * CREDITS SCREEN
 * AUDIO
   * SETTINGS UNDER OPTIONS
   * MIGHT ADD
+    * SOUND FOR CARD SWITCH (select button)
+    * SOUND ON OPTIONS HIGH SCORES AND TRANSFER
     * SOUND FOR EACH DI BEING ROLLED
     * SOUND FOR LEGAL AND 0
     * SOUND FOR LEGAL AND MAX VALUE

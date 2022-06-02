@@ -2,6 +2,7 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/vblDelay.h"
 #include "../bank_3/sio.h"
+#include "../bank_3/screens_link.h"
 #include "../sram/save_variables.h"
 #include <stdio.h>
 
@@ -10,9 +11,28 @@
 BANKREF(sioReceiveScore)
 void sioReceiveScore() BANKED
 {
+    // WAITING
+    receive_byte();
+    while(_io_status == IO_RECEIVING)
+    {
+        linkWaiting();
+    }
+
+    // REPLY BACK
+    if(_io_in == WAITING)
+    {
+        _io_out = CONNECTED;
+        send_byte();
+        while(_io_status == IO_SENDING);
+    }
+
     for(int8 i = 0; i < 2; i++)
     {
         scorePaired = 0;
+
+        // UPDATE SCREEN WHEN CONNECTED
+        linkConnected();
+        
         // receive _io_in
         receive_byte(); 
 
@@ -39,6 +59,13 @@ void sioReceiveScore() BANKED
                     i = -1;
                     break;
             }
+        }
+        // REPLY THAT IT HAS BEEN RECEIVED
+        _io_out = FINISHED;
+        send_byte();
+        while(_io_status == IO_SENDING)
+        {
+            linkWaiting();
         }
     }
     highScore[24] = scorePaired;
