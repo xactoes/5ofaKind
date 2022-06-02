@@ -2,6 +2,10 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_1/misc.h"
+#include "../bank_1/cursor.h"
+#include "../bank_3/sio.h"
+
+uint8 linkOption;
 
 #pragma bank 1
 
@@ -10,43 +14,33 @@ void moveCursorLink() BANKED
 {
 	switch(joypad()){
 		case J_A:
-			loadMenu();
-			bkgDrawn = 0;
+			linkOption = cursorLinkX;
+			sioConnect(linkOption);
 			waitpadup();
 			break;
 		case J_B:
 			loadMenu();
+			cursorLinkX = X_HOST;
+			cursorLinkY = Y_LINK_SCREEN;
 			bkgDrawn = 0;
 			waitpadup();
 			break;
 		case J_START:
-			loadMenu();
-			bkgDrawn = 0;
-			waitpadup();
-			break;
-		case J_SELECT:
-			loadMenu();
-			bkgDrawn = 0;
-			waitpadup();
-			break;
-		case J_UP:
-			loadMenu();
-			bkgDrawn = 0;
-			waitpadup();
-			break;
-		case J_DOWN:
-			loadMenu();
-			bkgDrawn = 0;
-			waitpadup();
 			break;
 		case J_LEFT:
-			loadMenu();
-			bkgDrawn = 0;
+			if(cursorLinkX != X_HOST)
+			{
+				cursorLinkX = X_HOST;
+				drawCursor(SCREEN_LINK);
+			}
 			waitpadup();
 			break;
 		case J_RIGHT:
-			loadMenu();
-			bkgDrawn = 0;
+			if(cursorLinkX != X_JOIN)
+				{
+					cursorLinkX = X_JOIN;
+					drawCursor(SCREEN_LINK);
+				}
 			waitpadup();
 			break;
 	}

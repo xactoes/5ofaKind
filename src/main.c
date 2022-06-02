@@ -11,6 +11,7 @@
 #include "./bank_1/dice.h"
 #include "./bank_1/info.h"
 #include "./bank_1/soundEffects.h"
+#include "./bank_3/sio.h"
 #include "./sram/save_variables.h"
 
 #include <stdio.h>
@@ -93,6 +94,13 @@ void main(){
             moveCursorNameInput();
             SHOW_SPRITES;
             SHOW_BKG;
+        }
+
+        while(screen == SCREEN_LINK)
+        {
+            drawBackground(screen);
+            drawCursor(screen);
+            moveCursorLink();
         }
 
         while(screen == SCREEN_LINK)

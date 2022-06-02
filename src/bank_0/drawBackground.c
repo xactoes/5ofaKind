@@ -7,6 +7,7 @@
 #include "../bank_1/score.h"
 #include "../bank_2/drawScreens.h"
 #include "../bank_2/screens.h"
+#include "../bank_3/screens_link.h"
 #include "../sram/save_variables.h"
 
 void drawBackground(uint8 screen)
