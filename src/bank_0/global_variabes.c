@@ -1,5 +1,6 @@
 #include <gbdk/bcd.h>
 #include "../bank_0/global_defines.h"
+#include "../bank_1/cursor.h"
 
 // INIT
 uint8 bootInitialized		= 0;
@@ -28,6 +29,8 @@ uint8 cursorNameX1			= 44;
 uint8 cursorNameY1			= 128;
 uint8 cursorNameX2			= 76;
 uint8 cursorNameY2			= 128;
+uint8 cursorLinkX           = X_HOST;
+uint8 cursorLinkY           = Y_LINK_SCREEN;
 
 
 // IDENTIFIERS

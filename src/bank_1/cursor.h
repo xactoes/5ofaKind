@@ -21,11 +21,18 @@
 #define Y_AUDIO			64
 #define Y_RESET			80
 
-// X - options
+// X - OPTIONS
 #define X_OPTIONS		24
 
 // GAP - OPTIONS
 #define GAP_Y_OPTIONS	16
+
+// Y - LINK
+#define Y_LINK_SCREEN   56
+
+// X - LINK
+#define X_HOST          24
+#define X_JOIN          104
 
 // Y - NAME INPUT
 #define Y_TOP_NAME		72
