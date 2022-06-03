@@ -29,6 +29,5 @@ void sioSendName(uint8* varName) BANKED
             linkSyncing();
             vblDelay(5);
         }
-        
     }
 }

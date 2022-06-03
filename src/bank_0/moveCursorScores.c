@@ -4,6 +4,7 @@
 #include "../bank_0/drawBackground.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/misc.h"
+#include "../bank_1/soundEffects.h"
 
 void moveCursorScores()
 {
@@ -12,6 +13,7 @@ void moveCursorScores()
 		case J_LEFT:
 			if(screen > HIGH_SCORE_0)
 			{
+				soundCursorMove();
 				screen--;
 				bkgDrawn = 0;
 			}
@@ -20,12 +22,14 @@ void moveCursorScores()
 		case J_RIGHT:
 			if(screen < HIGH_SCORE_3)
 			{
+				soundCursorMove();
 				screen++;
 				bkgDrawn = 0;
 			}
 			waitpadup();
 			break;
 		case J_B:
+			soundCursorMove();
 			bkgDrawn = 0;
 			loadMenu();
 			waitpadup();

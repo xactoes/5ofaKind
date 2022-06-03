@@ -3,6 +3,7 @@
 #include "../bank_0/global_variables.h"
 #include "../bank_1/misc.h"
 #include "../bank_1/cursor.h"
+#include "../bank_1/soundEffects.h"
 #include "../bank_3/sio.h"
 
 uint8 linkOption;
@@ -14,31 +15,33 @@ void moveCursorLink() BANKED
 {
 	switch(joypad()){
 		case J_A:
+			soundCursorMove();
 			linkOption = cursorLinkX;
 			sioConnect(linkOption);
 			waitpadup();
 			break;
 		case J_B:
+			soundCursorMove();
 			loadMenu();
-			cursorLinkX = X_HOST;
-			cursorLinkY = Y_LINK_SCREEN;
+			cursorLinkX = X_LINK_SCREEN;
+			cursorLinkY = Y_LINK_SEND;
 			bkgDrawn = 0;
 			waitpadup();
 			break;
-		case J_START:
-			break;
-		case J_LEFT:
-			if(cursorLinkX != X_HOST)
+		case J_UP:
+			if(cursorLinkY != Y_LINK_SEND)
 			{
-				cursorLinkX = X_HOST;
+				soundCursorMove();
+				cursorLinkY = Y_LINK_SEND; 
 				drawCursor(SCREEN_LINK);
 			}
 			waitpadup();
 			break;
-		case J_RIGHT:
-			if(cursorLinkX != X_JOIN)
+		case J_DOWN:
+			if(cursorLinkY != Y_LINK_RECEIVE)
 				{
-					cursorLinkX = X_JOIN;
+					soundCursorMove();
+					cursorLinkY = Y_LINK_RECEIVE;
 					drawCursor(SCREEN_LINK);
 				}
 			waitpadup();

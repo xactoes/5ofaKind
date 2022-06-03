@@ -28,11 +28,11 @@
 #define GAP_Y_OPTIONS	16
 
 // Y - LINK
-#define Y_LINK_SCREEN   56
+#define Y_LINK_SEND     56
+#define Y_LINK_RECEIVE  72
 
 // X - LINK
-#define X_HOST          24
-#define X_JOIN          104
+#define X_LINK_SCREEN   56
 
 // Y - NAME INPUT
 #define Y_TOP_NAME		72
