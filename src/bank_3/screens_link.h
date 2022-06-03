@@ -31,4 +31,7 @@ BANKREF_EXTERN(linkWaiting)
 extern void linkFinished() BANKED;
 BANKREF_EXTERN(linkFinished)
 
+extern void progressBar(uint8) BANKED;
+BANKREF_EXTERN(progressBar)
+
 #endif

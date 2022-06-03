@@ -17,6 +17,9 @@ void sioConnect(uint8 linkOption) BANKED
 
     uint16 sioScore;
     uint8 sioName[8];
+    uint8 currProgress = 0;
+
+    progressBar(currProgress);
 
     switch(linkOption)
     {
@@ -42,6 +45,9 @@ void sioConnect(uint8 linkOption) BANKED
                 vblDelay(120);
 
                 linkFinished();
+
+                currProgress += 4;
+                progressBar(currProgress);
             }
             break;
 
@@ -60,6 +66,9 @@ void sioConnect(uint8 linkOption) BANKED
                 sortNamesAndScores();
 
                 linkFinished();
+
+                currProgress += 4;
+                progressBar(currProgress);
             }
             break;
     }
