@@ -28,10 +28,9 @@ void sioReceiveName() BANKED
         {
             // UPDATE SCREEN
             linkSyncing();
+            vblDelay(5);
             scoreName[i] = _io_in;
 	        namesArray[24][i] = scoreName[i];
         }
-
-        linkWaiting();
     }
 }

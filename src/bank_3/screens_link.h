@@ -13,6 +13,12 @@ BANKREF_EXTERN(drawScreenLink)
 extern void linkBlank() BANKED;
 BANKREF_EXTERN(linkBlank)
 
+extern void linkBlankExit() BANKED;
+BANKREF_EXTERN(linkBlankExit)
+
+extern void linkExit() BANKED;
+BANKREF_EXTERN(linkExit)
+
 extern void linkConnected() BANKED;
 BANKREF_EXTERN(linkConnected)
 
@@ -21,5 +27,11 @@ BANKREF_EXTERN(linkSyncing)
 
 extern void linkWaiting() BANKED;
 BANKREF_EXTERN(linkWaiting)
+
+extern void linkFinished() BANKED;
+BANKREF_EXTERN(linkFinished)
+
+extern void progressBar(uint8) BANKED;
+BANKREF_EXTERN(progressBar)
 
 #endif

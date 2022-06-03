@@ -4,6 +4,7 @@
 #include "../bank_0/resetData.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/misc.h"
+#include "../bank_1/soundEffects.h"
 
 void moveCursorOptions()
 {
@@ -12,6 +13,7 @@ void moveCursorOptions()
 		case J_UP:
 			if(cursorOptionsY > Y_NAME_INPUT)
 			{
+				soundCursorMove();
 				cursorOptionsY -= GAP_Y_OPTIONS;
 			}
 			drawCursor(SCREEN_OPTIONS);
@@ -20,6 +22,7 @@ void moveCursorOptions()
 		case J_DOWN:
 			if(cursorOptionsY < Y_RESET)
 			{
+				soundCursorMove();
 				cursorOptionsY += GAP_Y_OPTIONS;
 			}
 			drawCursor(SCREEN_OPTIONS);
@@ -28,6 +31,7 @@ void moveCursorOptions()
 		case J_A:
 			if(cursorOptionsY == Y_NAME_INPUT)
 			{
+				soundCursorMove();
 				move_sprite(ARROW_RIGHT, 0, 0);
 				move_sprite(ARROW_LEFT, 0, 0);
 				move_sprite(ARROW_UP, 0, 0);
@@ -36,10 +40,11 @@ void moveCursorOptions()
 			}
 			else if(cursorOptionsY == Y_AUDIO)
 			{
-				//
+				//soundCursorMove();
 			}
 			else if(cursorOptionsY == Y_RESET)
 			{
+				soundCursorMove();
 				ENABLE_RAM_MBC1;
 				SWITCH_RAM_MBC1(0);
 				resetData();
@@ -47,6 +52,7 @@ void moveCursorOptions()
 			}
 			break;
 		case J_B:
+			soundCursorMove();
 			loadMenu();
 			waitpadup();
 			break;

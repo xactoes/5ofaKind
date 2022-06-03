@@ -29,8 +29,8 @@ uint8 cursorNameX1			= 44;
 uint8 cursorNameY1			= 128;
 uint8 cursorNameX2			= 76;
 uint8 cursorNameY2			= 128;
-uint8 cursorLinkX           = X_HOST;
-uint8 cursorLinkY           = Y_LINK_SCREEN;
+uint8 cursorLinkX           = X_LINK_SCREEN;
+uint8 cursorLinkY           = Y_LINK_SEND;
 
 
 // IDENTIFIERS

@@ -2,6 +2,7 @@
 #include "../bank_0/global_defines.h"
 #include "../bank_0/global_variables.h"
 #include "../bank_1/cursor.h"
+#include "../bank_1/soundEffects.h"
 #include "../bank_0/dice_b0.h"
 
 #pragma bank 1
@@ -9,6 +10,7 @@
 BANKREF(moveCursorGameSelect)
 void moveCursorGameSelect() BANKED
 {
+	soundCursorMove();
 	// SWITCH TO CARD VIEW
 	hideDiAll();
 	screen = SCREEN_CARD;

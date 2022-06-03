@@ -17,10 +17,15 @@ void sioConnect(uint8 linkOption) BANKED
 
     uint16 sioScore;
     uint8 sioName[8];
+    uint8 currProgress = 0;
+
+    progressBar(currProgress);
 
     switch(linkOption)
     {
-        case X_HOST:
+        case Y_LINK_SEND:
+            linkBlankExit();
+
             for(uint8 k = 0; k != 25; k++)
             {
                 // SET & SEND SCORE
@@ -34,26 +39,21 @@ void sioConnect(uint8 linkOption) BANKED
                 }
                 sioSendName(sioName);
 
+                linkSyncing();
+
                 // WAIT 2 SEC WHILE SCORES SYNC ON RECEIVING
                 vblDelay(120);
 
-                linkBlank();
+                linkFinished();
 
-                // // RECEIVE SCORE AND NAME
-                // sioReceiveScore();
-                // sioReceiveName();
-
-                // linkSyncing();
-
-                // // SYNC
-                // sortNamesAndScores();
-
-                // //REPLACE WITH linkFinsihed()
-                // linkBlank();
+                currProgress += 4;
+                progressBar(currProgress);
             }
             break;
 
-        case X_JOIN:
+        case Y_LINK_RECEIVE:
+            linkBlankExit();
+
             for(uint8 k = 0; k != 25; k++)
             {
                 // RECEIVE SCORE AND NAME
@@ -65,22 +65,14 @@ void sioConnect(uint8 linkOption) BANKED
                 // SYNC
                 sortNamesAndScores();
 
-                linkBlank();
-                // // SEND SCORE
-                // sioScore = highScore[k];
-                // sioSendScore(sioScore);
+                linkFinished();
 
-                // // SEND NAME
-                // for(uint8 j = 0; j != 8; j++)
-                // {
-                //     sioName[j] = namesArray[k][j];
-                // }
-                // sioSendName(sioName);
-
-                // // REPLACE WITH linkFinished()
-                // linkBlank();
+                currProgress += 4;
+                progressBar(currProgress);
             }
             break;
     }
+    linkExit();
+    
     DISABLE_RAM_MBC1;
 }

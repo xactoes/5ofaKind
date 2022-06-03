@@ -28,6 +28,10 @@ void sioReceiveScore() BANKED
         // If RECEIVED
         if(_io_status == IO_IDLE)
         {
+            // UPDATE SCREEN
+            linkSyncing();
+            vblDelay(5);
+
             scoreSplit[i] = _io_in;
             switch(i)
             {
@@ -41,7 +45,6 @@ void sioReceiveScore() BANKED
                     break;
             }
         }
-        linkWaiting();
     }
     highScore[24] = scorePaired;
 }

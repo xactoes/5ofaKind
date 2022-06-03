@@ -44,9 +44,9 @@ void drawCursor(uint8 screenLocal)
 
         // LINK SCREENS
         case SCREEN_LINK:
+            move_sprite(cursor2, 0, 0);
             move_sprite(cursor3, 0, 0);
             move_sprite(cursor1, cursorLinkX, cursorLinkY);
-            move_sprite(cursor2, cursorLinkX + 40, cursorLinkY);
             break;
 
         // GAME PLAY SCREEN

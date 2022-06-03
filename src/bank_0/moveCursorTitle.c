@@ -3,6 +3,7 @@
 #include "../bank_0/global_variables.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/misc.h"
+#include "../bank_1/soundEffects.h"
 
 void moveCursorTitle()
 {
@@ -11,6 +12,7 @@ void moveCursorTitle()
 		case J_UP:
 			if(cursorTitleY > Y_PLAY)
 			{
+				soundCursorMove();
 				cursorTitleY -= GAP_Y_TITLE;
 			}
 			drawCursor(SCREEN_TITLE);
@@ -19,12 +21,14 @@ void moveCursorTitle()
 		case J_DOWN:
 			if(cursorTitleY < Y_OPTIONS)
 			{
+				soundCursorMove();
 				cursorTitleY += GAP_Y_TITLE;
 			}
 			drawCursor(SCREEN_TITLE);
 			waitpadup();
 			break;
 		case J_A:
+			soundCursorMove();
 			if(cursorTitleY == Y_PLAY)
 			{
 				screen = SCREEN_PLAY;

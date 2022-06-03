@@ -6,6 +6,7 @@
 #include "../bank_0/vblDelay.h"
 #include "../bank_1/cursor.h"
 #include "../bank_1/misc.h"
+#include "../bank_1/soundEffects.h"
 #include "../sram/save_variables.h"
 
 void moveCursorNameInput()
@@ -38,17 +39,23 @@ void moveCursorNameInput()
 
 				if(tempName[0] == 0x00)
 				{
+					soundCursorMove();
 					for(uint8 i = 0; i != 7; i++)
 					{
 		                tempName[i] = tempName[i + 1];
 	                }
 		            tempName[7] = get_bkg_tile_xy(tileX, tileY);
 				}
+				else
+				{
+					soundInvalid();
+				}
 				waitpadup();
 				break;
 
 			// BACKSPACE
 			case J_B:
+			soundCursorMove();
 			for(uint8 i = 7; i != 0; i--)
 			{
 	            tempName[i] = tempName[i - 1];
@@ -61,6 +68,7 @@ void moveCursorNameInput()
 			case J_LEFT:
 				if(cursorNameX > X_LEFT_NAME)
 				{
+					soundCursorMove();
 					cursorNameX -= GAP_X_NAME;
 				}
 				waitpadup();
@@ -68,6 +76,7 @@ void moveCursorNameInput()
 			case J_RIGHT:
 				if(cursorNameX < X_RIGHT_NAME)
 				{
+					soundCursorMove();
 					cursorNameX += GAP_X_NAME;
 				}
 				waitpadup();
@@ -75,6 +84,7 @@ void moveCursorNameInput()
 			case J_UP:
 				if(cursorNameY > Y_TOP_NAME)
 				{
+					soundCursorMove();
 					cursorNameY -= GAP_Y_NAME;
 				}
 				waitpadup();
@@ -82,6 +92,7 @@ void moveCursorNameInput()
 			case J_DOWN:
 				if(cursorNameY < Y_BOTTOM_NAME)
 				{
+					soundCursorMove();
 					cursorNameY += GAP_Y_NAME;
 				}
 				waitpadup();
@@ -89,6 +100,7 @@ void moveCursorNameInput()
 
 			// SWITCH SCREEN MAPS
 			case J_SELECT:
+				soundCursorMove();
 				if(screen < SCREEN_NAME_INPUT_2)
 				{
 					screen++;
@@ -108,6 +120,8 @@ void moveCursorNameInput()
 				break;
 
 			case J_START:
+				soundCursorMove();
+				
 				//copies tempName into currentName
 	           	memcpy(currentName, tempName, sizeof(currentName));
 
