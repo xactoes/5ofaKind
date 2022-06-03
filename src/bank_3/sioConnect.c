@@ -1,6 +1,7 @@
 #include <gb/gb.h>
 #include "../bank_0/global_defines.h"
 #include "../bank_0/displayUpdates.h"
+#include "../bank_0/vblDelay.h"
 #include "../bank_1/cursor.h"
 #include "../bank_3/sio.h"
 #include "../bank_3/screens_link.h"
@@ -20,53 +21,64 @@ void sioConnect(uint8 linkOption) BANKED
     switch(linkOption)
     {
         case X_HOST:
-            for(uint8 i = 0; i != 25; i++)
+            for(uint8 k = 0; k != 25; k++)
             {
-                // SEND SCORE
-                sioScore = highScore[i];
+                // SET & SEND SCORE
+                sioScore = highScore[k];
                 sioSendScore(sioScore);
 
-                // SEND NAME
+                // SET & SEND NAME
                 for(uint8 j = 0; j != 8; j++)
                 {
-                    sioName[j] = namesArray[i][j];
+                    sioName[j] = namesArray[k][j];
                 }
                 sioSendName(sioName);
 
-                // RECEIVE SCORE AND NAME
-                sioReceiveScore();
-                sioReceiveName();
+                // WAIT 2 SEC WHILE SCORES SYNC ON RECEIVING
+                vblDelay(120);
 
-                linkSyncing();
+                linkBlank();
 
-                // SYNC
-                sortNamesAndScores();
+                // // RECEIVE SCORE AND NAME
+                // sioReceiveScore();
+                // sioReceiveName();
 
+                // linkSyncing();
+
+                // // SYNC
+                // sortNamesAndScores();
+
+                // //REPLACE WITH linkFinsihed()
+                // linkBlank();
             }
             break;
 
         case X_JOIN:
-            for(uint8 i = 0; i != 25; i++)
+            for(uint8 k = 0; k != 25; k++)
             {
                 // RECEIVE SCORE AND NAME
                 sioReceiveScore();
                 sioReceiveName();
                 
                 linkSyncing();
-                
+
                 // SYNC
                 sortNamesAndScores();
 
-                // SEND SCORE
-                sioScore = highScore[i];
-                sioSendScore(sioScore);
+                linkBlank();
+                // // SEND SCORE
+                // sioScore = highScore[k];
+                // sioSendScore(sioScore);
 
-                // SEND NAME
-                for(uint8 j = 0; j != 8; j++)
-                {
-                    sioName[j] = namesArray[i][j];
-                }
-                sioSendName(sioName);
+                // // SEND NAME
+                // for(uint8 j = 0; j != 8; j++)
+                // {
+                //     sioName[j] = namesArray[k][j];
+                // }
+                // sioSendName(sioName);
+
+                // // REPLACE WITH linkFinished()
+                // linkBlank();
             }
             break;
     }

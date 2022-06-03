@@ -12,8 +12,9 @@ BANKREF(sioReceiveScore)
 void sioReceiveScore() BANKED
 {
     linkWaiting();
+    vblDelay(60);
 
-    for(int8 i = 0; i < 2; i++)
+    for(uint8 i = 0; i < 2; i++)
     {
         scorePaired = 0;
         

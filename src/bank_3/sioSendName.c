@@ -10,18 +10,25 @@ BANKREF(sioSend)
 void sioSendName(uint8* varName) BANKED
 {    
     linkWaiting();
+    vblDelay(120);
 
-    for(int8 i = 0; i < 8; i++)
+    for(uint8 i = 0; i < 8; i++)
     {
         _io_out = varName[i];
 
         // send _io_out
         send_byte(); 
 
-        // Wait for Send
         linkConnected();
+
+        // Wait for Send
         while(_io_status == IO_SENDING);
+
+        if(_io_status == IO_IDLE)
+        {
+            linkSyncing();
+            vblDelay(5);
+        }
         
-        linkWaiting();
     }
 }

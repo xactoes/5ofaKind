@@ -10,6 +10,7 @@ BANKREF(sioSendScore)
 void sioSendScore(uint16 varScore) BANKED
 {
     linkWaiting();
+    vblDelay(120);
 
     scoreSplit[0] = (uint8) (varScore >> 8);
     scoreSplit[1] = (uint8) varScore;
@@ -25,6 +26,10 @@ void sioSendScore(uint16 varScore) BANKED
         linkConnected();
         while(_io_status == IO_SENDING);
         
-        linkWaiting();
+        if(_io_status == IO_IDLE)
+        {
+            linkSyncing();
+            vblDelay(5);
+        }
     }
 }

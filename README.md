@@ -26,11 +26,13 @@ IMAGES:
 
 KNOWN BUGS:
 * Transfer does not work yet
+* Scores sent over link from sender to receiver then back to sender will duplicate
 
 OTHER CHANGES TO BE MADE:
 * SPLASH SCREEN
 * NAME PROMPT ON FIRST STARTUP (skippable)
 * FINISH SETTING UP TRANSFER
+  * DEDUPLICATE SCORES
 * BETTER TITLE SCREEN (maybe)
 * ADD DICE ROLLING ANIMATION
 * CREDITS SCREEN

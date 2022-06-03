@@ -11,9 +11,10 @@ BANKREF(sioReceiveName)
 void sioReceiveName() BANKED
 {
     linkWaiting();
+    vblDelay(60);
 
     // BEGIN TRANSFER
-    for(int8 i = 0; i < 8; i++)
+    for(uint8 i = 0; i < 8; i++)
     {
         // receive _io_in
         receive_byte(); 
