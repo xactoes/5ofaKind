@@ -16,7 +16,7 @@ void moveCursorLink() BANKED
 	switch(joypad()){
 		case J_A:
 			soundCursorMove();
-			linkOption = cursorLinkX;
+			linkOption = cursorLinkY;
 			sioConnect(linkOption);
 			waitpadup();
 			break;

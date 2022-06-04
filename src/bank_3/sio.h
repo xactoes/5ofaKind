@@ -12,6 +12,9 @@
 #define SYNCING     12
 #define FINISHED    13
 
+#define REQUEST_SEND        50
+#define REQUEST_ACCEPTED    100
+
 extern uint8 scoreSplit[];
 BANKREF_EXTERN(scoreSplit)
 
@@ -20,10 +23,6 @@ BANKREF_EXTERN(scorePaired)
 
 extern uint8 scoreName[];
 BANKREF_EXTERN(scoreName)
-
-extern uint8 handshake;
-BANKREF_EXTERN(handshake)
-
 
 extern void sioTest() BANKED;
 BANKREF_EXTERN(sioTest)
@@ -41,5 +40,13 @@ BANKREF_EXTERN(sioReceiveScore)
 extern void sioReceiveName() BANKED;
 BANKREF_EXTERN(sioReceiveName)
 
+extern void dedupeScores() BANKED;
+BANKREF_EXTERN(dedupeScores)
+
+extern void requestToSend() BANKED;
+BANKREF_EXTERN(requestToSend)
+
+extern void requestAccepted() BANKED;
+BANKREF_EXTERN(requestAccepted)
 
 #endif
