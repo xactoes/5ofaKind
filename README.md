@@ -25,13 +25,11 @@ IMAGES:
 ![5-of-a-Kind-14](https://user-images.githubusercontent.com/97451908/170585061-1f27774a-5b04-4251-9f39-3c275a1698af.png)
 
 KNOWN BUGS:
-* Scores sent over link from sender to receiver then back to sender will duplicate
+* Only 1 of legit duplicate scores on SENDER will arrive at RECEIVER. Legit Duplicate scores will be preserved on SENDER.
 
 OTHER CHANGES TO BE MADE:
 * SPLASH SCREEN
 * NAME PROMPT ON FIRST STARTUP (skippable)
-* FINISH SETTING UP TRANSFER
-  * DEDUPLICATE SCORES
 * BETTER TITLE SCREEN (maybe)
 * ADD DICE ROLLING ANIMATION (maybe)
 * CREDITS SCREEN
