@@ -14,14 +14,11 @@
 #include "./bank_3/sio.h"
 #include "./sram/save_variables.h"
 
-#include <stdio.h>
-
 void main(){
 
     if(!bootInitialized)
     {
-        // CHANGE TO SCREEN_CREDITS
-        screen = SCREEN_TITLE;
+        screen = SCREEN_CREDITS;
         loadSprites();
         bootInitialized = 1;
     }
@@ -59,6 +56,8 @@ void main(){
     while(screen == SCREEN_CREDITS)
     {
         drawBackground(SCREEN_CREDITS);
+        vblDelay(30);
+        screen = SCREEN_TITLE;
     }
 
     while(bootInitialized)

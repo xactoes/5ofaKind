@@ -21,18 +21,8 @@ IMAGES:
 
 
 KNOWN BUGS:
-* Only 1 of legit duplicate scores on SENDER will arrive at RECEIVER. Legit Duplicate scores will be preserved on SENDER.
+* Only 1 of legit duplicate scores on SENDER will arrive at RECEIVER. Legit Duplicate scores will be preserved on SENDER. (I've been told this should be marketed as a feature)
 
 OTHER CHANGES TO BE MADE:
 * SPLASH SCREEN
-* NAME PROMPT ON FIRST STARTUP (skippable)
-* BETTER TITLE SCREEN (maybe)
-* UPDATE IMAGES ON README
-* ADD DICE ROLLING ANIMATION (maybe)
 * CREDITS SCREEN
-* AUDIO
-  * MIGHT ADD
-    * SOUND FOR EACH DI BEING ROLLED
-    * SOUND FOR LEGAL AND 0
-    * SOUND FOR LEGAL AND MAX VALUE
-    * END GAME JINGLE
