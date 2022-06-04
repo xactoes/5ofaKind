@@ -14,8 +14,6 @@
 #include "./bank_3/sio.h"
 #include "./sram/save_variables.h"
 
-#include <stdio.h>
-
 void main(){
 
     if(!bootInitialized)

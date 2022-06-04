@@ -21,7 +21,7 @@ IMAGES:
 
 
 KNOWN BUGS:
-* Only 1 of legit duplicate scores on SENDER will arrive at RECEIVER. Legit Duplicate scores will be preserved on SENDER.
+* Only 1 of legit duplicate scores on SENDER will arrive at RECEIVER. Legit Duplicate scores will be preserved on SENDER. (I've been told this should be marketed as a feature)
 
 OTHER CHANGES TO BE MADE:
 * SPLASH SCREEN
