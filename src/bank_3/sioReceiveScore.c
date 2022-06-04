@@ -12,7 +12,6 @@ BANKREF(sioReceiveScore)
 void sioReceiveScore() BANKED
 {
     linkWaiting();
-    vblDelay(60);
 
     for(uint8 i = 0; i < 2; i++)
     {
@@ -30,7 +29,6 @@ void sioReceiveScore() BANKED
         {
             // UPDATE SCREEN
             linkSyncing();
-            vblDelay(5);
 
             scoreSplit[i] = _io_in;
             switch(i)
