@@ -32,6 +32,7 @@ void moveCursorOptions()
 		case J_A:
 			if(cursorOptionsY == Y_NAME_INPUT)
 			{
+				bkgDrawn = 0;
 				soundCursorMove();
 				move_sprite(ARROW_RIGHT, 0, 0);
 				move_sprite(ARROW_LEFT, 0, 0);
