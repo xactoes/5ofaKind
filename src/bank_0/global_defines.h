@@ -92,11 +92,13 @@ typedef long long       int64;
 
 // AUDIO
 #define AUDIO_ON			0x80	// for NR52_REG
+#define AUDIO_OFF           0x00
 #define CHANNEL_ON_1		0x11	// for NR51_REG
 #define CHANNEL_ON_2		0x22
 #define CHANNEL_ON_3		0x44
 #define CHANNEL_ON_4		0x88
 #define CHANNEL_ON_ALL		0xFF
+#define CHANNEL_OFF_ALL     0x00
 #define MAX_VOLUME			0x77	// for NR50_REG
 #define MIN_VOLUME			0x00	// LB and RB are LEFT and RIGHT audio channels	
 

@@ -18,10 +18,6 @@
 
 void main(){
 
-    NR52_REG = AUDIO_ON;
-    NR50_REG = MAX_VOLUME;
-    NR51_REG = CHANNEL_ON_ALL;
-
     if(!bootInitialized)
     {
         // CHANGE TO SCREEN_CREDITS
@@ -37,8 +33,21 @@ void main(){
         resetData();
         saveInitialized = 1;
     }
+    
+    if(audioState == 1)
+    {
+        NR52_REG = AUDIO_ON;
+        NR50_REG = MAX_VOLUME;
+        NR51_REG = CHANNEL_ON_ALL;
+    }
+    else
+    {
+        NR52_REG = AUDIO_OFF;
+        NR50_REG = MIN_VOLUME;
+        NR51_REG = CHANNEL_OFF_ALL;
+    }
     DISABLE_RAM_MBC1;
-
+    
     DISPLAY_ON;
     SHOW_SPRITES;
 

@@ -21,4 +21,6 @@ void resetData()
 		currentName[i] = 0x00;
 	}
 	sortNamesAndScores();
+
+	audioState = 1;
 }

@@ -7,3 +7,5 @@ uint8 saveInitialized;
 uint8 namesArray[25][8];
 uint16 highScore[25];
 uint8 scoreLogged[25];
+
+uint8 audioState;
