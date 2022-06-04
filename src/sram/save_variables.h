@@ -11,4 +11,6 @@ extern uint8 namesArray[25][8];
 extern uint16 highScore[25];
 extern uint8 scoreLogged[25];
 
+extern uint8 audioState;
+
 #endif

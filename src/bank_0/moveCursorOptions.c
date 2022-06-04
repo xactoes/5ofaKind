@@ -5,6 +5,7 @@
 #include "../bank_1/cursor.h"
 #include "../bank_1/misc.h"
 #include "../bank_1/soundEffects.h"
+#include "../sram/save_variables.h"
 
 void moveCursorOptions()
 {
@@ -40,7 +41,25 @@ void moveCursorOptions()
 			}
 			else if(cursorOptionsY == Y_AUDIO)
 			{
-				//soundCursorMove();
+				ENABLE_RAM_MBC1;
+				SWITCH_RAM_MBC1(0);
+				if(audioState == 1)
+				{
+					audioState = 0;
+					NR52_REG = AUDIO_OFF;
+					NR50_REG = MIN_VOLUME;
+					NR51_REG = CHANNEL_OFF_ALL;
+				}
+				else
+				{
+					audioState = 1;
+					NR52_REG = AUDIO_ON;
+					NR50_REG = MAX_VOLUME;
+					NR51_REG = CHANNEL_ON_ALL;
+				}
+				DISABLE_RAM_MBC1;
+				soundCursorMove();
+				waitpadup();
 			}
 			else if(cursorOptionsY == Y_RESET)
 			{
