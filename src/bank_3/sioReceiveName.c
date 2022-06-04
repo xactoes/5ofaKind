@@ -11,7 +11,6 @@ BANKREF(sioReceiveName)
 void sioReceiveName() BANKED
 {
     linkWaiting();
-    vblDelay(60);
 
     // BEGIN TRANSFER
     for(uint8 i = 0; i < 8; i++)
@@ -28,9 +27,7 @@ void sioReceiveName() BANKED
         {
             // UPDATE SCREEN
             linkSyncing();
-            vblDelay(5);
-            scoreName[i] = _io_in;
-	        namesArray[24][i] = scoreName[i];
+	        namesArray[24][i] =_io_in;
         }
     }
 }

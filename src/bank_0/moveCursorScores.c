@@ -5,7 +5,6 @@
 #include "../bank_1/cursor.h"
 #include "../bank_1/misc.h"
 #include "../bank_1/soundEffects.h"
-#include "../bank_3/sio.h"
 
 void moveCursorScores()
 {
@@ -30,7 +29,6 @@ void moveCursorScores()
 			waitpadup();
 			break;
 		case J_B:
-			dedupeScores();
 			soundCursorMove();
 			bkgDrawn = 0;
 			loadMenu();

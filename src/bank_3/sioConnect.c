@@ -41,8 +41,8 @@ void sioConnect(uint8 linkOption) BANKED
 
                 linkSyncing();
 
-                // WAIT 2 SEC WHILE SCORES SYNC ON RECEIVING
-                vblDelay(120);
+                // WAIT 1 SEC WHILE SCORES SYNC ON RECEIVING
+                vblDelay(60);
 
                 linkFinished();
 
@@ -63,6 +63,7 @@ void sioConnect(uint8 linkOption) BANKED
                 linkSyncing();
 
                 // SYNC
+                dedupeScores();
                 sortNamesAndScores();
 
                 linkFinished();

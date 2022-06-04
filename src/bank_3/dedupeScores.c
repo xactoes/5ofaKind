@@ -9,38 +9,34 @@ BANKREF(dedupeScores)
 void dedupeScores() BANKED
 {
     uint8 counter;
-    // FOR EACH SCORE
-    for(uint8 i = 0; i != 24; i++)
+    // FOR BUFFER SCORE ONLY
+    // COMPARE WITH ALL SCORES BEFORE IT
+    for(uint8 j = 0; j != 24; j++)
     {
-        // COMPARE WITH ALL SCORES AFTER IT
-        for(uint8 j = i + 1; j != 25; j++)
+        counter = 0;
+        for(uint8 k = 0; k != 8; k++)
         {
-            counter = 0;
-            for(uint8 k = 0; k != 8; k++)
+            // IF CHARACTER K IS THE SAME
+            if(namesArray[24][k] == namesArray[j][k])
             {
-                // IF CHARACTER K IS THE SAME
-                if(namesArray[i][k] == namesArray[j][k])
-                {
-                    // INCREMENT COUNTER
-                    counter ++;
-                }
+                // INCREMENT COUNTER
+                counter ++;
             }
-            
-            // IF NAMES ARE IDENTICAL
-            if(counter == 8)
+        }
+        
+        // IF NAMES ARE IDENTICAL
+        if(counter == 8)
+        {
+            // CHECK IF SCORES ARE THE SAME THEN ERASE ENTRY
+            if(highScore[24] == highScore[j])
             {
-                // CHECK IF SCORES ARE THE SAME THEN ERASE ENTRY
-                if(highScore[i] == highScore[j])
-                {
-                    highScore[j] = 0;
+                highScore[j] = 0;
 
-                    for(uint8 k = 0; k != 8; k++)
-                    {
-                        namesArray[j][k] = 0x00;
-                    }
+                for(uint8 k = 0; k != 8; k++)
+                {
+                    namesArray[j][k] = 0x00;
                 }
             }
         }
-        sortNamesAndScores();
     }
 }
