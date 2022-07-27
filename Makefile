@@ -6,13 +6,13 @@
 # If you move this project you can change the directory
 # to match your GBDK root directory (ex: GBDK_HOME = "C:/GBDK/"
 
-GBDK_HOME = ../../gbdk/
+GBDK_HOME = /opt/gbdk/
 
 LCC = $(GBDK_HOME)bin/lcc
 
-EMU = ../../Emulicious/emulicious
+EMU = java -jar /opt/Emulicious/Emulicious.jar
 
-ROM_USAGE = ../../romusage
+ROM_USAGE = /opt/romusage/romusage
 
 # You can set flags for LCC here
 # For example, you can uncomment the line below to turn on debug output
